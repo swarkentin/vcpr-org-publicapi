@@ -163,8 +163,6 @@ paths:
               properties:
                 user:
                   $ref: '#/components/schemas/User'
-            example:
-              $ref: '#/components/examples/testVOR'
       responses:
         '200':
           description: User updated
@@ -205,8 +203,6 @@ paths:
                 properties:
                   user:
                     $ref: '#/components/schemas/User'
-                  example:
-                    $ref: '#/components/examples/testMOR'
       x-postman-tests:
         description: |
           - Tests 1. 200 response to valid credentials
@@ -311,8 +307,6 @@ paths:
                 properties:
                   user:
                     $ref: '#/components/schemas/User'
-                  example:
-                    $ref: '#/components/examples/testMOR'
   /api/protocols/sharesToAll/:
     get:
       operationId: getSharesToAll
@@ -345,6 +339,7 @@ paths:
                   - pxId: 1
                     name: example protocol
                     clonable: false
+  /api/protocols/sharesToAll/{pxId}:
     post:
       operationId: shareToAll
       summary: share Protocol with all VOR users
@@ -424,8 +419,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ProtocolShare'
-            example:
-              $ref: '#/components/examples/protocolShare'
       responses:
         '200':
           description: protocol shared
@@ -511,8 +504,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Protocol'
-            example:
-              $ref: '#/components/examples/protocol-1'
       responses:
         '200':
           description: recorded protocol
@@ -523,8 +514,6 @@ paths:
                 properties:
                   protocol:
                     $ref: '#/components/schemas/Protocol'
-                  example:
-                    $ref: '#/components/examples/protocol-1'
     put:
       operationId: updateProtocol
       tags:
@@ -541,8 +530,6 @@ paths:
                 properties:
                   protocol:
                     $ref: '#/components/schemas/Protocol'
-                  example:
-                    $ref: '#/components/examples/protocol-1'
   /api/protocols/eligibilities:
     get:
       operationId: getEligibilities
@@ -940,6 +927,7 @@ paths:
 components:
   schemas:
     Error:
+      type: object
       description: error response per RFC 7807
       required:
         - title
@@ -965,7 +953,6 @@ components:
           type: string
           description: A URI that identifies the specific occurrence of the error
           example: /login/log/abc123
-      example: '{"title":"password or identifier mismatch","status":401}'
     SuccessfulLogin:
       description: User object and generated auth token
       type: object
@@ -1317,7 +1304,7 @@ components:
         caseDefinition:
           $ref: '#/components/schemas/CaseDefinition'
         treatments:
-          description: treatments used in this protocol
+          description: "treatments used in this protocol"
           type: array
           items:
             $ref: '#/components/schemas/Treatment'
@@ -1345,83 +1332,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Metadata'
-      example:
-        ownerId: 0
-        name: example protocol
-        shortname: EXamp
-        created: '2020-01-10T22:20:39Z'
-        edited: '2020-01-10T22:20:39Z'
-        status: UNKNOWN
-        withhold:
-          hoursMeat: 0
-          hoursMilk: 0
-          note: ''
-        instructions:
-          considerations: think first
-          restrictions: always
-          dothis: execute protocol
-          recordthis: case data
-          success: good
-          failure: bad
-          references: ref
-        shareAll: false
-        shareClonable: false
-        caseDefinition:
-          pxId: 0
-          requireID: true
-          requireMOR: true
-          medical: really sick
-          economic: lotsa cash
-        treatments:
-          - id: 0
-            ownerId: 0
-            description: sample treatment
-            note: this is an off-label Treatment
-            eligibilities:
-              - id: 1
-                name: Beef Cattle
-                fda: BeefCattle
-            tags:
-              - id: 1
-                code: EXAMPLE
-            product: MiracleMed
-            _dose: 3.0 ml per kg repeat in 6 hours and again in 24 hours
-            route: intr-corporeal
-            sequenceFunction:
-              intervals:
-                - PT6H
-                - PT24H
-              _type: models.api.v1.SeqSeries
-            sizeFunction:
-              dose:
-                quantity:
-                  dimension: Volume
-                  value: 3
-                  symbol: ml
-              perUnit:
-                dimension: Mass
-                value: 1
-                symbol: kg
-              _type: models.api.v1.DoseByWeightFunction
-            doseNote: some note on dose
-            wtMeatHrs: 22
-            wtMilkHrs: 5
-            wtNote: example
-        tags:
-          - id: 1
-            code: EXAMPLE
-        diagnoses:
-          - id: 8
-            code: PAIN
-            name: 'Pain/inflammation (musculoskeletal), treatment'
-        eligibilities:
-          - id: 1
-            name: Beef Cattle
-            fda: BeefCattle
-        promises:
-          - id: 1
-            name: test user
-            code: EXAMPLE
     Instructions:
       description: instructions to execute a protocol
       type: object
@@ -1462,7 +1372,7 @@ components:
         value:
           type: string
     Treatment:
-      description: describes a series of one or more doses of a single product in terms of a sizeFunction (which specifies dose quantity) and a SequenceFunction (which specifies when the doses should be given). These functions are polymorphic and may depend on addititional data which only is available when a protocol is assigned to a specific Case. For example, the initiation time will likely be needed to calculate the dose sequence and animal weight or other data may be needed to calculate dose size.
+      description: "describes a series of one or more doses of a single product in terms of a sizeFunction (which specifies dose quantity) and a SequenceFunction (which specifies when the doses should be given). These functions are polymorphic and may depend on addititional data which only is available when a protocol is assigned to a specific Case. For example, the initiation time will likely be needed to calculate the dose sequence and animal weight or other data may be needed to calculate dose size."
       type: object
       required:
         - product
@@ -1481,7 +1391,7 @@ components:
         description:
           description: description of Treatment
           type: string
-          example: "1 micro mol per kg daily"
+          example: "3.0 ml per kg repeat"
         eligibilities:
           description: eligibility criteria for potential cases
           type: array
@@ -1502,6 +1412,7 @@ components:
         route:
           description: route of administration
           type: string
+          example: wip
         wtMeatHrs:
           type: integer
         wtMilkHrs:
@@ -1766,10 +1677,10 @@ components:
       properties:
         _type:
           type: string
+          description: wip
           enum:
             - models.api.v1.SeqSingleDose
-      example:
-        _type: models.api.v1.SeqSingleDose
+          example: models.api.v1.SeqSingleDose
     SeqSeries:
       description: an ordered sequence of doses at times specified as time since initiation of the protocol.
       required:
@@ -1781,18 +1692,17 @@ components:
           type: string
           enum:
             - models.api.v1.SeqSeries
+          example: models.api.v1.SeqSeries
         intervals:
           type: array
           items:
             description: ISO-8601 duration from initiation or previous dose
             type: string
             format: duration
-      example:
-        intervals:
-          - PT0S
-          - PT3H
-          - PT24H
-        _type: models.api.v1.SeqSeries
+            example:
+              - PT0S
+              - PT3H
+              - PT24H
     SeqPerDay:
       required:
         - _type
@@ -1821,50 +1731,47 @@ components:
         - frequency
         - minDoses
         - maxDoses
-      description: a series of equally spaced doses specified by the total number of doses and an integer number of doses per day.
+      description: a series of equally-spaced doses specified by the total number of doses and an integer number of doses per day.
       type: object
       properties:
         _type:
           type: string
           enum:
             - models.api.v1.SeqPerDayRange
+          example: models.api.v1.SeqPerDayRange
         frequency:
           type: integer
           default: 1
+          example: 2
         minDoses:
           type: integer
-          default: 1
+          default: 3
         maxDoses:
           type: integer
           default: 1
-      example:
-        minDoses: 3
-        maxDoses: 9
-        _type: models.api.v1.SeqPerDayRange
-        frequency: 2
+          example: 9
     SeqInterval:
       required:
         - _type
         - totalDoses interval
-      description: a series of equally spaced doses specified by the total number of doses and time between sequential doses.
+      description: a series of equally-spaced doses specified by the total number of doses and time between sequential doses.
       type: object
       properties:
         _type:
           type: string
           enum:
             - models.api.v1.SeqInterval
+          example: models.api.v1.SeqInterval
         totalDoses:
           type: integer
           default: 1
+          example: 3
         interval:
           description: ISO-8601 duration from initiation or previous dose
           type: string
           format: duration
           default: PT8H
-      example:
-        totalDoses: 3
-        _type: models.api.v1.SeqInterval
-        interval: PT8H
+          example: PT8H
     Tag:
       description: keyword or tag for classification
       type: object
@@ -1872,9 +1779,7 @@ components:
         code:
           type: string
           maxLength: 15
-      example:
-        id: 1
-        code: EXAMPLE
+          example: Example-code
     Eligibility:
       description: |
         A class of animal for which a protocol may be used. Normally the `name` field is all that is shown in the UI, but the `id` is used internally to identify each Eligibility, which should be treated as an immutable object. Changes to the array of Eligibilities in a Protocol are done by changing the array of `id` numbers. Changes to other fields will have no effect at the persistent layer.
@@ -1891,29 +1796,7 @@ components:
           type: string
           example: Beef Cattle
         fdaSpecies:
-          description: FDA-specified species/variant description
-          enum:
-            - beef_cattle
-            - veal
-            - dairy_cattle
-            - cats
-            - dogs
-            - horses
-            - fish
-            - goats
-            - sheep
-            - chickens
-            - turkeys
-            - swine
-            - catfish
-            - gamebirds
-            - llamas
-            - salmon
-            - emus
-            - bison
-            - other
-            - unidentified
-          example: beef_cattle
+          $ref: '#/components/schemas/fdaSpecies'
     Promise:
       description: An act which must be executed on or after enrollment of a Case to a Prescription
       type: object
@@ -2254,21 +2137,21 @@ components:
       properties:
         dimension:
           type: string
+          description: wip
+          example: Volume
           enum:
             - Volume
         value:
           type: number
           minimum: 0
+          example: 3
           exclusiveMinimum: true
         symbol:
           $ref: '#/components/schemas/VolumeUnit'
-      example:
-        dimension: Volume
-        value: 3
-        symbol: ml
     VolumeUnit:
       description: unit of Volume or weight
       type: string
+      example: ml
       enum:
         - pt
         - tbsp
@@ -2313,77 +2196,78 @@ components:
       properties:
         id:
           type: integer
+          description: wip
+          example: 1
         nada:
           type: string
+          description: wip
+          example: wip
         eligibility:
           type: string
+          description: wip
+          example: wip
         exId:
           type: integer
+          description: wip
+          example: wip
         exCode:
           type: string
+          description: wip
+          example: wip
         fdaSpecies:
-          type: string
+          $ref: '#/components/schemas/fdaSpecies'
         diagnosis:
           type: string
+          description: wip
+          example: Pain (colic), symptomatic treatment
         dxId:
           type: integer
+          description: wip
+          example: 2002
         dxCode:
           type: string
+          description: wip
+          example: '2002'
         product:
           type: string
+          description: wip
+          example: Prevail™ Flunixin Meglumine Injection
         productId:
           type: integer
+          description: wip
+          example: 42
         sequenceFunction:
           $ref: '#/components/schemas/SequenceFunction'
         sizeFunction:
           $ref: '#/components/schemas/SizeFunction'
         _dose:
           type: string
+          description: free-form text note on dosage
+          example: 3.0 ml per kg repeat in 6 hours and again in 24 hours
         dosageId:
           type: integer
+          description: wip
+          example: wip
         route:
           type: string
-          definition: wip
+          description: wip
           example: intr-corporeal
         raId:
           type: integer
+          description: wip
+          example: wip
         wtMeatHrs:
+          description: wip
           type: integer
+          example: 22
         wtMilkHrs:
           type: integer
+          description: wip
+          example: 5
         wtNote:
           type: string
-      example:
-        id: 1
-        fdaSpecies: Horses
-        diagnosis: 'Pain (colic), symptomatic treatment'
-        dxId: 2002
-        dxCode: '2002'
-        product: Prevail™ Flunixin Meglumine Injection
-        productId: 42
-        sequenceFunction:
-          intervals:
-            type: string
-            enum:
-              - PT6H
-              - PT24H
-          _type: models.api.v1.SeqSeries
-        sizeFunction:
-          dose:
-            quantity:
-              dimension: Volume
-              value: 3
-              symbol: ml
-          perUnit:
-            dimension: Mass
-            value: 1
-            symbol: kg
-          _type: models.api.v1.DoseByWeightFunction
-        _dose: 3.0 ml per kg repeat in 6 hours and again in 24 hours
-        doseNote: Not for use in horses intended for food
-        route: I.V.
-        wtMeatHrs: 0
-        wtMilkHrs: 0
+          description: wip
+          example: wip
     PrescriptionRequest:
       description: 'a Prescription request, before it is recorded and timestamped'
       required:
@@ -2437,7 +2321,7 @@ components:
               eligibilities:
                 - id: 1
                   name: Beef Cattle
-                  fda: BeefCattle
+                  fda: beef_cattle
               tags:
                 - id: 1
                   code: EXAMPLE
@@ -2641,6 +2525,31 @@ components:
         lastChanged:
           type: string
           format: date-time
+    fdaSpecies:
+      type: string
+      description: FDA-specified species/variant description
+      enum:
+        - beef_cattle
+        - veal
+        - dairy_cattle
+        - cats
+        - dogs
+        - horses
+        - fish
+        - goats
+        - sheep
+        - chickens
+        - turkeys
+        - swine
+        - catfish
+        - gamebirds
+        - llamas
+        - salmon
+        - emus
+        - bison
+        - other
+        - unidentified
+      example: beef_cattle
   securitySchemes:
     AuthToken:
       type: apiKey
@@ -2682,134 +2591,6 @@ components:
       description: 501 - endpoint not yet implemented
     Unavailable:
       description: 503 - service is (temporarily) not available
-  examples:
-    testVOR-login:
-      summary: login username and password for user testVOR
-      value:
-        identifier: testVOR
-        password: tVpass
-    testVOR:
-      summary: User with VOR Usertype
-      description: VOR test user prepopulated into testing db
-      value:
-        firstname: Test
-        uname: testVOR
-        id: 1
-        userType: VOR
-        suffix: DVM
-        email: testVOR@dairysight.com
-        lastname: Vet
-    testMOR:
-      summary: User with VOR Usertype
-      description: VOR test user prepopulated into testing db
-      value:
-        firstname: Test
-        uname: testMOR
-        id: 2
-        userType: MOR
-        email: testMOR@dairysight.com
-        lastname: Manager
-    protocolShare:
-      value:
-        px-id: 1
-        share-to: 2
-        read-only: false
-    protocol-1:
-      summary: ''
-      value:
-        ownerId: 0
-        name: example protocol
-        shortname: EXamp
-        created: '2020-01-10T22:20:39Z'
-        edited: '2020-01-10T22:20:39Z'
-        status: UNKNOWN
-        withhold:
-          hoursMeat: 0
-          hoursMilk: 0
-          note: ''
-        instructions:
-          considerations: think first
-          restrictions: always
-          dothis: execute protocol
-          recordthis: case data
-          success: good
-          failure: bad
-          references: ref
-        shareAll: false
-        caseDefinition:
-          pxId: 0
-          requireID: true
-          requireMOR: true
-          medical: really sick
-          economic: lotsa cash
-        treatments:
-          - id: 0
-            ownerId: 0
-            description: sample treatment
-            note: this is an off-label Treatment
-            eligibilities:
-              - id: 1
-                name: Beef Cattle
-                fda: BeefCattle
-            tags:
-              - id: 1
-                code: EXAMPLE
-            product: MiracleMed
-            _dose: '3.0 ml per kg repeat in PT0S List(, 6 hours)'
-            route: intr-corporeal
-            sequenceFunction:
-              intervals:
-                - PT0S
-                - PT6H
-              _type: models.api.v1.SeqSeries
-            sizeFunction:
-              dose:
-                quantity:
-                  dimension: Volume
-                  value: 3
-                  symbol: ml
-              perUnit:
-                dimension: Mass
-                value: 1
-                symbol: kg
-              _type: models.api.v1.DoseByWeightFunction
-            doseNote: some note on dose
-            wtMeatHrs: 22
-            wtMilkHrs: 5
-            wtNote: example
-        tags:
-          - id: 1
-            code: EXAMPLE
-        diagnoses:
-          - id: 2
-            code: PYOMETRA
-            name: 'Pyometra/chronic endometritis, treatment'
-        eligibilities:
-          - id: 1
-            name: Beef Cattle
-            fda: BeefCattle
-        promises:
-          - id: 1
-            name: test user
-            code: EXAMPLE
-    label-1:
-      summary: label with id=1
-      value:
-        id: 1
-        nada: 200-308
-        eligibility: Horses
-        exId: 2500
-        exCode: '2500'
-        fdaSpecies: Horses
-        diagnosis: 'Pain (colic), symptomatic treatment'
-        dxId: 2002
-        dxCode: '2002'
-        product: Prevail™ Flunixin Meglumine Injection
-        productId: 1315018
-        dose: 0.5 mg/lb (1 mL/100 lb) b.w. Give IV for fast relief. Repeat when colic signs recur.
-        dsId: 10656
-        roa: I.V.
-        raId: 21
 tags:
   - name: editor
     description: used by Protocol Editor SPA
