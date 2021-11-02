@@ -2343,6 +2343,8 @@ components:
           type: integer
         route:
           type: string
+          definition: wip
+          example: intr-corporeal
         raId:
           type: integer
         wtMeatHrs:
@@ -2361,8 +2363,10 @@ components:
         productId: 42
         sequenceFunction:
           intervals:
-            - PT6H
-            - PT24H
+            type: string
+            enum:
+              - PT6H
+              - PT24H
           _type: models.api.v1.SeqSeries
         sizeFunction:
           dose:
