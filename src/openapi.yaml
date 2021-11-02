@@ -6,7 +6,7 @@ info:
     name: 'Jim Ehrlich, DVM'
     url: 'https://github.com/jehrlich/VCPR_API'
     email: jehrlich@vcpr.org
-  description: API serving the Veterinary Protocol Manager&trade; application. &copy; DairySight LLC, Argyle NY 2020
+  description: 'API serving the Veterinary Protocol Manager&trade; application. &copy; DairySight LLC, Argyle NY 2020'
   x-api-id: bFU9IiwiaXNzIjoiVkNQUi1zZXJ2ZXIiLCJl
   x-audience: company-internal
 servers:
@@ -18,7 +18,6 @@ servers:
     url: 'https://test.VCPR.ORG'
   - description: 'local docker container, uses regenerated test database'
     url: 'http://localhost'
-
 security:
   - AuthToken: []
 paths:
@@ -30,9 +29,7 @@ paths:
         - idempotent
       security: []
       summary: user login
-      description: 'Use this endpoint to authenticate a User from `identifier` (normally an email address) and `password`.
-      Response returns the User object for the logged-ion user and a token for use in future secured requests,
-       as well as a `fileSignature` and `filePolicy` which may be used for access to images stored on FileStack.'
+      description: 'Use this endpoint to authenticate a User from `identifier` (normally an email address) and `password`. Response returns the User object for the logged-ion user and a token for use in future secured requests, as well as a `fileSignature` and `filePolicy` which may be used for access to images stored on FileStack.'
       requestBody:
         required: true
         content:
@@ -47,15 +44,25 @@ paths:
                   type: string
             examples:
               testVOR:
-                value: {"identifier": "testVOR", "password": "tVpass"}
+                value:
+                  identifier: testVOR
+                  password: tVpass
               testMOR:
-                value: {"identifier": "testMOR", "password": "tMpass"}
+                value:
+                  identifier: testMOR
+                  password: tMpass
               testTOR:
-                value: {"identifier": "testTOR", "password": "tTpass"}
+                value:
+                  identifier: testTOR
+                  password: tTpass
               testSAOR:
-                value: {"identifier": "testSAOR", "password": "tSpass"}
+                value:
+                  identifier: testSAOR
+                  password: tSpass
               testVOR2:
-                value: {"identifier": "testVOR2", "password": "tV2pass"}
+                value:
+                  identifier: testVOR2
+                  password: tV2pass
       responses:
         '200':
           description: Successful login
@@ -88,8 +95,7 @@ paths:
         - editor
         - idempotent
       summary: renew token
-      description: 'Use this endpoint to renew token. Response returns the User object for the logged-ion user and a token for use in future secured requests,
-       as well as a `fileSignature` and `filePolicy` which may be used for access to images stored on FileStack.'
+      description: 'Use this endpoint to renew token. Response returns the User object for the logged-ion user and a token for use in future secured requests, as well as a `fileSignature` and `filePolicy` which may be used for access to images stored on FileStack.'
       responses:
         '200':
           description: Successful login
@@ -116,7 +122,6 @@ paths:
           - Tests 1. 200 response to valid credentials 2. returns user 3. save token and user to env
         code: |
           pm.test('200 response to valid credentials', function () { pm.response.to.have.status(200);}); pm.test('Returns TestVOR user', function () { pm.expect(pm.response.json().user.uname).to.eql('testVOR');}); pm.test('save the token to env.token', function () { pm.environment.set('token', pm.response.json().token);}); pm.test('save user too', function () { pm.environment.set('user', JSON.stringify(pm.response.json().user));}); pm.test('token in response matches token in environment', function () { pm.expect(pm.response.json().token).to.eql(pm.environment.get('token'));});
-
   /api/users:
     get:
       operationId: getVORUserIds
@@ -143,13 +148,12 @@ paths:
                         name:
                           type: string
                           description: User's Name
-
     put:
       operationId: updateUser
       tags:
         - editor
       summary: update-user
-      description: 'idempotently update user data. Any user may update his or her own data. A VOR may update user data of a user in a `CLIENT` relationship with that VOR. A SAOR may update data of any user.'
+      description: idempotently update user data. Any user may update his or her own data. A VOR may update user data of a user in a `CLIENT` relationship with that VOR. A SAOR may update data of any user.
       requestBody:
         required: true
         content:
@@ -176,8 +180,7 @@ paths:
         - Assumes current user is testVOR - Side effects reset current user data to examples/testVOR - Tests 1. 200 response
       code: |
         pm.test('200 response', function () { pm.response.to.have.status(200);});
-
-  /api/users/{id}:
+  '/api/users/{id}':
     get:
       operationId: getUser
       tags:
@@ -214,7 +217,7 @@ paths:
       tags:
         - editor
       summary: delete user
-      description: 'Reversibly "delete" a User by setting user.status to `REMOVED`. Removed users are not visible in normal queries.'
+      description: Reversibly "delete" a User by setting user.status to `REMOVED`. Removed users are not visible in normal queries.
       parameters:
         - in: path
           name: id
@@ -230,11 +233,9 @@ paths:
               schema:
                 type: object
                 properties:
-                  "deleted":
+                  deleted:
                     type: integer
                     description: number of users deleted
-
-#  POST          /api/users/comments                                  controllers.EditorAPI.recordComment
   /api/users/comments:
     post:
       operationId: recordComment
@@ -258,7 +259,6 @@ paths:
                 properties:
                   recorded:
                     type: integer
-
   /api/users/my-right-relations:
     get:
       operationId: getMyRightRelations
@@ -288,8 +288,8 @@ paths:
       operationId: createRightRelation
       tags:
         - editor
-      summary: cadd a User and a relationship, defaulting to CLIENT relationship
-      description: add a User and a relationship of the type specified by `name` to the current user, who must be a VOR.
+      summary: 'cadd a User and a relationship, defaulting to CLIENT relationship'
+      description: 'add a User and a relationship of the type specified by `name` to the current user, who must be a VOR.'
       parameters:
         - in: query
           name: relationship
@@ -313,8 +313,7 @@ paths:
                     $ref: '#/components/schemas/User'
                   example:
                     $ref: '#/components/examples/testMOR'
-
-  /api/protocols/sharesToAll:
+  /api/protocols/sharesToAll/:
     get:
       operationId: getSharesToAll
       summary: get list of user's protocols shared to all
@@ -341,28 +340,32 @@ paths:
                         clonable:
                           type: boolean
                           description: Are other VORs allowed to clone this Protocol?
-              example: {"shares":[{"pxId":1,"name":"example protocol","clonable":false}]}
-
+              example:
+                shares:
+                  - pxId: 1
+                    name: example protocol
+                    clonable: false
     post:
       operationId: shareToAll
       summary: share Protocol with all VOR users
       description: get list of users protocols shared to all
       parameters:
-        - in: path
-          name: pxId
+        - name: pxId
+          in: path
           schema:
             type: integer
           required: true
+          explode: true
           description: ID of Protocol to be shared
-        - in: query
-          name: clonable
+        - name: clonable
+          in: query
           schema:
             type: boolean
           required: false
+          explode: true
       responses:
         '204':
           description: No Content
-
     delete:
       operationId: unShareToAll
       summary: get list of users protocols shared to all
@@ -377,9 +380,6 @@ paths:
       responses:
         '204':
           description: No Content
-
-
-
   /api/protocols/shares:
     get:
       operationId: getMyProtocolShares
@@ -434,7 +434,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  "shared":
+                  shared:
                     type: integer
                     description: number of shares created
     delete:
@@ -464,7 +464,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  "un-shared":
+                  un-shared:
                     type: integer
                     description: number of shares deleted
   /api/protocols:
@@ -473,20 +473,19 @@ paths:
       tags:
         - editor
       summary: get my protocols
-      description: all protocols owned by or shared to current user, defaulting to exclude deleted (status DEPRECATED) protocols.
+      description: 'all protocols owned by or shared to current user, defaulting to exclude deleted (status DEPRECATED) protocols.'
       parameters:
         - in: query
           required: false
           style: pipeDelimited
           explode: false
           name: status
-          description: filter protocols to include only protocols with listed statuses. If this parameter
-            is omitted, the query defaults to all status values **except** DEPRECATED
+          description: 'filter protocols to include only protocols with listed statuses. If this parameter is omitted, the query defaults to all status values **except** DEPRECATED'
           schema:
             type: array
             items:
               $ref: '#/components/schemas/ProtocolStatus'
-          example: DEPRECATED|RECALLED
+          deprecated: true
       responses:
         '200':
           description: OK
@@ -544,14 +543,13 @@ paths:
                     $ref: '#/components/schemas/Protocol'
                   example:
                     $ref: '#/components/examples/protocol-1'
-
   /api/protocols/eligibilities:
     get:
       operationId: getEligibilities
       tags:
         - editor
       summary: get eligibilities
-      description: an array of Eligibilities from whichg a user may choose. The id field is authoritative, and all that is needed to identify a particular Eligibility.
+      description: 'an array of Eligibilities from whichg a user may choose. The id field is authoritative, and all that is needed to identify a particular Eligibility.'
       responses:
         '200':
           description: OK
@@ -565,14 +563,13 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Eligibility'
-
   /api/protocols/diagnoses:
     get:
       operationId: getDiagnoses
       tags:
         - editor
       summary: get diagnoses
-      description: an array of Diagnoses from whichg a user may choose. The id field is authoritative, and all that is needed to identify a particular Diagnosis.
+      description: 'an array of Diagnoses from whichg a user may choose. The id field is authoritative, and all that is needed to identify a particular Diagnosis.'
       responses:
         '200':
           description: OK
@@ -586,7 +583,6 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Diagnosis'
-
   /api/protocols/libs:
     get:
       operationId: getLibraryProtocols
@@ -607,7 +603,6 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Protocol'
-
   /api/protocols/dosages:
     post:
       operationId: validateDosage
@@ -630,8 +625,6 @@ paths:
                   _dose:
                     type: string
                     description: string representation of submitted Dosage
-#todo invalid response
-
   /api/protocols/libstubs:
     get:
       operationId: getLibraryPxes
@@ -701,7 +694,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  "deprecated":
+                  deprecated:
                     type: integer
                     description: number of protocols deprecated
   /api/protocols/prescriptions:
@@ -728,7 +721,7 @@ paths:
       operationId: createPrescription
       tags:
         - editor
-      summary: "Permanently record a prescription returning it's assigned GUID. ** not ** idempotent"
+      summary: Permanently record a prescription returning it's assigned GUID. ** not ** idempotent
       description: 'Prescriptions form a permanent archival record of a transaction which may be invalidated, but not deleted'
       responses:
         '200':
@@ -739,7 +732,6 @@ paths:
                 properties:
                   prescription:
                     $ref: '#/components/schemas/PrescriptionRequest'
-
   '/api/protocols/prescriptions/{id}':
     get:
       operationId: getPrescription
@@ -859,8 +851,7 @@ paths:
           - Tests 1. 200 response to valid credentials
         code: |
           // with lxId = 1028016 pm.test('200 response to valid credentials', function () { pm.response.to.have.status(200);}); pm.test("label insert 1028016 is Bio-Mycin", function () { pm.expect(pm.response.json().labelInsert).to.include("Bio-Mycin");});
-
-  '/admin/product':
+  /admin/product:
     get:
       operationId: getGbdHeaderArrayByNDC
       tags:
@@ -894,7 +885,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/GreenbookHeader'
-
   '/admin/product/{ndc}':
     get:
       operationId: getGbdHeaderByNDC
@@ -907,8 +897,8 @@ paths:
           schema:
             type: string
           required: true
-          description: unique 10-digit, 3-segment number. labelerCode-productCode-packageCode
-          example: '0061-4321-03'
+          description: 'unique 10-digit, 3-segment number. labelerCode-productCode-packageCode'
+          example: 0061-4321-03
       responses:
         '200':
           description: OK
@@ -916,7 +906,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GreenbookHeader'
-
   '/admin/product/spl/{ndc}':
     get:
       operationId: getGbdLinkByNDC
@@ -929,8 +918,8 @@ paths:
           schema:
             type: string
           required: true
-          description: unique 10-digit, 3-segment number. labelerCode-productCode-packageCode
-          example: '0061-4321-03'
+          description: 'unique 10-digit, 3-segment number. labelerCode-productCode-packageCode'
+          example: 0061-4321-03
       responses:
         '200':
           description: OK
@@ -948,12 +937,13 @@ paths:
                 description: XML SPL data file served from FDA server
                 type: string
                 format: xml
-
 components:
   schemas:
     Error:
       description: error response per RFC 7807
-      required: [title, status]
+      required:
+        - title
+        - status
       properties:
         errorType:
           type: string
@@ -961,7 +951,7 @@ components:
           example: /errors/incorrect-user-pass
         title:
           type: string
-          description: A brief, human-readable message about the error
+          description: 'A brief, human-readable message about the error'
           example: Incorrect username or password.
         status:
           type: integer
@@ -976,7 +966,6 @@ components:
           description: A URI that identifies the specific occurrence of the error
           example: /login/log/abc123
       example: '{"title":"password or identifier mismatch","status":401}'
-
     SuccessfulLogin:
       description: User object and generated auth token
       type: object
@@ -986,18 +975,40 @@ components:
         token:
           type: string
           description: add this token in X-Auth-Token header to authenticate future requests
+          example: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJleUp3Y205MmFXUmxja2xFSWpvaVkzSmxaR1Z1ZEdsaGJITWlMQ0p3Y205MmFXUmxja3RsZVNJNkluUmxjM1JXVDFJaWZRPT0iLCJpc3MiOiJwbGF5LXNpbGhvdWV0dGUiLCJleHAiOjE1Nzg3OTkyMDIsImlhdCI6MTU3ODc1NjAwMiwianRpIjoiMGNkMjU5MTM3NjQ3MDMzNDhmNTBhOWRmOTIyZWI1OGVmMGQwMDE4ODUyYjVmNGU0MThmNThjN2Y0YTk3OTllNzU2NWI3NDIwN2MxYTI5ZjUyYjQyNDMxZmZiOGIyMTgzOTAxNzQ1ZjUwYzllMzIwYjI5NWU2YzIzYzU5ZDJjYmEyM2ExNTFkZGRhYzhkMDA0M2FiYzkxOTdjNWUxOTdlNGM5YTU2NzlkZDcwMWJhMjkwMDA4ZGU1ODhkOTMyN2M5ZmQ4OWVlMmQ5NzQ4NWU0MDFiMjIzMGM1NWQzNDY3OGNkOThkM2Y1ZTM0Y2RiYmQ3MmM0NTBiODE2NWViNDI2MyJ9.Hs_oA1o5bT2SH7yoLNiATA7rLj4FmHvf4XOhOGkrEVA"
         filePolicy:
           type: string
           description: 'policy object for use in embedded image files, expires in 24 hr'
-          example: eyJleHBpcnkiOjE1NzQ3MzE1NDAsImNvbnRhaW5lciI6InByb3RvY29scyIsInBhdGgiOiJpbWFnZXMiLCJtYXhTaXplIjoxMDAwMDAwMH0=
+          example: 3da8c83495cb00d216369a355322078106ebc2e5eac78333eb90d00de5611d9a
         fileSignature:
           type: string
           description: signature for file policy object
-          example: a5f353adf2b90d2e0967bada2d0c34124a6f4dd2d255c542098e050139974667
-      example: '{"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJleUp3Y205MmFXUmxja2xFSWpvaVkzSmxaR1Z1ZEdsaGJITWlMQ0p3Y205MmFXUmxja3RsZVNJNkluUmxjM1JXVDFJaWZRPT0iLCJpc3MiOiJwbGF5LXNpbGhvdWV0dGUiLCJleHAiOjE1Nzg3OTkyMDIsImlhdCI6MTU3ODc1NjAwMiwianRpIjoiMGNkMjU5MTM3NjQ3MDMzNDhmNTBhOWRmOTIyZWI1OGVmMGQwMDE4ODUyYjVmNGU0MThmNThjN2Y0YTk3OTllNzU2NWI3NDIwN2MxYTI5ZjUyYjQyNDMxZmZiOGIyMTgzOTAxNzQ1ZjUwYzllMzIwYjI5NWU2YzIzYzU5ZDJjYmEyM2ExNTFkZGRhYzhkMDA0M2FiYzkxOTdjNWUxOTdlNGM5YTU2NzlkZDcwMWJhMjkwMDA4ZGU1ODhkOTMyN2M5ZmQ4OWVlMmQ5NzQ4NWU0MDFiMjIzMGM1NWQzNDY3OGNkOThkM2Y1ZTM0Y2RiYmQ3MmM0NTBiODE2NWViNDI2MyJ9.Hs_oA1o5bT2SH7yoLNiATA7rLj4FmHvf4XOhOGkrEVA","fileSignature":"eyJleHBpcnkiOjE1Nzg3NTY2MDIsIm1heFNpemUiOjEwMDAwMDAwfQ==","filePolicy":"3da8c83495cb00d216369a355322078106ebc2e5eac78333eb90d00de5611d9a","user":{"id":1,"uname":"testVOR","userType":"VOR","email":"testVOR@dairysight.com","firstname":"Test","lastname":"Vet","suffix":"DVM"}}'
-
+          example: eyJleHBpcnkiOjE1Nzg3NTY2MDIsIm1heFNpemUiOjEwMDAwMDAwfQ==
     User:
       description: a user of a specific `usertype` class.
+      properties:
+        id:
+          type: integer
+          example: 1
+        uname:
+          description: username
+          type: string
+          example: testVOR
+        userType:
+          $ref: '#/components/schemas/UserType'
+        email:
+          type: string
+          format: email
+          example: testVOR@dairysight.com
+        firstname:
+          type: string
+          example: Test
+        lastname:
+          type: string
+          example: Vet
+        suffix:
+          type: string
+          example: DVM
       required:
         - id
         - userType
@@ -1005,29 +1016,12 @@ components:
         - firstname
         - lastname
         - suffix
-      properties:
-        id:
-          type: integer
-        uname:
-          description: username
-          type: string
-        userType:
-          $ref: '#/components/schemas/UserType'
-        email:
-          type: string
-          format: email
-          default: ''
-        firstname:
-          type: string
-        lastname:
-          type: string
-        suffix:
-          type: string
-      example: {"user":{"id":1,"uname":"testVOR","userType":"VOR","email":"testVOR@dairysight.com","firstname":"Test","lastname":"Vet","suffix":"DVM"}}
-
     NewUserData:
       description: user and address data to create a new account
-      required: [email, firstname, lastname]
+      required:
+        - email
+        - firstname
+        - lastname
       properties:
         uname:
           description: username
@@ -1036,31 +1030,36 @@ components:
         email:
           type: string
           format: email
-          default: ''
           example: name@vcpr.org
         firstname:
           type: string
           example: John
         lastname:
           type: string
-          example: Doe
+          example: Smith
         suffix:
           type: string
           example: DVM
         busName:
           type: string
+          example: Some Business
         address1:
           type: string
+          example: 123 Main St.
         address2:
           type: string
         town:
           type: string
+          example: Anytown
         state:
           type: string
+          example: Any State
         zip:
           type: string
+          example: '12345'
         country:
           type: string
+          example: USA
     Degree:
       description: an academic degree qualifying a User as a veterinarian
       required:
@@ -1069,6 +1068,7 @@ components:
       properties:
         school:
           type: string
+          example: "University of ***"
         year:
           type: string
         license:
@@ -1077,22 +1077,9 @@ components:
           type: string
         confirmVet:
           type: boolean
-      example: {"email":"testTOR@dairysight.com","firstname":"Test","lastname":"Tech","busName":"Some Business","address1":"123 Main St.","town":"Anytown","state":"Any State","zip":"12345","country":"USA"}
-
     UserType:
       type: string
-      description: < an ordered list of user types associated with privilege levels
-        SAOR - a system administrator with top level privileges
-        VOR - a veterinarian who may create and prescribe protocols
-        MOR - a farm manager to whom protocols may be prescribed, and who may create Cases in a protocol
-        TOR - a farm technician who may execute assigned protocols for assigned cases
-        FARM - an account aggregating MOR and TOR users
-        CLINIC - an account aggregating multiple VOR users who work together
-        UNCONFIRMED - an account that has been requested but not confirmed by the owner
-        UNVOR - A user who request VOR status, with neither email or admin approval
-        UNMOR - a user who requests MOR status but email not yet confirmed
-        PREVOR - a confirmed user who requests VOR status but still lacks either email confirmation or approval by admin
-        REMOVED - the  record of a user who is no longer active and may not log in
+      description: '< an ordered list of user types associated with privilege levels SAOR - a system administrator with top level privileges VOR - a veterinarian who may create and prescribe protocols MOR - a farm manager to whom protocols may be prescribed, and who may create Cases in a protocol TOR - a farm technician who may execute assigned protocols for assigned cases FARM - an account aggregating MOR and TOR users CLINIC - an account aggregating multiple VOR users who work together UNCONFIRMED - an account that has been requested but not confirmed by the owner UNVOR - A user who request VOR status, with neither email or admin approval UNMOR - a user who requests MOR status but email not yet confirmed PREVOR - a confirmed user who requests VOR status but still lacks either email confirmation or approval by admin REMOVED - the  record of a user who is no longer active and may not log in'
       enum:
         - SAOR
         - VOR
@@ -1105,34 +1092,24 @@ components:
         - UNVOR
         - UNMOR
         - REMOVED
-      example: 'VOR'
-
+      example: VOR
     AmducaClass:
       type: string
-      enum: [ONLABEL, OFFLABEL, UNIDENTIFIED]
-
+      enum:
+        - ONLABEL
+        - OFFLABEL
+        - UNIDENTIFIED
     Relationship:
       type: string
-      description: < a link between two users defining a relationship
-        CLIENT - MOR user on right is a client of VOR user on left
-        EMPLOYEE - TOR user on right is an employee of MOR user on left
-        MEMBER - VOR user on right is a member of CLINIC on left,
-              or MOR user on right is a manager of FARM on left
+      description: '< a link between two users defining a relationship CLIENT - MOR user on right is a client of VOR user on left EMPLOYEE - TOR user on right is an employee of MOR user on left MEMBER - VOR user on right is a member of CLINIC on left, or MOR user on right is a manager of FARM on left'
       enum:
         - CLIENT
         - EMPLOYEE
         - MEMBER
-      example: 'CLIENT'
-
+      example: CLIENT
     ProtocolStatus:
       type: string
-      description: < status markers for protocols, in order of normal usage flow
-        UNKNOWN - initial status when a protocol is being designed
-        VALIDATED - currently not used, for use when a validation process is implemented
-        PRESCRIBED - after a protocol has been prescribed for at least one client
-        INITIATED - after a protocol has been initiated (i.e has one or more Cases)
-        RECALLED - protocol may no longer be prescribed and existing prescriptions are recalled
-        DEPRECATED - protocol has been "deleted" by the owner
+      description: '< status markers for protocols, in order of normal usage flow UNKNOWN - initial status when a protocol is being designed VALIDATED - currently not used, for use when a validation process is implemented PRESCRIBED - after a protocol has been prescribed for at least one client INITIATED - after a protocol has been initiated (i.e has one or more Cases) RECALLED - protocol may no longer be prescribed and existing prescriptions are recalled DEPRECATED - protocol has been "deleted" by the owner'
       enum:
         - PRESCRIBED
         - VALIDATED
@@ -1140,8 +1117,7 @@ components:
         - DEPRECATED
         - RECALLED
         - UNKNOWN
-      example: 'PRESCRIBED'
-
+      example: PRESCRIBED
     ProtocolShare:
       description: share a protocol with another VOR user
       type: object
@@ -1149,19 +1125,26 @@ components:
         px-id:
           type: integer
           description: the `id` identifier of a Protocol
+          example: 1
         share-to:
           type: integer
           description: id of a VOR user who may use the protocol identified by pxId
+          example: 2
         clonable:
-          description: does User identified by `shareTo` have permission to create a copy of this protocol, then own the clone.
+          description: 'does User identified by `shareTo` have permission to create a copy of this protocol, then own the clone.'
           type: boolean
           default: false
-      example: '{"pxId":1,"shareTo":2,"clonable":true}'
-
+          example: true
     Px:
-      description: the flattened subset of a Protocol which can be retrieved from the Px database table alone, without additional queries.
+      description: 'the flattened subset of a Protocol which can be retrieved from the Px database table alone, without additional queries.'
       type: object
-      required: [ownerId, name, created, edited, status, shareAll]
+      required:
+        - ownerId
+        - name
+        - created
+        - edited
+        - status
+        - shareAll
       properties:
         id:
           type: integer
@@ -1210,8 +1193,83 @@ components:
           format: html
         shareAll:
           type: boolean
-      example: {"ownerId":0,"name":"example protocol","shortname":"EXamp","created":"2020-01-10T22:20:39Z","edited":"2020-01-10T22:20:39Z","status":"UNKNOWN","withhold":{"hoursMeat":0,"hoursMilk":0,"note":""},"instructions":{"considerations":"think first","restrictions":"always","dothis":"execute protocol","recordthis":"case data","success":"good","failure":"bad","references":"ref"},"shareAll":false,"shareClonable":false,"caseDefinition":{"pxId":0,"requireID":true,"requireMOR":true,"medical":"really sick","economic":"lotsa cash"},"treatments":[{"id":0,"ownerId":0,"description":"sample treatment","note":"this is an off-label Treatment","eligibilities":[{"id":1,"name":"Beef Cattle","fda":"BeefCattle"}],"tags":[{"id":1,"code":"EXAMPLE"}],"product":"MiracleMed","_dose":"3.0 ml per kg  repeat in 6 hours and again in 24 hours","route":"intr-corporeal","sequenceFunction":{"intervals":["PT6H","PT24H"],"_type":"models.api.v1.SeqSeries"},"sizeFunction":{"dose":{"quantity":{"dimension":"Volume","value":3,"symbol":"ml"}},"perUnit":{"dimension":"Mass","value":1,"symbol":"kg"},"_type":"models.api.v1.DoseByWeightFunction"},"doseNote":"some note on dose","wtMeatHrs":22,"wtMilkHrs":5,"wtNote":"example"}],"tags":[{"id":1,"code":"EXAMPLE"}],"diagnoses":[{"id":8,"code":"PAIN","name":"Pain/inflammation (musculoskeletal), treatment"}],"eligibilities":[{"id":1,"name":"Beef Cattle","fda":"BeefCattle"}],"promises":[{"id":1,"name":"test user","code":"EXAMPLE"}]}
-
+      example:
+        ownerId: 0
+        name: example protocol
+        shortname: EXamp
+        created: '2020-01-10T22:20:39Z'
+        edited: '2020-01-10T22:20:39Z'
+        status: UNKNOWN
+        withhold:
+          hoursMeat: 0
+          hoursMilk: 0
+          note: ''
+        instructions:
+          considerations: think first
+          restrictions: always
+          dothis: execute protocol
+          recordthis: case data
+          success: good
+          failure: bad
+          references: ref
+        shareAll: false
+        shareClonable: false
+        caseDefinition:
+          pxId: 0
+          requireID: true
+          requireMOR: true
+          medical: really sick
+          economic: lotsa cash
+        treatments:
+          - id: 0
+            ownerId: 0
+            description: sample treatment
+            note: this is an off-label Treatment
+            eligibilities:
+              - id: 1
+                name: Beef Cattle
+                fda: BeefCattle
+            tags:
+              - id: 1
+                code: EXAMPLE
+            product: MiracleMed
+            _dose: 3.0 ml per kg  repeat in 6 hours and again in 24 hours
+            route: intr-corporeal
+            sequenceFunction:
+              intervals:
+                - PT6H
+                - PT24H
+              _type: models.api.v1.SeqSeries
+            sizeFunction:
+              dose:
+                quantity:
+                  dimension: Volume
+                  value: 3
+                  symbol: ml
+              perUnit:
+                dimension: Mass
+                value: 1
+                symbol: kg
+              _type: models.api.v1.DoseByWeightFunction
+            doseNote: some note on dose
+            wtMeatHrs: 22
+            wtMilkHrs: 5
+            wtNote: example
+        tags:
+          - id: 1
+            code: EXAMPLE
+        diagnoses:
+          - id: 8
+            code: PAIN
+            name: 'Pain/inflammation (musculoskeletal), treatment'
+        eligibilities:
+          - id: 1
+            name: Beef Cattle
+            fda: BeefCattle
+        promises:
+          - id: 1
+            name: test user
+            code: EXAMPLE
     Protocol:
       description: a veterinary treatment protocol
       type: object
@@ -1223,17 +1281,20 @@ components:
         - instructions
       properties:
         id:
-          description: key value created by the database. If `id` is zero or not present,
-            a new database record will be created. If 'id' matches an existing record
-            in the db, that record will be updated instead.
+          description: 'key value created by the database. If `id` is zero or not present, a new database record will be created. If ''id'' matches an existing record in the db, that record will be updated instead.'
           type: integer
         ownerId:
           description: the `id` key of the VOR user who owns the protocol.
           type: integer
+          example: 1
         name:
+          description: wip
           type: string
+          example: wip
         shortname:
+          description: wip
           type: string
+          example: wip
         created:
           description: added by the server when a protocol is first saved.
           type: string
@@ -1251,7 +1312,6 @@ components:
         instructions:
           $ref: '#/components/schemas/Instructions'
         shareAll:
-          #          description: if true, this protocol is shared with all VOR users
           type: boolean
           default: false
         caseDefinition:
@@ -1285,8 +1345,83 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Metadata'
-      example: {"ownerId":0,"name":"example protocol","shortname":"EXamp","created":"2020-01-10T22:20:39Z","edited":"2020-01-10T22:20:39Z","status":"UNKNOWN","withhold":{"hoursMeat":0,"hoursMilk":0,"note":""},"instructions":{"considerations":"think first","restrictions":"always","dothis":"execute protocol","recordthis":"case data","success":"good","failure":"bad","references":"ref"},"shareAll":false,"shareClonable":false,"caseDefinition":{"pxId":0,"requireID":true,"requireMOR":true,"medical":"really sick","economic":"lotsa cash"},"treatments":[{"id":0,"ownerId":0,"description":"sample treatment","note":"this is an off-label Treatment","eligibilities":[{"id":1,"name":"Beef Cattle","fda":"BeefCattle"}],"tags":[{"id":1,"code":"EXAMPLE"}],"product":"MiracleMed","_dose":"3.0 ml per kg repeat in 6 hours and again in 24 hours","route":"intr-corporeal","sequenceFunction":{"intervals":["PT6H","PT24H"],"_type":"models.api.v1.SeqSeries"},"sizeFunction":{"dose":{"quantity":{"dimension":"Volume","value":3,"symbol":"ml"}},"perUnit":{"dimension":"Mass","value":1,"symbol":"kg"},"_type":"models.api.v1.DoseByWeightFunction"},"doseNote":"some note on dose","wtMeatHrs":22,"wtMilkHrs":5,"wtNote":"example"}],"tags":[{"id":1,"code":"EXAMPLE"}],"diagnoses":[{"id":8,"code":"PAIN","name":"Pain/inflammation (musculoskeletal), treatment"}],"eligibilities":[{"id":1,"name":"Beef Cattle","fda":"BeefCattle"}],"promises":[{"id":1,"name":"test user","code":"EXAMPLE"}]}
-
+      example:
+        ownerId: 0
+        name: example protocol
+        shortname: EXamp
+        created: '2020-01-10T22:20:39Z'
+        edited: '2020-01-10T22:20:39Z'
+        status: UNKNOWN
+        withhold:
+          hoursMeat: 0
+          hoursMilk: 0
+          note: ''
+        instructions:
+          considerations: think first
+          restrictions: always
+          dothis: execute protocol
+          recordthis: case data
+          success: good
+          failure: bad
+          references: ref
+        shareAll: false
+        shareClonable: false
+        caseDefinition:
+          pxId: 0
+          requireID: true
+          requireMOR: true
+          medical: really sick
+          economic: lotsa cash
+        treatments:
+          - id: 0
+            ownerId: 0
+            description: sample treatment
+            note: this is an off-label Treatment
+            eligibilities:
+              - id: 1
+                name: Beef Cattle
+                fda: BeefCattle
+            tags:
+              - id: 1
+                code: EXAMPLE
+            product: MiracleMed
+            _dose: 3.0 ml per kg repeat in 6 hours and again in 24 hours
+            route: intr-corporeal
+            sequenceFunction:
+              intervals:
+                - PT6H
+                - PT24H
+              _type: models.api.v1.SeqSeries
+            sizeFunction:
+              dose:
+                quantity:
+                  dimension: Volume
+                  value: 3
+                  symbol: ml
+              perUnit:
+                dimension: Mass
+                value: 1
+                symbol: kg
+              _type: models.api.v1.DoseByWeightFunction
+            doseNote: some note on dose
+            wtMeatHrs: 22
+            wtMilkHrs: 5
+            wtNote: example
+        tags:
+          - id: 1
+            code: EXAMPLE
+        diagnoses:
+          - id: 8
+            code: PAIN
+            name: 'Pain/inflammation (musculoskeletal), treatment'
+        eligibilities:
+          - id: 1
+            name: Beef Cattle
+            fda: BeefCattle
+        promises:
+          - id: 1
+            name: test user
+            code: EXAMPLE
     Instructions:
       description: instructions to execute a protocol
       type: object
@@ -1294,26 +1429,31 @@ components:
         considerations:
           type: string
           format: html
+          example: This is just an example, not a real protocol.
         restrictions:
           type: string
           format: html
+          example: Not for use on real animals.
         dothis:
           type: string
           format: html
+          example: "<h3>Examinations to perform</h3>"
         recordthis:
           type: string
           format: html
+          example: "<p>record every step in your notebook.</p>"
         success:
           type: string
           format: html
+          example: "<p>All problems are gone</p>"
         failure:
           type: string
           format: html
+          example: "<p>One or more problems remain</p>"
         references:
           type: string
           format: html
-      example: '{"considerations":"This is just an example, not a real protocol.","restrictions":"Not for use on real animals.","dothis":"Examine carefully and fix what is broken.","recordthis":"record every step in your notebook.","success":"All problems are gone.","failure":"One or more problems remain.","references":"<a href=\"https://en.wikipedia.org/wiki/Rickrolling\">Wikipedia</a>"}'
-
+          example: "<a href=\"https://en.wikipedia.org/wiki/Rickrolling\">Wikipedia</a>"
     Metadata:
       description: (for future devekopment)
       properties:
@@ -1321,13 +1461,8 @@ components:
           type: string
         value:
           type: string
-
     Treatment:
-      description: < describes a series of one or more doses of a single product in terms of a
-        sizeFunction (which specifies dose quantity) and a SequenceFunction (which specifies when the doses should be given)
-        These functions are polymorphic and may depend on addititional data which only is available when a protocol is assigned
-        to a specific Case. For example the initiation time will likely be needed to calculate the dose sequence
-        and animal weight or other data may be needed to calculate dose size.
+      description: < describes a series of one or more doses of a single product in terms of a sizeFunction (which specifies dose quantity) and a SequenceFunction (which specifies when the doses should be given) These functions are polymorphic and may depend on addititional data which only is available when a protocol is assigned to a specific Case. For example the initiation time will likely be needed to calculate the dose sequence and animal weight or other data may be needed to calculate dose size.
       type: object
       required:
         - product
@@ -1336,10 +1471,9 @@ components:
         - sizefunction
       properties:
         id:
-          description: key value created by the database. If `id` is zero or not present,
-            a new database record will be created. If 'id' matches an existing record
-            in the db, that record will be updated instead.
-          type: integer
+          description: 'key value created by the database. If `id` is null or not present, a new database record will be created. If ''id'' matches an existing record in the db, that record will be updated instead.'
+          type: string
+          example: B-123
         ownerId:
           description: the `id` key of the VOR user who owns the treatment.
           type: integer
@@ -1383,21 +1517,52 @@ components:
           format: html
         amduca:
           $ref: '#/components/schemas/AmducaClass'
-      example:  {"id":0,"ownerId":0,"description":"sample treatment","note":"this is an off-label Treatment","eligibilities":[{"id":1,"name":"Beef Cattle","fda":"BeefCattle"}],"tags":[{"id":1,"code":"EXAMPLE"}],"product":"MiracleMed","_dose":"3.0 ml per kg repeat in 6 hours and again in 24 hours","route":"intr-corporeal","sequenceFunction":{"intervals":["PT6H","PT24H"],"_type":"models.api.v1.SeqSeries"},"sizeFunction":{"dose":{"quantity":{"dimension":"Volume","value":3,"symbol":"ml"}},"perUnit":{"dimension":"Mass","value":1,"symbol":"kg"},"_type":"models.api.v1.DoseByWeightFunction"},"doseNote":"some note on dose","wtMeatHrs":22,"wtMilkHrs":5,"wtNote":"example"}
-
+      example:
+        id: 0
+        ownerId: 0
+        description: sample treatment
+        note: this is an off-label Treatment
+        eligibilities:
+          - id: 1
+            name: Beef Cattle
+            fda: BeefCattle
+        tags:
+          - id: 1
+            code: EXAMPLE
+        product: MiracleMed
+        _dose: 3.0 ml per kg repeat in 6 hours and again in 24 hours
+        route: intr-corporeal
+        sequenceFunction:
+          intervals:
+            - PT6H
+            - PT24H
+          _type: models.api.v1.SeqSeries
+        sizeFunction:
+          dose:
+            quantity:
+              dimension: Volume
+              value: 3
+              symbol: ml
+          perUnit:
+            dimension: Mass
+            value: 1
+            symbol: kg
+          _type: models.api.v1.DoseByWeightFunction
+        doseNote: some note on dose
+        wtMeatHrs: 22
+        wtMilkHrs: 5
+        wtNote: example
     DoseId:
       properties:
         doseId:
           type: integer
           description: key to a label dosage
-
     DoseFunctions:
       properties:
         sequenceFunction:
           $ref: '#/components/schemas/SequenceFunction'
         sizeFunction:
           $ref: '#/components/schemas/SizeFunction'
-
     Dose:
       description: a single dose to be given at a specified time
       type: object
@@ -1424,7 +1589,6 @@ components:
           type: string
           format: html
       example: '{"id":"B-123","product":"MiracleMed","size":{"size":2,"unit":"ml"},"route":"intramuscular injection","time":"2020-01-10T10:30:37Z"}'
-
     Withhold:
       description: Duration after last treatment during which some act is prohibited. Most often this restricts when meat or milk may be sold for food.
       required:
@@ -1433,13 +1597,14 @@ components:
       properties:
         hoursMeat:
           type: number
+          example: 22
         hoursMilk:
           type: number
+          example: 5
         note:
           type: string
           format: html
-      example: '{"hoursMeat":22,"hoursMilk":5,"note":"example"}'
-
+          example: "<p>improvement apparent</p>"
     SizeFunction:
       description: function to calculate dose size
       oneOf:
@@ -1448,83 +1613,160 @@ components:
         - $ref: '#/components/schemas/LoadingDoseByWeightFunction'
         - $ref: '#/components/schemas/DoseRangeFunction'
         - $ref: '#/components/schemas/DoseRangeByWeightFunction'
-
     FixedDoseFunction:
       description: A fixed quantity expressed in any available unit
-      required: [_type, dose]
+      required:
+        - _type
+        - dose
       properties:
         _type:
           type: string
-          enum: ["models.api.v1.FixedDoseFunction"]
+          enum:
+            - models.api.v1.FixedDoseFunction
         dose:
           $ref: '#/components/schemas/DrugQuantity'
-      example: {"dose":{"quantity":{"dimension":"Volume","value":3,"symbol":"ml"}},"_type":"models.api.v1.FixedDoseFunction"}
-
+      example:
+        dose:
+          quantity:
+            dimension: Volume
+            value: 3
+            symbol: ml
+        _type: models.api.v1.FixedDoseFunction
     DoseRangeFunction:
       description: a range of permissible dose size. The user may select any value within the range (inclusive).
-      required: [_type, range]
+      required:
+        - _type
+        - range
       properties:
         _type:
           type: string
-          enum: ["models.api.v1.DoseRangeFunction"]
+          enum:
+            - models.api.v1.DoseRangeFunction
         range:
           $ref: '#/components/schemas/DrugQuantityRange'
-      example: {"_type":"models.api.v1.DoseRangeFunction","range":{"min":{"quantity":{"dimension":"Dimensionless","value":3,"symbol":"ea"}},"max":{"quantity":{"dimension":"Dimensionless","value":4,"symbol":"ea"}}}}
-
+      example:
+        _type: models.api.v1.DoseRangeFunction
+        range:
+          min:
+            quantity:
+              dimension: Dimensionless
+              value: 3
+              symbol: ea
+          max:
+            quantity:
+              dimension: Dimensionless
+              value: 4
+              symbol: ea
     DoseByWeightFunction:
       description: Dose is specified as a quantity per unit of animal weight.
-      required: [_type, dose, perUnit]
+      required:
+        - _type
+        - dose
+        - perUnit
       properties:
         _type:
           type: string
-          enum: ["models.api.v1.DoseByWeightFunction"]
+          enum:
+            - models.api.v1.DoseByWeightFunction
         dose:
           $ref: '#/components/schemas/DrugQuantity'
         perUnit:
           $ref: '#/components/schemas/MassQuantity'
-      example: {"dose":{"quantity":{"dimension":"Volume","value":3,"symbol":"ml"}},"perUnit":{"dimension":"Mass","value":1,"symbol":"kg"},"_type":"models.api.v1.DoseByWeightFunction"}
-
+      example:
+        dose:
+          quantity:
+            dimension: Volume
+            value: 3
+            symbol: ml
+        perUnit:
+          dimension: Mass
+          value: 1
+          symbol: kg
+        _type: models.api.v1.DoseByWeightFunction
     LoadingDoseByWeightFunction:
       description: Dose is specified as first (loading) dose and following doses per unit of animal weight.
-      required: [_type, firstDose, followDose, perUnit]
+      required:
+        - _type
+        - firstDose
+        - followDose
+        - perUnit
       properties:
         _type:
           type: string
-          enum: ["models.api.v1.DoseByWeightFunction"]
+          enum:
+            - models.api.v1.DoseByWeightFunction
         firstDose:
           $ref: '#/components/schemas/DrugQuantity'
         followDose:
           $ref: '#/components/schemas/DrugQuantity'
         perUnit:
           $ref: '#/components/schemas/MassQuantity'
-      example: {"perUnit":{"dimension":"Mass","value":1,"symbol":"kg"},"followDose":{"quantity":{"dimension":"Volume","value":3,"symbol":"ml"}},"_type":"models.api.v1.LoadingDoseByWeightFunction","firstDose":{"quantity":{"dimension":"Volume","value":6,"symbol":"ml"}}}
-
+      example:
+        perUnit:
+          dimension: Mass
+          value: 1
+          symbol: kg
+        followDose:
+          quantity:
+            dimension: Volume
+            value: 3
+            symbol: ml
+        _type: models.api.v1.LoadingDoseByWeightFunction
+        firstDose:
+          quantity:
+            dimension: Volume
+            value: 6
+            symbol: ml
     DoseRangeByWeightFunction:
       description: Dose is specified as a range per unit of animal weight. The user may select any value within the range (inclusive).
-      required: [_type, range, perUnit]
+      required:
+        - _type
+        - range
+        - perUnit
       properties:
         _type:
           type: string
-          enum: ["models.api.v1.DoseRangeByWeightFunction"]
+          enum:
+            - models.api.v1.DoseRangeByWeightFunction
         range:
           $ref: '#/components/schemas/DrugQuantityRange'
         perUnit:
           $ref: '#/components/schemas/MassQuantity'
-      example: {"perUnit":{"dimension":"Mass","value":1,"symbol":"kg"},"_type":"models.api.v1.DoseRangeByWeightFunction","range":{"min":{"quantity":{"dimension":"Volume","value":3,"symbol":"ml"}},"max":{"quantity":{"dimension":"Volume","value":2,"symbol":"ml"}}}}
-
+      example:
+        perUnit:
+          dimension: Mass
+          value: 1
+          symbol: kg
+        _type: models.api.v1.DoseRangeByWeightFunction
+        range:
+          min:
+            quantity:
+              dimension: Volume
+              value: 3
+              symbol: ml
+          max:
+            quantity:
+              dimension: Volume
+              value: 2
+              symbol: ml
     DoseByClass:
       description: dose calculated by class
-      required: [ _type, animalClasses]
+      required:
+        - _type
+        - animalClasses
       type: object
       properties:
         _type:
           type: string
-          enum: ["models.api.v1.DoseByClass"]
+          enum:
+            - models.api.v1.DoseByClass
         animalClasses:
           type: array
           items:
             type: object
-            required: [animalClass, sizefunction]
+            required:
+              - animalClass
+              - sizefunction
             properties:
               animalClass:
                 type: string
@@ -1539,7 +1781,6 @@ components:
                   - $ref: '#/components/schemas/DoseRangeByWeightFunction'
                   - $ref: '#/components/schemas/LoadingDoseByWeightFunction'
       example: '{"_type":"models.api.v1.DoseByClass","animalClasses":[{"animalClass":"Jabberwocks","sizeFunction":{"unit":"mg","size":3.2,"_type":"models.api.v1.DrugQuantity"}},{"animalClass":"Borogoves","sizeFunction":{"_type":"models.api.v1.DoseRangeFunction","maxDose":{"size":20,"unit":"ml"},"minDose":{"size":10,"unit":"ml"}}}]}'
-
     SequenceFunction:
       description: function to calculate times for a series of doses
       oneOf:
@@ -1548,57 +1789,76 @@ components:
         - $ref: '#/components/schemas/SeqPerDayRange'
         - $ref: '#/components/schemas/SeqInterval'
         - $ref: '#/components/schemas/SeqSeries'
-
     SeqSingleDose:
       description: a single dose
-      required: [_type]
+      required:
+        - _type
       type: object
       properties:
         _type:
           type: string
-          enum: ["models.api.v1.SeqSingleDose"]
-      example: {"_type":"models.api.v1.SeqSingleDose"}
-
+          enum:
+            - models.api.v1.SeqSingleDose
+      example:
+        _type: models.api.v1.SeqSingleDose
     SeqSeries:
       description: an ordered sequence of doses at times specified as time since initiation of the protocol.
-      required: [_type, intervals]
+      required:
+        - _type
+        - intervals
       type: object
       properties:
         _type:
           type: string
-          enum: ["models.api.v1.SeqSeries"]
+          enum:
+            - models.api.v1.SeqSeries
         intervals:
           type: array
           items:
             description: ISO-8601 duration from initiation or previous dose
             type: string
             format: duration
-      example: {"intervals":["PT0S","PT3H","PT24H"],"_type":"models.api.v1.SeqSeries"}
-
+      example:
+        intervals:
+          - PT0S
+          - PT3H
+          - PT24H
+        _type: models.api.v1.SeqSeries
     SeqPerDay:
-      required: [_type, frequency, totalDoses]
+      required:
+        - _type
+        - frequency
+        - totalDoses
       description: a series of equally spaced doses specified by the total number of doses and an integer number of doses per day.
       type: object
       properties:
         _type:
           type: string
-          enum: ["models.api.v1.SeqPerDay"]
+          enum:
+            - models.api.v1.SeqPerDay
         frequency:
           type: integer
           default: 1
         totalDoses:
           type: integer
           default: 1
-      example: {"totalDoses":3,"_type":"models.api.v1.SeqPerDay","frequency":2}
-
+      example:
+        totalDoses: 3
+        _type: models.api.v1.SeqPerDay
+        frequency: 2
     SeqPerDayRange:
-      required: [_type, frequency, minDoses, maxDoses]
+      required:
+        - _type
+        - frequency
+        - minDoses
+        - maxDoses
       description: a series of equally spaced doses specified by the total number of doses and an integer number of doses per day.
       type: object
       properties:
         _type:
           type: string
-          enum: ["models.api.v1.SeqPerDayRange"]
+          enum:
+            - models.api.v1.SeqPerDayRange
         frequency:
           type: integer
           default: 1
@@ -1608,18 +1868,22 @@ components:
         maxDoses:
           type: integer
           default: 1
-      example: {"minDoses":3,"maxDoses":9,"_type":"models.api.v1.SeqPerDayRange","frequency":2}
-
-
-
+      example:
+        minDoses: 3
+        maxDoses: 9
+        _type: models.api.v1.SeqPerDayRange
+        frequency: 2
     SeqInterval:
-      required: [_type, totalDoses interval]
+      required:
+        - _type
+        - totalDoses interval
       description: a series of equally spaced doses specified by the total number of doses and time between sequential doses.
       type: object
       properties:
         _type:
           type: string
-          enum: ["models.api.v1.SeqInterval"]
+          enum:
+            - models.api.v1.SeqInterval
         totalDoses:
           type: integer
           default: 1
@@ -1627,9 +1891,11 @@ components:
           description: ISO-8601 duration from initiation or previous dose
           type: string
           format: duration
-          default: 'PT8H'
-      example: {"totalDoses":3,"_type":"models.api.v1.SeqInterval","interval":"PT8H"}
-
+          default: PT8H
+      example:
+        totalDoses: 3
+        _type: models.api.v1.SeqInterval
+        interval: PT8H
     Tag:
       description: keyword or tag for classification
       type: object
@@ -1637,17 +1903,15 @@ components:
         code:
           type: string
           maxLength: 15
-      example: {"id":1,"code":"EXAMPLE"}
-
+      example:
+        id: 1
+        code: EXAMPLE
     Eligibility:
-      description: >
-        A class of animal for which a protocol may be used. Normally the `name` field
-        is all that is shown in the UI, but the `id` is used internally to identify each
-        Eligibility, which should be treated as an immutable object. Changes to the
-        array of Eligibilities in a Protocol are done by changing the array of `id` numbers.
-        Changes to other fields will have no effect at the persistent layer.
+      description: |
+        A class of animal for which a protocol may be used. Normally the `name` field is all that is shown in the UI, but the `id` is used internally to identify each Eligibility, which should be treated as an immutable object. Changes to the array of Eligibilities in a Protocol are done by changing the array of `id` numbers. Changes to other fields will have no effect at the persistent layer.
       type: object
-      required: [id]
+      required:
+        - id
       properties:
         id:
           type: integer
@@ -1675,61 +1939,66 @@ components:
             - bison
             - other
             - unidentified
-      example: {"id":1,"name":"Beef Cattle","fda":"BeefCattle"}
-
+      example:
+        id: 1
+        name: Beef Cattle
+        fda: BeefCattle
     Promise:
       description: An act which must be executed on or after enrollment of a Case to a Prescription
       type: object
-      required: [_type, name, description, query, when]
+      required:
+        - _type
+        - name
+        - description
+        - query
+        - when
       properties:
-          _type:
-            description: server data type to which this Promise will be mapped
-            type: string
-            enum:
-              - "models.api.v1.IdPromise"
-              - "models.api.v1.AffirmationPromise"
-              - "models.api.v1.BooleanPromise"
-              - "models.api.v1.StringPromise"
-              - "models.api.v1.MassPromise"
-              - "models.api.v1.CategoryPromise"
-          id:
-            description: UUID assigned to the promise itself by the server
-            type: string
-            format: uuid
-          name:
-            description: promise name for the doctor
-            type: string
-          descrip:
-            description: promise description for the client
-            type: string
-          query:
-            description: question to be answered by client
-            type: string
-            format: html
-          when:
-            description: ISO-8601 duration from initiation when promise must be fulfilled
-            type: string
-            format: duration
-            default: 'PT0H'
-          response:
-            description: data supplied by the client to fulfill promise
-            type: string
-          responseBy:
-            description: user ID of person supplying response data
-            type: integer
-          responseTime:
-            description: timestamp for response data
-            type: string
-          notify:
-            description: notify prescribing doctor when completed
-            type: boolean
-            default: false
-          sigRequired:
-            description: require signature of respondant
-            type: boolean
-            default: false
-
-
+        _type:
+          description: server data type to which this Promise will be mapped
+          type: string
+          enum:
+            - models.api.v1.IdPromise
+            - models.api.v1.AffirmationPromise
+            - models.api.v1.BooleanPromise
+            - models.api.v1.StringPromise
+            - models.api.v1.MassPromise
+            - models.api.v1.CategoryPromise
+        id:
+          description: UUID assigned to the promise itself by the server
+          type: string
+          format: uuid
+        name:
+          description: promise name for the doctor
+          type: string
+        descrip:
+          description: promise description for the client
+          type: string
+        query:
+          description: question to be answered by client
+          type: string
+          format: html
+        when:
+          description: ISO-8601 duration from initiation when promise must be fulfilled
+          type: string
+          format: duration
+          default: PT0H
+        response:
+          description: data supplied by the client to fulfill promise
+          type: string
+        responseBy:
+          description: user ID of person supplying response data
+          type: integer
+        responseTime:
+          description: timestamp for response data
+          type: string
+        notify:
+          description: notify prescribing doctor when completed
+          type: boolean
+          default: false
+        sigRequired:
+          description: require signature of respondant
+          type: boolean
+          default: false
     IdPromise:
       description: identification of animal is required to enroll a case
       type: object
@@ -1749,8 +2018,8 @@ components:
               format: dateTime
             _type:
               type: string
-              enum: ["models.api.v1.IdPromise"]
-
+              enum:
+                - models.api.v1.IdPromise
     WithholdPromise:
       description: withholding time guard
       type: object
@@ -1771,7 +2040,6 @@ components:
               type: string
               format: dateTime
               description: target must be withheld from marketing until after this
-
     ResultPromise:
       description: return some result
       type: object
@@ -1795,9 +2063,8 @@ components:
               description: result should be returned before this
             result:
               type: string
-
     Diagnosis:
-      description: >
+      description: |
         A medical diagnosis for which a protocol may be used. Normally the `name` field
          is all that is shown in the UI, but the `id` is used internally to identify each
          Diagnosis, which should be treated as an immutable object. Changes to the
@@ -1812,9 +2079,11 @@ components:
           maxLength: 25
         name:
           type: string
-      example: {"id":8,"code":"PAIN","name":"Pain/inflammation (musculoskeletal), treatment"}
-
-    CaseDefinition: #TODO example &
+      example:
+        id: 8
+        code: PAIN
+        name: 'Pain/inflammation (musculoskeletal), treatment'
+    CaseDefinition:
       description: 'information used at the time of case selection to determine whether a particular protocol may be enrolled. and the protocol initiated for a particular animal or group of animals (the Case). The Case may be enrolled with the Protocol only if the Case meets all requirements of the CaseDefinition and none of the prohibitions. Other information may be advisory, and used at the discretion of the person doing enrollment. type: object'
       properties:
         requireId:
@@ -1847,7 +2116,6 @@ components:
           type: string
           format: html
           default: ''
-
     CaseData:
       description: ' tbd'
       properties:
@@ -1860,8 +2128,20 @@ components:
             - $ref: '#/components/schemas/IdData'
             - $ref: '#/components/schemas/WeightData'
             - $ref: '#/components/schemas/PreferredDoseData'
-      example: {"id":0,"rxId":"Example","caseData":{"_type":"models.api.v1.IdData","animalId":"Bossie IdData","initiationTime":"2020-01-10T10:30:37Z"},"promiseData":[{"class":"IdPromise","data":{"promId":0,"caseId":0,"animalId":"Bos123","initiationDate":"2020-01-10T22:20:39Z"}}]}
-
+      example:
+        id: 0
+        rxId: Example
+        caseData:
+          _type: models.api.v1.IdData
+          animalId: Bossie IdData
+          initiationTime: '2020-01-10T10:30:37Z'
+        promiseData:
+          - class: IdPromise
+            data:
+              promId: 0
+              caseId: 0
+              animalId: Bos123
+              initiationDate: '2020-01-10T22:20:39Z'
     IdData:
       description: ' tbd'
       properties:
@@ -1870,8 +2150,9 @@ components:
         initiationTime:
           type: string
           format: date-time
-      example: {"animalId":"Bossie IdData","initiationTime":"2020-01-10T10:30:37Z"}
-
+      example:
+        animalId: Bossie IdData
+        initiationTime: '2020-01-10T10:30:37Z'
     WeightData:
       description: ' tbd'
       properties:
@@ -1882,14 +2163,20 @@ components:
         initiationTime:
           type: string
           format: date-time
-      example: {"animalId":"Bossie WeightData","weight":{"dimension":"Mass","value":500,"symbol":"kg"},"initiationTime":"2020-01-10T10:30:37Z"}
-
+      example:
+        animalId: Bossie WeightData
+        weight:
+          dimension: Mass
+          value: 500
+          symbol: kg
+        initiationTime: '2020-01-10T10:30:37Z'
     PreferredDoseData:
       description: ' tbd'
       properties:
-        "_type":
+        _type:
           type: string
-          enum: [models.api.v1.PreferredDoseData]
+          enum:
+            - models.api.v1.PreferredDoseData
         animalId:
           type: string
         preferredDose:
@@ -1897,7 +2184,15 @@ components:
         initiationTime:
           type: string
           format: date-time
-      example: {"_type":"models.api.v1.PreferredDoseData","animalId":"Bossie PreferredDoaseData","preferredDose":{"quantity":{"dimension":"Volume","value":3,"symbol":"ml"}},"initiationTime":"2020-01-10T10:30:37Z"}
+      example:
+        _type: models.api.v1.PreferredDoseData
+        animalId: Bossie PreferredDoaseData
+        preferredDose:
+          quantity:
+            dimension: Volume
+            value: 3
+            symbol: ml
+        initiationTime: '2020-01-10T10:30:37Z'
     Signature:
       description: an electronic signature
       required:
@@ -1912,32 +2207,50 @@ components:
           format: date-time
       example:
         timestanp: '2017-07-21T17:32:28Z'
-
     DrugQuantity:
-      required: [quantity] 
+      required:
+        - quantity
       properties:
         quantity:
           oneOf:
             - $ref: '#/components/schemas/MassQuantity'
             - $ref: '#/components/schemas/VolumeQuantity'
             - $ref: '#/components/schemas/DimensionlessQuantity'
-      example: {"quantity":{"dimension":"Mass","value":3,"symbol":"oz"}}
-
+      example:
+        quantity:
+          dimension: Mass
+          value: 3
+          symbol: oz
     DrugQuantityRange:
-      required: [min, max]
+      required:
+        - min
+        - max
       properties:
         min:
           $ref: '#/components/schemas/DrugQuantity'
         max:
           $ref: '#/components/schemas/DrugQuantity'
-      example: {"min":{"quantity":{"dimension":"Volume","value":3,"symbol":"ml"}},"max":{"quantity":{"dimension":"Volume","value":345,"symbol":"ml"}}}
-
+      example:
+        min:
+          quantity:
+            dimension: Volume
+            value: 3
+            symbol: ml
+        max:
+          quantity:
+            dimension: Volume
+            value: 345
+            symbol: ml
     MassQuantity:
-      required: [dimension, value, symbol]
+      required:
+        - dimension
+        - value
+        - symbol
       properties:
         dimension:
           type: string
-          enum: [Mass]
+          enum:
+            - Mass
         value:
           type: number
           minimum: 0
@@ -1945,51 +2258,86 @@ components:
           exclusiveMinimum: true
         symbol:
           $ref: '#/components/schemas/MassUnit'
-      example: {"dimension":"Mass","value":3,"symbol":"kg"}
-
+      example:
+        dimension: Mass
+        value: 3
+        symbol: kg
     MassUnit:
       description: unit of mass or weight
       type: string
-      enum: [lb, t, dwt, gr, mg, mcg, oz, g, kg]
-
+      enum:
+        - lb
+        - t
+        - dwt
+        - gr
+        - mg
+        - mcg
+        - oz
+        - g
+        - kg
     VolumeQuantity:
-      required: [dimension, value, symbol]
+      required:
+        - dimension
+        - value
+        - symbol
       properties:
         dimension:
           type: string
-          enum: [Volume]
+          enum:
+            - Volume
         value:
           type: number
           minimum: 0
           exclusiveMinimum: true
         symbol:
           $ref: '#/components/schemas/VolumeUnit'
-      example: {"dimension":"Volume","value":3,"symbol":"ml"}
-
+      example:
+        dimension: Volume
+        value: 3
+        symbol: ml
     VolumeUnit:
       description: unit of Volume or weight
       type: string
-      enum: [pt, tbsp, µl, nl, oz, dl, ml, qt, L, gal, c,  tsp ]
-
+      enum:
+        - pt
+        - tbsp
+        - µl
+        - nl
+        - oz
+        - dl
+        - ml
+        - qt
+        - L
+        - gal
+        - c
+        - tsp
     DimensionlessQuantity:
-      required: [dimension, value, symbol]
+      required:
+        - dimension
+        - value
+        - symbol
       properties:
         dimension:
           type: string
-          enum: [Dimensionless]
+          enum:
+            - Dimensionless
         value:
           type: number
           minimum: 0
           exclusiveMinimum: true
         symbol:
           $ref: '#/components/schemas/DimensionlessUnit'
-      example: {"dimension":"Dimensionless","value":3,"symbol":"ea"}
-
+      example:
+        dimension: Dimensionless
+        value: 3
+        symbol: ea
     DimensionlessUnit:
       description: Dimensionless unit (each)
       type: string
-      enum: ["ea", "%", "dz"]
-
+      enum:
+        - ea
+        - '%'
+        - dz
     LabelClaim:
       properties:
         id:
@@ -2032,10 +2380,37 @@ components:
           type: integer
         wtNote:
           type: string
-      example: {"id":1,"fdaSpecies":"Horses","diagnosis":"Pain (colic), symptomatic treatment","dxId":2002,"dxCode":"2002","product":"Prevail™ Flunixin Meglumine Injection","productId":42,"sequenceFunction":{"intervals":["PT6H","PT24H"],"_type":"models.api.v1.SeqSeries"},"sizeFunction":{"dose":{"quantity":{"dimension":"Volume","value":3,"symbol":"ml"}},"perUnit":{"dimension":"Mass","value":1,"symbol":"kg"},"_type":"models.api.v1.DoseByWeightFunction"},"_dose":"3.0 ml per kg repeat in 6 hours and again in 24 hours","doseNote":"Not for use in horses intended for food","route":"I.V.","wtMeatHrs":0,"wtMilkHrs":0}
-      
+      example:
+        id: 1
+        fdaSpecies: Horses
+        diagnosis: 'Pain (colic), symptomatic treatment'
+        dxId: 2002
+        dxCode: '2002'
+        product: Prevail™ Flunixin Meglumine Injection
+        productId: 42
+        sequenceFunction:
+          intervals:
+            - PT6H
+            - PT24H
+          _type: models.api.v1.SeqSeries
+        sizeFunction:
+          dose:
+            quantity:
+              dimension: Volume
+              value: 3
+              symbol: ml
+          perUnit:
+            dimension: Mass
+            value: 1
+            symbol: kg
+          _type: models.api.v1.DoseByWeightFunction
+        _dose: 3.0 ml per kg repeat in 6 hours and again in 24 hours
+        doseNote: Not for use in horses intended for food
+        route: I.V.
+        wtMeatHrs: 0
+        wtMilkHrs: 0
     PrescriptionRequest:
-      description: a Prescription request, before it is recorded and timestamped
+      description: 'a Prescription request, before it is recorded and timestamped'
       required:
         - size
         - unit
@@ -2051,8 +2426,87 @@ components:
           type: string
         status:
           type: string
-      example: {"protocol":{"ownerId":0,"name":"example protocol","shortname":"EXamp","created":"2020-01-10T22:20:39Z","edited":"2020-01-10T22:20:39Z","status":"UNKNOWN","withhold":{"hoursMeat":0,"hoursMilk":0,"note":""},"instructions":{"considerations":"think first","restrictions":"always","dothis":"execute protocol","recordthis":"case data","success":"good","failure":"bad","references":"ref"},"shareAll":false,"shareClonable":false,"caseDefinition":{"pxId":0,"requireID":true,"requireMOR":true,"medical":"really sick","economic":"lotsa cash"},"treatments":[{"id":0,"ownerId":0,"description":"sample treatment","note":"this is an off-label Treatment","eligibilities":[{"id":1,"name":"Beef Cattle","fda":"BeefCattle"}],"tags":[{"id":1,"code":"EXAMPLE"}],"product":"MiracleMed","_dose":"3.0 ml per kg repeat in 6 hours and again in 24 hours","route":"intr-corporeal","sequenceFunction":{"intervals":["PT6H","PT24H"],"_type":"models.api.v1.SeqSeries"},"sizeFunction":{"dose":{"quantity":{"dimension":"Volume","value":3,"symbol":"ml"}},"perUnit":{"dimension":"Mass","value":1,"symbol":"kg"},"_type":"models.api.v1.DoseByWeightFunction"},"doseNote":"some note on dose","wtMeatHrs":22,"wtMilkHrs":5,"wtNote":"example"}],"tags":[{"id":1,"code":"EXAMPLE"}],"diagnoses":[{"id":8,"code":"PAIN","name":"Pain/inflammation (musculoskeletal), treatment"}],"eligibilities":[{"id":1,"name":"Beef Cattle","fda":"BeefCattle"}],"promises":[{"id":1,"name":"test user","code":"EXAMPLE"}]},"morId":0,"status":"DEPRECATED","metadata":[]}
-
+      example:
+        protocol:
+          ownerId: 0
+          name: example protocol
+          shortname: EXamp
+          created: '2020-01-10T22:20:39Z'
+          edited: '2020-01-10T22:20:39Z'
+          status: UNKNOWN
+          withhold:
+            hoursMeat: 0
+            hoursMilk: 0
+            note: ''
+          instructions:
+            considerations: think first
+            restrictions: always
+            dothis: execute protocol
+            recordthis: case data
+            success: good
+            failure: bad
+            references: ref
+          shareAll: false
+          shareClonable: false
+          caseDefinition:
+            pxId: 0
+            requireID: true
+            requireMOR: true
+            medical: really sick
+            economic: lotsa cash
+          treatments:
+            - id: 0
+              ownerId: 0
+              description: sample treatment
+              note: this is an off-label Treatment
+              eligibilities:
+                - id: 1
+                  name: Beef Cattle
+                  fda: BeefCattle
+              tags:
+                - id: 1
+                  code: EXAMPLE
+              product: MiracleMed
+              _dose: 3.0 ml per kg repeat in 6 hours and again in 24 hours
+              route: intr-corporeal
+              sequenceFunction:
+                intervals:
+                  - PT6H
+                  - PT24H
+                _type: models.api.v1.SeqSeries
+              sizeFunction:
+                dose:
+                  quantity:
+                    dimension: Volume
+                    value: 3
+                    symbol: ml
+                perUnit:
+                  dimension: Mass
+                  value: 1
+                  symbol: kg
+                _type: models.api.v1.DoseByWeightFunction
+              doseNote: some note on dose
+              wtMeatHrs: 22
+              wtMilkHrs: 5
+              wtNote: example
+          tags:
+            - id: 1
+              code: EXAMPLE
+          diagnoses:
+            - id: 8
+              code: PAIN
+              name: 'Pain/inflammation (musculoskeletal), treatment'
+          eligibilities:
+            - id: 1
+              name: Beef Cattle
+              fda: BeefCattle
+          promises:
+            - id: 1
+              name: test user
+              code: EXAMPLE
+        morId: 0
+        status: DEPRECATED
+        metadata: []
     Prescription:
       required:
         - size
@@ -2076,24 +2530,118 @@ components:
           type: string
         status:
           type: string
-      example:  {"protocol":{"ownerId":0,"name":"example protocol","shortname":"EXamp","created":"2020-01-10T22:20:39Z","edited":"2020-01-10T22:20:39Z","status":"UNKNOWN","withhold":{"hoursMeat":0,"hoursMilk":0,"note":""},"instructions":{"considerations":"think first","restrictions":"always","dothis":"execute protocol","recordthis":"case data","success":"good","failure":"bad","references":"ref"},"shareAll":false,"shareClonable":false,"caseDefinition":{"pxId":0,"requireID":true,"requireMOR":true,"medical":"really sick","economic":"lotsa cash"},"treatments":[{"id":0,"ownerId":0,"description":"sample treatment","note":"this is an off-label Treatment","eligibilities":[{"id":1,"name":"Beef Cattle","fda":"BeefCattle"}],"tags":[{"id":1,"code":"EXAMPLE"}],"product":"MiracleMed","_dose":"3.0 ml per kg repeat in 6 hours and again in 24 hours","route":"intr-corporeal","sequenceFunction":{"intervals":["PT6H","PT24H"],"_type":"models.api.v1.SeqSeries"},"sizeFunction":{"dose":{"quantity":{"dimension":"Volume","value":3,"symbol":"ml"}},"perUnit":{"dimension":"Mass","value":1,"symbol":"kg"},"_type":"models.api.v1.DoseByWeightFunction"},"doseNote":"some note on dose","wtMeatHrs":22,"wtMilkHrs":5,"wtNote":"example"}],"tags":[{"id":1,"code":"EXAMPLE"}],"diagnoses":[{"id":8,"code":"PAIN","name":"Pain/inflammation (musculoskeletal), treatment"}],"eligibilities":[{"id":1,"name":"Beef Cattle","fda":"BeefCattle"}],"promises":[{"id":1,"name":"test user","code":"EXAMPLE"}]},"vorId":1,"morId":0,"refills":3,"status":"DEPRECATED","metadata":[],"rxId":"gG3pBCR1GCMKm89c","created":"2020-01-10T10:30:37Z"}
-
+      example:
+        protocol:
+          ownerId: 0
+          name: example protocol
+          shortname: EXamp
+          created: '2020-01-10T22:20:39Z'
+          edited: '2020-01-10T22:20:39Z'
+          status: UNKNOWN
+          withhold:
+            hoursMeat: 0
+            hoursMilk: 0
+            note: ''
+          instructions:
+            considerations: think first
+            restrictions: always
+            dothis: execute protocol
+            recordthis: case data
+            success: good
+            failure: bad
+            references: ref
+          shareAll: false
+          shareClonable: false
+          caseDefinition:
+            pxId: 0
+            requireID: true
+            requireMOR: true
+            medical: really sick
+            economic: lotsa cash
+          treatments:
+            - id: 0
+              ownerId: 0
+              description: sample treatment
+              note: this is an off-label Treatment
+              eligibilities:
+                - id: 1
+                  name: Beef Cattle
+                  fda: BeefCattle
+              tags:
+                - id: 1
+                  code: EXAMPLE
+              product: MiracleMed
+              _dose: 3.0 ml per kg repeat in 6 hours and again in 24 hours
+              route: intr-corporeal
+              sequenceFunction:
+                intervals:
+                  - PT6H
+                  - PT24H
+                _type: models.api.v1.SeqSeries
+              sizeFunction:
+                dose:
+                  quantity:
+                    dimension: Volume
+                    value: 3
+                    symbol: ml
+                perUnit:
+                  dimension: Mass
+                  value: 1
+                  symbol: kg
+                _type: models.api.v1.DoseByWeightFunction
+              doseNote: some note on dose
+              wtMeatHrs: 22
+              wtMilkHrs: 5
+              wtNote: example
+          tags:
+            - id: 1
+              code: EXAMPLE
+          diagnoses:
+            - id: 8
+              code: PAIN
+              name: 'Pain/inflammation (musculoskeletal), treatment'
+          eligibilities:
+            - id: 1
+              name: Beef Cattle
+              fda: BeefCattle
+          promises:
+            - id: 1
+              name: test user
+              code: EXAMPLE
+        vorId: 1
+        morId: 0
+        refills: 3
+        status: DEPRECATED
+        metadata: []
+        rxId: gG3pBCR1GCMKm89c
+        created: '2020-01-10T10:30:37Z'
     Comment:
-      required: [comment]
+      required:
+        - comment
       properties:
         userId:
           description: set null or zero if user wishes to be anonymous
           type: integer
           default: null
         public:
-          description: if false, comment is private to site managers
+          description: 'if false, comment is private to site managers'
           type: boolean
           default: false
         comment:
           type: string
-
     GreenbookHeader:
-      required: [ndc, proprietery, nonProp, ingredients, labeler, productType, marketCat, appNumber,  link, status, lastChanged]
+      required:
+        - ndc
+        - proprietery
+        - nonProp
+        - ingredients
+        - labeler
+        - productType
+        - marketCat
+        - appNumber
+        - link
+        - status
+        - lastChanged
       properties:
         ndc:
           type: string
@@ -2118,14 +2666,12 @@ components:
         lastChanged:
           type: string
           format: date-time
-
   securitySchemes:
     AuthToken:
       type: apiKey
       in: header
       name: X-Auth-Token
       description: 'Uses JWT token stored in request header, set to expire after 24 hours.'
-
   responses:
     '503':
       description: Service Unavailable
@@ -2161,11 +2707,12 @@ components:
       description: 501 - endpoint not yet implemented
     Unavailable:
       description: 503 - service is (temporarily) not available
-
   examples:
     testVOR-login:
       summary: login username and password for user testVOR
-      value: {"identifier": "testVOR", "password": "tVpass"}
+      value:
+        identifier: testVOR
+        password: tVpass
     testVOR:
       summary: User with VOR Usertype
       description: VOR test user prepopulated into testing db
@@ -2193,8 +2740,83 @@ components:
         share-to: 2
         read-only: false
     protocol-1:
-      summary: ""
-      value: {"ownerId":0,"name":"example protocol","shortname":"EXamp","created":"2020-01-10T22:20:39Z","edited":"2020-01-10T22:20:39Z","status":"UNKNOWN","withhold":{"hoursMeat":0,"hoursMilk":0,"note":""},"instructions":{"considerations":"think first","restrictions":"always","dothis":"execute protocol","recordthis":"case data","success":"good","failure":"bad","references":"ref"},"shareAll":false,"caseDefinition":{"pxId":0,"requireID":true,"requireMOR":true,"medical":"really sick","economic":"lotsa cash"},"treatments":[{"id":0,"ownerId":0,"description":"sample treatment","note":"this is an off-label Treatment","eligibilities":[{"id":1,"name":"Beef Cattle","fda":"BeefCattle"}],"tags":[{"id":1,"code":"EXAMPLE"}],"product":"MiracleMed","_dose":"3.0 ml per kg repeat in PT0S List(, 6 hours)","route":"intr-corporeal","sequenceFunction":{"intervals":["PT0S","PT6H"],"_type":"models.api.v1.SeqSeries"},"sizeFunction":{"dose":{"quantity":{"dimension":"Volume","value":3,"symbol":"ml"}},"perUnit":{"dimension":"Mass","value":1,"symbol":"kg"},"_type":"models.api.v1.DoseByWeightFunction"},"doseNote":"some note on dose","wtMeatHrs":22,"wtMilkHrs":5,"wtNote":"example"}],"tags":[{"id":1,"code":"EXAMPLE"}],"diagnoses":[{"id":2,"code":"PYOMETRA","name":"Pyometra/chronic endometritis, treatment"}],"eligibilities":[{"id":1,"name":"Beef Cattle","fda":"BeefCattle"}],"promises":[{"id":1,"name":"test user","code":"EXAMPLE"}]}
+      summary: ''
+      value:
+        ownerId: 0
+        name: example protocol
+        shortname: EXamp
+        created: '2020-01-10T22:20:39Z'
+        edited: '2020-01-10T22:20:39Z'
+        status: UNKNOWN
+        withhold:
+          hoursMeat: 0
+          hoursMilk: 0
+          note: ''
+        instructions:
+          considerations: think first
+          restrictions: always
+          dothis: execute protocol
+          recordthis: case data
+          success: good
+          failure: bad
+          references: ref
+        shareAll: false
+        caseDefinition:
+          pxId: 0
+          requireID: true
+          requireMOR: true
+          medical: really sick
+          economic: lotsa cash
+        treatments:
+          - id: 0
+            ownerId: 0
+            description: sample treatment
+            note: this is an off-label Treatment
+            eligibilities:
+              - id: 1
+                name: Beef Cattle
+                fda: BeefCattle
+            tags:
+              - id: 1
+                code: EXAMPLE
+            product: MiracleMed
+            _dose: '3.0 ml per kg repeat in PT0S List(, 6 hours)'
+            route: intr-corporeal
+            sequenceFunction:
+              intervals:
+                - PT0S
+                - PT6H
+              _type: models.api.v1.SeqSeries
+            sizeFunction:
+              dose:
+                quantity:
+                  dimension: Volume
+                  value: 3
+                  symbol: ml
+              perUnit:
+                dimension: Mass
+                value: 1
+                symbol: kg
+              _type: models.api.v1.DoseByWeightFunction
+            doseNote: some note on dose
+            wtMeatHrs: 22
+            wtMilkHrs: 5
+            wtNote: example
+        tags:
+          - id: 1
+            code: EXAMPLE
+        diagnoses:
+          - id: 2
+            code: PYOMETRA
+            name: 'Pyometra/chronic endometritis, treatment'
+        eligibilities:
+          - id: 1
+            name: Beef Cattle
+            fda: BeefCattle
+        promises:
+          - id: 1
+            name: test user
+            code: EXAMPLE
     label-1:
       summary: label with id=1
       value:
