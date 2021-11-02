@@ -1462,7 +1462,7 @@ components:
         value:
           type: string
     Treatment:
-      description: < describes a series of one or more doses of a single product in terms of a sizeFunction (which specifies dose quantity) and a SequenceFunction (which specifies when the doses should be given) These functions are polymorphic and may depend on addititional data which only is available when a protocol is assigned to a specific Case. For example the initiation time will likely be needed to calculate the dose sequence and animal weight or other data may be needed to calculate dose size.
+      description: describes a series of one or more doses of a single product in terms of a sizeFunction (which specifies dose quantity) and a SequenceFunction (which specifies when the doses should be given). These functions are polymorphic and may depend on addititional data which only is available when a protocol is assigned to a specific Case. For example, the initiation time will likely be needed to calculate the dose sequence and animal weight or other data may be needed to calculate dose size.
       type: object
       required:
         - product
@@ -1477,9 +1477,11 @@ components:
         ownerId:
           description: the `id` key of the VOR user who owns the treatment.
           type: integer
+          example:
         description:
           description: description of Treatment
           type: string
+          example: "1 micro mol per kg daily"
         eligibilities:
           description: eligibility criteria for potential cases
           type: array
@@ -1488,9 +1490,11 @@ components:
         product:
           description: product name
           type: string
+          example: MiracleMed
         _dose:
           description: transient string representation of `dosage`
           type: string
+          example: 3.0 ml per kg repeat in 6 hours and again in 24 hours
         dosage:
           oneOf:
             - $ref: '#/components/schemas/DoseId'
@@ -1517,41 +1521,6 @@ components:
           format: html
         amduca:
           $ref: '#/components/schemas/AmducaClass'
-      example:
-        id: 0
-        ownerId: 0
-        description: sample treatment
-        note: this is an off-label Treatment
-        eligibilities:
-          - id: 1
-            name: Beef Cattle
-            fda: BeefCattle
-        tags:
-          - id: 1
-            code: EXAMPLE
-        product: MiracleMed
-        _dose: 3.0 ml per kg repeat in 6 hours and again in 24 hours
-        route: intr-corporeal
-        sequenceFunction:
-          intervals:
-            - PT6H
-            - PT24H
-          _type: models.api.v1.SeqSeries
-        sizeFunction:
-          dose:
-            quantity:
-              dimension: Volume
-              value: 3
-              symbol: ml
-          perUnit:
-            dimension: Mass
-            value: 1
-            symbol: kg
-          _type: models.api.v1.DoseByWeightFunction
-        doseNote: some note on dose
-        wtMeatHrs: 22
-        wtMilkHrs: 5
-        wtNote: example
     DoseId:
       properties:
         doseId:
@@ -1914,10 +1883,15 @@ components:
         - id
       properties:
         id:
+          description: wip
           type: integer
+          example: 1
         name:
+          description: User-friendly species/variant description
           type: string
+          example: Beef Cattle
         fdaSpecies:
+          description: FDA-specified species/variant description
           enum:
             - beef_cattle
             - veal
@@ -1939,10 +1913,7 @@ components:
             - bison
             - other
             - unidentified
-      example:
-        id: 1
-        name: Beef Cattle
-        fda: BeefCattle
+          example: beef_cattle
     Promise:
       description: An act which must be executed on or after enrollment of a Case to a Prescription
       type: object
