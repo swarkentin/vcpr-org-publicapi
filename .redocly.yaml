@@ -1,0 +1,9 @@
+apiDefinitions:
+
+  dairyvets: ./src/openapi.yaml
+
+lint: 
+  extends:
+  - minimal
+
+
