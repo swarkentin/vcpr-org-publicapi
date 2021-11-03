@@ -1101,7 +1101,8 @@ components:
         - UNIDENTIFIED
     Relationship:
       type: string
-      description: '< a link between two users defining a relationship CLIENT - MOR user on right is a client of VOR user on left EMPLOYEE - TOR user on right is an employee of MOR user on left MEMBER - VOR user on right is a member of CLINIC on left, or MOR user on right is a manager of FARM on left'
+      description: >-
+          `a link between two users defining a relationship CLIENT - MOR user on right is a client of VOR user on left EMPLOYEE - TOR user on right is an employee of MOR user on left MEMBER - VOR user on right is a member of CLINIC on left, or MOR user on right is a manager of FARM on left'
       enum:
         - CLIENT
         - EMPLOYEE
@@ -1131,7 +1132,7 @@ components:
           description: id of a VOR user who may use the protocol identified by pxId
           example: 2
         clonable:
-          description: 'does User identified by `shareTo` have permission to create a copy of this protocol, then own the clone.'
+          description: 'True/False switch to indicate whether User identified by `shareTo` has permission to create a copy of this protocol and own the clone.'
           type: boolean
           default: false
           example: true
@@ -1148,6 +1149,8 @@ components:
       properties:
         id:
           type: integer
+          description: wip
+          example: 0
         ownerId:
           type: integer
           description: wip
@@ -1174,35 +1177,59 @@ components:
           $ref: '#/components/schemas/ProtocolStatus'
         vetNote:
           type: string
+          description: wip
+          example: wip
         wtMeatHrs:
           type: integer
+          description: wip
+          example: wip
         wtMilkHrs:
           type: integer
+          description: wip
+          example: wip
         wtNote:
           type: string
+          description: wip
+          example: wip
         considerations:
           type: string
           format: html
+          description: wip
+          example: wip
         restrictions:
           type: string
           format: html
+          description: wip
+          example: wip
         dothis:
           type: string
           format: html
+          description: wip
+          example: wip
         recordthis:
           type: string
           format: html
+          description: wip
+          example: wip
         success:
           type: string
           format: html
+          description: wip
+          example: wip
         failure:
           type: string
           format: html
+          description: wip
+          example: wip
         references:
           type: string
           format: html
+          description: wip
+          example: wip
         shareAll:
           type: boolean
+          default: false
+          description: wip
     Protocol:
       description: a veterinary treatment protocol
       type: object
