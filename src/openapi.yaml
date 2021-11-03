@@ -536,7 +536,7 @@ paths:
       tags:
         - editor
       summary: get eligibilities
-      description: 'an array of Eligibilities from whichg a user may choose. The id field is authoritative, and all that is needed to identify a particular Eligibility.'
+      description: 'an array of Eligibilities from which a user may choose. The id field is authoritative, and all that is needed to identify a particular Eligibility.'
       responses:
         '200':
           description: OK
@@ -2349,11 +2349,11 @@ components:
         vorId:
           type: integer
           description: wip
-          example: gG3pBCR1GCMKm89c
+          example: aZ3pBCR1GCMKm89c
         morId:
           type: integer
           description: wip
-          example: gG3pBCR1GCMKm89c
+          example: tP3pBCR1GCMKm89c
         expiration:
           type: string
           format: date-time
@@ -2425,7 +2425,7 @@ components:
           type: string
           format: date-time
     fdaSpecies:
-      type: string
+      type: array
       description: FDA-specified species/variant description
       enum:
         - beef_cattle
@@ -2448,7 +2448,8 @@ components:
         - bison
         - other
         - unidentified
-      example: beef_cattle
+      example:
+        - beef_cattle
   securitySchemes:
     AuthToken:
       type: apiKey
