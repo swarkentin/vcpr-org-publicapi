@@ -29,7 +29,7 @@ paths:
         - idempotent
       security: []
       summary: user login
-      description: 'Use this endpoint to authenticate a User from `identifier` (normally an email address) and `password`. Response returns the User object for the logged-ion user and a token for use in future secured requests, as well as a `fileSignature` and `filePolicy` which may be used for access to images stored on FileStack.'
+      description: 'Use this endpoint to authenticate a User from `identifier` (normally an email address) and `password`. Response returns the User object for the logged-in user and a token for use in future secured requests, as well as a `fileSignature` and `filePolicy` which may be used for access to images stored on FileStack.'
       requestBody:
         required: true
         content:
@@ -42,6 +42,7 @@ paths:
                   description: '`user.username`, normally the same as `user.email`'
                 password:
                   type: string
+                  description: wip are there no restrictions to this password on setup such as minimum 8 characters
             examples:
               testVOR:
                 value:
@@ -996,6 +997,7 @@ components:
           example: Vet
         suffix:
           type: string
+          description: wip -- firstname and lastname can escape having a description, but what is this suffix?
           example: DVM
       required:
         - id
@@ -1899,26 +1901,25 @@ components:
               type: string
     Diagnosis:
       description: >-
-        A medical diagnosis for which a protocol may be used. Normally the `name` field
-         is all that is shown in the UI, but the `id` is used internally to identify each
-         Diagnosis, which should be treated as an immutable object. Changes to the
-         array of Diagnoses in a Protocol are done by changing the array of `id` numbers.
-         Changes to other fields will have no effect at the persistent layer.
+        A medical diagnosis for which a protocol may be used. Normally the `name` field is all that is shown in the UI, but the `id` is used internally to identify each Diagnosis, which should be treated as an immutable object. Changes to the array of Diagnoses in a Protocol are achieved by changing the array of `id` numbers. Changes to other fields will have no effect at the persistent layer.
       type: object
       properties:
         id:
           type: integer
+          description: unique identifier for Diagnosis
+          example: 8
         code:
           type: string
           maxLength: 25
+          description: wip should this be an enum?
+          example: PAIN
         name:
           type: string
-      example:
-        id: 8
-        code: PAIN
-        name: 'Pain/inflammation (musculoskeletal), treatment'
+          description: free-form text description of the Diagnosis
+          example: 'Pain/inflammation (musculoskeletal), treatment'
     CaseDefinition:
-      description: 'information used at the time of case selection to determine whether a particular protocol may be enrolled. and the protocol initiated for a particular animal or group of animals (the Case). The Case may be enrolled with the Protocol only if the Case meets all requirements of the CaseDefinition and none of the prohibitions. Other information may be advisory, and used at the discretion of the person doing enrollment. type: object'
+      description: 'information used at the time of case selection to determine whether a particular protocol may be enrolled. and the protocol initiated for a particular animal or group of animals (the Case). The Case may be enrolled with the Protocol only if the Case meets all requirements of the CaseDefinition and none of the prohibitions. Other information may be advisory, and used at the discretion of the person doing enrollment.'
+      type: object
       properties:
         requireId:
           type: boolean
@@ -1933,7 +1934,7 @@ components:
           type: string
           format: html
           default: ''
-          example: prohibited in animals older than than 24 months
+          example: "<p>prohibited in animals older than than 24 months</p>"
         medical:
           description: medical considerations in selecting and implementing this Protocol
           type: string
@@ -1950,32 +1951,24 @@ components:
           type: string
           format: html
           default: ''
+          example: '<p>overcrowding may be contributing to issues</p>'
     CaseData:
-      description: ' tbd'
+      description: 'wip tbd'
+      type: object
       properties:
         id:
           type: integer
+          example: 0
+          description: wip unique identifier for case
         rxId:
           type: string
+          description: wip unique identifier for ***
+          example: gG3pBCR1GCMKm89c
         caseData:
           oneOf:
             - $ref: '#/components/schemas/IdData'
             - $ref: '#/components/schemas/WeightData'
             - $ref: '#/components/schemas/PreferredDoseData'
-      example:
-        id: 0
-        rxId: Example
-        caseData:
-          _type: models.api.v1.IdData
-          animalId: Bossie IdData
-          initiationTime: '2020-01-10T10:30:37Z'
-        promiseData:
-          - class: IdPromise
-            data:
-              promId: 0
-              caseId: 0
-              animalId: Bos123
-              initiationDate: '2020-01-10T22:20:39Z'
     IdData:
       description: 'wip tbd'
       properties:
@@ -2281,7 +2274,7 @@ components:
             requireID: true
             requireMOR: true
             medical: really sick
-            economic: lotsa cash
+            economic: client in credit
           treatments:
             - id: 0
               ownerId: 0
