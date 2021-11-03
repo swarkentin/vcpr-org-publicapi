@@ -1070,7 +1070,8 @@ components:
     UserType:
       type: string
       description: >-
-          'an ordered list of user types associated with privilege levels:
+          an ordered list of user types associated with privilege levels:
+          <br>
           - SAOR: a system administrator with top level privileges
           - VOR: a veterinarian who may create and prescribe protocols
           - MOR: a farm manager to whom protocols may be prescribed, and who may create Cases in a protocol
@@ -1081,7 +1082,7 @@ components:
           - UNVOR: a user who requests VOR status, with neither email or admin approval
           - UNMOR: a user who requests MOR status but email not yet confirmed
           - PREVOR: a confirmed user who requests VOR status but still lacks either email confirmation or approval by admin
-          - REMOVED: the  record of a user who is no longer active and may not log in'
+          - REMOVED: the  record of a user who is no longer active and may not log in
       enum:
         - SAOR
         - VOR
