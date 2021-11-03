@@ -556,7 +556,7 @@ paths:
       tags:
         - editor
       summary: get diagnoses
-      description: 'an array of Diagnoses from whichg a user may choose. The id field is authoritative, and all that is needed to identify a particular Diagnosis.'
+      description: 'an array of Diagnoses from which a user may choose. The id field is authoritative, and all that is needed to identify a particular Diagnosis.'
       responses:
         '200':
           description: OK
@@ -708,7 +708,7 @@ paths:
       operationId: createPrescription
       tags:
         - editor
-      summary: Permanently record a prescription returning it's assigned GUID. ** not ** idempotent
+      summary: permanently record a prescription returning its assigned GUID. ** not ** idempotent
       description: 'Prescriptions form a permanent archival record of a transaction which may be invalidated, but not deleted'
       responses:
         '200':
@@ -1194,38 +1194,38 @@ components:
         considerations:
           type: string
           format: html
-          description: wip
-          example: wip
+          description: wip free-form text note specifying considerations
+          example: "<p>think first</p>"
         restrictions:
           type: string
           format: html
-          description: wip
-          example: wip
+          description: wip free-form text note specifying restrictions
+          example: "<p>not suitable in pregnancy</p>"
         dothis:
           type: string
           format: html
-          description: wip
-          example: wip
+          description: wip free-form text note specifying protocol-specific instructions
+          example: "<p>execute protocol</p>"
         recordthis:
           type: string
           format: html
-          description: wip
-          example: wip
+          description: wip free-form text note for case records
+          example: case data
         success:
           type: string
           format: html
           description: wip
-          example: wip
+          example: "<p>good</p>"
         failure:
           type: string
           format: html
           description: wip
-          example: wip
+          example: "<p>bad</p>"
         references:
           type: string
           format: html
           description: wip
-          example: wip
+          example: "<a href=\"https://en.wikipedia.org/wiki/Rickrolling\">Wikipedia</a>"
         shareAll:
           type: boolean
           default: false
@@ -1256,13 +1256,15 @@ components:
           type: string
           example: wip
         created:
-          description: added by the server when a protocol is first saved.
+          description: ISO-8601-formatted datetime added by the server when a protocol is first saved.
           type: string
           format: date-time
+          example: '2020-01-10T10:30:37Z'
         edited:
-          description: updated by the server whenever a protocol is saved.
+          description: ISO-8601-formatted datetime updated by the server whenever a protocol is saved.
           type: string
           format: date-time
+          example: '2020-02-10T10:30:37Z'
         status:
           $ref: '#/components/schemas/ProtocolStatus'
         vetNote:
@@ -1297,7 +1299,7 @@ components:
           items:
             $ref: '#/components/schemas/Eligibility'
         promises:
-          description: ''
+          description: 'wip'
           type: array
           items:
             $ref: '#/components/schemas/Promise'
@@ -1312,11 +1314,11 @@ components:
         considerations:
           type: string
           format: html
-          example: This is just an example, not a real protocol.
+          example: "<p>This is just an example, not a real protocol.</p>"
         restrictions:
           type: string
           format: html
-          example: Not for use on real animals.
+          example: "<p>Not for use on real animals.</p>"
         dothis:
           type: string
           format: html
@@ -1345,7 +1347,7 @@ components:
         value:
           type: string
     Treatment:
-      description: "describes a series of one or more doses of a single product in terms of a sizeFunction (which specifies dose quantity) and a SequenceFunction (which specifies when the doses should be given). These functions are polymorphic and may depend on addititional data which only is available when a protocol is assigned to a specific Case. For example, the initiation time will likely be needed to calculate the dose sequence and animal weight or other data may be needed to calculate dose size."
+      description: "describes a series of one or more doses of a single product in terms of a sizeFunction (which specifies dose quantity) and a SequenceFunction (which specifies when the doses should be given). These functions are polymorphic and may depend on additional data which only is available when a protocol is assigned to a specific Case. For example, the initiation time will likely be needed to calculate the dose sequence and animal weight or other data may be needed to calculate dose size."
       type: object
       required:
         - product
@@ -1360,7 +1362,7 @@ components:
         ownerId:
           description: the `id` key of the VOR user who owns the treatment.
           type: integer
-          example:
+          example: 0
         description:
           description: description of Treatment
           type: string
@@ -1388,13 +1390,20 @@ components:
           example: wip
         wtMeatHrs:
           type: integer
+          description: wip
+          example: wip
         wtMilkHrs:
           type: integer
+          description: wip
+          example: wip
         wtNote:
           type: string
+          description: wip
+          example: wip
         nada:
           description: NADA or ANADA as specified by the FDA
           type: string
+          example: wip
         tags:
           description: keywords for classification
           type: array
@@ -1403,6 +1412,7 @@ components:
         note:
           type: string
           format: html
+          example: "<p>a free-form note</p>"
         amduca:
           $ref: '#/components/schemas/AmducaClass'
     DoseId:
@@ -1410,6 +1420,7 @@ components:
         doseId:
           type: integer
           description: key to a label dosage
+          example: wip
     DoseFunctions:
       properties:
         sequenceFunction:
@@ -1427,23 +1438,28 @@ components:
         id:
           description: ID of animal to be dosed
           type: string
+          example: Y6768B752
         product:
           description: product name
           type: string
+          example: wip
         doseSize:
           $ref: '#/components/schemas/DrugQuantity'
         route:
           description: route of administration
           type: string
+          example: wip
         time:
           type: string
           format: date-time
+          example: '2020-01-10T22:20:39Z'
+          description: wip ISO-8601-formatted datetime added by the server when the dose is saved.
         note:
           type: string
           format: html
       example: '{"id":"B-123","product":"MiracleMed","size":{"size":2,"unit":"ml"},"route":"intramuscular injection","time":"2020-01-10T10:30:37Z"}'
     Withhold:
-      description: Duration after last treatment during which some act is prohibited. Most often this restricts when meat or milk may be sold for food.
+      description: duration after last treatment during which some act is prohibited. Most often this restricts when meat or milk may be sold for food.
       required:
         - duration
         - prohibition
@@ -1451,11 +1467,14 @@ components:
         hoursMeat:
           type: number
           example: 22
+          description: number of hours that must pass between exposure and slaughter
         hoursMilk:
           type: number
           example: 5
+          description: number of hours that must pass between exposure and extracting milk for consumption
         note:
           type: string
+          description: free-form text note
           format: html
           example: "<p>improvement apparent</p>"
     SizeFunction:
@@ -1495,23 +1514,11 @@ components:
           type: string
           enum:
             - models.api.v1.DoseRangeFunction
+          example: models.api.v1.DoseRangeFunction
         range:
           $ref: '#/components/schemas/DrugQuantityRange'
-      example:
-        _type: models.api.v1.DoseRangeFunction
-        range:
-          min:
-            quantity:
-              dimension: Dimensionless
-              value: 3
-              symbol: ea
-          max:
-            quantity:
-              dimension: Dimensionless
-              value: 4
-              symbol: ea
     DoseByWeightFunction:
-      description: Dose is specified as a quantity per unit of animal weight.
+      description: dose is specified as a quantity per unit of animal weight.
       required:
         - _type
         - dose
@@ -1528,16 +1535,16 @@ components:
       example:
         dose:
           quantity:
-            dimension: Volume
+            dimension: volume
             value: 3
             symbol: ml
         perUnit:
-          dimension: Mass
+          dimension: mass
           value: 1
           symbol: kg
         _type: models.api.v1.DoseByWeightFunction
     LoadingDoseByWeightFunction:
-      description: Dose is specified as first (loading) dose and following doses per unit of animal weight.
+      description: dose is specified as first (loading) dose and following doses per unit of animal weight.
       required:
         - _type
         - firstDose
@@ -1556,22 +1563,22 @@ components:
           $ref: '#/components/schemas/MassQuantity'
       example:
         perUnit:
-          dimension: Mass
+          dimension: mass
           value: 1
           symbol: kg
         followDose:
           quantity:
-            dimension: Volume
+            dimension: volume
             value: 3
             symbol: ml
         _type: models.api.v1.LoadingDoseByWeightFunction
         firstDose:
           quantity:
-            dimension: Volume
+            dimension: volume
             value: 6
             symbol: ml
     DoseRangeByWeightFunction:
-      description: Dose is specified as a range per unit of animal weight. The user may select any value within the range (inclusive).
+      description: dose is specified as a range per unit of animal weight. The user may select any value within the range (inclusive).
       required:
         - _type
         - range
@@ -1594,12 +1601,12 @@ components:
         range:
           min:
             quantity:
-              dimension: Volume
+              dimension: volume
               value: 3
               symbol: ml
           max:
             quantity:
-              dimension: Volume
+              dimension: volume
               value: 2
               symbol: ml
     DoseByClass:
@@ -1891,7 +1898,7 @@ components:
             result:
               type: string
     Diagnosis:
-      description: |
+      description: >-
         A medical diagnosis for which a protocol may be used. Normally the `name` field
          is all that is shown in the UI, but the `id` is used internally to identify each
          Diagnosis, which should be treated as an immutable object. Changes to the
@@ -1970,35 +1977,33 @@ components:
               animalId: Bos123
               initiationDate: '2020-01-10T22:20:39Z'
     IdData:
-      description: ' tbd'
+      description: 'wip tbd'
       properties:
         animalId:
           type: string
+          description: free-form text description of the animal
+          example: Bossie IdData
         initiationTime:
           type: string
           format: date-time
-      example:
-        animalId: Bossie IdData
-        initiationTime: '2020-01-10T10:30:37Z'
+          example: '2020-01-10T10:30:37Z'
+          description: wip ISO-8601-formatted datetime added by the server when the animal is first saved.
     WeightData:
-      description: ' tbd'
+      description: 'wip tbd'
       properties:
         animalId:
           type: string
+          description: free-form text description of the animal
+          example: Bossie IdData
         weight:
           $ref: '#/components/schemas/MassQuantity'
         initiationTime:
           type: string
           format: date-time
-      example:
-        animalId: Bossie WeightData
-        weight:
-          dimension: Mass
-          value: 500
-          symbol: kg
-        initiationTime: '2020-01-10T10:30:37Z'
+          description: wip ISO-8601-formatted datetime added by the server when the instance of the animal's weight is first saved.
+          example: '2020-04-10T10:30:37Z'
     PreferredDoseData:
-      description: ' tbd'
+      description: 'wip'
       properties:
         _type:
           type: string
@@ -2006,20 +2011,15 @@ components:
             - models.api.v1.PreferredDoseData
         animalId:
           type: string
+          description: wip free-form text note identifying this entry
+          example: Bossie PreferredDoaseData
         preferredDose:
           $ref: '#/components/schemas/DrugQuantity'
         initiationTime:
           type: string
           format: date-time
-      example:
-        _type: models.api.v1.PreferredDoseData
-        animalId: Bossie PreferredDoaseData
-        preferredDose:
-          quantity:
-            dimension: Volume
-            value: 3
-            symbol: ml
-        initiationTime: '2020-01-10T10:30:37Z'
+          description: wip ISO-8601-formatted datetime added by the server when the preferredDose was administered ??
+          example: '2020-04-10T10:30:37Z'
     Signature:
       description: an electronic signature
       required:
@@ -2029,11 +2029,10 @@ components:
         user:
           $ref: '#/components/schemas/User'
         timestamp:
-          description: the time at which the document was signed
+          description: ISO-8601-formatted datetime added by the server recording the time at which the document was signed
           type: string
           format: date-time
-      example:
-        timestanp: '2017-07-21T17:32:28Z'
+          example: '2017-07-21T17:32:28Z'
     DrugQuantity:
       required:
         - quantity
@@ -2083,12 +2082,9 @@ components:
           minimum: 0
           default: 1
           exclusiveMinimum: true
+          example: 50
         symbol:
           $ref: '#/components/schemas/MassUnit'
-      example:
-        dimension: Mass
-        value: 3
-        symbol: kg
     MassUnit:
       description: unit of mass or weight
       type: string
@@ -2102,6 +2098,7 @@ components:
         - oz
         - g
         - kg
+      example: kg
     VolumeQuantity:
       required:
         - dimension
@@ -2146,18 +2143,16 @@ components:
       properties:
         dimension:
           type: string
+          example: Dimensionless
           enum:
             - Dimensionless
         value:
           type: number
           minimum: 0
+          example: 3
           exclusiveMinimum: true
         symbol:
           $ref: '#/components/schemas/DimensionlessUnit'
-      example:
-        dimension: Dimensionless
-        value: 3
-        symbol: ea
     DimensionlessUnit:
       description: Dimensionless unit (each)
       type: string
@@ -2165,24 +2160,25 @@ components:
         - ea
         - '%'
         - dz
+      example: ea
     LabelClaim:
       properties:
         id:
           type: integer
-          description: wip
+          description: unique identifier for label
           example: 1
         nada:
           type: string
           description: wip
-          example: wip
+          example: 200-308
         eligibility:
           type: string
-          description: wip
-          example: wip
+          description: wip free-form description of species/variant eligibility
+          example: horses
         exId:
           type: integer
           description: wip
-          example: wip
+          example: 2500
         exCode:
           type: string
           description: wip
@@ -2192,7 +2188,7 @@ components:
         diagnosis:
           type: string
           description: wip
-          example: Pain (colic), symptomatic treatment
+          example: pain (colic), symptomatic treatment
         dxId:
           type: integer
           description: wip
@@ -2203,12 +2199,12 @@ components:
           example: '2002'
         product:
           type: string
-          description: wip
+          description: product trade name
           example: Prevail™ Flunixin Meglumine Injection
         productId:
           type: integer
-          description: wip
-          example: 42
+          description: unique identifier for the product described
+          example: 1315018
         sequenceFunction:
           $ref: '#/components/schemas/SequenceFunction'
         sizeFunction:
@@ -2228,7 +2224,7 @@ components:
         raId:
           type: integer
           description: wip
-          example: wip
+          example: 21
         wtMeatHrs:
           description: wip
           type: integer
@@ -2346,107 +2342,37 @@ components:
       properties:
         rxId:
           type: string
+          description: wip
+          example: gG3pBCR1GCMKm89c
         protocol:
           $ref: '#/components/schemas/Protocol'
         vorId:
           type: integer
+          description: wip
+          example: gG3pBCR1GCMKm89c
         morId:
           type: integer
+          description: wip
+          example: gG3pBCR1GCMKm89c
         expiration:
           type: string
           format: date-time
+          description: ISO-8601-formatted datetime defining expiration date
+          example: '2021-01-10T10:30:37Z'
         created:
           type: string
           format: date-time
+          description: ISO-8601-formatted datetime added by the server when prescription is first saved
+          example: '2021-08-10T10:30:37Z'
         metadata:
           type: string
+          description: wip
+          example: wip
         status:
           type: string
-      example:
-        protocol:
-          ownerId: 0
-          name: example protocol
-          shortname: EXamp
-          created: '2020-01-10T22:20:39Z'
-          edited: '2020-01-10T22:20:39Z'
-          status: UNKNOWN
-          withhold:
-            hoursMeat: 0
-            hoursMilk: 0
-            note: ''
-          instructions:
-            considerations: think first
-            restrictions: always
-            dothis: execute protocol
-            recordthis: case data
-            success: good
-            failure: bad
-            references: ref
-          shareAll: false
-          shareClonable: false
-          caseDefinition:
-            pxId: 0
-            requireID: true
-            requireMOR: true
-            medical: really sick
-            economic: lotsa cash
-          treatments:
-            - id: 0
-              ownerId: 0
-              description: sample treatment
-              note: this is an off-label Treatment
-              eligibilities:
-                - id: 1
-                  name: Beef Cattle
-                  fda: BeefCattle
-              tags:
-                - id: 1
-                  code: EXAMPLE
-              product: MiracleMed
-              _dose: 3.0 ml per kg repeat in 6 hours and again in 24 hours
-              route: intr-corporeal
-              sequenceFunction:
-                intervals:
-                  - PT6H
-                  - PT24H
-                _type: models.api.v1.SeqSeries
-              sizeFunction:
-                dose:
-                  quantity:
-                    dimension: Volume
-                    value: 3
-                    symbol: ml
-                perUnit:
-                  dimension: Mass
-                  value: 1
-                  symbol: kg
-                _type: models.api.v1.DoseByWeightFunction
-              doseNote: some note on dose
-              wtMeatHrs: 22
-              wtMilkHrs: 5
-              wtNote: example
-          tags:
-            - id: 1
-              code: EXAMPLE
-          diagnoses:
-            - id: 8
-              code: PAIN
-              name: 'Pain/inflammation (musculoskeletal), treatment'
-          eligibilities:
-            - id: 1
-              name: Beef Cattle
-              fda: BeefCattle
-          promises:
-            - id: 1
-              name: test user
-              code: EXAMPLE
-        vorId: 1
-        morId: 0
-        refills: 3
-        status: DEPRECATED
-        metadata: []
-        rxId: gG3pBCR1GCMKm89c
-        created: '2020-01-10T10:30:37Z'
+          description: wip
+          example: wip
+          deprecated: true
     Comment:
       required:
         - comment
