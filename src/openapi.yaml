@@ -976,6 +976,7 @@ components:
       properties:
         id:
           type: integer
+          description: wip unique identifier for the user.
           example: 1
         uname:
           description: username
@@ -1066,7 +1067,19 @@ components:
           type: boolean
     UserType:
       type: string
-      description: '< an ordered list of user types associated with privilege levels SAOR - a system administrator with top level privileges VOR - a veterinarian who may create and prescribe protocols MOR - a farm manager to whom protocols may be prescribed, and who may create Cases in a protocol TOR - a farm technician who may execute assigned protocols for assigned cases FARM - an account aggregating MOR and TOR users CLINIC - an account aggregating multiple VOR users who work together UNCONFIRMED - an account that has been requested but not confirmed by the owner UNVOR - A user who request VOR status, with neither email or admin approval UNMOR - a user who requests MOR status but email not yet confirmed PREVOR - a confirmed user who requests VOR status but still lacks either email confirmation or approval by admin REMOVED - the  record of a user who is no longer active and may not log in'
+      description: >-
+          'an ordered list of user types associated with privilege levels:
+          - SAOR: a system administrator with top level privileges
+          - VOR: a veterinarian who may create and prescribe protocols
+          - MOR: a farm manager to whom protocols may be prescribed, and who may create Cases in a protocol
+          - TOR: a farm technician who may execute assigned protocols for assigned cases
+          - FARM: an account aggregating MOR and TOR users
+          - CLINIC: an account aggregating multiple VOR users who work together
+          - UNCONFIRMED: an account that has been requested but not confirmed by the owner
+          - UNVOR: a user who requests VOR status, with neither email or admin approval
+          - UNMOR: a user who requests MOR status but email not yet confirmed
+          - PREVOR: a confirmed user who requests VOR status but still lacks either email confirmation or approval by admin
+          - REMOVED: the  record of a user who is no longer active and may not log in'
       enum:
         - SAOR
         - VOR
@@ -1137,16 +1150,26 @@ components:
           type: integer
         ownerId:
           type: integer
+          description: wip
+          example: 0
         name:
           type: string
+          description: User-friendly identifier for the protocol
+          example: example protocol
         shortname:
           type: string
+          description: Short name for the protocol
+          example: EXamp
         created:
           type: string
           format: date-time
+          description: wip is this ISO-*** Timestamp for protocol creation
+          example: '2020-01-10T22:20:39Z'
         edited:
           type: string
           format: date-time
+          description: wip is this ISO-*** Timestamp for protocol update
+          example: '2020-02-10T22:20:39Z'
         status:
           $ref: '#/components/schemas/ProtocolStatus'
         vetNote:
@@ -1180,83 +1203,6 @@ components:
           format: html
         shareAll:
           type: boolean
-      example:
-        ownerId: 0
-        name: example protocol
-        shortname: EXamp
-        created: '2020-01-10T22:20:39Z'
-        edited: '2020-01-10T22:20:39Z'
-        status: UNKNOWN
-        withhold:
-          hoursMeat: 0
-          hoursMilk: 0
-          note: ''
-        instructions:
-          considerations: think first
-          restrictions: always
-          dothis: execute protocol
-          recordthis: case data
-          success: good
-          failure: bad
-          references: ref
-        shareAll: false
-        shareClonable: false
-        caseDefinition:
-          pxId: 0
-          requireID: true
-          requireMOR: true
-          medical: really sick
-          economic: lotsa cash
-        treatments:
-          - id: 0
-            ownerId: 0
-            description: sample treatment
-            note: this is an off-label Treatment
-            eligibilities:
-              - id: 1
-                name: Beef Cattle
-                fda: BeefCattle
-            tags:
-              - id: 1
-                code: EXAMPLE
-            product: MiracleMed
-            _dose: 3.0 ml per kg  repeat in 6 hours and again in 24 hours
-            route: intr-corporeal
-            sequenceFunction:
-              intervals:
-                - PT6H
-                - PT24H
-              _type: models.api.v1.SeqSeries
-            sizeFunction:
-              dose:
-                quantity:
-                  dimension: Volume
-                  value: 3
-                  symbol: ml
-              perUnit:
-                dimension: Mass
-                value: 1
-                symbol: kg
-              _type: models.api.v1.DoseByWeightFunction
-            doseNote: some note on dose
-            wtMeatHrs: 22
-            wtMilkHrs: 5
-            wtNote: example
-        tags:
-          - id: 1
-            code: EXAMPLE
-        diagnoses:
-          - id: 8
-            code: PAIN
-            name: 'Pain/inflammation (musculoskeletal), treatment'
-        eligibilities:
-          - id: 1
-            name: Beef Cattle
-            fda: BeefCattle
-        promises:
-          - id: 1
-            name: test user
-            code: EXAMPLE
     Protocol:
       description: a veterinary treatment protocol
       type: object
