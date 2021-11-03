@@ -96,7 +96,7 @@ paths:
         - editor
         - idempotent
       summary: renew token
-      description: 'Use this endpoint to renew token. Response returns the User object for the logged-ion user and a token for use in future secured requests, as well as a `fileSignature` and `filePolicy` which may be used for access to images stored on FileStack.'
+      description: 'Use this endpoint to renew token. Response returns the User object for the logged-in user and a token for use in future secured requests, as well as a `fileSignature` and `filePolicy` which may be used for access to images stored on FileStack.'
       responses:
         '200':
           description: Successful login
