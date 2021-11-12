@@ -29,7 +29,7 @@ paths:
         - idempotent
       security: []
       summary: user login
-      description: 'This endpoint authenticates a User from `identifier` (normally an email address) and `password`. Response returns the User object for the logged-in user and a token for use in future secured requests, as well as a `fileSignature` and `filePolicy` which may be used for access to images stored on FileStack.'
+      description: 'Use this endpoint to authenticate a User from `identifier` (normally an email address) and `password`. Response returns the User object for the logged-in user and a token for use in future secured requests, as well as a `fileSignature` and `filePolicy` which may be used for access to images stored on FileStack.'
       requestBody:
         required: true
         content:
