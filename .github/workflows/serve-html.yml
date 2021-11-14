@@ -1,0 +1,15 @@
+name: Generate docs (manual)
+on:
+  workflow_dispatch:
+
+jobs:
+
+  serve:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: redoc-cli serve
+        uses: seeebiii/redoc-cli-github-action@v10
+        with:
+          args: 'serve src/openapi.yaml'
+          
