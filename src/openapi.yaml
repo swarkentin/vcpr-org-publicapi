@@ -46,16 +46,8 @@ paths:
                 password:
                   type: string
             examples:
-              testVOR:
-                value: {"identifier": "testVOR", "password": "tVpass"}
-              testMOR:
-                value: {"identifier": "testMOR", "password": "tMpass"}
-              testTOR:
-                value: {"identifier": "testTOR", "password": "tTpass"}
-              testSAOR:
-                value: {"identifier": "testSAOR", "password": "tSpass"}
-              testVOR2:
-                value: {"identifier": "testVOR2", "password": "tV2pass"}
+              user:
+                value: {"identifier": "user@test.com", "password": "some-secure-password"}
       responses:
         '200':
           description: Successful login
@@ -2163,9 +2155,6 @@ components:
       description: 503 - service is (temporarily) not available
 
   examples:
-    testVOR-login:
-      summary: login username and password for user testVOR
-      value: {"identifier": "testVOR", "password": "tVpass"}
     testVOR:
       summary: User with VOR Usertype
       description: VOR test user prepopulated into testing db
