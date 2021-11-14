@@ -1188,31 +1188,31 @@ components:
           example: wip
         wtMilkHrs:
           type: integer
-          description: wip
-          example: wip
+          description: number of hours that milk may not be sold for food after last treatment
+          example: 72
         wtNote:
           type: string
-          description: wip
-          example: wip
+          description: note regarding withholding
+          example: Not for use in horses intended for food.
         considerations:
           type: string
           format: html
-          description: wip free-form text note specifying considerations
+          description: free-form text specifying special considerations in choosing or using a protocol
           example: "<p>think first</p>"
         restrictions:
           type: string
           format: html
-          description: wip free-form text note specifying restrictions
+          description: free-form text note specifying restrictions
           example: "<p>not suitable in pregnancy</p>"
         dothis:
           type: string
           format: html
-          description: wip free-form text note specifying protocol-specific instructions
+          description: free-form text specifying actions to be completed
           example: "<p>execute protocol</p>"
         recordthis:
           type: string
           format: html
-          description: wip free-form text note for case records
+          description: free-form text specifying data to record
           example: case data
         success:
           type: string
@@ -1775,7 +1775,7 @@ components:
           type: integer
           example: 1
         name:
-          description: User-friendly species/variant description
+          description: A type of animal which is eligible to be treated using a protocol having this Eligibility.
           type: string
           example: Beef Cattle
         fdaSpecies:
@@ -2420,7 +2420,7 @@ components:
           format: date-time
     fdaSpecies:
       type: array
-      description: FDA-specified species/variant description
+      description: A class of animals recognized by the FDA. In FDA literature this is called a "species", which conflicts with other usage of that word. "fdaSpecies" in the labeling domain usually corresponds with "Eligibility" in the Protocol domain.
       enum:
         - beef_cattle
         - veal
