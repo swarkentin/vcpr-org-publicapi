@@ -13,5 +13,5 @@ jobs:
       - name: redoc-cli serve
         uses: seeebiii/redoc-cli-github-action@v10
         with:
-          args: 'serve src/openapi.yaml'
+          args: 'serve ../../src/openapi.yaml'
           
