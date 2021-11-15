@@ -292,7 +292,7 @@ paths:
   /api/protocols/sharesToAll/:
     get:
       operationId: getSharesToAll
-      summary: get list of User's protocols shared to all
+      summary: get list of User's shared protocols
       description: this endpoint retrieves a list of User's protocols shared to all VORs.
       responses:
         '200':
@@ -326,7 +326,7 @@ paths:
     post:
       operationId: shareToAll
       summary: share Protocol with all VOR Users
-      description: get list of User's protocols shared to all
+      description: this endpoint shares a User's protocol with all VOR users.
       parameters:
         - name: pxId
           in: path
@@ -347,7 +347,7 @@ paths:
     delete:
       operationId: unShareToAll
       summary: get list of User's protocols shared to all
-      description: This endpoint retrieves a list of User's protocols shared to all.
+      description: this endpoint retrieves a list of User's protocols shared to all.
       parameters:
         - name: pxId
           in: path
@@ -565,7 +565,7 @@ paths:
       tags:
         - editor
       summary: get library protocols
-      description: all protocols owned by or shared to current User
+      description: this endpoint retrieves all protocols owned by, or shared with, the current User.
       responses:
         '200':
           description: OK
@@ -584,7 +584,8 @@ paths:
       operationId: validateDosage
       tags:
         - editor
-      summary: validate a Dosage and return _dose
+      summary: validate a Dosage and return `_dose`
+      description: this endpoint returns the dose data.
       requestBody:
         required: true
         content:
@@ -607,7 +608,7 @@ paths:
       tags:
         - editor
       summary: get library pxes
-      description: this endpoint returns all the Protocols owned by, or shared to, the current User.
+      description: this endpoint returns all the Protocols owned by, or shared with, the current User.
       responses:
         '200':
           description: OK
@@ -626,8 +627,8 @@ paths:
       operationId: getProtocol
       tags:
         - editor
-      summary: get-this-protocol
-      description: this endpoint retrieves a protocol by protocol.id.
+      summary: get protocol by ID
+      description: this endpoint retrieves a Protocol by `protocol.id`.
       parameters:
         - name: id
           in: path
@@ -654,7 +655,7 @@ paths:
       tags:
         - editor
       summary: delete protocol
-      description: 'this endpoint changes protocol.status to DELETED (this does not actually remove it from the database).'
+      description: 'this endpoint changes `protocol.status` to DELETED (this does not actually remove it from the database).'
       parameters:
         - name: id
           in: path
@@ -680,7 +681,7 @@ paths:
       tags:
         - editor
       summary: get my prescriptions
-      description: this endpoint returns all prescriptions accessible to current User.
+      description: this endpoint returns all prescriptions accessible to the current User.
       responses:
         '200':
           description: OK
@@ -698,7 +699,7 @@ paths:
       tags:
         - editor
       summary: record a prescription
-      description: 'this endpoint permanently records a prescription and returns its assigned GUID **not** idempotent. Prescriptions form a permanent archival record of a transaction which may be invalidated, but not deleted.'
+      description: 'this endpoint permanently records a prescription and returns its assigned GUID (**not** idempotent). Prescriptions form a permanent archival record of a transaction which may be invalidated, but not deleted.'
       responses:
         '200':
           description: OK
@@ -714,7 +715,7 @@ paths:
       tags:
         - editor
       summary: get prescription by ID
-      description: this endpoint retrieves a Prescription by prescription.id
+      description: this endpoint retrieves a Prescription by `prescription.id`.
       parameters:
         - name: id
           in: path
@@ -742,7 +743,7 @@ paths:
       tags:
         - editor
       summary: get prescriptions of a protocol
-      description: this endpoint retrieves prescriptions by protocol.id.
+      description: this endpoint retrieves Prescriptions by `protocol.id`.
       parameters:
         - name: id
           in: path
@@ -767,7 +768,7 @@ paths:
       tags:
         - editor
         - label
-      summary: get-labels
+      summary: get labels
       description: this endpoint returns the full array of drug labels.
       responses:
         '200':
@@ -832,7 +833,7 @@ paths:
       operationId: getGbdHeaderArrayByNDC
       tags:
         - admin
-      summary: get array of summary listing of a Greenbook Drug by ndc pattern
+      summary: get Greenbook Drug summary by ndc pattern
       description: this endpoint returns the summary listing of a Greenbook Drug by ndc pattern.
       parameters:
         - name: ndcProd
@@ -2424,7 +2425,7 @@ components:
           format: date-time
     fdaSpecies:
       type: array
-      description: A class of animals recognized by the FDA. In FDA literature this is called a "species", which conflicts with other usage of that word. "fdaSpecies" in the labeling domain usually corresponds with "Eligibility" in the Protocol domain.
+      description: A class of animals recognized by the FDA. In FDA literature this is called a "species", which conflicts with the typical usage of that word. "fdaSpecies" in the labeling domain usually corresponds with "Eligibility" in the Protocol domain.
       items:
         type: string
         enum:
@@ -2450,6 +2451,7 @@ components:
           - unidentified
         example:
           - beef_cattle
+          - dairy_cattle
   securitySchemes:
     AuthToken:
       type: apiKey
