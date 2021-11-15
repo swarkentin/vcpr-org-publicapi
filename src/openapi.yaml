@@ -29,7 +29,7 @@ paths:
         - idempotent
       security: []
       summary: user login
-      description: 'Use this endpoint to authenticate a User from `identifier` (normally an email address) and `password`. Response returns the User object for the logged-in User and a token for use in future secured requests, as well as a `fileSignature` and `filePolicy` which may be used for access to images stored on FileStack.'
+      description: 'this endpoint authenticates a User from an `identifier` (normally an email address) and `password`. Response returns the User object for the logged-in User and a token for use in future secured requests, as well as a `fileSignature` and `filePolicy` which may be used for access to images stored on FileStack.'
       requestBody:
         required: true
         content:
@@ -78,10 +78,10 @@ paths:
         - editor
         - idempotent
       summary: renew token
-      description: 'Use this endpoint to renew token. Response returns the User object for the logged-in User and a token for use in future secured requests, as well as a `fileSignature` and `filePolicy` which may be used for access to images stored on FileStack.'
+      description: this endpoint renews the User's access token. Response returns the User object for the logged-in User and a 24-hr token for use in future secured requests. It includes a `fileSignature` and `filePolicy` which may be used for access to images stored on FileStack.
       responses:
         '200':
-          description: Successful login
+          description: Success – token refreshed
           content:
             application/json:
               schema:
@@ -136,7 +136,7 @@ paths:
       tags:
         - editor
       summary: update-user
-      description: idempotently update User data. Any User may update their own data. A VOR may update User data of a User in a `CLIENT` relationship with that VOR. A SAOR may update data of any User.
+      description: this endpoint updates User data. Any User may update their own data, i.e., idempotently update User data. A VOR may update User data of a User in a `CLIENT` relationship with that VOR. A SAOR may update data of any User.
       requestBody:
         required: true
         content:
@@ -167,7 +167,7 @@ paths:
       tags:
         - editor
       summary: get user
-      description: get User data as specified by User `id`. Any User may get their own data. A VOR may get User data of Users in a `CLIENT` relationship with that VOR. A SAOR may get data of any User.
+      description: this endpoint returns User data as specified by User `id`. Any User may get their own data. A VOR may get User data of Users in a `CLIENT` relationship with that VOR. A SAOR may get data of any User.
       parameters:
         - name: id
           in: path
@@ -196,7 +196,7 @@ paths:
       tags:
         - editor
       summary: delete user
-      description: Reversibly "delete" a User by setting user.status to `REMOVED`. Removed Users are not visible in normal queries.
+      description: this endpoint supports the (reversible) "delete" of a User by setting user.status to `REMOVED`. Removed Users are not visible in normal queries.
       parameters:
         - name: id
           in: path
@@ -221,7 +221,7 @@ paths:
       tags:
         - editor
       summary: record a User comment
-      description: records comment to db and emails admin
+      description: this endpoint records a User comment to db and emails admin. It supports privacy controls.
       requestBody:
         required: true
         content:
@@ -244,7 +244,7 @@ paths:
       tags:
         - editor
       summary: get my right relations
-      description: get Users who have the specified relationship to a `VOR` User.
+      description: this endpoint returns Users who have the specified relationship to a `VOR` User.
       parameters:
         - name: relationship
           in: query
@@ -266,8 +266,8 @@ paths:
       operationId: createRightRelation
       tags:
         - editor
-      summary: 'add a User and a relationship, defaulting to CLIENT relationship'
-      description: 'add a User and a relationship of the type specified by `name` to the current User, who must be a VOR.'
+      summary: 'add a User with relationship'
+      description: 'this endpoint adds a User and a relationship of the type specified by `name` to the current User, who must be a VOR. Defaults to CLIENT relationship.'
       parameters:
         - name: relationship
           in: query
@@ -293,7 +293,7 @@ paths:
     get:
       operationId: getSharesToAll
       summary: get list of User's protocols shared to all
-      description: get list of User's protocols shared to all VORs
+      description: this endpoint retrieves a list of User's protocols shared to all VORs.
       responses:
         '200':
           description: OK
@@ -363,7 +363,7 @@ paths:
       operationId: getMyProtocolShares
       tags:
         - editor
-      summary: get-my-protocol-shares
+      summary: get my protocol shares
       description: This endpoint retrieves a User's protocol shares, optionally filtered by protocol and recipient.
       parameters:
         - name: pxFilter
@@ -395,7 +395,7 @@ paths:
       tags:
         - editor
       summary: create protocol share
-      description: share my protocol with another VOR User
+      description: this endpoint shares a protocol with another VOR User.
       requestBody:
         required: true
         content:
@@ -413,12 +413,13 @@ paths:
                   shared:
                     type: integer
                     description: number of shares created
+                    example: 1
     delete:
       operationId: deleteProtocolShare
       tags:
         - editor
       summary: delete protocol share
-      description: un-share my protocol with another VOR User
+      description: this endpoint retracts a protocol share with another VOR User.
       parameters:
         - name: pxId
           in: query
@@ -449,14 +450,14 @@ paths:
       tags:
         - editor
       summary: get my protocols
-      description: 'this endpoint retrieves all protocols owned by or shared to current User, defaulting to exclude deleted (status DEPRECATED) protocols.'
+      description: 'this endpoint retrieves all protocols owned by, or shared with, the current User. The default excludes deleted (status DEPRECATED) protocols.'
       parameters:
         - name: status
           in: query
           required: false
           style: pipeDelimited
           explode: false
-          description: 'filter protocols to include only protocols with listed statuses. If this parameter is omitted, the query defaults to all status values **except** DEPRECATED'
+          description: 'filter protocols to include only protocols with listed statuses. If this parameter is omitted, the query defaults to all status values **except** DEPRECATED.'
           schema:
             type: array
             items:
@@ -480,7 +481,7 @@ paths:
       tags:
         - editor
       summary: create protocol
-      description: create protocol
+      description: this endpoint supports Protocol creation.
       requestBody:
         required: true
         content:
@@ -503,6 +504,11 @@ paths:
         - editor
       summary: update protocol
       description: This endpoint updates a Protocol.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Protocol'
       responses:
         '200':
           description: recorded protocol
@@ -2484,11 +2490,7 @@ components:
     Not-Implemented:
       description: 501 - endpoint not yet implemented
     Unavailable:
-<<<<<<< HEAD
       description: 503 - service is (temporarily) unavailable
-=======
-      description: 503 - service is (temporarily) not available
-
   examples:
     testVOR:
       summary: User with VOR Usertype
@@ -2537,7 +2539,6 @@ components:
         dsId: 10656
         roa: I.V.
         raId: 21
->>>>>>> main
 tags:
   - name: editor
     description: used by Protocol Editor SPA
