@@ -44,26 +44,8 @@ paths:
                   type: string
                   description: wip are there no restrictions to this password on setup such as minimum 8 characters
             examples:
-              testVOR:
-                value:
-                  identifier: testVOR
-                  password: tVpass
-              testMOR:
-                value:
-                  identifier: testMOR
-                  password: tMpass
-              testTOR:
-                value:
-                  identifier: testTOR
-                  password: tTpass
-              testSAOR:
-                value:
-                  identifier: testSAOR
-                  password: tSpass
-              testVOR2:
-                value:
-                  identifier: testVOR2
-                  password: tV2pass
+              user:
+                value: {"identifier": "user@test.com", "password": "some-secure-password"}
       responses:
         '200':
           description: Successful login
@@ -2502,7 +2484,60 @@ components:
     Not-Implemented:
       description: 501 - endpoint not yet implemented
     Unavailable:
+<<<<<<< HEAD
       description: 503 - service is (temporarily) unavailable
+=======
+      description: 503 - service is (temporarily) not available
+
+  examples:
+    testVOR:
+      summary: User with VOR Usertype
+      description: VOR test user prepopulated into testing db
+      value:
+        firstname: Test
+        uname: testVOR
+        id: 1
+        userType: VOR
+        suffix: DVM
+        email: testVOR@dairysight.com
+        lastname: Vet
+    testMOR:
+      summary: User with VOR Usertype
+      description: VOR test user prepopulated into testing db
+      value:
+        firstname: Test
+        uname: testMOR
+        id: 2
+        userType: MOR
+        email: testMOR@dairysight.com
+        lastname: Manager
+    protocolShare:
+      value:
+        px-id: 1
+        share-to: 2
+        read-only: false
+    protocol-1:
+      summary: ""
+      value: {"ownerId":0,"name":"example protocol","shortname":"EXamp","created":"2020-01-10T22:20:39Z","edited":"2020-01-10T22:20:39Z","status":"UNKNOWN","withhold":{"hoursMeat":0,"hoursMilk":0,"note":""},"instructions":{"considerations":"think first","restrictions":"always","dothis":"execute protocol","recordthis":"case data","success":"good","failure":"bad","references":"ref"},"shareAll":false,"caseDefinition":{"pxId":0,"requireID":true,"requireMOR":true,"medical":"really sick","economic":"lotsa cash"},"treatments":[{"id":0,"ownerId":0,"description":"sample treatment","note":"this is an off-label Treatment","eligibilities":[{"id":1,"name":"Beef Cattle","fda":"BeefCattle"}],"tags":[{"id":1,"code":"EXAMPLE"}],"product":"MiracleMed","_dose":"3.0 ml per kg repeat in PT0S List(, 6 hours)","route":"intr-corporeal","sequenceFunction":{"intervals":["PT0S","PT6H"],"_type":"models.api.v1.SeqSeries"},"sizeFunction":{"dose":{"quantity":{"dimension":"Volume","value":3,"symbol":"ml"}},"perUnit":{"dimension":"Mass","value":1,"symbol":"kg"},"_type":"models.api.v1.DoseByWeightFunction"},"doseNote":"some note on dose","wtMeatHrs":22,"wtMilkHrs":5,"wtNote":"example"}],"tags":[{"id":1,"code":"EXAMPLE"}],"diagnoses":[{"id":2,"code":"PYOMETRA","name":"Pyometra/chronic endometritis, treatment"}],"eligibilities":[{"id":1,"name":"Beef Cattle","fda":"BeefCattle"}],"promises":[{"id":1,"name":"test user","code":"EXAMPLE"}]}
+    label-1:
+      summary: label with id=1
+      value:
+        id: 1
+        nada: 200-308
+        eligibility: Horses
+        exId: 2500
+        exCode: '2500'
+        fdaSpecies: Horses
+        diagnosis: 'Pain (colic), symptomatic treatment'
+        dxId: 2002
+        dxCode: '2002'
+        product: Prevail™ Flunixin Meglumine Injection
+        productId: 1315018
+        dose: 0.5 mg/lb (1 mL/100 lb) b.w. Give IV for fast relief. Repeat when colic signs recur.
+        dsId: 10656
+        roa: I.V.
+        raId: 21
+>>>>>>> main
 tags:
   - name: editor
     description: used by Protocol Editor SPA

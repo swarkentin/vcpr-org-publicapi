@@ -1,0 +1,25 @@
+name: Generate docs (manual)
+on:
+  workflow_dispatch:
+
+jobs:
+
+  serve:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2  
+      - name: redoc-cli bundle
+        uses: seeebiii/redoc-cli-github-action@v10
+        with:
+          args: 'bundle src/openapi.yaml -0 '  
+
+      - name: peek        
+        run: |
+          ls -la
+      - name: push       
+        uses: actions/upload-artifact@v2
+        with:
+          name: redoc-static.html
+          path: redoc-static.html         
