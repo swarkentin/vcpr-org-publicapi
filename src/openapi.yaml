@@ -762,7 +762,7 @@ paths:
           schema:
             type: integer
           required: true
-          description: protocol id key
+          description: Protocol id key
       responses:
         '200':
           description: OK
