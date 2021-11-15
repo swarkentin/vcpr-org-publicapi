@@ -29,7 +29,7 @@ paths:
         - idempotent
       security: []
       summary: user login
-      description: 'Use this endpoint to authenticate a User from `identifier` (normally an email address) and `password`. Response returns the User object for the logged-in user and a token for use in future secured requests, as well as a `fileSignature` and `filePolicy` which may be used for access to images stored on FileStack.'
+      description: 'Use this endpoint to authenticate a User from `identifier` (normally an email address) and `password`. Response returns the User object for the logged-in User and a token for use in future secured requests, as well as a `fileSignature` and `filePolicy` which may be used for access to images stored on FileStack.'
       requestBody:
         required: true
         content:
@@ -39,7 +39,7 @@ paths:
               properties:
                 identifier:
                   type: string
-                  description: '`user.username`, normally the same as `user.email`'
+                  description: '`User.Username`, normally the same as `User.email`'
                 password:
                   type: string
                   description: wip are there no restrictions to this password on setup such as minimum 8 characters
@@ -72,7 +72,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/SuccessfulLogin'
         '400':
-          description: failed to retrieve user
+          description: failed to retrieve User
           content:
             application/problem+json:
               schema:
@@ -96,7 +96,7 @@ paths:
         - editor
         - idempotent
       summary: renew token
-      description: 'Use this endpoint to renew token. Response returns the User object for the logged-in user and a token for use in future secured requests, as well as a `fileSignature` and `filePolicy` which may be used for access to images stored on FileStack.'
+      description: 'Use this endpoint to renew token. Response returns the User object for the logged-in User and a token for use in future secured requests, as well as a `fileSignature` and `filePolicy` which may be used for access to images stored on FileStack.'
       responses:
         '200':
           description: Successful login
@@ -105,7 +105,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/SuccessfulLogin'
         '400':
-          description: failed to retrieve user
+          description: failed to retrieve User
           content:
             application/problem+json:
               schema:
@@ -128,8 +128,8 @@ paths:
       operationId: getVORUserIds
       tags:
         - editor
-      summary: get ID and names of other VOR users
-      description: get ID and names of other VOR users.
+      summary: get ID and names of other VOR Users
+      description: get ID and names of other VOR Users.
       responses:
         '200':
           description: OK
@@ -154,7 +154,7 @@ paths:
       tags:
         - editor
       summary: update-user
-      description: idempotently update user data. Any user may update their own data. A VOR may update user data of a user in a `CLIENT` relationship with that VOR. A SAOR may update data of any user.
+      description: idempotently update User data. Any User may update their own data. A VOR may update User data of a User in a `CLIENT` relationship with that VOR. A SAOR may update data of any User.
       requestBody:
         required: true
         content:
@@ -187,12 +187,12 @@ paths:
       summary: get user
       description: get User data as specified by User `id`. Any User may get their own data. A VOR may get User data of Users in a `CLIENT` relationship with that VOR. A SAOR may get data of any User.
       parameters:
-        - in: path
-          name: id
+        - name: id
+          in: path
           schema:
             type: integer
           required: true
-          description: user id key
+          description: User ID key
           example: 2
       responses:
         '200':
@@ -216,12 +216,12 @@ paths:
       summary: delete user
       description: Reversibly "delete" a User by setting user.status to `REMOVED`. Removed Users are not visible in normal queries.
       parameters:
-        - in: path
-          name: id
+        - name: id
+          in: path
           schema:
             type: integer
           required: true
-          description: User id key
+          description: User ID key
       responses:
         '200':
           description: User deleted
@@ -262,13 +262,12 @@ paths:
       tags:
         - editor
       summary: get my right relations
-      description: get users who have the specified relationship to a `VOR` User.
+      description: get Users who have the specified relationship to a `VOR` User.
       parameters:
-        - in: query
-          name: relationship
+        - name: relationship
+          in: query
           schema:
             $ref: '#/components/schemas/Relationship'
-          example: CLIENT
       responses:
         '200':
           description: OK
@@ -286,10 +285,10 @@ paths:
       tags:
         - editor
       summary: 'add a User and a relationship, defaulting to CLIENT relationship'
-      description: 'add a User and a relationship of the type specified by `name` to the current user, who must be a VOR.'
+      description: 'add a User and a relationship of the type specified by `name` to the current User, who must be a VOR.'
       parameters:
-        - in: query
-          name: relationship
+        - name: relationship
+          in: query
           schema:
             $ref: '#/components/schemas/Relationship'
       requestBody:
@@ -344,8 +343,8 @@ paths:
   /api/protocols/sharesToAll/{pxId}:
     post:
       operationId: shareToAll
-      summary: share Protocol with all VOR users
-      description: get list of users protocols shared to all
+      summary: share Protocol with all VOR Users
+      description: get list of User's protocols shared to all
       parameters:
         - name: pxId
           in: path
@@ -368,8 +367,8 @@ paths:
       summary: get list of User's protocols shared to all
       description: This endpoint retrieves a list of User's protocols shared to all.
       parameters:
-        - in: path
-          name: pxId
+        - name: pxId
+          in: path
           schema:
             type: integer
           required: true
@@ -385,18 +384,18 @@ paths:
       summary: get-my-protocol-shares
       description: This endpoint retrieves a User's protocol shares, optionally filtered by protocol and recipient.
       parameters:
-        - in: query
-          name: pxFilter
+        - name: pxFilter
+          in: query
           schema:
             type: integer
           required: false
           description: select only shares of this protocol ID
-        - in: query
-          name: toFilter
+        - name: toFilter
+          in: query
           schema:
             type: integer
           required: false
-          description: select only shares to this VOR user
+          description: select only shares to this VOR User
       responses:
         '200':
           description: OK
@@ -414,7 +413,7 @@ paths:
       tags:
         - editor
       summary: create protocol share
-      description: share my protocol with another VOR user
+      description: share my protocol with another VOR User
       requestBody:
         required: true
         content:
@@ -439,14 +438,14 @@ paths:
       summary: delete protocol share
       description: un-share my protocol with another VOR User
       parameters:
-        - in: query
-          name: pxId
+        - name: pxId
+          in: query
           schema:
             type: integer
           required: true
           description: protocol ID
-        - in: query
-          name: toVor
+        - name: toVor
+          in: query
           schema:
             type: integer
           required: true
@@ -470,11 +469,11 @@ paths:
       summary: get my protocols
       description: 'this endpoint retrieves all protocols owned by or shared to current User, defaulting to exclude deleted (status DEPRECATED) protocols.'
       parameters:
-        - in: query
+        - name: status
+          in: query
           required: false
           style: pipeDelimited
           explode: false
-          name: status
           description: 'filter protocols to include only protocols with listed statuses. If this parameter is omitted, the query defaults to all status values **except** DEPRECATED'
           schema:
             type: array
@@ -578,7 +577,7 @@ paths:
       tags:
         - editor
       summary: get library protocols
-      description: all protocols owned by or shared to current user
+      description: all protocols owned by or shared to current User
       responses:
         '200':
           description: OK
@@ -642,12 +641,12 @@ paths:
       summary: get-this-protocol
       description: this endpoint retrieves a protocol by protocol.id.
       parameters:
-        - in: path
-          name: id
+        - name: id
+          in: path
           schema:
             type: integer
           required: true
-          description: protocol id key
+          description: protocol IDkey
       responses:
         '200':
           description: OK
@@ -669,8 +668,8 @@ paths:
       summary: delete protocol
       description: 'this endpoint changes protocol.status to DELETED (this does not actually remove it from the database).'
       parameters:
-        - in: path
-          name: id
+        - name: id
+          in: path
           schema:
             type: integer
           required: true
@@ -687,7 +686,7 @@ paths:
                     type: integer
                     description: number of Protocols deprecated
   /api/protocols/prescriptions:
-    description: '`Prescriptions` document the transaction of a `VOR` user prescribing a `Protocol` for use by a `MOR` user who must have a `CLIENT` relationship with the prescribing doctor.'
+    description: '`Prescriptions` document the transaction of a `VOR` User prescribing a `Protocol` for use by a `MOR` User who must have a `CLIENT` relationship with the prescribing doctor.'
     get:
       operationId: getMyPrescriptions
       tags:
@@ -727,14 +726,14 @@ paths:
       tags:
         - editor
       summary: get prescription by ID
-      description: this endpoint retrieves a prescription by prescription.id
+      description: this endpoint retrieves a Prescription by prescription.id
       parameters:
-        - in: path
-          name: id
+        - name: id
+          in: path
           schema:
             type: integer
           required: true
-          description: protocol ID key
+          description: Prescription ID key
       responses:
         '200':
           description: OK
@@ -757,12 +756,12 @@ paths:
       summary: get prescriptions of a protocol
       description: this endpoint retrieves prescriptions by protocol.id.
       parameters:
-        - in: path
-          name: id
+        - name: id
+          in: path
           schema:
             type: integer
           required: true
-          description: Protocol id key
+          description: Protocol ID key
       responses:
         '200':
           description: OK
@@ -781,7 +780,7 @@ paths:
         - editor
         - label
       summary: get-labels
-      description: this endpoint returns the full array of drug labels
+      description: this endpoint returns the full array of drug labels.
       responses:
         '200':
           description: OK
@@ -818,12 +817,12 @@ paths:
       summary: get package insert
       description: this endpoint returns the label package insert.
       parameters:
-        - in: path
-          name: lxId
+        - name: lxId
+          in: path
           schema:
             type: integer
           required: true
-          description: label id
+          description: label ID
           example: 1028016
       responses:
         '200':
@@ -848,20 +847,20 @@ paths:
       summary: get array of summary listing of a Greenbook Drug by ndc pattern
       description: this endpoint returns the summary listing of a Greenbook Drug by ndc pattern.
       parameters:
-        - in: query
-          name: ndcProd
+        - name: ndcProd
+          in: query
           schema:
             type: integer
           required: false
           description: first section labeler code of a NDC
-        - in: query
-          name: ndcLabeler
+        - name: ndcLabeler
+          in: query
           schema:
             type: integer
           required: false
           description: mid section product code of a NDC
-        - in: query
-          name: ndcBrand
+        - name: ndcBrand
+          in: query
           schema:
             type: integer
           required: false
@@ -883,8 +882,8 @@ paths:
       summary: get summary listing of a Greenbook Drug
       description: this endpoint returns the summary listing of a Greenbook Drug by ndc identifier.
       parameters:
-        - in: path
-          name: ndc
+        - name: ndc
+          in: path
           schema:
             type: string
           required: true
@@ -903,10 +902,10 @@ paths:
       tags:
         - admin
       summary: get detail of a Greenbook Drug as a link or XML
-      description: this endpoint returns as an HTML link or XML file, the summary listing of a Greenbook Drug by ndc identifier.
+      description: this endpoint returns, as an HTML link or XML file, the summary listing of a Greenbook Drug by ndc identifier.
       parameters:
-        - in: path
-          name: ndc
+        - name: ndc
+          in: path
           schema:
             type: string
           required: true
@@ -977,11 +976,11 @@ components:
           description: signature for file policy object
           example: eyJleHBpcnkiOjE1Nzg3NTY2MDIsIm1heFNpemUiOjEwMDAwMDAwfQ==
     User:
-      description: a user of a specific `usertype` class.
+      description: a User of a specific `usertype` class.
       properties:
         id:
           type: integer
-          description: wip unique identifier for the user.
+          description: wip unique identifier for the User.
           example: 1
         uname:
           description: username
@@ -1011,7 +1010,7 @@ components:
         - lastname
         - suffix
     NewUserData:
-      description: user and address data to create a new account
+      description: User and address data to create a new account
       required:
         - email
         - firstname
@@ -1074,19 +1073,19 @@ components:
     UserType:
       type: string
       description: |
-        an ordered list of user types associated with privilege levels:
+        an ordered list of User types associated with privilege levels:
         <br>
         * SAOR: a system administrator with top level privileges
         * VOR: a veterinarian who may create and prescribe protocols
         * MOR: a farm manager to whom protocols may be prescribed, and who may create Cases in a protocol
         * TOR: a farm technician who may execute assigned protocols for assigned cases
-        * FARM: an account aggregating MOR and TOR users
-        * CLINIC: an account aggregating multiple VOR users who work together
+        * FARM: an account aggregating MOR and TOR Users
+        * CLINIC: an account aggregating multiple VOR Users who work together
         * UNCONFIRMED: an account that has been requested but not confirmed by the owner
-        * UNVOR: a user who requests VOR status, with neither email or admin approval
-        * UNMOR: a user who requests MOR status but email not yet confirmed
-        * PREVOR: a confirmed user who requests VOR status but still lacks either email confirmation or approval by admin
-        * REMOVED: the record of a user who is no longer active and may not log in
+        * UNVOR: a User who requests VOR status, with neither email or admin approval
+        * UNMOR: a User who requests MOR status but email not yet confirmed
+        * PREVOR: a confirmed User who requests VOR status but still lacks either email confirmation or approval by admin
+        * REMOVED: the record of a User who is no longer active and may not log in
       enum:
         - SAOR
         - VOR
@@ -1109,11 +1108,11 @@ components:
     Relationship:
       type: string
       description: |
-          a link between two users defining a relationship
+          a link between two Users defining a relationship
 
-          - CLIENT: MOR user on right is a client of VOR user on left
-          - EMPLOYEE: TOR user on right is an employee of MOR user on left
-          - MEMBER: VOR user on right is a member of CLINIC on left, or MOR user on right is a manager of FARM on left
+          - CLIENT: MOR User on right is a client of VOR User on left
+          - EMPLOYEE: TOR User on right is an employee of MOR User on left
+          - MEMBER: VOR User on right is a member of CLINIC on left, or MOR User on right is a manager of FARM on left
       enum:
         - CLIENT
         - EMPLOYEE
@@ -1139,7 +1138,7 @@ components:
         - UNKNOWN
       example: PRESCRIBED
     ProtocolShare:
-      description: share a protocol with another VOR user
+      description: share a protocol with another VOR User
       type: object
       properties:
         px-id:
@@ -1148,7 +1147,7 @@ components:
           example: 1
         share-to:
           type: integer
-          description: id of a VOR user who may use the protocol identified by pxId
+          description: IDof a VOR User who may use the protocol identified by pxId
           example: 2
         clonable:
           description: 'True/False switch to indicate whether User identified by `shareTo` has permission to create a copy of this protocol and own the clone.'
@@ -1264,7 +1263,7 @@ components:
           type: integer
           format: int64
         ownerId:
-          description: the `id` key of the VOR user who owns the protocol.
+          description: the `id` key of the VOR User who owns the protocol.
           type: integer
           example: 1
         name:
@@ -1380,7 +1379,7 @@ components:
           type: string
           example: B-123
         ownerId:
-          description: the `id` key of the VOR user who owns the treatment.
+          description: the `id` key of the VOR User who owns the treatment.
           type: integer
           example: 0
         description:
@@ -1525,7 +1524,7 @@ components:
             symbol: ml
         _type: models.api.v1.FixedDoseFunction
     DoseRangeFunction:
-      description: a range of permissible dose size. The user may select any value within the range (inclusive).
+      description: a range of permissible dose size. The User may select any value within the range (inclusive).
       required:
         - _type
         - range
@@ -1598,7 +1597,7 @@ components:
             value: 6
             symbol: ml
     DoseRangeByWeightFunction:
-      description: dose is specified as a range per unit of animal weight. The user may select any value within the range (inclusive).
+      description: dose is specified as a range per unit of animal weight. The User may select any value within the range (inclusive).
       required:
         - _type
         - range
@@ -1840,7 +1839,7 @@ components:
           description: data supplied by the client to fulfill promise
           type: string
         responseBy:
-          description: user ID of person supplying response data
+          description: User ID of person supplying response data
           type: integer
         responseTime:
           description: timestamp for response data
@@ -2389,7 +2388,7 @@ components:
         - comment
       properties:
         userId:
-          description: set null or zero if user wishes to be anonymous
+          description: set null or zero if User wishes to be anonymous
           type: integer
           default: null
         public:
