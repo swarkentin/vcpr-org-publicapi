@@ -13,7 +13,7 @@ jobs:
       - name: redoc-cli bundle
         uses: seeebiii/redoc-cli-github-action@v10
         with:
-          args: 'bundle src/openapi.yaml -0 '  
+          args: 'bundle src/openapi.yaml -o docs/index.html '  
 
       - name: peek        
         run: |
