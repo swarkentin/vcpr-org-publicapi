@@ -21,7 +21,7 @@ jobs:
       - name: push       
         uses: actions/upload-artifact@v2
         with:
-          name: docs/index.html
+          name: index.html
           path: docs/index.html  
           
       - name: Deploy
