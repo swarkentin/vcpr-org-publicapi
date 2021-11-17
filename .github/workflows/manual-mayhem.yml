@@ -1,0 +1,21 @@
+name: Manual Lint
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+#      - name: Start your API
+#        run: ./run_your_api.sh & # <- update this
+
+      - name: Run Mayhem for API to check for vulnerabilities
+        uses: ForAllSecure/mapi-action@v1
+        with:
+          mapi-token: ${{ secrets.MAPI_SECRET }}
+          api-url: http://test.vcpr.org
+          api-spec: src/openapi.yaml
