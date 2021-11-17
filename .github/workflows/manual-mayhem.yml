@@ -1,4 +1,4 @@
-name: Manual Lint
+name: Manual Mayhem-API
 
 on:
   workflow_dispatch:
