@@ -3,4 +3,4 @@ This public repository holds the [OpenAPI](https://github.com/OAI/OpenAPI-Specif
 
 [Veterinary Protocol Manager:tm:](https://vcpr.org) provides apps that allow a veterinarian to design and prescribe treatment protocols for their clients. Accounts are only available to veterinarians, but the public API described here allows third party developers to incorporate services to receive prescriptions and manage cases.
 
-Funded by an SBIR grant from USDA-NIFA ![nifa](https://github.com/VCPR-ORG/publicAPI/blob/readme_update/assets/nifa_transparent.png)
+Funded by an SBIR grant from USDA-NIFA ![nifa](https://github.com/VCPR-ORG/publicAPI/blob/develop/assets/nifa_transparent.png)
