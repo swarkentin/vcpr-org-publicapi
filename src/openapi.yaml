@@ -29,7 +29,7 @@ paths:
         - idempotent
       security: []
       summary: user login
-      description: 'this endpoint authenticates a User from an `identifier` (normally an email address) and `password`. Response returns the User object for the logged-in User and a token for use in future secured requests, as well as a `fileSignature` and `filePolicy` which may be used for access to images stored on FileStack.'
+      description: 'This endpoint authenticates a User from an `identifier` (normally an email address) and `password`. Response returns the User object for the logged-in User and a token for use in future secured requests, as well as a `fileSignature` and `filePolicy` which may be used for access to images stored on FileStack.'
       requestBody:
         required: true
         content:
@@ -48,7 +48,7 @@ paths:
                 value: {"identifier": "user@test.com", "password": "some-secure-password"}
       responses:
         '200':
-          description: Successful login
+          description: Success – logged in
           content:
             application/json:
               schema:
@@ -111,7 +111,7 @@ paths:
       tags:
         - editor
       summary: get ID and names of other VOR Users
-      description: this endpoint returns the ID and names of all active VOR Users.
+      description: This endpoint returns the ID and names of all active VOR Users.
       responses:
         '200':
           description: OK
@@ -136,7 +136,7 @@ paths:
       tags:
         - editor
       summary: update-user
-      description: this endpoint updates User data. Any User may update their own data, i.e., idempotently update User data. A VOR may update User data of a User in a `CLIENT` relationship with that VOR. A SAOR may update data of any User.
+      description: This endpoint updates User data. Any User may update their own data, i.e., idempotently update User data. A VOR may update User data of a User in a `CLIENT` relationship with that VOR. A SAOR may update data of any User.
       requestBody:
         required: true
         content:
@@ -167,7 +167,7 @@ paths:
       tags:
         - editor
       summary: get user
-      description: this endpoint returns User data as specified by User `id`. Any User may get their own data. A VOR may get User data of Users in a `CLIENT` relationship with that VOR. A SAOR may get data of any User.
+      description: This endpoint returns User data as specified by User `id`. Any User may get their own data. A VOR may get User data of Users in a `CLIENT` relationship with that VOR. A SAOR may get data of any User.
       parameters:
         - name: id
           in: path
@@ -196,7 +196,7 @@ paths:
       tags:
         - editor
       summary: delete user
-      description: this endpoint supports the (reversible) "delete" of a User by setting user.status to `REMOVED`. Removed Users are not visible in normal queries.
+      description: This endpoint supports the (reversible) "delete" of a User by setting user.status to `REMOVED`. Removed Users are not visible in normal queries.
       parameters:
         - name: id
           in: path
@@ -221,7 +221,7 @@ paths:
       tags:
         - editor
       summary: record a User comment
-      description: this endpoint records a User comment to db and emails admin. It supports privacy controls.
+      description: This endpoint records a User comment to the database and emails admin. It supports privacy controls.
       requestBody:
         required: true
         content:
@@ -230,7 +230,7 @@ paths:
               $ref: '#/components/schemas/Comment'
       responses:
         '200':
-          description: confirm 1 comment recorded
+          description: Success – comment recorded
           content:
             application/json:
               schema:
@@ -244,7 +244,7 @@ paths:
       tags:
         - editor
       summary: get my right relations
-      description: this endpoint returns Users who have the specified relationship to a `VOR` User.
+      description: This endpoint returns Users who have the specified relationship to a `VOR` User.
       parameters:
         - name: relationship
           in: query
@@ -267,7 +267,7 @@ paths:
       tags:
         - editor
       summary: 'add a User with relationship'
-      description: 'this endpoint adds a User and a relationship of the type specified by `name` to the current User, who must be a VOR. Defaults to CLIENT relationship.'
+      description: 'This endpoint adds a User and a relationship of the type specified by `name` to the current User, who must be a VOR. Defaults to CLIENT relationship.'
       parameters:
         - name: relationship
           in: query
@@ -293,7 +293,7 @@ paths:
     get:
       operationId: getSharesToAll
       summary: get list of User's shared protocols
-      description: this endpoint retrieves a list of User's protocols shared to all VORs.
+      description: This endpoint retrieves a list of User's protocols shared to all VORs.
       responses:
         '200':
           description: OK
@@ -312,10 +312,10 @@ paths:
                           description: Protocol ID
                         name:
                           type: string
-                          description: Protocol Name
+                          description: Protocol name
                         clonable:
                           type: boolean
-                          description: Switch to determine whether other VORs allowed to clone this Protocol
+                          description: switch to determine whether other VORs are allowed to clone this Protocol
                           example: true
               example:
                 shares:
@@ -326,7 +326,7 @@ paths:
     post:
       operationId: shareToAll
       summary: share Protocol with all VOR Users
-      description: this endpoint shares a User's protocol with all VOR users.
+      description: This endpoint shares a User's protocol with all VOR Users.
       parameters:
         - name: pxId
           in: path
@@ -343,11 +343,11 @@ paths:
           explode: true
       responses:
         '204':
-          description: No Content
+          description: no content
     delete:
       operationId: unShareToAll
       summary: get list of User's protocols shared to all
-      description: this endpoint retrieves a list of User's protocols shared to all.
+      description: This endpoint retrieves a list of User's protocols shared to all.
       parameters:
         - name: pxId
           in: path
@@ -357,21 +357,21 @@ paths:
           description: ID of Protocol
       responses:
         '204':
-          description: No Content
+          description: no content
   /api/protocols/shares:
     get:
       operationId: getMyProtocolShares
       tags:
         - editor
       summary: get my protocol shares
-      description: This endpoint retrieves a User's protocol shares, optionally filtered by protocol and recipient.
+      description: This endpoint retrieves a User's Protocol shares, optionally filtered by Protocol and recipient.
       parameters:
         - name: pxFilter
           in: query
           schema:
             type: integer
           required: false
-          description: select only shares of this protocol ID
+          description: select only shares of this Protocol ID
         - name: toFilter
           in: query
           schema:
@@ -395,7 +395,7 @@ paths:
       tags:
         - editor
       summary: create protocol share
-      description: this endpoint shares a protocol with another VOR User.
+      description: This endpoint shares a protocol with another VOR User.
       requestBody:
         required: true
         content:
@@ -419,23 +419,23 @@ paths:
       tags:
         - editor
       summary: delete protocol share
-      description: this endpoint retracts a protocol share with another VOR User.
+      description: This endpoint retracts a Protocol share with another VOR User.
       parameters:
         - name: pxId
           in: query
           schema:
             type: integer
           required: true
-          description: protocol ID
+          description: Protocol ID
         - name: toVor
           in: query
           schema:
             type: integer
           required: true
-          description: ID of VOR to whom protocol was shared
+          description: ID of VOR to whom Protocol was shared
       responses:
         '200':
-          description: protocol shared
+          description: Success – Protocol share deleted
           content:
             application/json:
               schema:
@@ -450,14 +450,14 @@ paths:
       tags:
         - editor
       summary: get my protocols
-      description: 'this endpoint retrieves all protocols owned by, or shared with, the current User. The default excludes deleted (status DEPRECATED) protocols.'
+      description: 'This endpoint retrieves all Protocols owned by, or shared with, the current User. The default excludes deleted (status DEPRECATED) protocols.'
       parameters:
         - name: status
           in: query
           required: false
           style: pipeDelimited
           explode: false
-          description: 'filter protocols to include only protocols with listed statuses. If this parameter is omitted, the query defaults to all status values **except** DEPRECATED.'
+          description: 'filter Protocols to include only Protocols with listed statuses. If this parameter is omitted, the query defaults to all status values **except** DEPRECATED.'
           schema:
             type: array
             items:
@@ -469,7 +469,7 @@ paths:
           content:
             application/json:
               schema:
-                description: array of protocols
+                description: array of Protocols
                 type: object
                 properties:
                   protocols:
@@ -481,7 +481,7 @@ paths:
       tags:
         - editor
       summary: create protocol
-      description: this endpoint supports Protocol creation.
+      description: This endpoint supports the creation of a Protocol.
       requestBody:
         required: true
         content:
@@ -490,7 +490,7 @@ paths:
               $ref: '#/components/schemas/Protocol'
       responses:
         '200':
-          description: recorded protocol
+          description: Success – recorded Protocol
           content:
             application/json:
               schema:
@@ -511,7 +511,7 @@ paths:
               $ref: '#/components/schemas/Protocol'
       responses:
         '200':
-          description: recorded protocol
+          description: Success – updated Protocol
           content:
             application/json:
               schema:
@@ -545,7 +545,7 @@ paths:
       tags:
         - editor
       summary: get diagnoses
-      description: 'this endpoint returns an array of Diagnoses from which a User may choose. The ID field is authoritative, i.e., is all that is needed to identify a particular Diagnosis.'
+      description: 'This endpoint returns an array of Diagnoses from which a User may choose. The ID field is authoritative, i.e., is all that is needed to identify a particular Diagnosis.'
       responses:
         '200':
           description: OK
@@ -565,14 +565,14 @@ paths:
       tags:
         - editor
       summary: get library protocols
-      description: this endpoint retrieves all protocols owned by, or shared with, the current User.
+      description: This endpoint retrieves all protocols owned by, or shared with, the current User.
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                description: Array of Protocols from public library
+                description: array of Protocols from public library
                 type: object
                 properties:
                   protocols:
@@ -585,7 +585,7 @@ paths:
       tags:
         - editor
       summary: validate a Dosage and return `_dose`
-      description: this endpoint returns the dose data.
+      description: This endpoint returns the dose data.
       requestBody:
         required: true
         content:
@@ -608,7 +608,7 @@ paths:
       tags:
         - editor
       summary: get library pxes
-      description: this endpoint returns all the Protocols owned by, or shared with, the current User.
+      description: This endpoint returns all the Protocols owned by, or shared with, the current User.
       responses:
         '200':
           description: OK
@@ -628,14 +628,14 @@ paths:
       tags:
         - editor
       summary: get protocol by ID
-      description: this endpoint retrieves a Protocol by `protocol.id`.
+      description: This endpoint retrieves a Protocol by `protocol.id`.
       parameters:
         - name: id
           in: path
           schema:
             type: integer
           required: true
-          description: protocol IDkey
+          description: Protocol ID key
       responses:
         '200':
           description: OK
@@ -681,14 +681,14 @@ paths:
       tags:
         - editor
       summary: get my prescriptions
-      description: this endpoint returns all prescriptions accessible to the current User.
+      description: This endpoint returns all prescriptions accessible to the current User.
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                description: array of prescriptions accessible to current User.
+                description: array of prescriptions accessible to current User
                 properties:
                   prescriptions:
                     type: array
@@ -699,7 +699,7 @@ paths:
       tags:
         - editor
       summary: record a prescription
-      description: 'this endpoint permanently records a prescription and returns its assigned GUID (**not** idempotent). Prescriptions form a permanent archival record of a transaction which may be invalidated, but not deleted.'
+      description: 'This endpoint permanently records a Prescription and returns its assigned GUID (**not** idempotent). Prescriptions form a permanent archival record of a transaction which may be invalidated, but not deleted.'
       responses:
         '200':
           description: OK
@@ -715,7 +715,7 @@ paths:
       tags:
         - editor
       summary: get prescription by ID
-      description: this endpoint retrieves a Prescription by `prescription.id`.
+      description: This endpoint retrieves a Prescription by `prescription.id`.
       parameters:
         - name: id
           in: path
@@ -743,7 +743,7 @@ paths:
       tags:
         - editor
       summary: get prescriptions of a protocol
-      description: this endpoint retrieves Prescriptions by `protocol.id`.
+      description: This endpoint retrieves Prescriptions by `protocol.id`.
       parameters:
         - name: id
           in: path
@@ -769,7 +769,7 @@ paths:
         - editor
         - label
       summary: get labels
-      description: this endpoint returns the full array of drug labels.
+      description: This endpoint returns the full array of drug labels.
       responses:
         '200':
           description: OK
@@ -804,7 +804,7 @@ paths:
         - editor
         - label
       summary: get package insert
-      description: this endpoint returns the label package insert.
+      description: This endpoint returns the label package insert.
       parameters:
         - name: lxId
           in: path
@@ -834,7 +834,7 @@ paths:
       tags:
         - admin
       summary: get Greenbook Drug summary by ndc pattern
-      description: this endpoint returns the summary listing of a Greenbook Drug by ndc pattern.
+      description: This endpoint returns the summary listing of a Greenbook Drug by ndc pattern.
       parameters:
         - name: ndcProd
           in: query
@@ -869,7 +869,7 @@ paths:
       tags:
         - admin
       summary: get summary listing of a Greenbook Drug
-      description: this endpoint returns the summary listing of a Greenbook Drug by ndc identifier.
+      description: This endpoint returns the summary listing of a Greenbook Drug by ndc identifier.
       parameters:
         - name: ndc
           in: path
@@ -891,7 +891,7 @@ paths:
       tags:
         - admin
       summary: get detail of a Greenbook Drug as a link or XML
-      description: this endpoint returns, as an HTML link or XML file, the summary listing of a Greenbook Drug by ndc identifier.
+      description: This endpoint returns, as an HTML link or XML file, the summary listing of a Greenbook Drug by ndc identifier.
       parameters:
         - name: ndc
           in: path
@@ -928,23 +928,23 @@ components:
       properties:
         errorType:
           type: string
-          description: A URI identifier that categorizes the error
+          description: a URI identifier that categorizes the error
           example: /errors/incorrect-user-pass
         title:
           type: string
           description: 'A brief, human-readable message about the error'
-          example: Incorrect username or password.
+          example: incorrect username or password
         status:
           type: integer
           description: HTTP status code
           example: 404
         detail:
           type: string
-          description: A human-readable description of the specific error
+          description: a human-readable description of the specific error
           example: Authentication failed due to incorrect username or password.
         instance:
           type: string
-          description: A URI that identifies the specific occurrence of the error
+          description: a URI that identifies the specific occurrence of the error
           example: /login/log/abc123
     SuccessfulLogin:
       description: User object and generated auth token
@@ -955,7 +955,7 @@ components:
         token:
           type: string
           description: add this token in X-Auth-Token header to authenticate future requests
-          example: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJleUp3Y205MmFXUmxja2xFSWpvaVkzSmxaR1Z1ZEdsaGJITWlMQ0p3Y205MmFXUmxja3RsZVNJNkluUmxjM1JXVDFJaWZRPT0iLCJpc3MiOiJwbGF5LXNpbGhvdWV0dGUiLCJleHAiOjE1Nzg3OTkyMDIsImlhdCI6MTU3ODc1NjAwMiwianRpIjoiMGNkMjU5MTM3NjQ3MDMzNDhmNTBhOWRmOTIyZWI1OGVmMGQwMDE4ODUyYjVmNGU0MThmNThjN2Y0YTk3OTllNzU2NWI3NDIwN2MxYTI5ZjUyYjQyNDMxZmZiOGIyMTgzOTAxNzQ1ZjUwYzllMzIwYjI5NWU2YzIzYzU5ZDJjYmEyM2ExNTFkZGRhYzhkMDA0M2FiYzkxOTdjNWUxOTdlNGM5YTU2NzlkZDcwMWJhMjkwMDA4ZGU1ODhkOTMyN2M5ZmQ4OWVlMmQ5NzQ4NWU0MDFiMjIzMGM1NWQzNDY3OGNkOThkM2Y1ZTM0Y2RiYmQ3MmM0NTBiODE2NWViNDI2MyJ9.Hs_oA1o5bT2SH7yoLNiATA7rLj4FmHvf4XOhOGkrEVA"
+          example: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJleUp3Y205MmFXUmxja2xFSWpvaVkzSmxaR1Z1ZEdsaGJITWlMQ0p3Y205MmFXUmxja3RsZVNJNkluUmxjM1JXVDFJaWZRPT0iLCJpc3MiOiJwbGF5LXNpbGhvdWV0dGUiLCJle***..."
         filePolicy:
           type: string
           description: 'policy object for use in embedded image files, expires in 24 hr'
@@ -965,11 +965,11 @@ components:
           description: signature for file policy object
           example: eyJleHBpcnkiOjE1Nzg3NTY2MDIsIm1heFNpemUiOjEwMDAwMDAwfQ==
     User:
-      description: a User of a specific `usertype` class.
+      description: a User of a specific `usertype` class
       properties:
         id:
           type: integer
-          description: wip unique identifier for the User.
+          description: wip unique identifier for the User
           example: 1
         uname:
           description: username
@@ -989,7 +989,7 @@ components:
           example: Vet
         suffix:
           type: string
-          description: wip -- firstname and lastname can escape having a description, but what is this suffix?
+          description: title of user
           example: DVM
       required:
         - id
@@ -999,7 +999,7 @@ components:
         - lastname
         - suffix
     NewUserData:
-      description: User and address data to create a new account
+      description: user and address data to create a new account
       required:
         - email
         - firstname
@@ -1097,7 +1097,7 @@ components:
     Relationship:
       type: string
       description: |
-          a link between two Users defining a relationship
+          a link between two Users defining a relationship:
 
           - CLIENT: MOR User on right is a client of VOR User on left
           - EMPLOYEE: TOR User on right is an employee of MOR User on left
@@ -1136,10 +1136,10 @@ components:
           example: 1
         share-to:
           type: integer
-          description: IDof a VOR User who may use the protocol identified by pxId
+          description: ID f a VOR User who may use the Protocol identified by pxId
           example: 2
         clonable:
-          description: 'True/False switch to indicate whether User identified by `shareTo` has permission to create a copy of this protocol and own the clone.'
+          description: 'True/False switch to indicate whether User identified by `shareTo` has permission to create a copy of this protocol and own the clone'
           type: boolean
           default: false
           example: true
@@ -1164,21 +1164,21 @@ components:
           example: 0
         name:
           type: string
-          description: User-friendly identifier for the protocol
+          description: user-friendly identifier for the Protocol
           example: example protocol
         shortname:
           type: string
-          description: Short name for the protocol
+          description: Short name for the Protocol
           example: EXamp
         created:
           type: string
           format: date-time
-          description: wip is this ISO-*** Timestamp for protocol creation
+          description: wip is this ISO-*** Timestamp for Protocol creation
           example: '2020-01-10T22:20:39Z'
         edited:
           type: string
           format: date-time
-          description: wip is this ISO-*** Timestamp for protocol update
+          description: wip is this ISO-*** Timestamp for Protocol update
           example: '2020-02-10T22:20:39Z'
         status:
           $ref: '#/components/schemas/ProtocolStatus'
@@ -1264,12 +1264,12 @@ components:
           type: string
           example: wip
         created:
-          description: ISO-8601-formatted datetime added by the server when a protocol is first saved.
+          description: ISO-8601-formatted datetime added by the server when a Protocol is first saved
           type: string
           format: date-time
           example: '2020-01-10T10:30:37Z'
         edited:
-          description: ISO-8601-formatted datetime updated by the server whenever a protocol is saved.
+          description: ISO-8601-formatted datetime updated by the server whenever a Protocol is saved
           type: string
           format: date-time
           example: '2020-02-10T10:30:37Z'
@@ -1348,7 +1348,7 @@ components:
           format: html
           example: "<a href=\"https://en.wikipedia.org/wiki/Rickrolling\">Wikipedia</a>"
     Metadata:
-      description: (for future devekopment)
+      description: (for future development)
       properties:
         key:
           type: string
@@ -1368,7 +1368,7 @@ components:
           type: string
           example: B-123
         ownerId:
-          description: the `id` key of the VOR User who owns the treatment.
+          description: the `id` key of the VOR User who owns the treatment
           type: integer
           example: 0
         description:
@@ -1461,7 +1461,7 @@ components:
           type: string
           format: date-time
           example: '2020-01-10T22:20:39Z'
-          description: wip ISO-8601-formatted datetime added by the server when the dose is saved.
+          description: wip ISO-8601-formatted datetime added by the server when the dose is saved
         note:
           type: string
           format: html
@@ -1494,7 +1494,7 @@ components:
         - $ref: '#/components/schemas/DoseRangeFunction'
         - $ref: '#/components/schemas/DoseRangeByWeightFunction'
     FixedDoseFunction:
-      description: A fixed quantity expressed in any available unit
+      description: a fixed quantity expressed in any available unit
       required:
         - _type
         - dose
@@ -1526,7 +1526,7 @@ components:
         range:
           $ref: '#/components/schemas/DrugQuantityRange'
     DoseByWeightFunction:
-      description: dose is specified as a quantity per unit of animal weight.
+      description: dose is specified as a quantity per unit of animal weight
       required:
         - _type
         - dose
@@ -1552,7 +1552,7 @@ components:
           symbol: kg
         _type: models.api.v1.DoseByWeightFunction
     LoadingDoseByWeightFunction:
-      description: dose is specified as first (loading) dose and following doses per unit of animal weight.
+      description: dose is specified as first (loading) dose and following doses per unit of animal weight
       required:
         - _type
         - firstDose
@@ -1670,7 +1670,7 @@ components:
             - models.api.v1.SeqSingleDose
           example: models.api.v1.SeqSingleDose
     SeqSeries:
-      description: an ordered sequence of doses at times specified as time since initiation of the protocol.
+      description: an ordered sequence of doses at times specified as time since initiation of the Protocol
       required:
         - _type
         - intervals
@@ -1696,7 +1696,7 @@ components:
         - _type
         - frequency
         - totalDoses
-      description: a series of equally spaced doses specified by the total number of doses and an integer number of doses per day.
+      description: a series of equally-spaced doses specified by the total number of doses and an integer number of doses per day
       type: object
       properties:
         _type:
@@ -1719,7 +1719,7 @@ components:
         - frequency
         - minDoses
         - maxDoses
-      description: a series of equally-spaced doses specified by the total number of doses and an integer number of doses per day.
+      description: a series of equally-spaced doses specified by the total number of doses and an integer number of doses per day
       type: object
       properties:
         _type:
@@ -1742,7 +1742,7 @@ components:
       required:
         - _type
         - totalDoses interval
-      description: a series of equally-spaced doses specified by the total number of doses and time between sequential doses.
+      description: a series of equally-spaced doses specified by the total number of doses and time between sequential doses
       type: object
       properties:
         _type:
@@ -1780,7 +1780,7 @@ components:
           type: integer
           example: 1
         name:
-          description: A type of animal which is eligible to be treated using a protocol having this Eligibility.
+          description: A type of animal which is eligible to be treated using a protocol having this Eligibility
           type: string
           example: Beef Cattle
         fdaSpecies:
@@ -1883,7 +1883,7 @@ components:
               format: dateTime
               description: target must be withheld from marketing until after this
     ResultPromise:
-      description: return some result
+      description: wip return some result
       type: object
       allOf:
         - $ref: '#/components/schemas/IdPromise'
@@ -1907,7 +1907,7 @@ components:
               type: string
     Diagnosis:
       description: |
-        A medical diagnosis for which a Protocol may be used. Normally the `name` field is all that is shown in the UI, but the `id` is used internally to identify each Diagnosis, which should be treated as an immutable object. Changes to the array of Diagnoses in a Protocol are achieved by changing the array of `id` numbers. Changes to other fields will have no effect at the persistent layer.
+        a medical diagnosis for which a Protocol may be used. Normally the `name` field is all that is shown in the UI, but the `id` is used internally to identify each Diagnosis, which should be treated as an immutable object. Changes to the array of Diagnoses in a Protocol are achieved by changing the array of `id` numbers. Changes to other fields will have no effect at the persistent layer.
       type: object
       properties:
         id:
@@ -1929,14 +1929,14 @@ components:
       properties:
         requireId:
           type: boolean
-          description: the Case must include specific ID/s of animal/s to be enrolled.
+          description: the Case must include specific ID/s of animal/s to be enrolled
           default: false
         requireMor:
           type: boolean
-          description: 'if true, the MOR enrolling the Case must be identified with a Signature.'
+          description: 'if true, the MOR enrolling the Case must be identified with a Signature'
           default: false
         contraindications:
-          description: considerations that prohibit or suggest against use of this Protocol.
+          description: considerations that prohibit or suggest against use of this Protocol
           type: string
           format: html
           default: ''
@@ -1986,7 +1986,7 @@ components:
           type: string
           format: date-time
           example: '2020-01-10T10:30:37Z'
-          description: wip ISO-8601-formatted datetime added by the server when the animal is first saved.
+          description: wip ISO-8601-formatted datetime added by the server when the animal is first saved
     WeightData:
       description: 'wip tbd'
       properties:
@@ -2153,7 +2153,7 @@ components:
         symbol:
           $ref: '#/components/schemas/DimensionlessUnit'
     DimensionlessUnit:
-      description: Dimensionless unit (each)
+      description: dimensionless unit (each)
       type: string
       enum:
         - ea
@@ -2425,7 +2425,7 @@ components:
           format: date-time
     fdaSpecies:
       type: array
-      description: A class of animals recognized by the FDA. In FDA literature this is called a "species", which conflicts with the typical usage of that word. "fdaSpecies" in the labeling domain usually corresponds with "Eligibility" in the Protocol domain.
+      description: a class of animals recognized by the FDA. In FDA literature this is called a "species", which conflicts with the typical usage of that word. "fdaSpecies" in the labeling domain usually corresponds with "Eligibility" in the Protocol domain.
       items:
         type: string
         enum:
@@ -2460,39 +2460,39 @@ components:
       description: 'Uses JWT token stored in request header, set to expire after 24 hours.'
   responses:
     '503':
-      description: Service Unavailable
+      description: service unavailable
       content:
         application/problem+json:
           schema:
             $ref: 'https://opensource.zalando.com/problem/schema.yaml#/Problem'
     OK:
-      description: 200 - success
+      description: 200 Success – OK
     Created:
-      description: 201 - success; entity created
+      description: 201 Success – entity created
     Accepted:
-      description: 202 - the request was successful and will be processed asynchronously
+      description: 202 Success – the request will be processed asynchronously
     No-Content:
-      description: 204 - the request was successful and will be processed asynchronously
+      description: 204 Success – the request will be processed asynchronously
     Multi-Status:
-      description: 207 - the response body contains multiple items of status information for different parts of a batch/bulk request
+      description: 207 – the response body contains multiple items of status information for different parts of a batch/bulk request
     See-Other:
-      description: 303 - the request was successful and will be processed asynchronously
+      description: 303 Success – the request will be processed asynchronously
     Bad-Request:
-      description: 400 - generic / unknown error
+      description: 400 – generic / unknown error
     Unauthorized:
-      description: 401 - users must log in
+      description: 401 – Users must log in
     Forbidden:
-      description: 403 - the user is not authorized to use this resource
+      description: 403 – the User is not authorized to use this resource
     Not-found:
-      description: 404 - resource is not found
+      description: 404 – resource is not found
     Unsupported-media-type:
-      description: 415 - e.g., request body without content type
+      description: 415 – e.g., request body without content type
     Server-Error:
-      description: 500 - unexpected server execution problem
+      description: 500 – unexpected server execution problem
     Not-Implemented:
-      description: 501 - endpoint not yet implemented
+      description: 501 – endpoint not yet implemented
     Unavailable:
-      description: 503 - service is (temporarily) unavailable
+      description: 503 – service is (temporarily) unavailable
   examples:
     testVOR:
       summary: User with VOR Usertype
