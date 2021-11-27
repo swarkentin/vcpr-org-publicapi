@@ -18,8 +18,6 @@ servers:
     url: 'https://test.VCPR.ORG'
   - description: 'Local docker container, uses regenerated test database'
     url: 'http://localhost'
-security:
-  - AuthToken: []
 paths:
   /api/users/logins:
     post:
