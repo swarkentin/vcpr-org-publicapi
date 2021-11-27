@@ -1,0 +1,23 @@
+name: Manual Mayhem-API
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+#      - name: Start your API
+#        run: ./run_your_api.sh & # <- update this
+
+      - name: Run Mayhem for API to check for vulnerabilities
+        uses: ForAllSecure/mapi-action@v1
+        with:
+          mapi-token: ${{ secrets.MAPI_SECRET }}
+          api-url: http://test.vcpr.org
+          api-spec: src/openapi.yaml
+#no credentials so 401s
+#ov 17 22:04:57.960 INFO Found invalid-response-spec (unspecified status code: 401)!, uuid: 054238db-9797-4d2b-bf40-5f62281b4035, path: /api/protocols/libs, method: GET, target_name: vcpr-org-publicapi

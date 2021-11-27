@@ -13,7 +13,7 @@ jobs:
       - name: redoc-cli bundle
         uses: seeebiii/redoc-cli-github-action@v10
         with:
-          args: 'bundle src/openapi.yaml -0 '  
+          args: 'bundle src/openapi.yaml -o docs/index.html '  
 
       - name: peek        
         run: |
@@ -21,5 +21,11 @@ jobs:
       - name: push       
         uses: actions/upload-artifact@v2
         with:
-          name: redoc-static.html
-          path: redoc-static.html         
+          name: index.html
+          path: docs/index.html  
+          
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          branch: gh-pages
+          folder: docs       
