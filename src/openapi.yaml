@@ -349,8 +349,8 @@ paths:
           description: no content
     delete:
       operationId: unShareToAll
-      summary: get list of User's protocols shared to all
-      description: This endpoint retrieves a list of User's protocols shared to all.
+      summary: wip
+      description: wip -- This endpoint probably unshares protocols to all.
       parameters:
         - name: pxId
           in: path
@@ -465,7 +465,7 @@ paths:
             type: array
             items:
               $ref: '#/components/schemas/ProtocolStatus'
-          deprecated: true
+          example: wip is this a deprecated = true OR an example?
       responses:
         '200':
           description: OK
@@ -992,7 +992,7 @@ components:
           example: Vet
         suffix:
           type: string
-          description: title of user
+          description:  degree or qualifier following the name
           example: DVM
       required:
         - id
@@ -1025,6 +1025,7 @@ components:
         suffix:
           type: string
           example: DVM
+          description: degree or qualifier following the name
         busName:
           type: string
           example: Some Business
@@ -1176,23 +1177,30 @@ components:
         created:
           type: string
           format: date-time
-          description: wip is this ISO-*** Timestamp for Protocol creation
+          description: ISO-8601 timestamp for Protocol creation
           example: '2020-01-10T22:20:39Z'
         edited:
           type: string
           format: date-time
-          description: wip is this ISO-*** Timestamp for Protocol update
+          description: ISO-8601 timestamp for Protocol update
           example: '2020-02-10T22:20:39Z'
         status:
           $ref: '#/components/schemas/ProtocolStatus'
         vetNote:
           type: string
-          description: wip
-          example: wip
+          description: wip status of the ?
+          enum:
+            - PRESCRIBED
+            - VALIDATED
+            - SAVED
+            - UNKNOWN
+            - DEPRECATED
+            - RECALLED
+          example: PRESCRIBED
         wtMeatHrs:
           type: integer
-          description: wip
-          example: wip
+          description: number of hours that meat may not be sold for food after last treatment
+          example: 72
         wtMilkHrs:
           type: integer
           description: number of hours that milk may not be sold for food after last treatment
@@ -2121,7 +2129,7 @@ components:
         symbol:
           $ref: '#/components/schemas/VolumeUnit'
     VolumeUnit:
-      description: unit of Volume or Weight
+      description: unit of Volume
       type: string
       example: ml
       enum:
@@ -2356,6 +2364,11 @@ components:
           type: integer
           description: wip
           example: tP3pBCR1GCMKm89c
+        refills:
+          type: integer
+          description: number of repeats for this script
+          default: 0
+          example: 0
         expiration:
           type: string
           format: date-time
@@ -2373,8 +2386,7 @@ components:
         status:
           type: string
           description: wip
-          example: wip
-          deprecated: true
+          example: wip - NB this may have a status of DEPRECTATED, but the property itself is not!
     Comment:
       required:
         - comment
