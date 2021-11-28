@@ -19,7 +19,7 @@ servers:
   - description: 'Local docker container, uses regenerated test database'
     url: 'http://localhost'
 security:
-  - bearerAuth: []
+  - authToken: []
 paths:
   /api/users/logins:
     post:
@@ -2468,10 +2468,11 @@ components:
           - beef_cattle
           - dairy_cattle
   securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
+    authToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+      description: 'Uses JWT token stored in request header.'
   responses:
     '503':
       description: service unavailable
