@@ -40,7 +40,7 @@ paths:
                   description: '`User.Username`, normally the same as `User.email`'
                 password:
                   type: string
-                  description: wip are there no restrictions to this password on setup such as minimum 8 characters
+                  description: wip password restrictions? minLength? charset?
             examples:
               user:
                 value: {"identifier": "user@test.com", "password": "some-secure-password"}
@@ -460,7 +460,6 @@ paths:
             type: array
             items:
               $ref: '#/components/schemas/ProtocolStatus'
-          example: wip is this a deprecated = true OR an example?
       responses:
         '200':
           description: OK
@@ -967,7 +966,7 @@ components:
       properties:
         id:
           type: integer
-          description: wip unique identifier for the User
+          description: wip- confirm== unique identifier for the User
           example: 1
         uname:
           description: username
@@ -1155,11 +1154,11 @@ components:
       properties:
         id:
           type: integer
-          description: wip
+          description: wip unique identifier for ?? Protocol?
           example: 0
         ownerId:
           type: integer
-          description: wip
+          description: wip unique identifier for ?User? that owns this ?Protocol?
           example: 0
         name:
           type: string
@@ -1183,7 +1182,7 @@ components:
           $ref: '#/components/schemas/ProtocolStatus'
         vetNote:
           type: string
-          description: wip status of the ?
+          description: wip status of the ? Worried that this duplicates the status within ProtocolStatus ??
           enum:
             - PRESCRIBED
             - VALIDATED
