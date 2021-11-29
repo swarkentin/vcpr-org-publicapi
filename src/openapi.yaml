@@ -1182,15 +1182,7 @@ components:
           $ref: '#/components/schemas/ProtocolStatus'
         vetNote:
           type: string
-          description: wip status of the ? Worried that this duplicates the status within ProtocolStatus ??
-          enum:
-            - PRESCRIBED
-            - VALIDATED
-            - SAVED
-            - UNKNOWN
-            - DEPRECATED
-            - RECALLED
-          example: PRESCRIBED
+          description: free-form text note specifying any additional details
         wtMeatHrs:
           type: integer
           description: number of hours that meat may not be sold for food after last treatment
