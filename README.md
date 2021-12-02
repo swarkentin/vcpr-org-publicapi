@@ -6,8 +6,6 @@ You can view documentation generated from this spec at [http://api.vcpr.org](htt
 
 Funded by an SBIR grant from USDA-NIFA <img src="https://github.com/VCPR-ORG/publicAPI/blob/develop/assets/nifa_transparent.png" width="150">
 
-# DairyVets-API Documentation Notes
-Taking base API docs for improvement
 
 ## To Do
 

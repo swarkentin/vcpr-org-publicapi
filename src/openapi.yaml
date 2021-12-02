@@ -18,6 +18,8 @@ servers:
     url: 'https://test.VCPR.ORG'
   - description: 'Local docker container, uses regenerated test database'
     url: 'http://localhost'
+security:
+  - authToken: []
 paths:
   /api/users/logins:
     post:
@@ -27,7 +29,7 @@ paths:
         - idempotent
       security: []
       summary: user login
-      description: 'This endpoint authenticates a User from an `identifier` (normally an email address) and `password`. Response returns the User object for the logged-in User and a token for use in future secured requests, as well as a `fileSignature` and `filePolicy` which may be used for access to images stored on FileStack.'
+      description: 'This endpoint authenticates a User from an `identifier` (normally an email address) and `password`. It also identifies the application making requests from the `apikey`. The The Response returns the User object for the logged-in User and a token for use in future secured requests, as well as a `fileSignature` and `filePolicy` which may be used for access to images stored on FileStack.'
       requestBody:
         required: true
         content:
@@ -35,6 +37,9 @@ paths:
             schema:
               type: object
               properties:
+                apikey:
+                  type: string
+                  description: An API key assigned to an application for access to this API. To request an API key please contact the system administrator.
                 identifier:
                   type: string
                   description: '`User.Username`, normally the same as `User.email`'
@@ -43,7 +48,7 @@ paths:
                   description: wip password restrictions? minLength? charset?
             examples:
               user:
-                value: {"identifier": "user@test.com", "password": "some-secure-password"}
+                value: {"apikey" : "w32r92i235jrw3r", "identifier": "user@test.com", "password": "some-secure-password"}
       responses:
         '200':
           description: Success – logged in
@@ -2454,11 +2459,11 @@ components:
           - beef_cattle
           - dairy_cattle
   securitySchemes:
-    AuthToken:
+    authToken:
       type: apiKey
       in: header
       name: X-Auth-Token
-      description: 'Uses JWT token stored in request header, set to expire after 24 hours.'
+      description: 'Uses JWT token stored in request header.'
   responses:
     '503':
       description: service unavailable
