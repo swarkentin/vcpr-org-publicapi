@@ -25,8 +25,7 @@ paths:
     post:
       operationId: userLogin
       tags:
-        - editor
-        - idempotent
+        - User
       security:
       summary: user login
       description: 'This endpoint authenticates a User from an `identifier` (normally an email address) and `password`. It also identifies the application making requests from the `apikey`. The response returns the User object for the logged-in User and a token for use in future secured requests, as well as a `fileSignature` and `filePolicy` which may be used for access to images stored on FileStack.'
@@ -79,8 +78,7 @@ paths:
     get:
       operationId: userRenewToken
       tags:
-        - editor
-        - idempotent
+        - User
       summary: renew token
       description: This endpoint renews the User's access token. Response returns the User object for the logged-in User and a 24-hr token for use in future secured requests. It includes a `fileSignature` and `filePolicy` which may be used for access to images stored on FileStack.
       responses:
@@ -113,7 +111,7 @@ paths:
     get:
       operationId: getVORUserIds
       tags:
-        - editor
+        - User
       summary: get ID and names of other VOR Users
       description: This endpoint returns the ID and names of all active VOR Users.
       responses:
@@ -138,7 +136,7 @@ paths:
     put:
       operationId: updateUser
       tags:
-        - editor
+        - User
       summary: update-user
       description: This endpoint updates User data. Any User may update their own data, i.e., idempotently update User data. A VOR may update User data of a User in a `CLIENT` relationship with that VOR. A SAOR may update data of any User.
       requestBody:
@@ -169,7 +167,7 @@ paths:
     get:
       operationId: getUser
       tags:
-        - editor
+        - User
       summary: get user
       description: This endpoint returns User data as specified by User `id`. Any User may get their own data. A VOR may get User data of Users in a `CLIENT` relationship with that VOR. A SAOR may get data of any User.
       parameters:
@@ -198,7 +196,7 @@ paths:
     delete:
       operationId: deleteUser
       tags:
-        - editor
+        - User
       summary: delete user
       description: This endpoint supports the (reversible) "delete" of a User by setting user.status to `REMOVED`. Removed Users are not visible in normal queries.
       parameters:
@@ -223,7 +221,7 @@ paths:
     post:
       operationId: recordComment
       tags:
-        - editor
+        - User
       summary: record a User comment
       description: This endpoint records a User comment to the database and emails admin. It supports privacy controls.
       requestBody:
@@ -246,7 +244,7 @@ paths:
     get:
       operationId: getMyRightRelations
       tags:
-        - editor
+        - User
       summary: get my right relations
       description: This endpoint returns Users who have the specified relationship to a `VOR` User.
       parameters:
@@ -269,7 +267,7 @@ paths:
     post:
       operationId: createRightRelation
       tags:
-        - editor
+        - User
       summary: 'add a User with relationship'
       description: 'This endpoint adds a User and a relationship of the type specified by `name` to the current User, who must be a VOR. Defaults to CLIENT relationship.'
       parameters:
@@ -366,7 +364,7 @@ paths:
     get:
       operationId: getMyProtocolShares
       tags:
-        - editor
+        - Protocol
       summary: get my protocol shares
       description: This endpoint retrieves a User's Protocol shares, optionally filtered by Protocol and recipient.
       parameters:
@@ -397,7 +395,7 @@ paths:
     post:
       operationId: createProtocolShare
       tags:
-        - editor
+        - Protocol
       summary: create protocol share
       description: This endpoint shares a protocol with another VOR User.
       requestBody:
@@ -421,7 +419,7 @@ paths:
     delete:
       operationId: deleteProtocolShare
       tags:
-        - editor
+        - Protocol
       summary: delete protocol share
       description: This endpoint retracts a Protocol share with another VOR User.
       parameters:
@@ -452,7 +450,7 @@ paths:
     get:
       operationId: getMyProtocols
       tags:
-        - editor
+        - Protocol
       summary: get my protocols
       description: 'This endpoint retrieves all Protocols owned by, or shared with, the current User. The default excludes deleted (status DEPRECATED) protocols.'
       parameters:
@@ -482,7 +480,7 @@ paths:
     post:
       operationId: createProtocol
       tags:
-        - editor
+        - Protocol
       summary: create protocol
       description: This endpoint supports the creation of a Protocol.
       requestBody:
@@ -504,7 +502,7 @@ paths:
     put:
       operationId: updateProtocol
       tags:
-        - editor
+        - Protocol
       summary: update protocol
       description: This endpoint updates a Protocol.
       requestBody:
@@ -526,7 +524,7 @@ paths:
     get:
       operationId: getEligibilities
       tags:
-        - editor
+        - Protocol
       summary: get eligibilities
       description: 'This endpoint returns an array of Eligibilities from which a User may choose. The ID field is authoritative, i.e., is all that is needed to identify a particular Eligibility.'
       responses:
@@ -546,7 +544,7 @@ paths:
     get:
       operationId: getDiagnoses
       tags:
-        - editor
+        - Protocol
       summary: get diagnoses
       description: 'This endpoint returns an array of Diagnoses from which a User may choose. The ID field is authoritative, i.e., is all that is needed to identify a particular Diagnosis.'
       responses:
@@ -566,7 +564,7 @@ paths:
     get:
       operationId: getLibraryProtocols
       tags:
-        - editor
+        - Protocol
       summary: get library protocols
       description: This endpoint retrieves all protocols owned by, or shared with, the current User.
       responses:
@@ -586,7 +584,7 @@ paths:
     post:
       operationId: validateDosage
       tags:
-        - editor
+        - Protocol
       summary: validate a Dosage and return `_dose`
       description: This endpoint returns the dose data.
       requestBody:
@@ -609,7 +607,7 @@ paths:
     get:
       operationId: getLibraryPxes
       tags:
-        - editor
+        - Protocol
       summary: get library pxes
       description: This endpoint returns all the Protocols owned by, or shared with, the current User.
       responses:
@@ -629,7 +627,7 @@ paths:
     get:
       operationId: getProtocol
       tags:
-        - editor
+        - Protocol
       summary: get protocol by ID
       description: This endpoint retrieves a Protocol by `protocol.id`.
       parameters:
@@ -656,7 +654,7 @@ paths:
     delete:
       operationId: deleteProtocol
       tags:
-        - editor
+        - Protocol
       summary: delete protocol
       description: 'this endpoint changes `protocol.status` to DELETED (this does not actually remove it from the database).'
       parameters:
@@ -682,7 +680,7 @@ paths:
     get:
       operationId: getMyPrescriptions
       tags:
-        - editor
+        - Prescription
       summary: get my prescriptions
       description: This endpoint returns all prescriptions accessible to the current User.
       responses:
@@ -700,7 +698,7 @@ paths:
     post:
       operationId: createPrescription
       tags:
-        - editor
+        - Prescription
       summary: record a prescription
       description: 'This endpoint permanently records a Prescription and returns its assigned GUID (**not** idempotent). Prescriptions form a permanent archival record of a transaction which may be invalidated, but not deleted.'
       responses:
@@ -716,7 +714,7 @@ paths:
     get:
       operationId: getPrescription
       tags:
-        - editor
+        - Prescription
       summary: get prescription by ID
       description: This endpoint retrieves a Prescription by `prescription.id`.
       parameters:
@@ -744,7 +742,7 @@ paths:
     get:
       operationId: getPrescriptionsOfProtocol
       tags:
-        - editor
+        - Prescription
       summary: get prescriptions of a protocol
       description: This endpoint retrieves Prescriptions by `protocol.id`.
       parameters:
@@ -769,8 +767,7 @@ paths:
     get:
       operationId: getLabels
       tags:
-        - editor
-        - label
+        - Prescription
       summary: get labels
       description: This endpoint returns the full array of drug labels.
       responses:
@@ -804,8 +801,7 @@ paths:
     get:
       operationId: getPackageInsert
       tags:
-        - editor
-        - label
+        - Prescription
       summary: get package insert
       description: This endpoint returns the label package insert.
       parameters:
@@ -835,9 +831,9 @@ paths:
     get:
       operationId: getGbdHeaderArrayByNDC
       tags:
-        - admin
-      summary: get Greenbook Drug summary by ndc pattern
-      description: This endpoint returns the summary listing of a Greenbook Drug by ndc pattern.
+        - Prescription
+      summary: get Greenbook Drug summary by NDC pattern
+      description: This endpoint returns the summary listing of a Greenbook Drug by NDC pattern.
       parameters:
         - name: ndcProd
           in: query
@@ -870,7 +866,7 @@ paths:
     get:
       operationId: getGbdHeaderByNDC
       tags:
-        - admin
+        - Prescription
       summary: get summary listing of a Greenbook Drug
       description: This endpoint returns the summary listing of a Greenbook Drug by ndc identifier.
       parameters:
@@ -892,7 +888,7 @@ paths:
     get:
       operationId: getGbdLinkByNDC
       tags:
-        - admin
+        - Prescription
       summary: get detail of a Greenbook Drug as a link or XML
       description: This endpoint returns, as an HTML link or XML file, the summary listing of a Greenbook Drug by ndc identifier.
       parameters:
