@@ -1224,12 +1224,12 @@ components:
         success:
           type: string
           format: html
-          description: wip descriptive note detailng success
+          description: describes a successful outcome of the protocol
           example: "<p>good</p>"
         failure:
           type: string
           format: html
-          description: wip descriptive note detailing failure
+          description: describes a failure of the protocol
           example: "<p>bad</p>"
         references:
           type: string
@@ -1239,7 +1239,7 @@ components:
         shareAll:
           type: boolean
           default: false
-          description: wip switch to determine whether this Protocol may be shared
+          description: switch to determine whether this Protocol may be shared with all VOR users
     Protocol:
       description: a veterinary treatment protocol
       type: object
