@@ -2549,19 +2549,13 @@ components:
         roa: I.V.
         raId: 21
 tags:
-  - name: editor
-    description: wip editor endpoints are used by Protocol Editor SPA
-  - name: label
-    description: wip depends on drug label data (fx db)
-  - name: proposed
-    description: wip endpoint proposed but not yet implemented
-  - name: implemented
-    description: endpoint is implemented on server
-  - name: tested
-    description: Postman tests implemented and passing
-  - name: monitored
-    description: API is tested and monitored
-  - name: admin
-    description: wip the admin endpoints provide admin-level privileges
-  - name: idempotent
-    description: wip making multiple identical requests has the same effect as making a single request
+  - name: User
+    description: Endpoints and models related to user management.
+  - name: Prescription
+    description: Endpoints and models related to prescription management.
+  - name: Protocol
+    description: Endpoints and models related to protocol management.
+  - name: Case
+    description: Endpoints and models related to case management.
+  - name: Promise
+    description: Endpoints and models related to promise management.
