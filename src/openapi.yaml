@@ -27,9 +27,9 @@ paths:
       tags:
         - editor
         - idempotent
-      security: []
+      security:
       summary: user login
-      description: 'This endpoint authenticates a User from an `identifier` (normally an email address) and `password`. It also identifies the application making requests from the `apikey`. The The Response returns the User object for the logged-in User and a token for use in future secured requests, as well as a `fileSignature` and `filePolicy` which may be used for access to images stored on FileStack.'
+      description: 'This endpoint authenticates a User from an `identifier` (normally an email address) and `password`. It also identifies the application making requests from the `apikey`. The response returns the User object for the logged-in User and a token for use in future secured requests, as well as a `fileSignature` and `filePolicy` which may be used for access to images stored on FileStack.'
       requestBody:
         required: true
         content:
@@ -45,7 +45,8 @@ paths:
                   description: '`User.Username`, normally the same as `User.email`'
                 password:
                   type: string
-                  description: wip are there no restrictions to this password on setup such as minimum 8 characters
+                  description: User password any characters or numbers allowed, with a minumum length of 10.
+                  minLength: 10
             examples:
               user:
                 value: {"apikey" : "w32r92i235jrw3r", "identifier": "user@test.com", "password": "some-secure-password"}
@@ -465,7 +466,6 @@ paths:
             type: array
             items:
               $ref: '#/components/schemas/ProtocolStatus'
-          example: wip is this a deprecated = true OR an example?
       responses:
         '200':
           description: OK
@@ -972,7 +972,7 @@ components:
       properties:
         id:
           type: integer
-          description: wip unique identifier for the User
+          description: unique identifier for the User
           example: 1
         uname:
           description: username
@@ -1160,11 +1160,11 @@ components:
       properties:
         id:
           type: integer
-          description: wip
+          description: unique identifier for Protocol
           example: 0
         ownerId:
           type: integer
-          description: wip
+          description: unique identifier for User that owns this Protocol
           example: 0
         name:
           type: string
@@ -1188,15 +1188,7 @@ components:
           $ref: '#/components/schemas/ProtocolStatus'
         vetNote:
           type: string
-          description: wip status of the ?
-          enum:
-            - PRESCRIBED
-            - VALIDATED
-            - SAVED
-            - UNKNOWN
-            - DEPRECATED
-            - RECALLED
-          example: PRESCRIBED
+          description: free-form text note specifying any additional details
         wtMeatHrs:
           type: integer
           description: number of hours that meat may not be sold for food after last treatment
@@ -1232,22 +1224,22 @@ components:
         success:
           type: string
           format: html
-          description: wip
+          description: describes a successful outcome of the protocol
           example: "<p>good</p>"
         failure:
           type: string
           format: html
-          description: wip
+          description: describes a failure of the protocol
           example: "<p>bad</p>"
         references:
           type: string
           format: html
-          description: wip
+          description: wip references related to the disease or treatment
           example: "<a href=\"https://en.wikipedia.org/wiki/Rickrolling\">Wikipedia</a>"
         shareAll:
           type: boolean
           default: false
-          description: wip
+          description: switch to determine whether this Protocol may be shared with all VOR users
     Protocol:
       description: a veterinary treatment protocol
       type: object
@@ -2558,11 +2550,11 @@ components:
         raId: 21
 tags:
   - name: editor
-    description: used by Protocol Editor SPA
+    description: wip editor endpoints are used by Protocol Editor SPA
   - name: label
-    description: depends on drug label data (fx db)
+    description: wip depends on drug label data (fx db)
   - name: proposed
-    description: proposed but not yet implemented
+    description: wip endpoint proposed but not yet implemented
   - name: implemented
     description: endpoint is implemented on server
   - name: tested
@@ -2570,6 +2562,6 @@ tags:
   - name: monitored
     description: API is tested and monitored
   - name: admin
-    description: wip
+    description: wip the admin endpoints provide admin-level privileges
   - name: idempotent
-    description: wip
+    description: wip making multiple identical requests has the same effect as making a single request
