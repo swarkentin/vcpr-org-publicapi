@@ -15,6 +15,27 @@ Parameters as array by name (not by in)
 
 check application of proper nouns
 
+### Security
+
+Not sure if that declaration at line 20 works globally, i.e. may need to apply at each endpoint (see userLogin).
+
+### Tags
+
+May need to extend tags applied.
+
+> Tagging strategy == multiple tags are OK but they need not be exhaustive. For example a Protocol can always contain Promises, so anything with a Protocol tag might also have Promise. Let's only use Promise if an endpoint operates directly on it. Use the most general tag applicable. NB there are proposals for tag nesting, so future OAS versions may have more flexibility.
+
+- name: User
+    description: Endpoints and models related to user management.
+- name: Prescription
+    description: Endpoints and models related to prescription management.
+- name: Protocol
+    description: Endpoints and models related to protocol management.
+- name: Case
+    description: Endpoints and models related to case management.
+- name: Promise
+    description: Endpoints and models related to promise management.
+
 ## Style notes
 
 id > ID
