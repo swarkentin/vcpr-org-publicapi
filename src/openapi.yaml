@@ -26,8 +26,7 @@ paths:
       operationId: userLogin
       tags:
         - User
-      security:
-        - authToken: []
+      security: []
       summary: user login
       description: 'This endpoint authenticates a User from an `identifier` (normally an email address) and `password`. It also identifies the application making requests from the `apikey`. The response returns the User object for the logged-in User and a token for use in future secured requests, as well as a `fileSignature` and `filePolicy` which may be used for access to images stored on FileStack.'
       requestBody:
