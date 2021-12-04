@@ -10,13 +10,13 @@ info:
   x-api-id: bFU9IiwiaXNzIjoiVkNQUi1zZXJ2ZXIiLCJl
   x-audience: company-internal
 servers:
-  - description: 'Production server, uses production database'
+  - description: 'Production server, uses production database.'
     url: 'https://VCPR.ORG'
-  - description: 'Staging server, uses staging database'
+  - description: 'Staging server, uses staging database.'
     url: 'https://stage.VCPR.ORG'
-  - description: 'Test server, uses regenerated test database'
+  - description: 'Test server, uses regenerated test database.'
     url: 'https://test.VCPR.ORG'
-  - description: 'Local docker container, uses regenerated test database'
+  - description: 'Local docker container, uses regenerated test database.'
     url: 'http://localhost'
 security:
   - authToken: []
