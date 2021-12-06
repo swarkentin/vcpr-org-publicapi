@@ -116,7 +116,7 @@ paths:
       description: This endpoint returns the ID and names of all active VOR Users.
       responses:
         '200':
-          description: OK
+          description: Success – User data returned
           content:
             application/json:
               schema:
@@ -156,7 +156,7 @@ paths:
                   $ref: '#/components/schemas/User'
       responses:
         '200':
-          description: User updated
+          description: Success – User updated
           content:
             application/json:
               schema:
@@ -192,7 +192,7 @@ paths:
           example: 2
       responses:
         '200':
-          description: User
+          description: Success – User data returned
           content:
             application/json:
               schema:
@@ -226,7 +226,7 @@ paths:
           description: User ID key
       responses:
         '200':
-          description: User deleted
+          description: Success – User deleted
           content:
             application/json:
               schema:
@@ -284,7 +284,7 @@ paths:
             $ref: '#/components/schemas/Relationship'
       responses:
         '200':
-          description: OK
+          description: Success – User data returned
           content:
             application/json:
               schema:
@@ -319,7 +319,7 @@ paths:
               $ref: '#/components/schemas/User'
       responses:
         '200':
-          description: related User
+          description: Success – User added
           content:
             application/json:
               schema:
@@ -340,7 +340,7 @@ paths:
       description: This endpoint retrieves a list of User's protocols shared to all VORs.
       responses:
         '200':
-          description: OK
+          description: Success – Protocol/s returned
           content:
             application/json:
               schema:
@@ -393,7 +393,7 @@ paths:
           explode: true
       responses:
         '204':
-          description: no content
+          description: Success – no content
         '401':
           description: password or identifier mismatch
           content:
@@ -413,7 +413,7 @@ paths:
           description: ID of Protocol
       responses:
         '204':
-          description: no content
+          description: Success – no content
         '401':
           description: password or identifier mismatch
           content:
@@ -442,7 +442,7 @@ paths:
           description: select only shares to this VOR User
       responses:
         '200':
-          description: OK
+          description: Success – Protocol share/s returned
           content:
             application/json:
               schema:
@@ -463,7 +463,7 @@ paths:
       tags:
         - Protocol
       summary: create protocol share
-      description: This endpoint shares a protocol with another VOR User.
+      description: This endpoint shares a Protocol with another VOR User.
       requestBody:
         required: true
         content:
@@ -472,7 +472,7 @@ paths:
               $ref: '#/components/schemas/ProtocolShare'
       responses:
         '200':
-          description: protocol shared
+          description: Success – Protocol shared
           content:
             application/json:
               schema:
@@ -544,8 +544,7 @@ paths:
               $ref: '#/components/schemas/ProtocolStatus'
       responses:
         '200':
-          description: OK
-          content:
+          description: Success – Protocol/s returned
             application/json:
               schema:
                 description: array of Protocols
@@ -625,7 +624,7 @@ paths:
       description: 'This endpoint returns an array of Eligibilities from which a User may choose. The ID field is authoritative, i.e., is all that is needed to identify a particular Eligibility.'
       responses:
         '200':
-          description: OK
+          description: Success – Eligibilities returned
           content:
             application/json:
               schema:
@@ -651,7 +650,7 @@ paths:
       description: 'This endpoint returns an array of Diagnoses from which a User may choose. The ID field is authoritative, i.e., is all that is needed to identify a particular Diagnosis.'
       responses:
         '200':
-          description: OK
+          description: Success – Diagnosis returned
           content:
             application/json:
               schema:
@@ -674,10 +673,10 @@ paths:
       tags:
         - Protocol
       summary: get library protocols
-      description: This endpoint retrieves all protocols owned by, or shared with, the current User.
+      description: This endpoint retrieves all Protocols owned by, or shared with, the current User.
       responses:
         '200':
-          description: OK
+          description: Success – Protocol/s returned
           content:
             application/json:
               schema:
@@ -700,7 +699,7 @@ paths:
       tags:
         - Protocol
       summary: validate a Dosage and return `_dose`
-      description: This endpoint returns the dose data.
+      description: This endpoint returns the Dose data.
       requestBody:
         required: true
         content:
@@ -709,7 +708,7 @@ paths:
               $ref: '#/components/schemas/DoseFunctions'
       responses:
         '200':
-          description: _dose
+          description: Success – Dose returned
           content:
             application/json:
               schema:
@@ -732,7 +731,7 @@ paths:
       description: This endpoint returns all the Protocols owned by, or shared with, the current User.
       responses:
         '200':
-          description: OK
+          description: Success – Protocol/s returned
           content:
             application/json:
               schema:
@@ -765,7 +764,7 @@ paths:
           description: Protocol ID key
       responses:
         '200':
-          description: OK
+          description: Success – Protocol/s returned
           content:
             application/json:
               schema:
@@ -798,7 +797,7 @@ paths:
           description: Protocol ID key
       responses:
         '200':
-          description: Protocol deprecated
+          description: Success – Protocol deprecated
           content:
             application/json:
               schema:
@@ -820,14 +819,14 @@ paths:
       tags:
         - Prescription
       summary: get my prescriptions
-      description: This endpoint returns all prescriptions accessible to the current User.
+      description: This endpoint returns all Prescriptions accessible to the current User.
       responses:
         '200':
-          description: OK
+          description: Success – Prescription/s returned
           content:
             application/json:
               schema:
-                description: array of prescriptions accessible to current User
+                description: array of Prescriptions accessible to current User
                 properties:
                   prescriptions:
                     type: array
@@ -847,7 +846,7 @@ paths:
       description: 'This endpoint permanently records a Prescription and returns its assigned GUID (**not** idempotent). Prescriptions form a permanent archival record of a transaction which may be invalidated, but not deleted.'
       responses:
         '200':
-          description: OK
+          description: Success – Prescription created
           content:
             application/json:
               schema:
@@ -876,7 +875,7 @@ paths:
           description: Prescription ID key
       responses:
         '200':
-          description: OK
+          description: Success – Prescription returned
           content:
             application/json:
               schema:
@@ -910,7 +909,7 @@ paths:
           description: Protocol ID key
       responses:
         '200':
-          description: OK
+          description: Success – Prescription/s returned
           content:
             application/json:
               schema:
@@ -934,7 +933,7 @@ paths:
       description: This endpoint returns the full array of drug labels.
       responses:
         '200':
-          description: OK
+          description: Success – labels returned
           content:
             application/json:
               schema:
@@ -982,7 +981,7 @@ paths:
           example: 1028016
       responses:
         '200':
-          description: OK
+          description: Success – package insert returned
           content:
             application/json:
               schema:
@@ -1023,7 +1022,7 @@ paths:
           description: end section package code of a NDC
       responses:
         '200':
-          description: OK
+          description: Success – summary listing returned
           content:
             application/json:
               schema:
@@ -1053,7 +1052,7 @@ paths:
           example: 0061-4321-03
       responses:
         '200':
-          description: OK
+          description: Success – summary listing returned
           content:
             application/json:
               schema:
@@ -1081,7 +1080,7 @@ paths:
           example: 0061-4321-03
       responses:
         '200':
-          description: OK
+          description: Success – summary listing returned
           content:
             application/json:
               schema:
