@@ -133,6 +133,12 @@ paths:
                         name:
                           type: string
                           description: User's Name
+          '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
     put:
       operationId: updateUser
       tags:
@@ -158,6 +164,12 @@ paths:
                   updated-records:
                     type: integer
                     description: number of db records altered
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
     x-postman-tests:
       description: |
         - Assumes current user is testVOR - Side effects reset current user data to examples/testVOR - Tests 1. 200 response
@@ -188,6 +200,12 @@ paths:
                 properties:
                   user:
                     $ref: '#/components/schemas/User'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
       x-postman-tests:
         description: |
           - Tests 1. 200 response to valid credentials
@@ -217,6 +235,12 @@ paths:
                   deleted:
                     type: integer
                     description: number of Users deleted
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/users/comments:
     post:
       operationId: recordComment
@@ -240,6 +264,12 @@ paths:
                 properties:
                   recorded:
                     type: integer
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/users/my-right-relations:
     get:
       operationId: getMyRightRelations
@@ -264,6 +294,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/User'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
     post:
       operationId: createRightRelation
       tags:
@@ -291,6 +327,12 @@ paths:
                 properties:
                   user:
                     $ref: '#/components/schemas/User'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/protocols/sharesToAll/:
     get:
       operationId: getSharesToAll
@@ -324,6 +366,12 @@ paths:
                   - pxId: 1
                     name: example protocol
                     clonable: false
+          '401':
+            description: password or identifier mismatch
+            content:
+              application/problem+json:
+                schema:
+                  $ref: '#/components/schemas/Error'
   /api/protocols/sharesToAll/{pxId}:
     post:
       operationId: shareToAll
@@ -346,6 +394,12 @@ paths:
       responses:
         '204':
           description: no content
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
     delete:
       operationId: unShareToAll
       summary: wip
@@ -360,6 +414,12 @@ paths:
       responses:
         '204':
           description: no content
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/protocols/shares:
     get:
       operationId: getMyProtocolShares
@@ -392,6 +452,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/ProtocolShare'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
     post:
       operationId: createProtocolShare
       tags:
@@ -416,6 +482,12 @@ paths:
                     type: integer
                     description: number of shares created
                     example: 1
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
     delete:
       operationId: deleteProtocolShare
       tags:
@@ -446,6 +518,12 @@ paths:
                   un-shared:
                     type: integer
                     description: number of shares deleted
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/protocols:
     get:
       operationId: getMyProtocols
@@ -477,6 +555,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Protocol'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
     post:
       operationId: createProtocol
       tags:
@@ -499,6 +583,12 @@ paths:
                 properties:
                   protocol:
                     $ref: '#/components/schemas/Protocol'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
     put:
       operationId: updateProtocol
       tags:
@@ -520,6 +610,12 @@ paths:
                 properties:
                   protocol:
                     $ref: '#/components/schemas/Protocol'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/protocols/eligibilities:
     get:
       operationId: getEligibilities
@@ -540,6 +636,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Eligibility'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/protocols/diagnoses:
     get:
       operationId: getDiagnoses
@@ -560,6 +662,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Diagnosis'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/protocols/libs:
     get:
       operationId: getLibraryProtocols
@@ -580,6 +688,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Protocol'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/protocols/dosages:
     post:
       operationId: validateDosage
@@ -603,6 +717,12 @@ paths:
                   _dose:
                     type: string
                     description: string representation of submitted Dosage
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/protocols/libstubs:
     get:
       operationId: getLibraryPxes
@@ -623,6 +743,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Px'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   '/api/protocols/{id}':
     get:
       operationId: getProtocol
@@ -651,6 +777,12 @@ paths:
                 properties:
                   protocol:
                     $ref: '#/components/schemas/Protocol'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
     delete:
       operationId: deleteProtocol
       tags:
@@ -675,6 +807,12 @@ paths:
                   deprecated:
                     type: integer
                     description: number of Protocols deprecated
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/protocols/prescriptions:
     description: '`Prescriptions` document the transaction of a `VOR` User prescribing a `Protocol` for use by a `MOR` User who must have a `CLIENT` relationship with the prescribing doctor.'
     get:
@@ -695,6 +833,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Prescription'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
     post:
       operationId: createPrescription
       tags:
@@ -710,6 +854,12 @@ paths:
                 properties:
                   prescription:
                     $ref: '#/components/schemas/PrescriptionRequest'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   '/api/protocols/prescriptions/{id}':
     get:
       operationId: getPrescription
@@ -738,6 +888,12 @@ paths:
                 properties:
                   prescription:
                     $ref: '#/components/schemas/Prescription'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   '/api/protocols/{id}/prescriptions':
     get:
       operationId: getPrescriptionsOfProtocol
@@ -763,6 +919,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Prescription'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/labels:
     get:
       operationId: getLabels
@@ -781,6 +943,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/LabelClaim'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
       x-postman-tests:
         description: |
           - Side effects
@@ -862,6 +1030,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/GreenbookHeader'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   '/admin/product/{ndc}':
     get:
       operationId: getGbdHeaderByNDC
@@ -884,6 +1058,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GreenbookHeader'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   '/admin/product/spl/{ndc}':
     get:
       operationId: getGbdLinkByNDC
@@ -916,6 +1096,12 @@ paths:
                 description: XML SPL data file served from FDA server
                 type: string
                 format: xml
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
 components:
   schemas:
     Error:
