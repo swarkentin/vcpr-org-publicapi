@@ -7,8 +7,6 @@ info:
     url: 'https://github.com/jehrlich/VCPR_API'
     email: jehrlich@vcpr.org
   description: 'API serving the Veterinary Protocol Manager&trade; application. &copy; DairySight LLC, Argyle NY 2020'
-  x-api-id: bFU9IiwiaXNzIjoiVkNQUi1zZXJ2ZXIiLCJl
-  x-audience: company-internal
 servers:
   - description: 'Production server, uses production database.'
     url: 'https://VCPR.ORG'

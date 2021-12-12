@@ -75,6 +75,6 @@ Promise
 Warning -- construction is right BUT do not hit the production server with this!
 
 mapi run \
-     VCPR1 100 "https://github.com/OAI/OpenAPI-Specification" \
+     VCPR1 100 "http://http://api.vcpr.org" \
      --url "https://test.VCPR.ORG" \
      --interactive
