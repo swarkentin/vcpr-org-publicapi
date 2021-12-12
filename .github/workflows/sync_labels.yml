@@ -1,0 +1,17 @@
+name: Sync labels
+on:
+  workflow_dispatch:
+
+jobs:
+  labels:
+    runs-on: ubuntu-latest
+
+    steps:
+    # https://github.com/EndBug/label-sync
+      - uses: EndBug/label-sync@v2
+        with:
+          config-file:
+            "https://raw.githubusercontent.com/VCPR-ORG/publicAPI/develop/.github/labels.yml"
+ 
+ # If you want to delete any additional label, set this to true
+          delete-other-labels: true
