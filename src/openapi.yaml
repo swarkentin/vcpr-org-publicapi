@@ -105,8 +105,7 @@ paths:
           - Side effects Saves the returned body to the postman environment,
            token -> `token`; logged-in user -> `user`.
           - Tests 1. 200 response to valid credentials 2. returns user 3. save token and user to env
-        code: |
-          pm.test('200 response to valid credentials', function () { pm.response.to.have.status(200);}); pm.test('Returns TestVOR user', function () { pm.expect(pm.response.json().user.uname).to.eql('testVOR');}); pm.test('save the token to env.token', function () { pm.environment.set('token', pm.response.json().token);}); pm.test('save user too', function () { pm.environment.set('user', JSON.stringify(pm.response.json().user));}); pm.test('token in response matches token in environment', function () { pm.expect(pm.response.json().token).to.eql(pm.environment.get('token'));});
+        code: "pm.test('200 response to valid credentials', function () { pm.response.to.have.status(200);}); pm.test('Returns TestVOR user', function () { pm.expect(pm.response.json().user.uname).to.eql('testVOR');}); pm.test('save the token to env.token', function () { pm.environment.set('token', pm.response.json().token);}); pm.test('save user too', function () { pm.environment.set('user', JSON.stringify(pm.response.json().user));}); pm.test('token in response matches token in environment', function () { pm.expect(pm.response.json().token).to.eql(pm.environment.get('token'));});"
   /api/users:
     get:
       operationId: getVORUserIds
