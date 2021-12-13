@@ -1,0 +1,84 @@
+description: a veterinary treatment protocol
+type: object
+required:
+  - ownerId
+  - name
+  - status
+  - withhold
+  - instructions
+properties:
+  id:
+    description: >-
+      key value created by the database. If `id` is zero or not present, a new
+      database record will be created. If 'id' matches an existing record in the
+      db, that record will be updated instead.
+    type: integer
+    format: int64
+  ownerId:
+    description: the `id` key of the VOR User who owns the protocol.
+    type: integer
+    example: 1
+  name:
+    description: wip
+    type: string
+    example: wip
+  shortname:
+    description: wip
+    type: string
+    example: wip
+  created:
+    description: >-
+      ISO-8601-formatted datetime added by the server when a Protocol is first
+      saved
+    type: string
+    format: date-time
+    example: 2020-01-10T10:30:37Z
+  edited:
+    description: >-
+      ISO-8601-formatted datetime updated by the server whenever a Protocol is
+      saved
+    type: string
+    format: date-time
+    example: 2020-02-10T10:30:37Z
+  status:
+    $ref: ./ProtocolStatus.yaml
+  vetNote:
+    type: string
+  withhold:
+    $ref: ./Withhold.yaml
+  instructions:
+    $ref: ./Instructions.yaml
+  shareAll:
+    type: boolean
+    default: false
+  caseDefinition:
+    $ref: ./CaseDefinition.yaml
+  treatments:
+    description: treatments used in this protocol
+    type: array
+    items:
+      $ref: ./Treatment.yaml
+  tags:
+    description: keywords for classification
+    type: array
+    items:
+      $ref: ./Tag.yaml
+  diagnoses:
+    description: diagnostic classifiers
+    type: array
+    items:
+      $ref: ./Diagnosis.yaml
+  eligibilities:
+    description: eligibility criteria for potential cases
+    type: array
+    items:
+      $ref: ./Eligibility.yaml
+  promises:
+    description: wip
+    type: array
+    items:
+      $ref: ./Promise.yaml
+  metadata:
+    type: array
+    items:
+      $ref: ./Metadata.yaml

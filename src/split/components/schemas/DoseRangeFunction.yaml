@@ -1,0 +1,14 @@
+description: >-
+  a range of permissible dose size. The User may select any value within the
+  range (inclusive).
+required:
+  - _type
+  - range
+properties:
+  _type:
+    type: string
+    enum:
+      - models.api.v1.DoseRangeFunction
+    example: models.api.v1.DoseRangeFunction
+  range:
+    $ref: ./DrugQuantityRange.yaml

@@ -1,0 +1,19 @@
+required:
+  - min
+  - max
+properties:
+  min:
+    $ref: ./DrugQuantity.yaml
+  max:
+    $ref: ./DrugQuantity.yaml
+example:
+  min:
+    quantity:
+      dimension: Volume
+      value: 3
+      symbol: ml
+  max:
+    quantity:
+      dimension: Volume
+      value: 345
+      symbol: ml

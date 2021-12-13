@@ -1,0 +1,5 @@
+properties:
+  sequenceFunction:
+    $ref: ./SequenceFunction.yaml
+  sizeFunction:
+    $ref: ./SizeFunction.yaml

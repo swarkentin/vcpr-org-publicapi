@@ -1,0 +1,20 @@
+description: identification of animal is required to enroll a case
+type: object
+required:
+  - _type
+allOf:
+  - $ref: ./Promise.yaml
+  - type: object
+    required:
+      - animalId
+      - initiationDate
+    properties:
+      animalId:
+        type: string
+      initiationDate:
+        type: string
+        format: dateTime
+      _type:
+        type: string
+        enum:
+          - models.api.v1.IdPromise

@@ -1,0 +1,35 @@
+post:
+  operationId: shareToAll
+  summary: share Protocol with all VOR Users
+  description: This endpoint shares a User's protocol with all VOR Users.
+  parameters:
+    - name: pxId
+      in: path
+      schema:
+        type: integer
+      required: true
+      explode: true
+      description: ID of Protocol to be shared
+    - name: clonable
+      in: query
+      schema:
+        type: boolean
+      required: false
+      explode: true
+  responses:
+    '204':
+      description: no content
+delete:
+  operationId: unShareToAll
+  summary: wip
+  description: wip -- This endpoint probably unshares protocols to all.
+  parameters:
+    - name: pxId
+      in: path
+      schema:
+        type: integer
+      required: true
+      description: ID of Protocol
+  responses:
+    '204':
+      description: no content

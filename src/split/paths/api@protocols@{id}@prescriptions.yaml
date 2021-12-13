@@ -1,0 +1,24 @@
+get:
+  operationId: getPrescriptionsOfProtocol
+  tags:
+    - Prescription
+  summary: get prescriptions of a protocol
+  description: This endpoint retrieves Prescriptions by `protocol.id`.
+  parameters:
+    - name: id
+      in: path
+      schema:
+        type: integer
+      required: true
+      description: Protocol ID key
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              prescriptions:
+                type: array
+                items:
+                  $ref: ../components/schemas/Prescription.yaml

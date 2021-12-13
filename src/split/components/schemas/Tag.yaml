@@ -1,0 +1,7 @@
+description: keyword or tag for classification
+type: object
+properties:
+  code:
+    type: string
+    maxLength: 15
+    example: Example-code

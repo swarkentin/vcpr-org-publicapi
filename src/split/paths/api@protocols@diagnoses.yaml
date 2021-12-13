@@ -1,0 +1,22 @@
+get:
+  operationId: getDiagnoses
+  tags:
+    - Protocol
+  summary: get diagnoses
+  description: >-
+    This endpoint returns an array of Diagnoses from which a User may choose.
+    The ID field is authoritative, i.e., is all that is needed to identify a
+    particular Diagnosis.
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            description: array of diagnoses
+            type: object
+            properties:
+              diagnoses:
+                type: array
+                items:
+                  $ref: ../components/schemas/Diagnosis.yaml

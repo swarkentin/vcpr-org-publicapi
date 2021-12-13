@@ -1,0 +1,22 @@
+description: wip return some result
+type: object
+allOf:
+  - $ref: ./IdPromise.yaml
+  - type: object
+    required:
+      - what
+      - result
+    properties:
+      what:
+        type: string
+        format: html
+      after:
+        type: string
+        format: dateTime
+        description: result should be returned after this
+      before:
+        type: string
+        format: dateTime
+        description: result should be returned before this
+      result:
+        type: string

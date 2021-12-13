@@ -1,0 +1,35 @@
+description: >-
+  dose is specified as first (loading) dose and following doses per unit of
+  animal weight
+required:
+  - _type
+  - firstDose
+  - followDose
+  - perUnit
+properties:
+  _type:
+    type: string
+    enum:
+      - models.api.v1.DoseByWeightFunction
+  firstDose:
+    $ref: ./DrugQuantity.yaml
+  followDose:
+    $ref: ./DrugQuantity.yaml
+  perUnit:
+    $ref: ./MassQuantity.yaml
+example:
+  perUnit:
+    dimension: mass
+    value: 1
+    symbol: kg
+  followDose:
+    quantity:
+      dimension: volume
+      value: 3
+      symbol: ml
+  _type: models.api.v1.LoadingDoseByWeightFunction
+  firstDose:
+    quantity:
+      dimension: volume
+      value: 6
+      symbol: ml

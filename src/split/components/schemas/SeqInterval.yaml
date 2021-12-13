@@ -1,0 +1,23 @@
+required:
+  - _type
+  - totalDoses interval
+description: >-
+  a series of equally-spaced doses specified by the total number of doses and
+  time between sequential doses
+type: object
+properties:
+  _type:
+    type: string
+    enum:
+      - models.api.v1.SeqInterval
+    example: models.api.v1.SeqInterval
+  totalDoses:
+    type: integer
+    default: 1
+    example: 3
+  interval:
+    description: ISO-8601 duration from initiation or previous dose
+    type: string
+    format: duration
+    default: PT8H
+    example: PT8H

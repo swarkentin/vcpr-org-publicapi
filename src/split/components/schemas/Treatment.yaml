@@ -1,0 +1,78 @@
+description: >-
+  describes a series of one or more doses of a single product in terms of a
+  sizeFunction (which specifies dose quantity) and a SequenceFunction (which
+  specifies when the doses should be given). These functions are polymorphic and
+  may depend on additional data which only is available when a protocol is
+  assigned to a specific Case. For example, the initiation time will likely be
+  needed to calculate the dose sequence and animal weight or other data may be
+  needed to calculate dose size.
+type: object
+required:
+  - product
+  - route
+  - sequencefunction
+  - sizefunction
+properties:
+  id:
+    description: >-
+      key value created by the database. If `id` is null or not present, a new
+      database record will be created. If 'id' matches an existing record in the
+      db, that record will be updated instead.
+    type: string
+    example: B-123
+  ownerId:
+    description: the `id` key of the VOR User who owns the treatment
+    type: integer
+    example: 0
+  description:
+    description: description of Treatment
+    type: string
+    example: 3.0 ml per kg repeat
+  eligibilities:
+    description: eligibility criteria for potential cases
+    type: array
+    items:
+      $ref: ./Eligibility.yaml
+  product:
+    description: product name
+    type: string
+    example: MiracleMed
+  _dose:
+    description: transient string representation of `dosage`
+    type: string
+    example: 3.0 ml per kg repeat in 6 hours and again in 24 hours
+  dosage:
+    oneOf:
+      - $ref: ./DoseId.yaml
+      - $ref: ./DoseFunctions.yaml
+  route:
+    description: route of administration
+    type: string
+    example: wip
+  wtMeatHrs:
+    type: integer
+    description: wip
+    example: wip
+  wtMilkHrs:
+    type: integer
+    description: wip
+    example: wip
+  wtNote:
+    type: string
+    description: wip
+    example: wip
+  nada:
+    description: NADA or ANADA as specified by the FDA
+    type: string
+    example: wip
+  tags:
+    description: keywords for classification
+    type: array
+    items:
+      $ref: ./Tag.yaml
+  note:
+    type: string
+    format: html
+    example: <p>a free-form note</p>
+  amduca:
+    $ref: ./AmducaClass.yaml

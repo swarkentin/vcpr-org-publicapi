@@ -1,0 +1,18 @@
+description: User object and generated auth token
+type: object
+properties:
+  user:
+    $ref: ./User.yaml
+  token:
+    type: string
+    description: add this token in X-Auth-Token header to authenticate future requests
+    example: >-
+      eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJleUp3Y205MmFXUmxja2xFSWpvaVkzSmxaR1Z1ZEdsaGJITWlMQ0p3Y205MmFXUmxja3RsZVNJNkluUmxjM1JXVDFJaWZRPT0iLCJpc3MiOiJwbGF5LXNpbGhvdWV0dGUiLCJle***...
+  filePolicy:
+    type: string
+    description: policy object for use in embedded image files, expires in 24 hr
+    example: 3da8c83495cb00d216369a355322078106ebc2e5eac78333eb90d00de5611d9a
+  fileSignature:
+    type: string
+    description: signature for file policy object
+    example: eyJleHBpcnkiOjE1Nzg3NTY2MDIsIm1heFNpemUiOjEwMDAwMDAwfQ==

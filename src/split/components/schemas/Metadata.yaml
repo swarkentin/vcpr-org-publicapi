@@ -1,0 +1,6 @@
+description: (for future development)
+properties:
+  key:
+    type: string
+  value:
+    type: string

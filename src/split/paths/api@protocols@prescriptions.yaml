@@ -1,0 +1,40 @@
+description: >-
+  `Prescriptions` document the transaction of a `VOR` User prescribing a
+  `Protocol` for use by a `MOR` User who must have a `CLIENT` relationship with
+  the prescribing doctor.
+get:
+  operationId: getMyPrescriptions
+  tags:
+    - Prescription
+  summary: get my prescriptions
+  description: This endpoint returns all prescriptions accessible to the current User.
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            description: array of prescriptions accessible to current User
+            properties:
+              prescriptions:
+                type: array
+                items:
+                  $ref: ../components/schemas/Prescription.yaml
+post:
+  operationId: createPrescription
+  tags:
+    - Prescription
+  summary: record a prescription
+  description: >-
+    This endpoint permanently records a Prescription and returns its assigned
+    GUID (**not** idempotent). Prescriptions form a permanent archival record of
+    a transaction which may be invalidated, but not deleted.
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              prescription:
+                $ref: ../components/schemas/PrescriptionRequest.yaml

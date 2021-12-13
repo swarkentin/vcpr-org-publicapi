@@ -1,0 +1,33 @@
+get:
+  operationId: getLabels
+  tags:
+    - Prescription
+  summary: get labels
+  description: This endpoint returns the full array of drug labels.
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              labels:
+                type: array
+                items:
+                  $ref: ../components/schemas/LabelClaim.yaml
+  x-postman-tests:
+    description: |
+      - Side effects
+        none
+      - Tests
+        1. 200 response
+        2.  returns `labels` object with array of labels
+        code: >
+          pm.test("Status code is 200", function () {
+          pm.response.to.have.status(200);});
+          pm.test("returns labels object with array of labels", function () {
+          pm.expect(pm.response.json().labels).to.be.an('array');});
+          pm.test("check first label has expected NADA", function () {
+          pm.expect(pm.response.json().labels[0].nada).to.eql("200-308");});
+          pm.test("492 labels in array", function () {
+          pm.expect(pm.response.json().labels.length).to.eql(492);});

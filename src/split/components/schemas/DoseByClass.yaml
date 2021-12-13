@@ -1,0 +1,32 @@
+description: dose calculated by class
+required:
+  - _type
+  - animalClasses
+type: object
+properties:
+  _type:
+    type: string
+    enum:
+      - models.api.v1.DoseByClass
+  animalClasses:
+    type: array
+    items:
+      type: object
+      required:
+        - animalClass
+        - sizefunction
+      properties:
+        animalClass:
+          type: string
+          description: name of class
+        sizefunction:
+          description: function to calculate dose size
+          type: object
+          oneOf:
+            - $ref: ./FixedDoseFunction.yaml
+            - $ref: ./DoseRangeFunction.yaml
+            - $ref: ./DoseByWeightFunction.yaml
+            - $ref: ./DoseRangeByWeightFunction.yaml
+            - $ref: ./LoadingDoseByWeightFunction.yaml
+example: >-
+  {"_type":"models.api.v1.DoseByClass","animalClasses":[{"animalClass":"Jabberwocks","sizeFunction":{"unit":"mg","size":3.2,"_type":"models.api.v1.DrugQuantity"}},{"animalClass":"Borogoves","sizeFunction":{"_type":"models.api.v1.DoseRangeFunction","maxDose":{"size":20,"unit":"ml"},"minDose":{"size":10,"unit":"ml"}}}]}

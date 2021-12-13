@@ -1,0 +1,19 @@
+summary: label with id=1
+value:
+  id: 1
+  nada: 200-308
+  eligibility: Horses
+  exId: 2500
+  exCode: '2500'
+  fdaSpecies: Horses
+  diagnosis: Pain (colic), symptomatic treatment
+  dxId: 2002
+  dxCode: '2002'
+  product: Prevail™ Flunixin Meglumine Injection
+  productId: 1315018
+  dose: >-
+    0.5 mg/lb (1 mL/100 lb) b.w. Give IV for fast relief. Repeat when colic
+    signs recur.
+  dsId: 10656
+  roa: I.V.
+  raId: 21
