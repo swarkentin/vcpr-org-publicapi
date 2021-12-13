@@ -11,7 +11,7 @@ jobs:
 
   rebundle:
     runs-on: ubuntu-latest
-    name: Redoc Linter
+    name: OAS bundler
     steps:
       - name: Checkout
         uses: actions/checkout@v2

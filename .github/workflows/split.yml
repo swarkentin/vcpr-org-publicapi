@@ -11,7 +11,7 @@ jobs:
 
   split:
     runs-on: ubuntu-latest
-    name: Redoc Linter
+    name: OAS Splitter
     steps:
       - name: Checkout
         uses: actions/checkout@v2
