@@ -1,12 +1,38 @@
 - name: 'status: pending'
-  color: c5def5
+  color: e4e669
   description: 'More info is needed before deciding what to do'
   aliases: []
+  
+- name: 'status: todo'
+  color: c5def5
+  description: 'Planned but not started'
+  aliases: []
+  
+- name: 'status: assigned'
+  color: c5def5
+  description: 'Responsibility for this has been assigned'
+  aliases: []
+  
+- name: 'status: started'
+  color: c5def5
+  description: 'Work on this has begun'
+  aliases: []
+  
+- name: 'status: ongoing'
+  color: c5def5
+  description: 'An issue that requires ongoing attention'
+  aliases: [] 
+    
+- name: 'status: done'
+  color: c5def5
+  description: 'A solution has been implemented, but not yet confirmed'
+  aliases: []
 
-- name: 'status: wontfix'
+- name: 'status: waitlist'
   color: cfd3d7
-  description: 'This will not be worked on'
+  description: 'No time for this now, but maybe later'
   aliases: ['wontfix']
+
 
 - name: 'type: bug'
   color: d73a4a
@@ -15,18 +41,13 @@
 
 - name: 'type: chore'
   color: C5DEF5
-  description: 'Code changes that neither fix bugs nor add features (refactoring, dependency changes, ...)'
-  aliases: ['dependencies', 'type: dependencies', 'automation', 'type: automation']
+  description: 'Clearly defined job that needs regular attention'
+  aliases: []
 
 - name: 'type: docs'
   color: C5DEF5
   description: "Documentation changes"
-  aliases: ['documentation', 'maintenance', 'type: maintenance']
-
-- name: 'type: duplicate'
-  color: cfd3d7
-  description: 'This issue or pull request already exists'
-  aliases: ['duplicate']
+  aliases: ['documentation']
 
 - name: 'type: feature'
   color: 0E8A16
@@ -37,11 +58,6 @@
   color: 1D76DB
   description: 'Updates to existing functionalities'
   aliases: ['fix']
-
-- name: 'type: invalid'
-  color: e4e669
-  description: "This doesn't seem right"
-  aliases: ['invalid']
 
 - name: 'type: not a bug'
   color: 0e8a16
