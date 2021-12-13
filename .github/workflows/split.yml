@@ -18,7 +18,7 @@ jobs:
       - name: CLI split
         run: npx @redocly/openapi-cli split src/openapi.yaml --outDir='src/split'
       - name: commit changes
-      - uses: EndBug/add-and-commit@v7
+        uses: EndBug/add-and-commit@v7
         with:
           default_author: github_actions
           message: 'split src/openapi.yaml to src/split'
