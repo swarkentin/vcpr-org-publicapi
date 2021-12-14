@@ -98,6 +98,13 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/Error'
+      x-postman-tests:
+        description: |
+          - Side effects Saves the returned body to the postman environment,
+           token -> `token`; logged-in user -> `user`.
+          - Tests 1. 200 response to valid credentials 2. returns user 3. save token and user to env
+        code: "pm.test('200 response to valid credentials', function () { pm.response.to.have.status(200);}); pm.test('Returns TestVOR user', function () { pm.expect(pm.response.json().user.uname).to.eql('testVOR');}); pm.test('save the token to env.token', function () { pm.environment.set('token', pm.response.json().token);}); pm.test('save user too', function () { pm.environment.set('user', JSON.stringify(pm.response.json().user));}); pm.test('token in response matches token in environment', function () { pm.expect(pm.response.json().token).to.eql(pm.environment.get('token'));});"
+
   /api/users:
     get:
       operationId: getVORUserIds
@@ -107,7 +114,7 @@ paths:
       description: This endpoint returns the ID and names of all active VOR Users.
       responses:
         '200':
-          description: OK
+          description: Success – User data returned
           content:
             application/json:
               schema:
@@ -124,6 +131,12 @@ paths:
                         name:
                           type: string
                           description: User's Name
+          '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
     put:
       operationId: updateUser
       tags:
@@ -141,7 +154,7 @@ paths:
                   $ref: '#/components/schemas/User'
       responses:
         '200':
-          description: User updated
+          description: Success – User updated
           content:
             application/json:
               schema:
@@ -149,6 +162,12 @@ paths:
                   updated-records:
                     type: integer
                     description: number of db records altered
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
     x-postman-tests:
       description: |
         - Assumes current user is testVOR - Side effects reset current user data to examples/testVOR - Tests 1. 200 response
@@ -171,7 +190,7 @@ paths:
           example: 2
       responses:
         '200':
-          description: User
+          description: Success – User data returned
           content:
             application/json:
               schema:
@@ -179,6 +198,12 @@ paths:
                 properties:
                   user:
                     $ref: '#/components/schemas/User'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
       x-postman-tests:
         description: |
           - Tests 1. 200 response to valid credentials
@@ -199,7 +224,7 @@ paths:
           description: User ID key
       responses:
         '200':
-          description: User deleted
+          description: Success – User deleted
           content:
             application/json:
               schema:
@@ -208,6 +233,12 @@ paths:
                   deleted:
                     type: integer
                     description: number of Users deleted
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/users/comments:
     post:
       operationId: recordComment
@@ -231,6 +262,12 @@ paths:
                 properties:
                   recorded:
                     type: integer
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/users/my-right-relations:
     get:
       operationId: getMyRightRelations
@@ -245,7 +282,7 @@ paths:
             $ref: '#/components/schemas/Relationship'
       responses:
         '200':
-          description: OK
+          description: Success – User data returned
           content:
             application/json:
               schema:
@@ -255,6 +292,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/User'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
     post:
       operationId: createRightRelation
       tags:
@@ -274,7 +317,7 @@ paths:
               $ref: '#/components/schemas/User'
       responses:
         '200':
-          description: related User
+          description: Success – User added
           content:
             application/json:
               schema:
@@ -282,6 +325,12 @@ paths:
                 properties:
                   user:
                     $ref: '#/components/schemas/User'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/protocols/sharesToAll/:
     get:
       operationId: getSharesToAll
@@ -289,7 +338,7 @@ paths:
       description: This endpoint retrieves a list of User's protocols shared to all VORs.
       responses:
         '200':
-          description: OK
+          description: Success – Protocol/s returned
           content:
             application/json:
               schema:
@@ -315,6 +364,12 @@ paths:
                   - pxId: 1
                     name: example protocol
                     clonable: false
+          '401':
+            description: password or identifier mismatch
+            content:
+              application/problem+json:
+                schema:
+                  $ref: '#/components/schemas/Error'
   /api/protocols/sharesToAll/{pxId}:
     post:
       operationId: shareToAll
@@ -336,7 +391,13 @@ paths:
           explode: true
       responses:
         '204':
-          description: no content
+          description: Success – no content
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
     delete:
       operationId: unShareToAll
       summary: wip
@@ -350,7 +411,13 @@ paths:
           description: ID of Protocol
       responses:
         '204':
-          description: no content
+          description: Success – no content
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/protocols/shares:
     get:
       operationId: getMyProtocolShares
@@ -373,7 +440,7 @@ paths:
           description: select only shares to this VOR User
       responses:
         '200':
-          description: OK
+          description: Success – Protocol share/s returned
           content:
             application/json:
               schema:
@@ -383,12 +450,18 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/ProtocolShare'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
     post:
       operationId: createProtocolShare
       tags:
         - Protocol
       summary: create protocol share
-      description: This endpoint shares a protocol with another VOR User.
+      description: This endpoint shares a Protocol with another VOR User.
       requestBody:
         required: true
         content:
@@ -397,7 +470,7 @@ paths:
               $ref: '#/components/schemas/ProtocolShare'
       responses:
         '200':
-          description: protocol shared
+          description: Success – Protocol shared
           content:
             application/json:
               schema:
@@ -407,6 +480,12 @@ paths:
                     type: integer
                     description: number of shares created
                     example: 1
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
     delete:
       operationId: deleteProtocolShare
       tags:
@@ -437,6 +516,12 @@ paths:
                   un-shared:
                     type: integer
                     description: number of shares deleted
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/protocols:
     get:
       operationId: getMyProtocols
@@ -457,8 +542,7 @@ paths:
               $ref: '#/components/schemas/ProtocolStatus'
       responses:
         '200':
-          description: OK
-          content:
+          description: Success – Protocol/s returned
             application/json:
               schema:
                 description: array of Protocols
@@ -468,6 +552,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Protocol'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
     post:
       operationId: createProtocol
       tags:
@@ -490,6 +580,12 @@ paths:
                 properties:
                   protocol:
                     $ref: '#/components/schemas/Protocol'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
     put:
       operationId: updateProtocol
       tags:
@@ -511,6 +607,12 @@ paths:
                 properties:
                   protocol:
                     $ref: '#/components/schemas/Protocol'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/protocols/eligibilities:
     get:
       operationId: getEligibilities
@@ -520,7 +622,7 @@ paths:
       description: 'This endpoint returns an array of Eligibilities from which a User may choose. The ID field is authoritative, i.e., is all that is needed to identify a particular Eligibility.'
       responses:
         '200':
-          description: OK
+          description: Success – Eligibilities returned
           content:
             application/json:
               schema:
@@ -531,6 +633,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Eligibility'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/protocols/diagnoses:
     get:
       operationId: getDiagnoses
@@ -540,7 +648,7 @@ paths:
       description: 'This endpoint returns an array of Diagnoses from which a User may choose. The ID field is authoritative, i.e., is all that is needed to identify a particular Diagnosis.'
       responses:
         '200':
-          description: OK
+          description: Success – Diagnosis returned
           content:
             application/json:
               schema:
@@ -551,16 +659,22 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Diagnosis'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/protocols/libs:
     get:
       operationId: getLibraryProtocols
       tags:
         - Protocol
       summary: get library protocols
-      description: This endpoint retrieves all protocols owned by, or shared with, the current User.
+      description: This endpoint retrieves all Protocols owned by, or shared with, the current User.
       responses:
         '200':
-          description: OK
+          description: Success – Protocol/s returned
           content:
             application/json:
               schema:
@@ -571,13 +685,19 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Protocol'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/protocols/dosages:
     post:
       operationId: validateDosage
       tags:
         - Protocol
       summary: validate a Dosage and return `_dose`
-      description: This endpoint returns the dose data.
+      description: This endpoint returns the Dose data.
       requestBody:
         required: true
         content:
@@ -586,7 +706,7 @@ paths:
               $ref: '#/components/schemas/DoseFunctions'
       responses:
         '200':
-          description: _dose
+          description: Success – Dose returned
           content:
             application/json:
               schema:
@@ -594,6 +714,12 @@ paths:
                   _dose:
                     type: string
                     description: string representation of submitted Dosage
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/protocols/libstubs:
     get:
       operationId: getLibraryPxes
@@ -603,7 +729,7 @@ paths:
       description: This endpoint returns all the Protocols owned by, or shared with, the current User.
       responses:
         '200':
-          description: OK
+          description: Success – Protocol/s returned
           content:
             application/json:
               schema:
@@ -614,6 +740,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Px'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   '/api/protocols/{id}':
     get:
       operationId: getProtocol
@@ -630,7 +762,7 @@ paths:
           description: Protocol ID key
       responses:
         '200':
-          description: OK
+          description: Success – Protocol/s returned
           content:
             application/json:
               schema:
@@ -642,6 +774,12 @@ paths:
                 properties:
                   protocol:
                     $ref: '#/components/schemas/Protocol'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
     delete:
       operationId: deleteProtocol
       tags:
@@ -657,7 +795,7 @@ paths:
           description: Protocol ID key
       responses:
         '200':
-          description: Protocol deprecated
+          description: Success – Protocol deprecated
           content:
             application/json:
               schema:
@@ -666,6 +804,12 @@ paths:
                   deprecated:
                     type: integer
                     description: number of Protocols deprecated
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/protocols/prescriptions:
     description: '`Prescriptions` document the transaction of a `VOR` User prescribing a `Protocol` for use by a `MOR` User who must have a `CLIENT` relationship with the prescribing doctor.'
     get:
@@ -673,19 +817,25 @@ paths:
       tags:
         - Prescription
       summary: get my prescriptions
-      description: This endpoint returns all prescriptions accessible to the current User.
+      description: This endpoint returns all Prescriptions accessible to the current User.
       responses:
         '200':
-          description: OK
+          description: Success – Prescription/s returned
           content:
             application/json:
               schema:
-                description: array of prescriptions accessible to current User
+                description: array of Prescriptions accessible to current User
                 properties:
                   prescriptions:
                     type: array
                     items:
                       $ref: '#/components/schemas/Prescription'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
     post:
       operationId: createPrescription
       tags:
@@ -694,13 +844,19 @@ paths:
       description: 'This endpoint permanently records a Prescription and returns its assigned GUID (**not** idempotent). Prescriptions form a permanent archival record of a transaction which may be invalidated, but not deleted.'
       responses:
         '200':
-          description: OK
+          description: Success – Prescription created
           content:
             application/json:
               schema:
                 properties:
                   prescription:
                     $ref: '#/components/schemas/PrescriptionRequest'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   '/api/protocols/prescriptions/{id}':
     get:
       operationId: getPrescription
@@ -717,7 +873,7 @@ paths:
           description: Prescription ID key
       responses:
         '200':
-          description: OK
+          description: Success – Prescription returned
           content:
             application/json:
               schema:
@@ -729,6 +885,12 @@ paths:
                 properties:
                   prescription:
                     $ref: '#/components/schemas/Prescription'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   '/api/protocols/{id}/prescriptions':
     get:
       operationId: getPrescriptionsOfProtocol
@@ -745,7 +907,7 @@ paths:
           description: Protocol ID key
       responses:
         '200':
-          description: OK
+          description: Success – Prescription/s returned
           content:
             application/json:
               schema:
@@ -754,6 +916,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Prescription'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/labels:
     get:
       operationId: getLabels
@@ -763,7 +931,7 @@ paths:
       description: This endpoint returns the full array of drug labels.
       responses:
         '200':
-          description: OK
+          description: Success – labels returned
           content:
             application/json:
               schema:
@@ -772,6 +940,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/LabelClaim'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
       x-postman-tests:
         description: |
           - Side effects
@@ -805,7 +979,7 @@ paths:
           example: 1028016
       responses:
         '200':
-          description: OK
+          description: Success – package insert returned
           content:
             application/json:
               schema:
@@ -846,13 +1020,19 @@ paths:
           description: end section package code of a NDC
       responses:
         '200':
-          description: OK
+          description: Success – summary listing returned
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/GreenbookHeader'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   '/admin/product/{ndc}':
     get:
       operationId: getGbdHeaderByNDC
@@ -870,11 +1050,17 @@ paths:
           example: 0061-4321-03
       responses:
         '200':
-          description: OK
+          description: Success – summary listing returned
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/GreenbookHeader'
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   '/admin/product/spl/{ndc}':
     get:
       operationId: getGbdLinkByNDC
@@ -892,7 +1078,7 @@ paths:
           example: 0061-4321-03
       responses:
         '200':
-          description: OK
+          description: Success – summary listing returned
           content:
             application/json:
               schema:
@@ -907,6 +1093,12 @@ paths:
                 description: XML SPL data file served from FDA server
                 type: string
                 format: xml
+        '401':
+          description: password or identifier mismatch
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
 components:
   schemas:
     Error:
