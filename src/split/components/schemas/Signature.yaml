@@ -1,0 +1,14 @@
+description: an electronic signature
+required:
+  - user
+  - timestamp
+properties:
+  user:
+    $ref: ./User.yaml
+  timestamp:
+    description: >-
+      ISO-8601-formatted datetime added by the server recording the time at
+      which the document was signed
+    type: string
+    format: date-time
+    example: 2017-07-21T17:32:28Z

@@ -1,0 +1,15 @@
+description: wip tbd
+properties:
+  animalId:
+    type: string
+    description: free-form text description of the animal
+    example: Bossie IdData
+  weight:
+    $ref: ./MassQuantity.yaml
+  initiationTime:
+    type: string
+    format: date-time
+    description: >-
+      wip ISO-8601-formatted datetime added by the server when the instance of
+      the animal's weight is first saved.
+    example: 2020-04-10T10:30:37Z

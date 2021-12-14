@@ -1,0 +1,22 @@
+get:
+  operationId: getEligibilities
+  tags:
+    - Protocol
+  summary: get eligibilities
+  description: >-
+    This endpoint returns an array of Eligibilities from which a User may
+    choose. The ID field is authoritative, i.e., is all that is needed to
+    identify a particular Eligibility.
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            description: array of eligibilities
+            type: object
+            properties:
+              eligibilities:
+                type: array
+                items:
+                  $ref: ../components/schemas/Eligibility.yaml

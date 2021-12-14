@@ -1,0 +1,87 @@
+openapi: 3.0.1
+info:
+  title: VCPR.ORG Protocol Editor API
+  version: 2.0.2
+  contact:
+    name: Jim Ehrlich, DVM
+    url: https://github.com/jehrlich/VCPR_API
+    email: jehrlich@vcpr.org
+  description: >-
+    API serving the Veterinary Protocol Manager&trade; application. &copy;
+    DairySight LLC, Argyle NY 2020
+servers:
+  - description: Production server, uses production database.
+    url: https://VCPR.ORG
+  - description: Staging server, uses staging database.
+    url: https://stage.VCPR.ORG
+  - description: Test server, uses regenerated test database.
+    url: https://test.VCPR.ORG
+  - description: Local docker container, uses regenerated test database.
+    url: http://localhost
+security:
+  - authToken: []
+paths:
+  /api/users/logins:
+    $ref: paths/api@users@logins.yaml
+  /api/users:
+    $ref: paths/api@users.yaml
+  /api/users/{id}:
+    $ref: paths/api@users@{id}.yaml
+  /api/users/comments:
+    $ref: paths/api@users@comments.yaml
+  /api/users/my-right-relations:
+    $ref: paths/api@users@my-right-relations.yaml
+  /api/protocols/sharesToAll/:
+    $ref: paths/api@protocols@sharesToAll@.yaml
+  /api/protocols/sharesToAll/{pxId}:
+    $ref: paths/api@protocols@sharesToAll@{pxId}.yaml
+  /api/protocols/shares:
+    $ref: paths/api@protocols@shares.yaml
+  /api/protocols:
+    $ref: paths/api@protocols.yaml
+  /api/protocols/eligibilities:
+    $ref: paths/api@protocols@eligibilities.yaml
+  /api/protocols/diagnoses:
+    $ref: paths/api@protocols@diagnoses.yaml
+  /api/protocols/libs:
+    $ref: paths/api@protocols@libs.yaml
+  /api/protocols/dosages:
+    $ref: paths/api@protocols@dosages.yaml
+  /api/protocols/libstubs:
+    $ref: paths/api@protocols@libstubs.yaml
+  /api/protocols/{id}:
+    $ref: paths/api@protocols@{id}.yaml
+  /api/protocols/prescriptions:
+    $ref: paths/api@protocols@prescriptions.yaml
+  /api/protocols/prescriptions/{id}:
+    $ref: paths/api@protocols@prescriptions@{id}.yaml
+  /api/protocols/{id}/prescriptions:
+    $ref: paths/api@protocols@{id}@prescriptions.yaml
+  /api/labels:
+    $ref: paths/api@labels.yaml
+  /api/labels/inserts/{lxId}:
+    $ref: paths/api@labels@inserts@{lxId}.yaml
+  /admin/product:
+    $ref: paths/admin@product.yaml
+  /admin/product/{ndc}:
+    $ref: paths/admin@product@{ndc}.yaml
+  /admin/product/spl/{ndc}:
+    $ref: paths/admin@product@spl@{ndc}.yaml
+components:
+  securitySchemes:
+    authToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+      description: Uses JWT token stored in request header.
+tags:
+  - name: User
+    description: Endpoints and models related to user management.
+  - name: Prescription
+    description: Endpoints and models related to prescription management.
+  - name: Protocol
+    description: Endpoints and models related to protocol management.
+  - name: Case
+    description: Endpoints and models related to case management.
+  - name: Promise
+    description: Endpoints and models related to promise management.

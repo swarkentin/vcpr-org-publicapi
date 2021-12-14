@@ -11,14 +11,14 @@ jobs:
 
   rebundle:
     runs-on: ubuntu-latest
-    name: Redoc Linter
+    name: OAS bundler
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: CLI bundle #not to be confused with bundle docs to generate html
-        run: npx @redocly/openapi-cli bundle src/split/openapi.yaml --output src/openapi2.yaml
+        run: npx @redocly/openapi-cli bundle src/split/openapi.yaml --output src/openapi.yaml
       - name: commit changes
-      - uses: EndBug/add-and-commit@v7
+        uses: EndBug/add-and-commit@v7
         with:
           default_author: github_actions
           message: 'rebundle src/split to src/openapi.yaml '

@@ -1,0 +1,13 @@
+required:
+  - comment
+properties:
+  userId:
+    description: set null or zero if User wishes to be anonymous
+    type: integer
+    default: null
+  public:
+    description: if false, comment is private to site managers
+    type: boolean
+    default: false
+  comment:
+    type: string

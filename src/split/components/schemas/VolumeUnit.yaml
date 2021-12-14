@@ -1,0 +1,16 @@
+description: unit of Volume
+type: string
+example: ml
+enum:
+  - pt
+  - tbsp
+  - µl
+  - nl
+  - oz
+  - dl
+  - ml
+  - qt
+  - L
+  - gal
+  - c
+  - tsp

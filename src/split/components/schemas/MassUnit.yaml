@@ -1,0 +1,13 @@
+description: unit of mass or weight
+type: string
+enum:
+  - lb
+  - t
+  - dwt
+  - gr
+  - mg
+  - mcg
+  - oz
+  - g
+  - kg
+example: kg

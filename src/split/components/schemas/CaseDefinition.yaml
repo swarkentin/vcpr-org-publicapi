@@ -1,0 +1,42 @@
+description: >-
+  information used at the time of case selection to determine whether a
+  particular protocol may be enrolled and the protocol initiated for a
+  particular animal or group of animals (the Case). The Case may be enrolled
+  with the Protocol **only** if the Case meets all requirements of the
+  CaseDefinition and none of the prohibitions. Other information may be
+  advisory, and used at the discretion of the person doing enrollment.
+type: object
+properties:
+  requireId:
+    type: boolean
+    description: the Case must include specific ID/s of animal/s to be enrolled
+    default: false
+  requireMor:
+    type: boolean
+    description: if true, the MOR enrolling the Case must be identified with a Signature
+    default: false
+  contraindications:
+    description: considerations that prohibit or suggest against use of this Protocol
+    type: string
+    format: html
+    default: ''
+    example: <p>prohibited in animals older than than 24 months</p>
+  medical:
+    description: medical considerations in selecting and implementing this Protocol
+    type: string
+    format: html
+    example: if fever is present, consider Protocol 12345 instead.
+  economic:
+    description: economic considerations in selecting and implementing this Protocol
+    type: string
+    format: html
+    default: ''
+    example: >-
+      culling should be considered as an alternative, as milk production is
+      unlikely to return to normal after treatment
+  note:
+    description: optional note
+    type: string
+    format: html
+    default: ''
+    example: <p>overcrowding may be contributing to issues</p>

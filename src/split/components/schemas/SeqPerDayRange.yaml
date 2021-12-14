@@ -1,0 +1,26 @@
+required:
+  - _type
+  - frequency
+  - minDoses
+  - maxDoses
+description: >-
+  a series of equally-spaced doses specified by the total number of doses and an
+  integer number of doses per day
+type: object
+properties:
+  _type:
+    type: string
+    enum:
+      - models.api.v1.SeqPerDayRange
+    example: models.api.v1.SeqPerDayRange
+  frequency:
+    type: integer
+    default: 1
+    example: 2
+  minDoses:
+    type: integer
+    default: 3
+  maxDoses:
+    type: integer
+    default: 1
+    example: 9

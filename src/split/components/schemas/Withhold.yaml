@@ -1,0 +1,22 @@
+description: >-
+  duration after last treatment during which some act is prohibited. Most often
+  this restricts when meat or milk may be sold for food.
+required:
+  - duration
+  - prohibition
+properties:
+  hoursMeat:
+    type: number
+    example: 22
+    description: number of hours that must pass between exposure and slaughter
+  hoursMilk:
+    type: number
+    example: 5
+    description: >-
+      number of hours that must pass between exposure and extracting milk for
+      consumption
+  note:
+    type: string
+    description: free-form text note
+    format: html
+    example: <p>improvement apparent</p>

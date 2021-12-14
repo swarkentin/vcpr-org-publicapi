@@ -1,0 +1,9 @@
+summary: User with VOR Usertype
+description: VOR test user prepopulated into testing db
+value:
+  firstname: Test
+  uname: testMOR
+  id: 2
+  userType: MOR
+  email: testMOR@dairysight.com
+  lastname: Manager

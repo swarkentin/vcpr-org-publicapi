@@ -1,0 +1,19 @@
+description: wip
+properties:
+  _type:
+    type: string
+    enum:
+      - models.api.v1.PreferredDoseData
+  animalId:
+    type: string
+    description: wip free-form text note identifying this entry
+    example: Bossie PreferredDoaseData
+  preferredDose:
+    $ref: ./DrugQuantity.yaml
+  initiationTime:
+    type: string
+    format: date-time
+    description: >-
+      wip ISO-8601-formatted datetime added by the server when the preferredDose
+      was administered ??
+    example: 2020-04-10T10:30:37Z

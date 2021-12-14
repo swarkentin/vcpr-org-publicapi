@@ -1,0 +1,13 @@
+description: wip tbd
+properties:
+  animalId:
+    type: string
+    description: free-form text description of the animal
+    example: Bossie IdData
+  initiationTime:
+    type: string
+    format: date-time
+    example: 2020-01-10T10:30:37Z
+    description: >-
+      wip ISO-8601-formatted datetime added by the server when the animal is
+      first saved

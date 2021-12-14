@@ -1,0 +1,33 @@
+description: >-
+  dose is specified as a range per unit of animal weight. The User may select
+  any value within the range (inclusive).
+required:
+  - _type
+  - range
+  - perUnit
+properties:
+  _type:
+    type: string
+    enum:
+      - models.api.v1.DoseRangeByWeightFunction
+  range:
+    $ref: ./DrugQuantityRange.yaml
+  perUnit:
+    $ref: ./MassQuantity.yaml
+example:
+  perUnit:
+    dimension: Mass
+    value: 1
+    symbol: kg
+  _type: models.api.v1.DoseRangeByWeightFunction
+  range:
+    min:
+      quantity:
+        dimension: volume
+        value: 3
+        symbol: ml
+    max:
+      quantity:
+        dimension: volume
+        value: 2
+        symbol: ml

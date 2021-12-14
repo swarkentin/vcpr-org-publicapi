@@ -1,0 +1,32 @@
+type: array
+description: >-
+  a class of animals recognized by the FDA. In FDA literature this is called a
+  "species", which conflicts with the typical usage of that word. "fdaSpecies"
+  in the labeling domain usually corresponds with "Eligibility" in the Protocol
+  domain.
+items:
+  type: string
+  enum:
+    - beef_cattle
+    - veal
+    - dairy_cattle
+    - cats
+    - dogs
+    - horses
+    - fish
+    - goats
+    - sheep
+    - chickens
+    - turkeys
+    - swine
+    - catfish
+    - gamebirds
+    - llamas
+    - salmon
+    - emus
+    - bison
+    - other
+    - unidentified
+  example:
+    - beef_cattle
+    - dairy_cattle

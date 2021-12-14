@@ -1,0 +1,11 @@
+description: a single dose
+required:
+  - _type
+type: object
+properties:
+  _type:
+    type: string
+    description: wip
+    enum:
+      - models.api.v1.SeqSingleDose
+    example: models.api.v1.SeqSingleDose

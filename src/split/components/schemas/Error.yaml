@@ -1,0 +1,26 @@
+type: object
+description: error response per RFC 7807
+required:
+  - title
+  - status
+properties:
+  errorType:
+    type: string
+    description: a URI identifier that categorizes the error
+    example: /errors/incorrect-user-pass
+  title:
+    type: string
+    description: A brief, human-readable message about the error
+    example: incorrect username or password
+  status:
+    type: integer
+    description: HTTP status code
+    example: 404
+  detail:
+    type: string
+    description: a human-readable description of the specific error
+    example: Authentication failed due to incorrect username or password.
+  instance:
+    type: string
+    description: a URI that identifies the specific occurrence of the error
+    example: /login/log/abc123

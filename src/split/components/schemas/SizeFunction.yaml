@@ -1,0 +1,7 @@
+description: function to calculate dose size
+oneOf:
+  - $ref: ./FixedDoseFunction.yaml
+  - $ref: ./DoseByWeightFunction.yaml
+  - $ref: ./LoadingDoseByWeightFunction.yaml
+  - $ref: ./DoseRangeFunction.yaml
+  - $ref: ./DoseRangeByWeightFunction.yaml

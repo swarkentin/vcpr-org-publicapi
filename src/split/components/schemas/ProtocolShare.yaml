@@ -1,0 +1,18 @@
+description: share a protocol with another VOR User
+type: object
+properties:
+  px-id:
+    type: integer
+    description: the `id` identifier of a Protocol
+    example: 1
+  share-to:
+    type: integer
+    description: ID f a VOR User who may use the Protocol identified by pxId
+    example: 2
+  clonable:
+    description: >-
+      True/False switch to indicate whether User identified by `shareTo` has
+      permission to create a copy of this protocol and own the clone
+    type: boolean
+    default: false
+    example: true

@@ -1,0 +1,21 @@
+get:
+  operationId: getLibraryPxes
+  tags:
+    - Protocol
+  summary: get library pxes
+  description: >-
+    This endpoint returns all the Protocols owned by, or shared with, the
+    current User.
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            description: array of protocol stubs from public library
+            type: object
+            properties:
+              pxes:
+                type: array
+                items:
+                  $ref: ../components/schemas/Px.yaml

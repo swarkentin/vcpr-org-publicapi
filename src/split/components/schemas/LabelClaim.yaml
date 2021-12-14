@@ -1,0 +1,75 @@
+properties:
+  id:
+    type: integer
+    description: unique identifier for label
+    example: 1
+  nada:
+    type: string
+    description: wip
+    example: 200-308
+  eligibility:
+    type: string
+    description: wip free-form description of species/variant eligibility
+    example: horses
+  exId:
+    type: integer
+    description: wip
+    example: 2500
+  exCode:
+    type: string
+    description: wip
+    example: wip
+  fdaSpecies:
+    $ref: ./fdaSpecies.yaml
+  diagnosis:
+    type: string
+    description: wip
+    example: pain (colic), symptomatic treatment
+  dxId:
+    type: integer
+    description: wip
+    example: 2002
+  dxCode:
+    type: string
+    description: wip
+    example: '2002'
+  product:
+    type: string
+    description: product trade name
+    example: Prevail™ Flunixin Meglumine Injection
+  productId:
+    type: integer
+    description: unique identifier for the product described
+    example: 1315018
+  sequenceFunction:
+    $ref: ./SequenceFunction.yaml
+  sizeFunction:
+    $ref: ./SizeFunction.yaml
+  _dose:
+    type: string
+    description: free-form text note on dosage
+    example: 3.0 ml per kg repeat in 6 hours and again in 24 hours
+  dosageId:
+    type: integer
+    description: wip
+    example: wip
+  route:
+    type: string
+    description: wip
+    example: intr-corporeal
+  raId:
+    type: integer
+    description: wip
+    example: 21
+  wtMeatHrs:
+    description: wip
+    type: integer
+    example: 22
+  wtMilkHrs:
+    type: integer
+    description: wip
+    example: 5
+  wtNote:
+    type: string
+    description: wip
+    example: wip

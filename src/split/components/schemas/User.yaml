@@ -1,0 +1,33 @@
+description: a User of a specific `usertype` class
+properties:
+  id:
+    type: integer
+    description: unique identifier for the User
+    example: 1
+  uname:
+    description: username
+    type: string
+    example: testVOR
+  userType:
+    $ref: ./UserType.yaml
+  email:
+    type: string
+    format: email
+    example: testVOR@dairysight.com
+  firstname:
+    type: string
+    example: Test
+  lastname:
+    type: string
+    example: Vet
+  suffix:
+    type: string
+    description: degree or qualifier following the name
+    example: DVM
+required:
+  - id
+  - userType
+  - email
+  - firstname
+  - lastname
+  - suffix

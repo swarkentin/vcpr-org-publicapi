@@ -1,0 +1,22 @@
+post:
+  operationId: validateDosage
+  tags:
+    - Protocol
+  summary: validate a Dosage and return `_dose`
+  description: This endpoint returns the dose data.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/DoseFunctions.yaml
+  responses:
+    '200':
+      description: _dose
+      content:
+        application/json:
+          schema:
+            properties:
+              _dose:
+                type: string
+                description: string representation of submitted Dosage

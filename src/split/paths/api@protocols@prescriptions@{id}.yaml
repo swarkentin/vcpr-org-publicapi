@@ -1,0 +1,27 @@
+get:
+  operationId: getPrescription
+  tags:
+    - Prescription
+  summary: get prescription by ID
+  description: This endpoint retrieves a Prescription by `prescription.id`.
+  parameters:
+    - name: id
+      in: path
+      schema:
+        type: integer
+      required: true
+      description: Prescription ID key
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              prescription:
+                $ref: ../components/schemas/Prescription.yaml
+        text/html:
+          schema:
+            properties:
+              prescription:
+                $ref: ../components/schemas/Prescription.yaml

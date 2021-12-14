@@ -1,0 +1,59 @@
+get:
+  operationId: getUser
+  tags:
+    - User
+  summary: get user
+  description: >-
+    This endpoint returns User data as specified by User `id`. Any User may get
+    their own data. A VOR may get User data of Users in a `CLIENT` relationship
+    with that VOR. A SAOR may get data of any User.
+  parameters:
+    - name: id
+      in: path
+      schema:
+        type: integer
+      required: true
+      description: User ID key
+      example: 2
+  responses:
+    '200':
+      description: User
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              user:
+                $ref: ../components/schemas/User.yaml
+  x-postman-tests:
+    description: |
+      - Tests 1. 200 response to valid credentials
+    code: >
+      pm.test('200 response to valid credentials', function () {
+      pm.response.to.have.status(200); });
+delete:
+  operationId: deleteUser
+  tags:
+    - User
+  summary: delete user
+  description: >-
+    This endpoint supports the (reversible) "delete" of a User by setting
+    user.status to `REMOVED`. Removed Users are not visible in normal queries.
+  parameters:
+    - name: id
+      in: path
+      schema:
+        type: integer
+      required: true
+      description: User ID key
+  responses:
+    '200':
+      description: User deleted
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              deleted:
+                type: integer
+                description: number of Users deleted

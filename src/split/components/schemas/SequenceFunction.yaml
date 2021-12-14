@@ -1,0 +1,7 @@
+description: function to calculate times for a series of doses
+oneOf:
+  - $ref: ./SeqSingleDose.yaml
+  - $ref: ./SeqPerDay.yaml
+  - $ref: ./SeqPerDayRange.yaml
+  - $ref: ./SeqInterval.yaml
+  - $ref: ./SeqSeries.yaml

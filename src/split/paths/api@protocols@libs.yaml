@@ -1,0 +1,21 @@
+get:
+  operationId: getLibraryProtocols
+  tags:
+    - Protocol
+  summary: get library protocols
+  description: >-
+    This endpoint retrieves all protocols owned by, or shared with, the current
+    User.
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            description: array of Protocols from public library
+            type: object
+            properties:
+              protocols:
+                type: array
+                items:
+                  $ref: ../components/schemas/Protocol.yaml
