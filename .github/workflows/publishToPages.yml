@@ -1,8 +1,10 @@
-name: Generate docs
+name: Generate docs and publish to GH Pages
 on:
-  push:
+  push: #generate docs when changes are pushed to default branch for the file src/openAPI.yml
     branches:
       - develop
+    paths:
+      - "src/openapi.yml"
 
 jobs:
 
@@ -13,48 +15,42 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      #should increment version, maybe sed openapi.yaml
-      # better yet, trigger on release and keep multiple release versions somehow ...
+      - name: Post to a Slack channel
+        id: slack
+        uses: slackapi/slack-github-action@v1.16.0
+        with:
+          channel-id: 'C02PFCP98A1'
+          slack-message: "creating Redoc documentation on ${{github.ref_name}}"
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
-#      - name: Slack Notify start
-#        uses: rtCamp/action-slack-notify@v2
-#        env:
-#          SLACK_COLOR: warning
-#          SLACK_MESSAGE: 'STARTED: Build of Public  API pages'
-#          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-#          SLACK_FOOTER: ""
-#          SLACK_USERNAME: Github Action
       - name: redoc-cli bundle
         uses: seeebiii/redoc-cli-github-action@v10
         with:
           args: 'bundle src/openapi.yaml -o docs/index.html '  
 
-# if success
-          
       - name: Deploy
+        if: success()
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           branch: gh-pages
           folder: docs       
 
+      - name: Notify slack success
+        if: success()
+        uses: slackapi/slack-github-action@v1.16.0
+        with:
+          channel-id: 'C02PFCP98A1'
+          slack-message: ':white_check_mark: successfully completed building and deploying API docs on ${{github.repository}}'
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
+      - name: Notify slack failure
+        if: failure()
+        uses: slackapi/slack-github-action@v1.16.0
+        with:
+          channel-id: 'C02PFCP98A1'
+          slack-message: ':red_circle: failed building and deploying API docs on ${{github.repository}}'
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
-#      - name: Notify slack success
-#        if: success()
-#        uses: rtCamp/action-slack-notify@v2
-#        env:
-#          SLACK_MESSAGE: 'SUCCESS: Docker image ${{steps.set_dockerTag.outputs.tag}} created'
-#          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-#          SLACK_FOOTER: ""
-#          SLACK_USERNAME: Github Action
-#          SLACK_COLOR: ${{job.status}}
-#
-#      - name: Notify slack fail
-#        if: failure()
-#        uses: rtCamp/action-slack-notify@v2
-#        env:
-#          SLACK_COLOR: danger
-#          SLACK_MESSAGE: 'FAILURE '
-#          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-#          SLACK_FOOTER: ""
-#          SLACK_USERNAME: Github Action
