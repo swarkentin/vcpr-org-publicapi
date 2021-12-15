@@ -16,3 +16,7 @@ properties:
     type: string
     description: signature for file policy object
     example: eyJleHBpcnkiOjE1Nzg3NTY2MDIsIm1heFNpemUiOjEwMDAwMDAwfQ==
+x-postman-variables:
+  - type: save
+    name: token
+    path: .token
