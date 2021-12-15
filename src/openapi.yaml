@@ -1109,6 +1109,10 @@ components:
           type: string
           description: signature for file policy object
           example: eyJleHBpcnkiOjE1Nzg3NTY2MDIsIm1heFNpemUiOjEwMDAwMDAwfQ==
+      x-postman-variables:
+        - type: save
+          name: token
+          path: .token
     Error:
       type: object
       description: error response per RFC 7807
