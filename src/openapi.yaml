@@ -1190,8 +1190,8 @@ components:
           example: 2
         clonable:
           description: >-
-            True/False switch to indicate whether User identified by `shareTo`
-            has permission to create a copy of this protocol and own the clone
+            whether User identified by `shareTo`
+            has permission to create a clone and modify the clone
           type: boolean
           default: false
           example: true
@@ -1229,9 +1229,6 @@ components:
       description: >-
         duration after last treatment during which some act is prohibited. Most
         often this restricts when meat or milk may be sold for food.
-      required:
-        - duration
-        - prohibition
       properties:
         hoursMeat:
           type: number
@@ -1549,12 +1546,16 @@ components:
         - value
         - symbol
       type: object
+      description: a quantity of weight or mass
       properties:
         dimension:
+          description: must always be "Mass"
           type: string
           enum:
             - Mass
+          example: Mass
         value:
+          description: quantity of units specified by symbol
           type: number
           minimum: 0
           default: 1
@@ -1588,12 +1589,13 @@ components:
       properties:
         dimension:
           type: string
-          description: wip
+          description: must always be "Volume"
           example: Volume
           enum:
             - Volume
         value:
           type: number
+          description: quantity of units specified by symbol
           minimum: 0
           example: 3
           exclusiveMinimum: true
@@ -1615,12 +1617,14 @@ components:
       type: object
       properties:
         dimension:
+          description: must always be Dimensionless
           type: string
           example: Dimensionless
           enum:
             - Dimensionless
         value:
           type: number
+          description: number of units specified by symbol
           minimum: 0
           example: 3
           exclusiveMinimum: true
@@ -1650,8 +1654,10 @@ components:
       properties:
         _type:
           type: string
+          description: class of sizeFunction
           enum:
             - models.api.v1.FixedDoseFunction
+          example: models.api.v1.FixedDoseFunction
         dose:
           $ref: '#/components/schemas/DrugQuantity'
       example:
@@ -1671,8 +1677,10 @@ components:
       properties:
         _type:
           type: string
+          description: class of sizeFunction
           enum:
             - models.api.v1.DoseByWeightFunction
+          example: models.api.v1.DoseByWeightFunction
         dose:
           $ref: '#/components/schemas/DrugQuantity'
         perUnit:
@@ -1701,8 +1709,10 @@ components:
       properties:
         _type:
           type: string
+          description: class of sizeFunction
           enum:
             - models.api.v1.DoseByWeightFunction
+          example: models.api.v1.DoseByWeightFunction
         firstDose:
           $ref: '#/components/schemas/DrugQuantity'
         followDose:
@@ -1757,6 +1767,7 @@ components:
       properties:
         _type:
           type: string
+          description: class of sizeFunction
           enum:
             - models.api.v1.DoseRangeFunction
           example: models.api.v1.DoseRangeFunction
@@ -1774,8 +1785,10 @@ components:
       properties:
         _type:
           type: string
+          description: class of sizeFunction
           enum:
             - models.api.v1.DoseRangeByWeightFunction
+          example: models.api.v1.DoseRangeByWeightFunction
         range:
           $ref: '#/components/schemas/DrugQuantityRange'
         perUnit:
@@ -1817,7 +1830,7 @@ components:
       type: object
       properties:
         code:
-          description: code name
+          description: short code name
           type: string
           maxLength: 15
           example: Example-code
@@ -1842,9 +1855,8 @@ components:
       properties:
         id:
           description: >-
-            key value created by the database. If `id` is null or not present, a
-            new database record will be created. If 'id' matches an existing
-            record in the db, that record will be updated instead.
+            If null, a
+            new database record will be created, otherwise updated,
           type: string
           example: B-123
         ownerId:
@@ -1898,14 +1910,15 @@ components:
           items:
             $ref: '#/components/schemas/Tag'
         note:
+          description: general note about the treatment
           type: string
           format: html
           example: <p>a free-form note</p>
         amduca:
           $ref: '#/components/schemas/AmducaClass'
-        sequenceFunction:
+        sequencefunction:
           $ref: '#/components/schemas/sequenceFunction'
-        sizeFunction:
+        sizefunction:
           $ref: '#/components/schemas/sizeFunction'
     Diagnosis:
       description: >-
@@ -1932,8 +1945,7 @@ components:
           example: Pain/inflammation (musculoskeletal), treatment
     Promise:
       description: >-
-        An act which must be executed on or after enrollment of a Case to a
-        Prescription
+        An act which must be executed on or after enrollment of a Case to a Prescription
       type: object
       required:
         - _type
@@ -1969,6 +1981,7 @@ components:
           description: question to be answered by client
           type: string
           format: html
+          example: Is this animal still in the herd?
         when:
           description: ISO-8601 duration from initiation when promise must be fulfilled
           type: string
@@ -1978,6 +1991,7 @@ components:
         response:
           description: data supplied by the client to fulfill promise
           type: string
+          example: something
         responseBy:
           description: User ID of person supplying response data
           type: integer
@@ -2002,8 +2016,12 @@ components:
       properties:
         key:
           type: string
+          description: key to this item
+          example: rating
         value:
           type: string
+          description: vallue associated with key
+          example: good
     Protocol:
       description: a veterinary treatment protocol
       type: object
@@ -2020,6 +2038,7 @@ components:
             new record will be created.
           type: integer
           format: int64
+          example: 12345
         ownerId:
           description: the `id` key of the VOR User who owns the protocol.
           type: integer
@@ -2198,25 +2217,22 @@ components:
             switch to determine whether this Protocol may be shared with all VOR
             users
     Prescription:
-      required:
-        - size
-        - unit
       type: object
       properties:
         rxId:
           type: string
-          description: wip
+          description: UUID identifying the prescription
           example: gG3pBCR1GCMKm89c
         protocol:
           $ref: '#/components/schemas/Protocol'
         vorId:
           type: integer
-          description: wip
-          example: aZ3pBCR1GCMKm89c
+          description: id of VOR prescribing
+          example: 1245
         morId:
           type: integer
-          description: wip
-          example: tP3pBCR1GCMKm89c
+          description: id of MOR prescribed to
+          example: 69854
         refills:
           type: integer
           description: number of repeats for this script
@@ -2236,32 +2252,35 @@ components:
           example: 2021-08-10T10:30:37Z
         metadata:
           type: string
-          description: wip
-          example: wip
+          description: additional data
+          example: " "
         status:
           type: string
-          description: wip
-          example: >-
-            wip - NB this may have a status of DEPRECTATED, but the property
-            itself is not!
+          description: status code
+          example: DEPRECATED
     PrescriptionRequest:
       description: a Prescription request, before it is recorded and timestamped
-      required:
-        - size
-        - unit
       type: object
       properties:
         protocol:
           $ref: '#/components/schemas/Protocol'
         morId:
           type: integer
+          description: id of MOR prescribed to
+          example: 22
         expiration:
           type: string
           format: date-time
+          description: expiration date
+          example: 2021-08-10T10:30:37Z
         metadata:
           type: string
+          description: additional data
+          example: " "
         status:
           type: string
+          description: prescription status
+          example: PRESCRIBED
       example:
         protocol:
           ownerId: 0
@@ -2352,7 +2371,7 @@ components:
           example: 1
         nada:
           type: string
-          description: wip
+          description: FDA NADA or ANADA number
           example: 200-308
         eligibility:
           type: string
@@ -2360,25 +2379,25 @@ components:
           example: horses
         exId:
           type: integer
-          description: wip
+          description: id key for Eligibility
           example: 2500
         exCode:
           type: string
-          description: wip
+          description: code for Eligibility
           example: wip
         fdaSpecies:
           $ref: '#/components/schemas/FDAspecies'
         diagnosis:
           type: string
-          description: wip
+          description: label diagnosis
           example: pain (colic), symptomatic treatment
         dxId:
           type: integer
-          description: wip
+          description: id of label diagnosis
           example: 2002
         dxCode:
           type: string
-          description: wip
+          description: code of label diagnosis
           example: '2002'
         product:
           type: string
@@ -2398,28 +2417,28 @@ components:
           example: 3.0 ml per kg repeat in 6 hours and again in 24 hours
         dosageId:
           type: integer
-          description: wip
+          description: not sure about this
           example: wip
         route:
           type: string
-          description: wip
+          description: route of administration
           example: intr-corporeal
         raId:
           type: integer
-          description: wip
+          description: id of route of administration
           example: 21
         wtMeatHrs:
-          description: wip
+          description: meat withholding in hours
           type: integer
           example: 22
         wtMilkHrs:
           type: integer
-          description: wip
+          description: milk withholding in hours
           example: 5
         wtNote:
           type: string
-          description: wip
-          example: wip
+          description: note on withholding
+          example: not for dairy animals
     GreenbookHeader:
       required:
         - ndc
@@ -2437,27 +2456,49 @@ components:
       properties:
         ndc:
           type: string
+          description: FDA NDC number
+          example: 0010-3495
         proprietery:
           type: string
+          description: proprietary name
+          example: Bio-Mycin 200
         nonProp:
+          description: generic name
           type: string
+          example: OXYTETRACYCLINE
         ingredients:
           type: string
+          description: ingredients
+          example: OXYTETRACYCLINE
         labeler:
           type: string
+          description: name of labeler
+          example: Boehringer Ingelheim Vetmedica, Inc.
         productType:
           type: string
+          description: type of product
+          example: OTC ANIMAL DRUG
         marketCat:
           type: string
+          description: market category
+          example: ANADA
         appNumber:
           type: string
+          description: application number
+          example: ANADA200008
         link:
           type: string
+          description: URL link
+          example: https://www.accessdata.fda.gov/spl/data/c9491ada-6813-4548-8872-57bb38a58feb/c9491ada-6813-4548-8872-57bb38a58feb.xml
         status:
           type: integer
+          description: FDA status
+          example: 0
         lastChanged:
           type: string
           format: date-time
+          description: date of last label change
+          example: 2020-05-16T16:19:12Z
   responses:
     Unauthorized:
       description: 401 – Users must log in
