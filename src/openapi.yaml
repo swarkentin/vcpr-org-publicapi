@@ -1153,12 +1153,16 @@ components:
           description: set null or zero if User wishes to be anonymous
           type: integer
           default: null
+          example: 123
         public:
           description: if false, comment is private to site managers
           type: boolean
           default: false
+          example: true
         comment:
           type: string
+          description: comment from a user
+          example: this is wonderful
     Relationship:
       type: string
       description: >
@@ -1973,6 +1977,7 @@ components:
         name:
           description: promise name for the doctor
           type: string
+          example: Still in herd? 14d
         descrip:
           description: promise description for the client
           type: string
@@ -2468,7 +2473,7 @@ components:
           example: OXYTETRACYCLINE
         ingredients:
           type: string
-          description: ingredients
+          description: ingredient or ingredients
           example: OXYTETRACYCLINE
         labeler:
           type: string
@@ -2488,7 +2493,7 @@ components:
           example: ANADA200008
         link:
           type: string
-          description: URL link
+          description: public link to fda label
           example: https://www.accessdata.fda.gov/spl/data/c9491ada-6813-4548-8872-57bb38a58feb/c9491ada-6813-4548-8872-57bb38a58feb.xml
         status:
           type: integer
