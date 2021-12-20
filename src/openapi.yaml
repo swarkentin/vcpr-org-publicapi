@@ -1006,6 +1006,9 @@ components:
       in: header
       name: X-Auth-Token
       description: Uses JWT token stored in request header.
+      x-postman-variables:
+        - type: load
+          name: token
   schemas:
     UserType:
       type: string
