@@ -74,7 +74,4 @@ Promise
 
 Warning -- construction is right BUT do not hit the production server with this!
 
-mapi run \
-     VCPR1 100 "http://api.vcpr.org" \
-     --url "https://test.VCPR.ORG" \
-     --interactive
+mapi run  VCPR1 100 "https://raw.githubusercontent.com/VCPR-ORG/publicAPI/develop/src/openapi.yaml" --url "https://test.VCPR.ORG"   --interactive
