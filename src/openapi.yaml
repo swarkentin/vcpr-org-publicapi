@@ -41,6 +41,10 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - apikey
+                - identifier
+                - password
               properties:
                 apikey:
                   type: string
@@ -57,12 +61,6 @@ paths:
                     User password any characters or numbers allowed, with a
                     minumum length of 10.
                   minLength: 10
-            examples:
-              user:
-                value:
-                  apikey: w32r92i235jrw3r
-                  identifier: user@test.com
-                  password: some-secure-password
       responses:
         '200':
           description: Success – logged in
