@@ -1,4 +1,4 @@
-name: Generate docs and publish to GH Pages
+name: Generate and run contract tests
 on:
   push:
     branches:
@@ -9,12 +9,8 @@ on:
 
 jobs:
 
-  serve:
-    runs-on: ubuntu-latest
-
   postman:
     runs-on: ubuntu-latest
-
 
     steps:
       - name: Checkout
