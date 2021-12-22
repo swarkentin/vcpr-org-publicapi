@@ -1,20 +1,17 @@
-name: Generate docs and publish to GH Pages
+name: Generate and run contract tests
 on:
+  workflow_dispatch:
   push:
     branches:
       - develop
     paths:
       - "src/openapi.yml"
-  workflow_dispatch:
+
 
 jobs:
 
-  serve:
-    runs-on: ubuntu-latest
-
   postman:
     runs-on: ubuntu-latest
-
 
     steps:
       - name: Checkout
