@@ -23,7 +23,6 @@
                   "        (new Function(yaml))();\r",
                   "        const schema = jsyaml.safeLoad(pm.response.text());\r",
                   "  \r",
-                  "        console.log(schema);\r",
                   "        pm.collectionVariables.set('coll-schema', JSON.stringify(schema));\r",
                   "     \r",
                   "     postman.setNextRequest('Verify Component Adherence');\r",
@@ -396,7 +395,6 @@
                 "exec": [
                   "console.log(\"buildSchema\")\r",
                   "const schema = JSON.parse(pm.collectionVariables.get('coll-schema'));\r",
-                  "console.log(schema);\r",
                   "\r",
                   "let schemaTests = [];    \r",
                   "for(let prop in schema.paths){\r",
