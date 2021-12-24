@@ -75,6 +75,71 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "Set Server",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const schema = JSON.parse(pm.collectionVariables.get('coll-schema'));\r",
+                  "const server = pm.environment.get('env-server');\r",
+                  "\r",
+                  "pm.test('Environment has test server defined', function () {\r",
+                  "    pm.expect(server).to.not.be.undefined;\r",
+                  "});\r",
+                  "\r",
+                  "pm.test('Schema has server/baseUrl defined', function () {\r",
+                  "    const servers = schema.servers;\r",
+                  "    pm.expect(servers).to.not.be.undefined;\r",
+                  "    const serverToTest = servers.find(s => s.description.toLowerCase() == server.toLowerCase());\r",
+                  "    pm.expect(serverToTest).to.not.be.undefined;\r",
+                  "\r",
+                  "    pm.expect(serverToTest).to.have.property('url');\r",
+                  "    pm.collectionVariables.set('coll-baseUrl', serverToTest.url);\r",
+                  "});\r",
+                  "\r",
+                  "const runComponentTests = pm.environment.get('env-runComponentTests') == 'true';\r",
+                  "if(!runComponentTests){   \r",
+                  "    const runContractTests = pm.environment.get('env-runContractTests') == 'true';\r",
+                  "    if(runContractTests){\r",
+                  "        postman.setNextRequest('Build Schema Tests');\r",
+                  "    } else {\r",
+                  "        postman.setNextRequest('More APIs to Process?');\r",
+                  "    }   \r",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://postman-echo.com/delay/0",
+              "protocol": "https",
+              "host": [
+                "postman-echo",
+                "com"
+              ],
+              "path": [
+                "delay",
+                "0"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -336,25 +401,17 @@
                   "let schemaTests = [];    \r",
                   "for(let prop in schema.paths){\r",
                   "    const pathName = prop;  \r",
-                  "  \r",
-                  "    //todo exlude x-\r",
                   "    console.log(pathName)  \r",
-                  "      console.log(pathName.toLowerCase().startsWith(\"x-\"))\r",
                   "    let path = {\r",
                   "        path: `${pm.collectionVariables.get('coll-baseUrl')}${pathName}`,\r",
                   "        parameters: schema.paths[prop].parameters,        \r",
                   "    };\r",
                   "\r",
-                  "console.log(\"2\")\r",
                   "    for(let method in schema.paths[prop]){\r",
-                  "            console.log(method) \r",
-                  "              console.log(method.toLowerCase().startsWith(\"x-\")) \r",
-                  "              \r",
+                  "            console.log(method)              \r",
                   "        if(method.toLowerCase() == 'parameters' || method.toLowerCase().startsWith(\"x-\") ){\r",
-                  "            //   if(method.toLowerCase() == 'parameters' || isMockEndpoint(schema.paths[prop][method])){\r",
                   "            continue;\r",
                   "        }       \r",
-                  "\r",
                   "        let currentPath = _.cloneDeep(path);\r",
                   "        currentPath.method = method.toUpperCase(); \r",
                   "        let pathMethod = schema.paths[prop][method];\r",
@@ -362,29 +419,21 @@
                   "        if(securityExtension && pathMethod[securityExtension] && pathMethod[securityExtension].length > 0){\r",
                   "            currentPath.allowedRole = pathMethod[securityExtension][0];\r",
                   "        }\r",
-                  "\r",
                   "        const expectedResponses = getExpectedResponses(pathMethod);\r",
                   "        currentPath.responses = expectedResponses;\r",
-                  "console.log(\"3\")\r",
                   "        if(pathMethod.requestBody){\r",
                   "            let bodyModel;\r",
                   "            if(pathMethod.requestBody.content['application/json'].schema.$ref){\r",
-                  "                console.log(\"4\")\r",
                   "                bodyModel = getSchemaReference(schema, pathMethod.requestBody.content['application/json'].schema.$ref);\r",
                   "            }\r",
                   "            else {\r",
-                  "                console.log(\"5\")\r",
                   "                bodyModel = pathMethod.requestBody.content['application/json'].schema;\r",
-                  "                    console.log(\"6\") \r",
                   "            }\r",
                   "       console.log(bodyModel)           \r",
                   "            const models = buildModels(schema, bodyModel);\r",
-                  "      console.log(models) // []\r",
                   "            const mutations = buildModelMutations(models);\r",
-                  "     console.log(mutations) //EMPTY\r",
                   "            mutations.forEach((mutation) => {\r",
                   "                let schemaTest = _.cloneDeep(currentPath);\r",
-                  "                     console.log(\"8\")\r",
                   "                Object.assign(schemaTest, mutation);\r",
                   "                schemaTest.name = `${schemaTest.method} - ${pathName} - ${schemaTest.description} - SUCCESS: ${schemaTest.success}`;\r",
                   "                schemaTests.push(schemaTest);\r",
@@ -397,7 +446,6 @@
                   "        }\r",
                   "    }\r",
                   "}\r",
-                  "console.log(\"X\")\r",
                   "pm.collectionVariables.set('coll-schemaTests', JSON.stringify(schemaTests));\r",
                   "\r",
                   "//\r",
@@ -592,16 +640,7 @@
                   "        }\r",
                   "    return responses;\r",
                   "}\r",
-                  "\r",
-                  "function isMockEndpoint(pathMethod){\r",
-                  "    let isMock = false;\r",
-                  "    if(pathMethod && pathMethod['x-amazon-apigateway-integration'] && pathMethod['x-amazon-apigateway-integration'].type \r",
-                  "        && pathMethod['x-amazon-apigateway-integration'].type.toLowerCase() == 'mock') {\r",
-                  "        isMock = true;\r",
-                  "    }\r",
-                  "\r",
-                  "    return isMock;\r",
-                  "}"
+                  ""
                 ],
                 "type": "text/javascript"
               }
@@ -651,7 +690,7 @@
               "script": {
                 "exec": [
                   "const url = require('url');\r",
-                  "\r",
+                  "console.log(\"url\")\r",
                   "const schema = JSON.parse(pm.collectionVariables.get('coll-schema'));\r",
                   "let schemaTests = JSON.parse(pm.collectionVariables.get('coll-schemaTests'));\r",
                   "\r",
@@ -769,6 +808,7 @@
               "script": {
                 "exec": [
                   "const schemaTests = JSON.parse(pm.collectionVariables.get('coll-schemaTests'));\r",
+                  "console.log(schemaTests)\r",
                   "if(schemaTests.length > 0){\r",
                   "    postman.setNextRequest('Test Request');\r",
                   "}\r",
@@ -1041,36 +1081,6 @@
           ""
         ]
       }
-    }
-  ],
-  "variable": [
-    {
-      "key": "coll-apiIds",
-      "value": ""
-    },
-    {
-      "key": "coll-apiId",
-      "value": ""
-    },
-    {
-      "key": "coll-schemaId",
-      "value": ""
-    },
-    {
-      "key": "coll-versionId",
-      "value": ""
-    },
-    {
-      "key": "coll-schema",
-      "value": ""
-    },
-    {
-      "key": "coll-baseUrl",
-      "value": ""
-    },
-    {
-      "key": "coll-schemaTests",
-      "value": ""
     }
   ]
 }
