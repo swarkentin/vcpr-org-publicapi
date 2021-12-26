@@ -75,7 +75,7 @@ paths:
         '400':
           description: login attempt failed
           content:
-            application/problem+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/Error'
     get:
@@ -98,13 +98,7 @@ paths:
         '400':
           description: failed to retrieve User
           content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '401':
-          description: password or identifier mismatch
-          content:
-            application/problem+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/Error'
   /api/users:
