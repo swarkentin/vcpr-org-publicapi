@@ -24,6 +24,7 @@ paths:
   /api/users/logins:
     post:
       operationId: userLogin
+      x-no-test: true
       tags:
         - User
       security: []
@@ -1115,7 +1116,7 @@ components:
         status:
           type: integer
           description: HTTP status code
-          example: 404
+          example: 400
         detail:
           type: string
           description: a human-readable description of the specific error
