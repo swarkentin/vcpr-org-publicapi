@@ -53,15 +53,18 @@ paths:
                     An API key assigned to an application for access to this
                     API. To request an API key please contact the system
                     administrator.
+                  example: t0CGzpQ4cgu1OBy44sBt
                 identifier:
                   type: string
                   description: '`User.Username`, normally the same as `User.email`'
+                  example: testVOR
                 password:
                   type: string
                   description: >-
                     User password any characters or numbers allowed, with a
                     minumum length of 10.
-                  minLength: 10
+                  minLength: 6
+                  example: tVpass
       responses:
         '200':
           description: Success – logged in
@@ -70,13 +73,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/SuccessfulLogin'
         '400':
-          description: failed to retrieve User
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '401':
-          description: password or identifier mismatch
+          description: login attempt failed
           content:
             application/problem+json:
               schema:
