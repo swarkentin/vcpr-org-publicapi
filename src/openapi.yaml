@@ -80,23 +80,6 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/Error'
-      x-postman-tests:
-        description: >
-          - Side effects Saves the returned body to the postman environment,
-           token -> `token`; logged-in user -> `user`.
-          - Tests 1. 200 response to valid credentials 2. returns user 3. save
-          token and user to env
-        code: >
-          pm.test('200 response to valid credentials', function () {
-          pm.response.to.have.status(200);}); pm.test('Returns TestVOR user',
-          function () {
-          pm.expect(pm.response.json().user.uname).to.eql('testVOR');});
-          pm.test('save the token to env.token', function () {
-          pm.environment.set('token', pm.response.json().token);});
-          pm.test('save user too', function () { pm.environment.set('user',
-          JSON.stringify(pm.response.json().user));}); pm.test('token in
-          response matches token in environment', function () {
-          pm.expect(pm.response.json().token).to.eql(pm.environment.get('token'));});
     get:
       operationId: userRenewToken
       tags:
@@ -894,7 +877,7 @@ paths:
           function () { pm.response.to.have.status(200);}); pm.test("label
           insert 1028016 is Bio-Mycin", function () {
           pm.expect(pm.response.json().labelInsert).to.include("Bio-Mycin");});
-  /admin/product:
+  /api/admin/product:
     get:
       operationId: getGbdHeaderArrayByNDC
       tags:
@@ -931,7 +914,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/GreenbookHeader'
-  /admin/product/{ndc}:
+  /api/admin/product/{ndc}:
     get:
       operationId: getGbdHeaderByNDC
       tags:
@@ -957,7 +940,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GreenbookHeader'
-  /admin/product/spl/{ndc}:
+  /api/admin/product/spl/{ndc}:
     get:
       operationId: getGbdLinkByNDC
       tags:

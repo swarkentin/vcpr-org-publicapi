@@ -32,6 +32,7 @@ jobs:
           apiKey: ${{ secrets.POSTMANKEY }}
           collection: tests/postman_collection.json
           environment: tests/postman_environment.json
+          envVar: '[{ "key": "env-TESTVOR_CREDENTIALS", "value": ${{ secrets.TESTVOR_CREDENTIALS }} }]'
       #collection and env sourced from https://github.com/allenheltondev/postman-contract-test-generator
       #a Postman meta-collection that uses postman scripts to generate tests on-the-fly from an OAS file
 

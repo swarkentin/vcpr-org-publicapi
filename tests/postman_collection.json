@@ -23,10 +23,9 @@
                   "        (new Function(yaml))();\r",
                   "        const schema = jsyaml.safeLoad(pm.response.text());\r",
                   "  \r",
-                  "        console.log(schema);\r",
                   "        pm.collectionVariables.set('coll-schema', JSON.stringify(schema));\r",
                   "     \r",
-                  "     postman.setNextRequest('Verify Component Adherence');\r",
+                  "     postman.setNextRequest('Set Server');\r",
                   "    }\r",
                   "    catch(err){\r",
                   "        console.log(err);\r",
@@ -48,10 +47,10 @@
               "script": {
                 "exec": [
                   " const schemaURL = pm.environment.get('env-OASyaml');",
-                  "        console.log(schemaURL);",
+                  " console.log(\"loading OAS from \" + schemaURL);",
                   " pm.request.url = schemaURL",
                   "    pm.request.name = 'getting OAS';",
-                  "    postman.setNextRequest(null);",
+                  "",
                   ""
                 ],
                 "type": "text/javascript"
@@ -83,8 +82,8 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "const schema = JSON.parse(pm.collectionVariables.get('coll-schema'));\r",
-                  "const server = pm.environment.get('env-server');\r",
+                  " const schema = JSON.parse(pm.collectionVariables.get('coll-schema'));\r",
+                  " const server = pm.environment.get('env-server');\r",
                   "\r",
                   "pm.test('Environment has test server defined', function () {\r",
                   "    pm.expect(server).to.not.be.undefined;\r",
@@ -93,12 +92,13 @@
                   "pm.test('Schema has server/baseUrl defined', function () {\r",
                   "    const servers = schema.servers;\r",
                   "    pm.expect(servers).to.not.be.undefined;\r",
-                  "    const serverToTest = servers.find(s => s.description.toLowerCase() == server.toLowerCase());\r",
+                  "    const serverToTest = servers.find(s => s.description.toLowerCase() == server.toLowerCase());    \r",
                   "    pm.expect(serverToTest).to.not.be.undefined;\r",
-                  "\r",
                   "    pm.expect(serverToTest).to.have.property('url');\r",
-                  "    pm.collectionVariables.set('coll-baseUrl', serverToTest.url);\r",
+                  "    pm.collectionVariables.set('coll-baseUrl', serverToTest.url);    \r",
                   "});\r",
+                  "\r",
+                  "console.log(\"use server \" +pm.collectionVariables.get('coll-baseUrl'));\r",
                   "\r",
                   "const runComponentTests = pm.environment.get('env-runComponentTests') == 'true';\r",
                   "if(!runComponentTests){   \r",
@@ -106,7 +106,7 @@
                   "    if(runContractTests){\r",
                   "        postman.setNextRequest('Build Schema Tests');\r",
                   "    } else {\r",
-                  "        postman.setNextRequest('More APIs to Process?');\r",
+                  "        postman.setNextRequest('Remove Test Variables');\r",
                   "    }   \r",
                   "}"
                 ],
@@ -231,7 +231,7 @@
                   "if (runContractTests) {\r",
                   "    postman.setNextRequest('Build Schema Tests');\r",
                   "} else {\r",
-                  "    postman.setNextRequest('More APIs to Process?');\r",
+                  "    postman.setNextRequest('Remove Test Variables');\r",
                   "}\r",
                   "\r",
                   "\r",
@@ -394,10 +394,8 @@
               "listen": "prerequest",
               "script": {
                 "exec": [
-                  "console.log(\"buildSchema\")\r",
+                  "console.log(\"build tests\")\r",
                   "const schema = JSON.parse(pm.collectionVariables.get('coll-schema'));\r",
-                  "console.log(schema);\r",
-                  "\r",
                   "let schemaTests = [];    \r",
                   "for(let prop in schema.paths){\r",
                   "    const pathName = prop;  \r",
@@ -428,8 +426,7 @@
                   "            }\r",
                   "            else {\r",
                   "                bodyModel = pathMethod.requestBody.content['application/json'].schema;\r",
-                  "            }\r",
-                  "       console.log(bodyModel)           \r",
+                  "            }         \r",
                   "            const models = buildModels(schema, bodyModel);\r",
                   "            const mutations = buildModelMutations(models);\r",
                   "            mutations.forEach((mutation) => {\r",
@@ -447,6 +444,7 @@
                   "    }\r",
                   "}\r",
                   "pm.collectionVariables.set('coll-schemaTests', JSON.stringify(schemaTests));\r",
+                  "console.log(\"tests built\");\r",
                   "\r",
                   "//\r",
                   "// Supporting Methods Below\r",
@@ -456,11 +454,9 @@
                   "\r",
                   "  if(object['$ref']){\r",
                   "    object = getSchemaReference(schema, object['$ref']);\r",
-                  "    console.log(object)\r",
                   "  }\r",
                   "  \r",
                   "  if(object.type && object.type.toLowerCase() == 'object'){\r",
-                  "   console.log(\"obj\")\r",
                   "    if(object.required && object.required.length > 0){ \r",
                   "      models.push({});\r",
                   "      _.forEach(object.required, function(param){\r",
@@ -524,14 +520,12 @@
                   "}\r",
                   "\r",
                   "function getSchemaReference(schema, referenceName){  \r",
-                  "console.log(referenceName)\r",
                   "  const refPieces = referenceName.split('/');\r",
                   "  let reference = schema;\r",
                   "  for(let i = 1; i < refPieces.length; i++){\r",
                   "    reference = reference[refPieces[i]];\r",
                   "  }\r",
                   "\r",
-                  "console.log(reference)\r",
                   "  return reference;  \r",
                   "}\r",
                   "\r",
@@ -554,7 +548,6 @@
                   "}\r",
                   "\r",
                   "function buildModelMutations(models){    \r",
-                  "    console.log(\"m\")\r",
                   "  let modelMutations = [];\r",
                   "  _.forEach(models, function(model){  \r",
                   "    addMutation(true, 'Has all required fields', model, modelMutations);\r",
@@ -653,7 +646,7 @@
                   "if(schemaTests){\r",
                   "    schemaTests = JSON.parse(schemaTests);\r",
                   "    if(!schemaTests || !schemaTests.length){\r",
-                  "        postman.setNextRequest('More APIs to Process?');\r",
+                  "        postman.setNextRequest('Remove Test Variables');\r",
                   "    }\r",
                   "}"
                 ],
@@ -690,14 +683,12 @@
               "script": {
                 "exec": [
                   "const url = require('url');\r",
-                  "console.log(\"url\")\r",
                   "const schema = JSON.parse(pm.collectionVariables.get('coll-schema'));\r",
                   "let schemaTests = JSON.parse(pm.collectionVariables.get('coll-schemaTests'));\r",
                   "\r",
                   "const schemaTest = schemaTests.shift();\r",
                   "pm.collectionVariables.set('coll-schemaTests', JSON.stringify(schemaTests));\r",
                   "pm.variables.set('currentSchemaTest', JSON.stringify(schemaTest));\r",
-                  "\r",
                   "const path = replacePathParameters(schema, schemaTest.path, schemaTest.parameters);\r",
                   "pm.request.url.update(path);\r",
                   "delete pm.request.url.auth;\r",
@@ -808,7 +799,9 @@
               "script": {
                 "exec": [
                   "const schemaTests = JSON.parse(pm.collectionVariables.get('coll-schemaTests'));\r",
+                  "\r",
                   "console.log(schemaTests)\r",
+                  "\r",
                   "if(schemaTests.length > 0){\r",
                   "    postman.setNextRequest('Test Request');\r",
                   "}\r",
@@ -966,49 +959,6 @@
     {
       "name": "Finalize",
       "item": [
-        {
-          "name": "More APIs to Process?",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "let apis = pm.collectionVariables.get('coll-apiIds');\r",
-                  "if(apis){\r",
-                  "    try{\r",
-                  "        apis = JSON.parse(apis);\r",
-                  "        if(apis.length > 0){\r",
-                  "            postman.setNextRequest('Get Current API Version');\r",
-                  "        }\r",
-                  "    }\r",
-                  "    catch(err){}    \r",
-                  "}"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "auth": {
-              "type": "noauth"
-            },
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "https://postman-echo.com/delay/0",
-              "protocol": "https",
-              "host": [
-                "postman-echo",
-                "com"
-              ],
-              "path": [
-                "delay",
-                "0"
-              ]
-            }
-          },
-          "response": []
-        },
         {
           "name": "Remove Test Variables",
           "event": [
