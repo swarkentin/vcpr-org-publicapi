@@ -1,7 +1,7 @@
 {
   "info": {
-    "_postman_id": "unlisted",
-    "name": "Contract Tests v1.01",
+    "_postman_id": "583d959b-d843-4975-b659-a680d3d15aa0",
+    "name": "CTG1",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -394,20 +394,20 @@
               "listen": "prerequest",
               "script": {
                 "exec": [
-                  "console.log(\"build tests\")\r",
+                  "console.log(\"build tests\");\r",
                   "const schema = JSON.parse(pm.collectionVariables.get('coll-schema'));\r",
+                  "\r",
                   "let schemaTests = [];    \r",
                   "for(let prop in schema.paths){\r",
-                  "    const pathName = prop;  \r",
-                  "    console.log(pathName)  \r",
+                  "    const pathName = prop;    \r",
                   "    let path = {\r",
                   "        path: `${pm.collectionVariables.get('coll-baseUrl')}${pathName}`,\r",
                   "        parameters: schema.paths[prop].parameters,        \r",
                   "    };\r",
                   "\r",
                   "    for(let method in schema.paths[prop]){\r",
-                  "            console.log(method)              \r",
-                  "        if(method.toLowerCase() == 'parameters' || method.toLowerCase().startsWith(\"x-\") ){\r",
+                  "        console.log(method);\r",
+                  "        if(method.toLowerCase() == 'parameters' || method.toLowerCase().startsWith(\"x-\")){\r",
                   "            continue;\r",
                   "        }       \r",
                   "        let currentPath = _.cloneDeep(path);\r",
@@ -417,8 +417,13 @@
                   "        if(securityExtension && pathMethod[securityExtension] && pathMethod[securityExtension].length > 0){\r",
                   "            currentPath.allowedRole = pathMethod[securityExtension][0];\r",
                   "        }\r",
+                  "\r",
                   "        const expectedResponses = getExpectedResponses(pathMethod);\r",
                   "        currentPath.responses = expectedResponses;\r",
+                  "        //JLE addition below 2 lines\r",
+                  "        const expectedParameters = schema.paths[prop][method].parameters;\r",
+                  "        currentPath.parameters = expectedParameters;\r",
+                  "\r",
                   "        if(pathMethod.requestBody){\r",
                   "            let bodyModel;\r",
                   "            if(pathMethod.requestBody.content['application/json'].schema.$ref){\r",
@@ -426,9 +431,10 @@
                   "            }\r",
                   "            else {\r",
                   "                bodyModel = pathMethod.requestBody.content['application/json'].schema;\r",
-                  "            }         \r",
+                  "            }\r",
                   "            const models = buildModels(schema, bodyModel);\r",
                   "            const mutations = buildModelMutations(models);\r",
+                  "\r",
                   "            mutations.forEach((mutation) => {\r",
                   "                let schemaTest = _.cloneDeep(currentPath);\r",
                   "                Object.assign(schemaTest, mutation);\r",
@@ -441,10 +447,11 @@
                   "            currentPath.success = true;\r",
                   "            schemaTests.push(currentPath);\r",
                   "        }\r",
-                  "    }\r",
                   "}\r",
+                  "    }\r",
+                  "           \r",
+                  "\r",
                   "pm.collectionVariables.set('coll-schemaTests', JSON.stringify(schemaTests));\r",
-                  "console.log(\"tests built\");\r",
                   "\r",
                   "//\r",
                   "// Supporting Methods Below\r",
@@ -648,7 +655,8 @@
                   "    if(!schemaTests || !schemaTests.length){\r",
                   "        postman.setNextRequest('Remove Test Variables');\r",
                   "    }\r",
-                  "}"
+                  "}\r",
+                  ""
                 ],
                 "type": "text/javascript"
               }
@@ -778,10 +786,13 @@
                   "// Add top level parameters from the path\r",
                   "const roleHeaderName = pm.environment.get('env-roleHeaderName');\r",
                   "\r",
+                  "console.log(schemaTest)\r",
+                  "\r",
                   "if(schemaTest.parameters){\r",
+                  "    console.log(\"params\")\r",
                   "    for(let i = 0; i < schemaTest.parameters.length; i++){\r",
                   "        let param = schemaTest.parameters[i];\r",
-                  "\r",
+                  "console.log(param)\r",
                   "        if (param.$ref) {\r",
                   "            let pieces = param.$ref.split('/');\r",
                   "            const name = pieces[pieces.length-1];\r",
@@ -799,11 +810,14 @@
                   "                pm.request.url.query.upsert({ key: schemaParam.name, value: paramValue });\r",
                   "            }\r",
                   "        } else {\r",
+                  "            console.log('notref')\r",
+                  "            const schemaParam = param[i];\r",
                   "            const paramType = param.in.toLowerCase();\r",
                   "            const paramValue = loadParameterValue(param);\r",
                   "            if (paramType == 'header') {\r",
                   "                pm.request.headers.upsert({ key: param.name, value: paramValue });\r",
                   "            } else if (paramType == 'query' && schemaParam.required == true) {\r",
+                  "                console.log(param)\r",
                   "                pm.request.url.query.upsert({ key: param.name, value: paramValue });\r",
                   "            }\r",
                   "        }\r",
@@ -822,6 +836,8 @@
                   "        }\r",
                   "    }\r",
                   "    else {\r",
+                  "console.log(\"param \"+ parameter.schema.example)\r",
+                  "\r",
                   "        parameterValue = encodeURIComponent(parameter.schema.example ? parameter.schema.example : parameter.example);\r",
                   "    }\r",
                   "\r",
@@ -829,6 +845,8 @@
                   "}\r",
                   "\r",
                   "function replacePathParameters(schema, pathName, parameters){\r",
+                  "        console.log(\"rep par\")\r",
+                  "    console.log(parameters) //undef\r",
                   "    let replacedPathName = pathName;\r",
                   "    let pathVariableRegex = /{([^}]*)}/g;\r",
                   "    let matches = pathName.match(pathVariableRegex);\r",
@@ -890,6 +908,8 @@
                   "        pm.response.to.have.status(400);\r",
                   "    }    \r",
                   "});\r",
+                  "\r",
+                  "console.log(schemaTest.responses)\r",
                   "\r",
                   "const expectedResponse = schemaTest.responses.find(r => r.statusCode == pm.response.code);\r",
                   "pm.test(`${schemaTest.name} - Status code is allowed`, function(){\r",
@@ -1104,6 +1124,24 @@
           ""
         ]
       }
+    }
+  ],
+  "variable": [
+    {
+      "key": "coll-schema",
+      "value": ""
+    },
+    {
+      "key": "coll-baseUrl",
+      "value": ""
+    },
+    {
+      "key": "coll-schemaTests",
+      "value": ""
+    },
+    {
+      "key": "auth-token",
+      "value": ""
     }
   ]
 }
