@@ -202,6 +202,7 @@ paths:
             type: integer
           required: true
           description: User ID key
+          example: 5
       responses:
         '200':
           description: User deleted
@@ -252,7 +253,7 @@ paths:
       parameters:
         - name: relationship
           in: query
-          required: true
+          required: false
           schema:
             $ref: '#/components/schemas/Relationship'
       responses:
@@ -1095,6 +1096,7 @@ components:
       required:
         - comment
         - created
+        - public
       properties:
         userId:
           description: set null or zero if User wishes to be anonymous

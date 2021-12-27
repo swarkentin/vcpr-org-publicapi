@@ -1,7 +1,7 @@
 {
   "info": {
     "_postman_id": "583d959b-d843-4975-b659-a680d3d15aa0",
-    "name": "CTG1",
+    "name": "vcpr test generator v1.0.0",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -783,16 +783,11 @@
                   "//pm.request.headers.upsert({key: 'Accept', value: 'application/json'} )\r",
                   "// add valid auth token\r",
                   "pm.request.headers.upsert({key: 'X-Auth-Token', value: token });\r",
-                  "// Add top level parameters from the path\r",
                   "const roleHeaderName = pm.environment.get('env-roleHeaderName');\r",
                   "\r",
-                  "console.log(schemaTest)\r",
-                  "\r",
                   "if(schemaTest.parameters){\r",
-                  "    console.log(\"params\")\r",
                   "    for(let i = 0; i < schemaTest.parameters.length; i++){\r",
                   "        let param = schemaTest.parameters[i];\r",
-                  "console.log(param)\r",
                   "        if (param.$ref) {\r",
                   "            let pieces = param.$ref.split('/');\r",
                   "            const name = pieces[pieces.length-1];\r",
@@ -810,14 +805,13 @@
                   "                pm.request.url.query.upsert({ key: schemaParam.name, value: paramValue });\r",
                   "            }\r",
                   "        } else {\r",
-                  "            console.log('notref')\r",
-                  "            const schemaParam = param[i];\r",
+                  "            let schemaParam = param;\r",
+                  "            schemaParam.required = param.required;\r",
                   "            const paramType = param.in.toLowerCase();\r",
                   "            const paramValue = loadParameterValue(param);\r",
                   "            if (paramType == 'header') {\r",
                   "                pm.request.headers.upsert({ key: param.name, value: paramValue });\r",
                   "            } else if (paramType == 'query' && schemaParam.required == true) {\r",
-                  "                console.log(param)\r",
                   "                pm.request.url.query.upsert({ key: param.name, value: paramValue });\r",
                   "            }\r",
                   "        }\r",
@@ -836,8 +830,6 @@
                   "        }\r",
                   "    }\r",
                   "    else {\r",
-                  "console.log(\"param \"+ parameter.schema.example)\r",
-                  "\r",
                   "        parameterValue = encodeURIComponent(parameter.schema.example ? parameter.schema.example : parameter.example);\r",
                   "    }\r",
                   "\r",
@@ -845,8 +837,6 @@
                   "}\r",
                   "\r",
                   "function replacePathParameters(schema, pathName, parameters){\r",
-                  "        console.log(\"rep par\")\r",
-                  "    console.log(parameters) //undef\r",
                   "    let replacedPathName = pathName;\r",
                   "    let pathVariableRegex = /{([^}]*)}/g;\r",
                   "    let matches = pathName.match(pathVariableRegex);\r",
@@ -892,8 +882,6 @@
                 "exec": [
                   "const schemaTests = JSON.parse(pm.collectionVariables.get('coll-schemaTests'));\r",
                   "\r",
-                  "//console.log(schemaTests)\r",
-                  "\r",
                   "if(schemaTests.length > 0){\r",
                   "    postman.setNextRequest('Test Request');\r",
                   "}\r",
@@ -908,8 +896,6 @@
                   "        pm.response.to.have.status(400);\r",
                   "    }    \r",
                   "});\r",
-                  "\r",
-                  "console.log(schemaTest.responses)\r",
                   "\r",
                   "const expectedResponse = schemaTest.responses.find(r => r.statusCode == pm.response.code);\r",
                   "pm.test(`${schemaTest.name} - Status code is allowed`, function(){\r",
@@ -1124,24 +1110,6 @@
           ""
         ]
       }
-    }
-  ],
-  "variable": [
-    {
-      "key": "coll-schema",
-      "value": ""
-    },
-    {
-      "key": "coll-baseUrl",
-      "value": ""
-    },
-    {
-      "key": "coll-schemaTests",
-      "value": ""
-    },
-    {
-      "key": "auth-token",
-      "value": ""
     }
   ]
 }
