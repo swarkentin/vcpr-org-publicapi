@@ -1,7 +1,7 @@
 {
   "info": {
-    "name": "API tests 1.0",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  "name": "API tests 1.0",
+  "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
@@ -684,17 +684,8 @@
                   " console.log(\"authorizing as testVOR\");",
                   " const baseURL = pm.collectionVariables.get('coll-baseUrl')",
                   " const credentials =  pm.environment.get('env-TESTVOR_CREDENTIALS');",
-                  "const path = pm.environment.get('env-login_path'); ///api/users/logins",
-                  "",
-                  "//clear all cookies",
-                  "// const jar = pm.cookies.jar();",
-                  "// console.log(jar);",
-                  "// jar.clear(pm.request.url, function (error) {",
-                  "//   // error - <Error>",
-                  "// });",
-                  "",
-                  "",
-                  "",
+                  "const path = pm.environment.get('env-login_path'); ",
+                  "console.log(baseURL)",
                   "delete pm.request.url.auth;",
                   "delete pm.request.url.port;",
                   "delete pm.request.url.hash;",
@@ -707,7 +698,7 @@
                   "pm.request.headers.upsert({key: 'Accept', value: 'application/json'} )",
                   "pm.variables.set('requestName', 'Authorize');",
                   "pm.variables.set('req_body', credentials);",
-                  ""
+                  "console.log(pm.request)"
                 ],
                 "type": "text/javascript"
               }
