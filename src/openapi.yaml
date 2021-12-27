@@ -73,11 +73,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/SuccessfulLogin'
         '400':
-          description: login attempt failed
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/BadRequest'
     get:
       operationId: userRenewToken
       tags:
@@ -95,12 +91,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SuccessfulLogin'
-        '400':
-          description: failed to retrieve User
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
   /api/users:
     get:
       operationId: getVORUserIds
@@ -127,6 +119,10 @@ paths:
                         name:
                           type: string
                           description: User's Name
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
     put:
       operationId: updateUser
       tags:
@@ -156,6 +152,8 @@ paths:
                   updated-records:
                     type: integer
                     description: number of db records altered
+        '400':
+          $ref: '#/components/responses/BadRequest'
   /api/users/{id}:
     get:
       operationId: getUser
@@ -236,6 +234,8 @@ paths:
                 properties:
                   recorded:
                     type: integer
+        '400':
+          $ref: '#/components/responses/BadRequest'
   /api/users/my-right-relations:
     get:
       operationId: getMyRightRelations
@@ -327,6 +327,8 @@ paths:
                   - pxId: 1
                     name: example protocol
                     clonable: false
+        '400':
+          $ref: '#/components/responses/BadRequest'
   /api/protocols/sharesToAll/{pxId}:
     post:
       operationId: shareToAll
@@ -348,7 +350,9 @@ paths:
           explode: true
       responses:
         '204':
-          description: no content
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
     delete:
       operationId: unShareToAll
       summary: wip
@@ -421,6 +425,8 @@ paths:
                     type: integer
                     description: number of shares created
                     example: 1
+        '400':
+          $ref: '#/components/responses/BadRequest'
     delete:
       operationId: deleteProtocolShare
       tags:
@@ -451,6 +457,8 @@ paths:
                   un-shared:
                     type: integer
                     description: number of shares deleted
+        '400':
+          $ref: '#/components/responses/BadRequest'
   /api/protocols:
     get:
       operationId: getMyProtocols
@@ -510,6 +518,8 @@ paths:
                 properties:
                   protocol:
                     $ref: '#/components/schemas/Protocol'
+        '400':
+          $ref: '#/components/responses/BadRequest'
     put:
       operationId: updateProtocol
       tags:
@@ -531,6 +541,8 @@ paths:
                 properties:
                   protocol:
                     $ref: '#/components/schemas/Protocol'
+        '400':
+          $ref: '#/components/responses/BadRequest'
   /api/protocols/eligibilities:
     get:
       operationId: getEligibilities
@@ -1076,6 +1088,7 @@ components:
       type: object
       required:
         - comment
+        - created
       properties:
         userId:
           description: set null or zero if User wishes to be anonymous
@@ -1091,6 +1104,12 @@ components:
           type: string
           description: comment from a user
           example: this is wonderful
+        created:
+          description: >-
+            ISO-8601-formatted datetime, time of the comment
+          type: string
+          format: date-time
+          example: 2020-01-10T10:30:37Z
     Relationship:
       type: string
       description: >
@@ -2432,8 +2451,18 @@ components:
           description: date of last label change
           example: 2020-05-16T16:19:12Z
   responses:
+    NoContent:
+      description: There is no content to send for this request,.
+    BadRequest:
+      description: The server could not understand the request due to invalid syntax.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     Unauthorized:
-      description: 401 – Users must log in
+      description: The client must authenticate itself to get the requested response.
+    Forbidden:
+      description: The client does not have access rights to the content.
 tags:
   - name: User
     description: Endpoints and models related to user management.
