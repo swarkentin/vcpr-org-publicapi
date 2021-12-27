@@ -1,7 +1,6 @@
 {
   "info": {
-    "_postman_id": "64125da6-42bb-4d80-a757-4bd6a91ddbd3",
-    "name": "CTG1",
+    "name": "API tests 1.0",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -676,6 +675,85 @@
           "response": []
         },
         {
+          "name": "Authorize",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  " console.log(\"authorizing as testVOR\");",
+                  " const baseURL = pm.collectionVariables.get('coll-baseUrl')",
+                  " const credentials =  pm.environment.get('env-TESTVOR_CREDENTIALS');",
+                  "const path = pm.environment.get('env-login_path'); ///api/users/logins",
+                  "",
+                  "//clear all cookies",
+                  "// const jar = pm.cookies.jar();",
+                  "// console.log(jar);",
+                  "// jar.clear(pm.request.url, function (error) {",
+                  "//   // error - <Error>",
+                  "// });",
+                  "",
+                  "",
+                  "",
+                  "delete pm.request.url.auth;",
+                  "delete pm.request.url.port;",
+                  "delete pm.request.url.hash;",
+                  "pm.request.headers.remove('CustomHeader');",
+                  "pm.request.url.update(baseURL+path);",
+                  "pm.request.url.protocol = \"HTTPS\";",
+                  "pm.request.method = \"POST\";",
+                  "pm.request.name = 'Authorize';",
+                  "pm.request.headers.upsert({key: 'Content-Type', value: 'application/json'} )",
+                  "pm.request.headers.upsert({key: 'Accept', value: 'application/json'} )",
+                  "pm.variables.set('requestName', 'Authorize');",
+                  "pm.variables.set('req_body', credentials);",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const token = pm.response.json().token\r",
+                  "pm.collectionVariables.set('auth-token',token)\r",
+                  "\r",
+                  "pm.test('Login and get Auth token ', function () {\r",
+                  "    const tok = pm.collectionVariables.get('auth-token');\r",
+                  "    pm.expect(tok).to.not.be.undefined;\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{{req_body}}"
+            },
+            "url": {
+              "raw": "https://postman-echo.com/delay/0",
+              "protocol": "https",
+              "host": [
+                "postman-echo",
+                "com"
+              ],
+              "path": [
+                "delay",
+                "0"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "Test Request",
           "event": [
             {
@@ -685,8 +763,9 @@
                   "const url = require('url');\r",
                   "const schema = JSON.parse(pm.collectionVariables.get('coll-schema'));\r",
                   "let schemaTests = JSON.parse(pm.collectionVariables.get('coll-schemaTests'));\r",
+                  "const token = pm.collectionVariables.get('auth-token');\r",
                   "\r",
-                  "const schemaTest = schemaTests.shift();\r",
+                  "const schemaTest = schemaTests.shift();  //the test to run\r",
                   "pm.collectionVariables.set('coll-schemaTests', JSON.stringify(schemaTests));\r",
                   "pm.variables.set('currentSchemaTest', JSON.stringify(schemaTest));\r",
                   "const path = replacePathParameters(schema, schemaTest.path, schemaTest.parameters);\r",
@@ -700,7 +779,10 @@
                   "\r",
                   "pm.variables.set('requestName', schemaTest.name);\r",
                   "pm.variables.set('body', JSON.stringify(schemaTest.body));\r",
-                  "\r",
+                  "//pm.request.headers.upsert({key: 'Content-Type', value: 'application/json'} )\r",
+                  "//pm.request.headers.upsert({key: 'Accept', value: 'application/json'} )\r",
+                  "// add valid auth token\r",
+                  "pm.request.headers.upsert({key: 'X-Auth-Token', value: token });\r",
                   "// Add top level parameters from the path\r",
                   "const roleHeaderName = pm.environment.get('env-roleHeaderName');\r",
                   "\r",
@@ -800,14 +882,13 @@
                 "exec": [
                   "const schemaTests = JSON.parse(pm.collectionVariables.get('coll-schemaTests'));\r",
                   "\r",
-                  "console.log(schemaTests)\r",
+                  "//console.log(schemaTests)\r",
                   "\r",
                   "if(schemaTests.length > 0){\r",
                   "    postman.setNextRequest('Test Request');\r",
                   "}\r",
                   "\r",
                   "const schemaTest = JSON.parse(pm.variables.get('currentSchemaTest'));\r",
-                  "console.log(schemaTest.name);\r",
                   "\r",
                   "pm.test(`${schemaTest.name} - Has expected status code`, function () {\r",
                   "    if(schemaTest.success){\r",
