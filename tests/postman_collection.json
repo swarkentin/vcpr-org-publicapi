@@ -1,8 +1,7 @@
 {
   "info": {
-    "_postman_id": "583d959b-d843-4975-b659-a680d3d15aa0",
-    "name": "CTG1",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  "name": "API tests 1.0",
+  "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
