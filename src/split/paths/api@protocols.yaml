@@ -55,6 +55,8 @@ post:
             properties:
               protocol:
                 $ref: ../components/schemas/Protocol.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
 put:
   operationId: updateProtocol
   tags:
@@ -76,3 +78,5 @@ put:
             properties:
               protocol:
                 $ref: ../components/schemas/Protocol.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml

@@ -1,7 +1,3 @@
-description: >-
-  `Prescriptions` document the transaction of a `VOR` User prescribing a
-  `Protocol` for use by a `MOR` User who must have a `CLIENT` relationship with
-  the prescribing doctor.
 get:
   operationId: getMyPrescriptions
   tags:

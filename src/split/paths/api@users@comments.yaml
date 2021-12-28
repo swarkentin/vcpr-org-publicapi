@@ -22,3 +22,5 @@ post:
             properties:
               recorded:
                 type: integer
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
