@@ -1,11 +1,7 @@
 name: Generate and run contract tests
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - develop
-    paths:
-      - "src/openapi.yml"
+
 
 
 jobs:
