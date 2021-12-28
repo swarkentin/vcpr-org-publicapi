@@ -24,7 +24,6 @@ paths:
   /api/users/logins:
     post:
       operationId: userLogin
-
       x-no-test: true
       tags:
         - User
