@@ -918,7 +918,8 @@ paths:
     get:
       operationId: getGbdLinkByNDC
       tags:
-        - Prescription
+        - Pharmacy
+        - Untested
       summary: get detail of a Greenbook Drug as a link or XML
       description: >-
         This endpoint returns, as an HTML link or XML file, the summary listing
@@ -2482,10 +2483,10 @@ components:
 tags:
   - name: User
     description: Endpoints and models related to user management.
-  - name: Prescription
-    description: Endpoints and models related to prescription management.
   - name: Protocol
     description: Endpoints and models related to protocol management.
+  - name: Prescription
+    description: Endpoints and models related to prescription management.
   - name: Case
     description: Endpoints and models related to case management.
   - name: Promise
