@@ -188,6 +188,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     delete:
       operationId: deleteUser
+      x-no-test: true
       tags:
         - User
       summary: delete user
