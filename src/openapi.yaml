@@ -1878,9 +1878,9 @@ components:
         amduca:
           $ref: '#/components/schemas/AmducaClass'
         sequencefunction:
-          $ref: '#/components/schemas/sequenceFunction'
+          $ref: '#/components/schemas/SequenceFunction'
         sizefunction:
-          $ref: '#/components/schemas/sizeFunction'
+          $ref: '#/components/schemas/SizeFunction'
     Diagnosis:
       description: >-
         a medical diagnosis for which a Protocol may be used. Normally the
