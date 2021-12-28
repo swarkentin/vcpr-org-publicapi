@@ -1,10 +1,10 @@
-name: Generate docs and publish to GH Pages
+name: Split OAS, generate docs and publish to GH Pages
 on:
-  push: #generate docs when changes are pushed to default branch for the file src/openAPI.yml
+  push: #when changes are pushed to default branch for the file src/openapi.yml
     branches:
       - develop
     paths:
-      - "src/openapi.yml"
+      - src/openapi.yml
 
 jobs:
 
@@ -20,16 +20,24 @@ jobs:
         uses: slackapi/slack-github-action@v1.16.0
         with:
           channel-id: 'C02PFCP98A1'
-          slack-message: "creating Redoc documentation on ${{github.ref_name}}"
+          slack-message: "split, generate docs, publish on ${{github.ref_name}}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
-      - name: redoc-cli bundle
+      - name: split OAS
+        run: npx @redocly/openapi-cli split src/openapi.yaml --outDir='src/split'
+      - name: commit changes
+        uses: EndBug/add-and-commit@v7
+        with:
+          default_author: github_actions
+          message: 'split src/openapi.yaml to src/split'
+          add: 'src/split/*.yaml'
+      - name: create docs from OAS
         uses: seeebiii/redoc-cli-github-action@v10
         with:
           args: 'bundle src/openapi.yaml -o docs/index.html '  
 
-      - name: Deploy
+      - name: Publish to GH-pages
         if: success()
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
