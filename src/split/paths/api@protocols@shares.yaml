@@ -55,6 +55,8 @@ post:
                 type: integer
                 description: number of shares created
                 example: 1
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
 delete:
   operationId: deleteProtocolShare
   tags:
@@ -85,3 +87,5 @@ delete:
               un-shared:
                 type: integer
                 description: number of shares deleted
+    '400':
+      $ref: ../components/responses/BadRequest.yaml

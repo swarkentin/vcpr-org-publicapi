@@ -22,11 +22,3 @@ get:
             format: html
     '401':
       $ref: ../components/responses/Unauthorized.yaml
-  x-postman-tests:
-    description: |
-      - Tests 1. 200 response to valid credentials
-    code: >
-      // with lxId = 1028016 pm.test('200 response to valid credentials',
-      function () { pm.response.to.have.status(200);}); pm.test("label insert
-      1028016 is Bio-Mycin", function () {
-      pm.expect(pm.response.json().labelInsert).to.include("Bio-Mycin");});

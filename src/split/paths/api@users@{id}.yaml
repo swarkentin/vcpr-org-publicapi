@@ -25,14 +25,13 @@ get:
             properties:
               user:
                 $ref: ../components/schemas/User.yaml
-  x-postman-tests:
-    description: |
-      - Tests 1. 200 response to valid credentials
-    code: >
-      pm.test('200 response to valid credentials', function () {
-      pm.response.to.have.status(200); });
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '403':
+      $ref: ../components/responses/Unauthorized.yaml
 delete:
   operationId: deleteUser
+  x-no-test: true
   tags:
     - User
   summary: delete user
@@ -46,6 +45,7 @@ delete:
         type: integer
       required: true
       description: User ID key
+      example: 5
   responses:
     '200':
       description: User deleted

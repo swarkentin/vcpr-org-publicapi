@@ -1,5 +1,6 @@
 post:
   operationId: userLogin
+  x-no-test: true
   tags:
     - User
   security: []
@@ -17,27 +18,28 @@ post:
       application/json:
         schema:
           type: object
+          required:
+            - apikey
+            - identifier
+            - password
           properties:
             apikey:
               type: string
               description: >-
                 An API key assigned to an application for access to this API. To
                 request an API key please contact the system administrator.
+              example: t0CGzpQ4cgu1OBy44sBt
             identifier:
               type: string
               description: '`User.Username`, normally the same as `User.email`'
+              example: testVOR
             password:
               type: string
               description: >-
                 User password any characters or numbers allowed, with a minumum
                 length of 10.
-              minLength: 10
-        examples:
-          user:
-            value:
-              apikey: w32r92i235jrw3r
-              identifier: user@test.com
-              password: some-secure-password
+              minLength: 6
+              example: tVpass
   responses:
     '200':
       description: Success – logged in
@@ -46,34 +48,7 @@ post:
           schema:
             $ref: ../components/schemas/SuccessfulLogin.yaml
     '400':
-      description: failed to retrieve User
-      content:
-        application/problem+json:
-          schema:
-            $ref: ../components/schemas/Error.yaml
-    '401':
-      description: password or identifier mismatch
-      content:
-        application/problem+json:
-          schema:
-            $ref: ../components/schemas/Error.yaml
-  x-postman-tests:
-    description: >
-      - Side effects Saves the returned body to the postman environment,
-       token -> `token`; logged-in user -> `user`.
-      - Tests 1. 200 response to valid credentials 2. returns user 3. save token
-      and user to env
-    code: >
-      pm.test('200 response to valid credentials', function () {
-      pm.response.to.have.status(200);}); pm.test('Returns TestVOR user',
-      function () {
-      pm.expect(pm.response.json().user.uname).to.eql('testVOR');});
-      pm.test('save the token to env.token', function () {
-      pm.environment.set('token', pm.response.json().token);}); pm.test('save
-      user too', function () { pm.environment.set('user',
-      JSON.stringify(pm.response.json().user));}); pm.test('token in response
-      matches token in environment', function () {
-      pm.expect(pm.response.json().token).to.eql(pm.environment.get('token'));});
+      $ref: ../components/responses/BadRequest.yaml
 get:
   operationId: userRenewToken
   tags:
@@ -91,15 +66,5 @@ get:
         application/json:
           schema:
             $ref: ../components/schemas/SuccessfulLogin.yaml
-    '400':
-      description: failed to retrieve User
-      content:
-        application/problem+json:
-          schema:
-            $ref: ../components/schemas/Error.yaml
     '401':
-      description: password or identifier mismatch
-      content:
-        application/problem+json:
-          schema:
-            $ref: ../components/schemas/Error.yaml
+      $ref: ../components/responses/Unauthorized.yaml

@@ -1,0 +1,36 @@
+get:
+  operationId: getGbdHeaderArrayByNDC
+  tags:
+    - Prescription
+  summary: get Greenbook Drug summary by NDC pattern
+  description: >-
+    This endpoint returns the summary listing of a Greenbook Drug by NDC
+    pattern.
+  parameters:
+    - name: ndcProd
+      in: query
+      schema:
+        type: integer
+      required: false
+      description: first section labeler code of a NDC
+    - name: ndcLabeler
+      in: query
+      schema:
+        type: integer
+      required: false
+      description: mid section product code of a NDC
+    - name: ndcBrand
+      in: query
+      schema:
+        type: integer
+      required: false
+      description: end section package code of a NDC
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/GreenbookHeader.yaml

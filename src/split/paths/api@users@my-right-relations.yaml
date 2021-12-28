@@ -9,6 +9,7 @@ get:
   parameters:
     - name: relationship
       in: query
+      required: false
       schema:
         $ref: ../components/schemas/Relationship.yaml
   responses:
@@ -34,6 +35,7 @@ post:
   parameters:
     - name: relationship
       in: query
+      required: true
       schema:
         $ref: ../components/schemas/Relationship.yaml
   requestBody:

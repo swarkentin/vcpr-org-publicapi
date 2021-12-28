@@ -61,12 +61,12 @@ paths:
     $ref: paths/api@labels.yaml
   /api/labels/inserts/{lxId}:
     $ref: paths/api@labels@inserts@{lxId}.yaml
-  /admin/product:
-    $ref: paths/admin@product.yaml
-  /admin/product/{ndc}:
-    $ref: paths/admin@product@{ndc}.yaml
-  /admin/product/spl/{ndc}:
-    $ref: paths/admin@product@spl@{ndc}.yaml
+  /api/admin/product:
+    $ref: paths/api@admin@product.yaml
+  /api/admin/product/{ndc}:
+    $ref: paths/api@admin@product@{ndc}.yaml
+  /api/admin/product/spl/{ndc}:
+    $ref: paths/api@admin@product@spl@{ndc}.yaml
 components:
   securitySchemes:
     authToken:
@@ -77,10 +77,10 @@ components:
 tags:
   - name: User
     description: Endpoints and models related to user management.
-  - name: Prescription
-    description: Endpoints and models related to prescription management.
   - name: Protocol
     description: Endpoints and models related to protocol management.
+  - name: Prescription
+    description: Endpoints and models related to prescription management.
   - name: Case
     description: Endpoints and models related to case management.
   - name: Promise

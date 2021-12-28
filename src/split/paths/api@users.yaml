@@ -23,6 +23,10 @@ get:
                     name:
                       type: string
                       description: User's Name
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml
+    '403':
+      $ref: ../components/responses/Forbidden.yaml
 put:
   operationId: updateUser
   tags:
@@ -51,9 +55,5 @@ put:
               updated-records:
                 type: integer
                 description: number of db records altered
-x-postman-tests:
-  description: >
-    - Assumes current user is testVOR - Side effects reset current user data to
-    examples/testVOR - Tests 1. 200 response
-  code: |
-    pm.test('200 response', function () { pm.response.to.have.status(200);});
+    '400':
+      $ref: ../components/responses/BadRequest.yaml

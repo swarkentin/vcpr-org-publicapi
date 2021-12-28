@@ -18,7 +18,9 @@ post:
       explode: true
   responses:
     '204':
-      description: no content
+      $ref: ../components/responses/NoContent.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
 delete:
   operationId: unShareToAll
   summary: wip
