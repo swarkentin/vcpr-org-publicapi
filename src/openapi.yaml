@@ -284,6 +284,11 @@ paths:
           required: true
           schema:
             $ref: '#/components/schemas/Relationship'
+        - name: usertype
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/UserType'
       requestBody:
         required: true
         content:
@@ -368,6 +373,7 @@ paths:
       parameters:
         - name: pxId
           in: path
+          example: 1
           schema:
             type: integer
           required: true
@@ -915,16 +921,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GreenbookHeader'
-  /api/admin/product/spl/{ndc}:
+            text/html:
+              schema:
+                type: string
+  /api/spl/{ndc}:
     get:
       operationId: getGbdLinkByNDC
       tags:
         - Pharmacy
         - Untested
-      summary: get detail of a Greenbook Drug as a link or XML
+      summary: get detail of a Greenbook Drug as a link
       description: >-
-        This endpoint returns, as an HTML link or XML file, the summary listing
-        of a Greenbook Drug by ndc identifier.
+        This
       parameters:
         - name: ndc
           in: path
@@ -952,6 +960,51 @@ paths:
                 description: XML SPL data file served from FDA server
                 type: string
                 format: xml
+  /api/spl/{ndc}/{image}:
+    get:
+      operationId: getGbdL
+      tags:
+        - Pharmacy
+        - Untested
+      summary: get detail of a Greenbook Drug as a link
+      description: >-
+        This
+      parameters:
+        - name: ndc
+          in: path
+          schema:
+            type: string
+          required: true
+          description: >-
+            unique 10-digit, 3-segment number.
+            labelerCode-productCode-packageCode
+          example: 0061-4321-03
+        - name: image
+          in: path
+          schema:
+            type: string
+          required: true
+          description: name of image file
+          example: 021-03
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: URL link to XML SPL data file
+                type: string
+                format: url
+        '303':
+          description: Redirect to SPL file served from FDA server
+          content:
+            text/xml:
+              schema:
+                description: XML SPL data file served from FDA server
+                type: string
+                format: xml
+
+
 components:
   securitySchemes:
     authToken:
