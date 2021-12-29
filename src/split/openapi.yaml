@@ -65,8 +65,10 @@ paths:
     $ref: paths/api@admin@product.yaml
   /api/admin/product/{ndc}:
     $ref: paths/api@admin@product@{ndc}.yaml
-  /api/admin/product/spl/{ndc}:
-    $ref: paths/api@admin@product@spl@{ndc}.yaml
+  /api/spl/{ndc}:
+    $ref: paths/api@spl@{ndc}.yaml
+  /api/spl/{ndc}/{image}:
+    $ref: paths/api@spl@{ndc}@{image}.yaml
 components:
   securitySchemes:
     authToken:
