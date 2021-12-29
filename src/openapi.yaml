@@ -284,6 +284,11 @@ paths:
           required: true
           schema:
             $ref: '#/components/schemas/Relationship'
+        - name: usertype
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/UserType'
       requestBody:
         required: true
         content:
@@ -368,6 +373,7 @@ paths:
       parameters:
         - name: pxId
           in: path
+          example: 1
           schema:
             type: integer
           required: true

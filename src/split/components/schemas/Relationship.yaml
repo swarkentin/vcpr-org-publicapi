@@ -1,4 +1,5 @@
 type: string
+default: CLIENT
 description: >
   a link between two Users defining a relationship:
 
