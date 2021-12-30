@@ -11,8 +11,10 @@ get:
       schema:
         type: string
       required: true
-      description: unique 10-digit, 3-segment number. labelerCode-productCode-packageCode
-      example: 0061-4321-03
+      description: >-
+        unique hyphenated number with up to 10 digits in 2 or 3 segments as
+        labelerCode-productCode-packageCode. packageCode may not be needed.
+      example: 0010-3832
   responses:
     '200':
       description: OK

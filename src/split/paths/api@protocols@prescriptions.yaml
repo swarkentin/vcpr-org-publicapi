@@ -1,23 +1,6 @@
-get:
-  operationId: getMyPrescriptions
-  tags:
-    - Prescription
-  summary: get my prescriptions
-  description: This endpoint returns all prescriptions accessible to the current User.
-  responses:
-    '200':
-      description: OK
-      content:
-        application/json:
-          schema:
-            description: array of prescriptions accessible to current User
-            properties:
-              prescriptions:
-                type: array
-                items:
-                  $ref: ../components/schemas/Prescription.yaml
 post:
   operationId: createPrescription
+  x-no-test: test
   tags:
     - Prescription
   summary: record a prescription

@@ -53,6 +53,10 @@ paths:
     $ref: paths/api@protocols@{id}.yaml
   /api/protocols/prescriptions:
     $ref: paths/api@protocols@prescriptions.yaml
+  /api/protocols/prescriptions/by:
+    $ref: paths/api@protocols@prescriptions@by.yaml
+  /api/protocols/prescriptions/to:
+    $ref: paths/api@protocols@prescriptions@to.yaml
   /api/protocols/prescriptions/{id}:
     $ref: paths/api@protocols@prescriptions@{id}.yaml
   /api/protocols/{id}/prescriptions:

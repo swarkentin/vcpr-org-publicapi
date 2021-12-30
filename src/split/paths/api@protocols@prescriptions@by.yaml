@@ -1,0 +1,18 @@
+get:
+  operationId: getRxBy
+  tags:
+    - Prescription
+  summary: get my prescriptions
+  description: get prescriptions prescribed by the current User.
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            description: array of prescriptions accessible to current User
+            properties:
+              prescriptions:
+                type: array
+                items:
+                  $ref: ../components/schemas/Prescription.yaml

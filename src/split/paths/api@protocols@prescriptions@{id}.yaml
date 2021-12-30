@@ -8,7 +8,8 @@ get:
     - name: id
       in: path
       schema:
-        type: integer
+        type: string
+      example: 25yopfgh
       required: true
       description: Prescription ID key
   responses:

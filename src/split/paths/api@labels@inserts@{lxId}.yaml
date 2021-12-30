@@ -11,7 +11,7 @@ get:
         type: integer
       required: true
       description: label ID
-      example: 1028016
+      example: 32
   responses:
     '200':
       description: OK
@@ -22,3 +22,5 @@ get:
             format: html
     '401':
       $ref: ../components/responses/Unauthorized.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
