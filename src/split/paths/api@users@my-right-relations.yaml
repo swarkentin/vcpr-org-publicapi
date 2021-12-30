@@ -38,6 +38,11 @@ post:
       required: true
       schema:
         $ref: ../components/schemas/Relationship.yaml
+    - name: usertype
+      in: query
+      required: true
+      schema:
+        $ref: ../components/schemas/UserType.yaml
   requestBody:
     required: true
     content:

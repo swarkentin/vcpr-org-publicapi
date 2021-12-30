@@ -21,3 +21,6 @@ get:
         application/json:
           schema:
             $ref: ../components/schemas/GreenbookHeader.yaml
+        text/html:
+          schema:
+            type: string
