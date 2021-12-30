@@ -218,6 +218,7 @@ paths:
   /api/users/comments:
     post:
       operationId: recordComment
+#      x-no-test: generates email
       tags:
         - User
       summary: record a User comment
@@ -1042,7 +1043,7 @@ components:
   schemas:
     UserType:
       type: string
-      description: >
+      description: >-
         an ordered list of User types associated with privilege levels:
 
         <br>
@@ -1075,18 +1076,18 @@ components:
         * REMOVED: the record of a User who is no longer active and may not log
         in
       enum:
-        - SAOR
-        - VOR
-        - MOR
-        - TOR
-        - FARM
-        - CLINIC
-        - UNCONFIRMED
-        - PREVOR
-        - UNVOR
-        - UNMOR
-        - REMOVED
-      example: VOR
+        - 'SAOR'
+        - 'VOR'
+        - 'MOR'
+        - 'TOR'
+        - 'FARM'
+        - 'CLINIC'
+        - 'UNCONFIRMED'
+        - 'PREVOR'
+        - 'UNVOR'
+        - 'UNMOR'
+        - 'REMOVED'
+      example: 'MOR'
     User:
       description: a User of a specific `usertype` class
       type: object
@@ -1177,7 +1178,6 @@ components:
       type: object
       required:
         - comment
-        - created
         - public
       properties:
         userId:
@@ -1383,29 +1383,39 @@ components:
       items:
         type: string
         enum:
-          - beef_cattle
-          - veal
-          - dairy_cattle
-          - cats
-          - dogs
-          - horses
-          - fish
-          - goats
-          - sheep
-          - chickens
-          - turkeys
-          - swine
-          - catfish
-          - gamebirds
-          - llamas
-          - salmon
-          - emus
-          - bison
-          - other
-          - unidentified
+          - BeefCattle
+          - Calves
+          - CalvesNotVeal
+          - Cats
+          - Chickens
+          - ChickensBroilers
+          - ChickensNotLaying
+          - ChickensReplacements
+          - DairyCalves
+          - DairyHeifers
+          - DairyCattle
+          - DairyCattleNonLactating
+          - Dogs
+          - Fish
+          - Goats
+          - Horses
+          - Sheep
+          - Swine
+          - SwineBreeding
+          - Turkeys
+          - TurkeysGrowing
+          - TurkeysMeatProducing
+          - TurkeysNotLaying
+          - Catfish
+          - Gamebirds
+          - Llamas
+          - Salmon
+          - Emus
+          - Bison
+          - Other
+          - Unidentified
         example:
-          - beef_cattle
-          - dairy_cattle
+          ChickensBroilers
     Eligibility:
       description: >
         A class of animal for which a protocol may be used. Normally the `name`
@@ -1417,17 +1427,19 @@ components:
       type: object
       required:
         - id
+        - name
+        - fdaSpecies
       properties:
         id:
           description: identifier
           type: integer
-          example: 1
+          example: 15
         name:
           description: >-
             A type of animal which is eligible to be treated using a protocol
             having this Eligibility
           type: string
-          example: Beef Cattle
+          example: Chickens - Broilers
         fdaSpecies:
           $ref: '#/components/schemas/FDAspecies'
     DoseId:
