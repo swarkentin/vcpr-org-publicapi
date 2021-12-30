@@ -682,6 +682,7 @@ paths:
           in: path
           schema:
             type: integer
+          example: 7
           required: true
           description: Protocol ID key
       responses:
@@ -725,26 +726,9 @@ paths:
                     type: integer
                     description: number of Protocols deprecated
   /api/protocols/prescriptions:
-    get:
-      operationId: getMyPrescriptions
-      tags:
-        - Prescription
-      summary: get my prescriptions
-      description: This endpoint returns all prescriptions accessible to the current User.
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                description: array of prescriptions accessible to current User
-                properties:
-                  prescriptions:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Prescription'
     post:
       operationId: createPrescription
+      x-no-test: test
       tags:
         - Prescription
       summary: record a prescription
@@ -762,6 +746,44 @@ paths:
                 properties:
                   prescription:
                     $ref: '#/components/schemas/PrescriptionRequest'
+  /api/protocols/prescriptions/by:
+    get:
+      operationId: getRxBy
+      tags:
+        - Prescription
+      summary: get my prescriptions
+      description: get prescriptions prescribed by the current User.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: array of prescriptions accessible to current User
+                properties:
+                  prescriptions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Prescription'
+  /api/protocols/prescriptions/to:
+    get:
+      operationId: getRxTo
+      tags:
+        - Prescription
+      summary: get my prescriptions
+      description:  get prescriptions prescribed to the current User.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: array of prescriptions accessible to current User
+                properties:
+                  prescriptions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Prescription'
   /api/protocols/prescriptions/{id}:
     get:
       operationId: getPrescription
@@ -773,7 +795,8 @@ paths:
         - name: id
           in: path
           schema:
-            type: integer
+            type: string
+          example: 25yopfgh
           required: true
           description: Prescription ID key
       responses:
@@ -802,6 +825,7 @@ paths:
           in: path
           schema:
             type: integer
+          example: 7
           required: true
           description: Protocol ID key
       responses:
@@ -847,7 +871,7 @@ paths:
             type: integer
           required: true
           description: label ID
-          example: 1028016
+          example: 32
       responses:
         '200':
           description: OK
@@ -858,6 +882,8 @@ paths:
                 format: html
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
   /api/admin/product:
     get:
       operationId: getGbdHeaderArrayByNDC
@@ -940,9 +966,9 @@ paths:
             type: string
           required: true
           description: >-
-            unique 10-digit, 3-segment number.
-            labelerCode-productCode-packageCode
-          example: 0061-4321-03
+            unique hyphenated number with up to 10 digits in 2 or 3 segments as
+            labelerCode-productCode-packageCode. packageCode may not be needed.
+          example: 0010-3832
       responses:
         '200':
           description: OK
@@ -963,6 +989,7 @@ paths:
   /api/spl/{ndc}/{image}:
     get:
       operationId: getGbdL
+      x-not-test: test
       tags:
         - Pharmacy
         - Untested
@@ -976,16 +1003,16 @@ paths:
             type: string
           required: true
           description: >-
-            unique 10-digit, 3-segment number.
-            labelerCode-productCode-packageCode
-          example: 0061-4321-03
+            unique hyphenated number with up to 10 digits in 2 or 3 segments as
+            labelerCode-productCode-packageCode. packageCode may not be needed.
+          example: 0010-4025
         - name: image
           in: path
           schema:
             type: string
           required: true
           description: name of image file
-          example: 021-03
+          example: 526779-image-02.jpg
       responses:
         '200':
           description: OK
@@ -2383,22 +2410,6 @@ components:
           type: integer
           description: unique identifier for label
           example: 1
-        nada:
-          type: string
-          description: FDA NADA or ANADA number
-          example: 200-308
-        eligibility:
-          type: string
-          description: wip free-form description of species/variant eligibility
-          example: horses
-        exId:
-          type: integer
-          description: id key for Eligibility
-          example: 2500
-        exCode:
-          type: string
-          description: code for Eligibility
-          example: wip
         fdaSpecies:
           $ref: '#/components/schemas/FDAspecies'
         diagnosis:
@@ -2421,26 +2432,21 @@ components:
           type: integer
           description: unique identifier for the product described
           example: 1315018
-        sequenceFunction:
-          $ref: '#/components/schemas/SequenceFunction'
-        sizeFunction:
-          $ref: '#/components/schemas/SizeFunction'
         _dose:
           type: string
           description: free-form text note on dosage
           example: 3.0 ml per kg repeat in 6 hours and again in 24 hours
-        dosageId:
-          type: integer
-          description: not sure about this
-          example: wip
         route:
           type: string
           description: route of administration
           example: intr-corporeal
-        raId:
-          type: integer
-          description: id of route of administration
-          example: 21
+        sequenceFunction:
+          $ref: '#/components/schemas/SequenceFunction'
+        sizeFunction:
+          $ref: '#/components/schemas/SizeFunction'
+        doseNote:
+          type: string
+          description: test note about dose
         wtMeatHrs:
           description: meat withholding in hours
           type: integer
@@ -2453,6 +2459,14 @@ components:
           type: string
           description: note on withholding
           example: not for dairy animals
+        ndc:
+          type: string
+          description: FDA NADA or ANADA number
+          example: 200-308
+        generic:
+          type: string
+          description: generic name for product
+          example: OXYTETRACYCLINE
     GreenbookHeader:
       required:
         - ndc
@@ -2534,6 +2548,13 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The server can not find the requested resource.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
 tags:
   - name: User
     description: Endpoints and models related to user management.
