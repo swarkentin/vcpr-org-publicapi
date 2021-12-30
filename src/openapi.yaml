@@ -1088,7 +1088,8 @@ components:
         - 'UNVOR'
         - 'UNMOR'
         - 'REMOVED'
-      example: 'MOR'
+      default: 'MOR'
+      example: 'VOR'
     User:
       description: a User of a specific `usertype` class
       type: object
@@ -1126,7 +1127,6 @@ components:
         - email
         - firstname
         - lastname
-        - suffix
     SuccessfulLogin:
       description: User object and generated auth token
       type: object
@@ -2418,6 +2418,16 @@ components:
         metadata: []
     LabelClaim:
       type: object
+      required:
+        - id
+        - fdaSpecies
+        - diagnosis
+        - dxId
+        - dxCode
+        - product
+        - route
+        - wtMeatHrs
+        - wtMilkHrs
       properties:
         id:
           type: integer
@@ -2459,7 +2469,9 @@ components:
           $ref: '#/components/schemas/SizeFunction'
         doseNote:
           type: string
+          format: html
           description: test note about dose
+          example: THis can contain <b>html</b> tags
         wtMeatHrs:
           description: meat withholding in hours
           type: integer
