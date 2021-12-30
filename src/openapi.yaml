@@ -218,7 +218,7 @@ paths:
   /api/users/comments:
     post:
       operationId: recordComment
-#      x-no-test: generates email
+      x-no-test: generates email, tested OK
       tags:
         - User
       summary: record a User comment
@@ -270,6 +270,7 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/User'
+                example: {users: []}
     post:
       operationId: createRightRelation
       tags:
