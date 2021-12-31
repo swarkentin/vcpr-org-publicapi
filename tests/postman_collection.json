@@ -410,8 +410,12 @@
                   "    };\r",
                   "\r",
                   "    for(let oasPathChild in schema.paths[oasPath]){\r",
+                  "      if(pm.environment.get('env-debug')){\r",
+                  "                console.log(oasPathChild +' to '+ oasPath)\r",
+                  "      }\r",
                   "        //skip test if child is 'parameters' or an x- extension, or has 'x-no-test' child  \r",
-                  "        if(oasPathChild.toLowerCase() == 'parameters' || oasPathChild.toLowerCase().startsWith(\"x-\") || schema.paths[oasPath][oasPathChild]['x-no-test']){\r",
+                  "        if(oasPathChild.toLowerCase() == 'parameters' || oasPathChild.toLowerCase().startsWith(\"x-\") || schema.paths[oasPath][oasPathChild]['x-no-test'] !== undefined){\r",
+                  "            console.log('skipping '+ oasPathChild +' to '+ oasPath)\r",
                   "            continue;\r",
                   "        }       \r",
                   "        let currentPath = _.cloneDeep(path);\r",
@@ -425,9 +429,11 @@
                   "        const expectedResponses = getExpectedResponses(pathMethod);\r",
                   "        currentPath.responses = expectedResponses;\r",
                   "        //JLE fix/add 2 lines below\r",
+                  "        //TODO expand refs\r",
+                  "       // console.log(path);\r",
                   "        const expectedParameters = schema.paths[oasPath][oasPathChild].parameters;\r",
+                  "     //   console.log(expectedParameters);\r",
                   "        currentPath.parameters = expectedParameters;\r",
-                  "\r",
                   "        if(pathMethod.requestBody){\r",
                   "            let bodyModel;\r",
                   "            if(pathMethod.requestBody.content['application/json'].schema.$ref){\r",
@@ -694,9 +700,9 @@
               "listen": "prerequest",
               "script": {
                 "exec": [
-                  " console.log(\"authorizing as testVOR\");",
+                  " console.log(\"authorizing as testMOR\");",
                   " const baseURL = pm.collectionVariables.get('coll-baseUrl')",
-                  " const credentials =  pm.environment.get('env-TESTVOR_CREDENTIALS');",
+                  " const credentials =  pm.environment.get('env-TESTMOR_CREDENTIALS');",
                   "const path = pm.environment.get('env-login_path'); ",
                   "console.log(baseURL)",
                   "delete pm.request.url.auth;",
@@ -892,9 +898,9 @@
                   "\r",
                   "const schemaTest = JSON.parse(pm.variables.get('currentSchemaTest'));\r",
                   "if(pm.environment.get('env-debug')){\r",
-                  "console.log('debug');\r",
-                  "}\r",
                   "console.log(schemaTest);\r",
+                  "}\r",
+                  "\r",
                   "pm.test(`${schemaTest.name} - Has expected status code`, function () {\r",
                   "    if(schemaTest.success){\r",
                   "        pm.expect(pm.response.code).to.not.equal(400);\r",
@@ -1117,6 +1123,20 @@
           ""
         ]
       }
+    }
+  ],
+  "variable": [
+    {
+      "key": "coll-schema",
+      "value": ""
+    },
+    {
+      "key": "coll-baseUrl",
+      "value": ""
+    },
+    {
+      "key": "coll-schemaTests",
+      "value": ""
     }
   ]
 }
