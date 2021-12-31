@@ -21,9 +21,9 @@ get:
       content:
         application/json:
           schema:
-            description: URL link to XML SPL data file
+            description: Standard Product Label as html
             type: string
-            format: url
+            format: html
     '303':
       description: Redirect to SPL file served from FDA server
       content:

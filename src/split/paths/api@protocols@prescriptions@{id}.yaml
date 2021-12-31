@@ -9,7 +9,7 @@ get:
       in: path
       schema:
         type: string
-      example: 25yopfgh
+      example: Vi1y9kbpEj7Upqy7
       required: true
       description: Prescription ID key
   responses:
