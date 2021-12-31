@@ -23,52 +23,12 @@ security:
 paths:
   /api/users/logins:
     $ref: paths/api@users@logins.yaml
-  /api/users:
-    $ref: paths/api@users.yaml
-  /api/users/{id}:
-    $ref: paths/api@users@{id}.yaml
-  /api/users/comments:
-    $ref: paths/api@users@comments.yaml
-  /api/users/my-right-relations:
-    $ref: paths/api@users@my-right-relations.yaml
-  /api/protocols/sharesToAll/:
-    $ref: paths/api@protocols@sharesToAll@.yaml
-  /api/protocols/sharesToAll/{pxId}:
-    $ref: paths/api@protocols@sharesToAll@{pxId}.yaml
-  /api/protocols/shares:
-    $ref: paths/api@protocols@shares.yaml
-  /api/protocols:
-    $ref: paths/api@protocols.yaml
-  /api/protocols/eligibilities:
-    $ref: paths/api@protocols@eligibilities.yaml
-  /api/protocols/diagnoses:
-    $ref: paths/api@protocols@diagnoses.yaml
-  /api/protocols/libs:
-    $ref: paths/api@protocols@libs.yaml
-  /api/protocols/dosages:
-    $ref: paths/api@protocols@dosages.yaml
-  /api/protocols/libstubs:
-    $ref: paths/api@protocols@libstubs.yaml
-  /api/protocols/{id}:
-    $ref: paths/api@protocols@{id}.yaml
-  /api/protocols/prescriptions:
-    $ref: paths/api@protocols@prescriptions.yaml
-  /api/protocols/prescriptions/by:
-    $ref: paths/api@protocols@prescriptions@by.yaml
   /api/protocols/prescriptions/to:
     $ref: paths/api@protocols@prescriptions@to.yaml
   /api/protocols/prescriptions/{id}:
     $ref: paths/api@protocols@prescriptions@{id}.yaml
-  /api/protocols/{id}/prescriptions:
-    $ref: paths/api@protocols@{id}@prescriptions.yaml
-  /api/labels:
-    $ref: paths/api@labels.yaml
   /api/labels/inserts/{lxId}:
     $ref: paths/api@labels@inserts@{lxId}.yaml
-  /api/admin/product:
-    $ref: paths/api@admin@product.yaml
-  /api/admin/product/{ndc}:
-    $ref: paths/api@admin@product@{ndc}.yaml
   /api/spl/{ndc}:
     $ref: paths/api@spl@{ndc}.yaml
   /api/spl/{ndc}/{image}:
