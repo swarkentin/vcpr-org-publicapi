@@ -24,7 +24,6 @@ paths:
   /api/users/logins:
     post:
       operationId: userLogin
-      x-no-test: true
       tags:
         - User
       security: []
@@ -124,7 +123,7 @@ paths:
           in: path
           schema:
             type: string
-          example: 25yopfgh
+          example: Vi1y9kbpEj7Upqy7
           required: true
           description: Prescription ID key
       responses:
@@ -193,9 +192,9 @@ paths:
           content:
             application/json:
               schema:
-                description: URL link to XML SPL data file
+                description: Standard Product Label as html
                 type: string
-                format: url
+                format: html
         '303':
           description: Redirect to SPL file served from FDA server
           content:
@@ -223,7 +222,7 @@ paths:
           description: >-
             unique hyphenated number with up to 10 digits in 2 or 3 segments as
             labelerCode-productCode-packageCode. packageCode may not be needed.
-          example: 0010-4025
+          example: 601588-image-02.jpg
         - name: image
           in: path
           schema:
