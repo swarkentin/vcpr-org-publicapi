@@ -1,6 +1,5 @@
 post:
   operationId: userLogin
-  x-no-test: true
   tags:
     - User
   security: []

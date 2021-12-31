@@ -15,7 +15,7 @@ get:
       description: >-
         unique hyphenated number with up to 10 digits in 2 or 3 segments as
         labelerCode-productCode-packageCode. packageCode may not be needed.
-      example: 0010-4025
+      example: 601588-image-02.jpg
     - name: image
       in: path
       schema:
