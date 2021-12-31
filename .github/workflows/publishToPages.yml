@@ -26,6 +26,8 @@ jobs:
 
       - name: split OAS
         run: npx @redocly/openapi-cli split src/openapi.yaml --outDir='src/split'
+      - name: dereferenced json
+        run: npx @redocly/openapi-cli split src/openapi.json --outDir='src/dereferenced' --dereferenced
       - name: commit changes
         uses: EndBug/add-and-commit@v7
         with:
