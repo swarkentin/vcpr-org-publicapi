@@ -1,5 +1,6 @@
 name: Split OAS, generate docs and publish to GH Pages
 on:
+  workflow_dispatch:
   push: #when changes are pushed to default branch for the file src/openapi.yml
     branches:
       - develop
@@ -27,7 +28,7 @@ jobs:
       - name: split OAS
         run: npx @redocly/openapi-cli split src/openapi.yaml --outDir='src/split'
       - name: dereferenced json
-        run: npx @redocly/openapi-cli split src/openapi.json --outDir='src/dereferenced' --dereferenced
+        run: npx @redocly/openapi-cli split src/openapi.json --outDir='src/dereferenced' --dereferenced='true'
       - name: commit changes
         uses: EndBug/add-and-commit@v7
         with:
