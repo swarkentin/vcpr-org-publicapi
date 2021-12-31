@@ -1,5 +1,8 @@
 get:
   operationId: getGbdLinkByNDC
+  x-no-test: >-
+    probably should return a JSON response, but need to update Editor first;
+    html page returned OK
   tags:
     - Pharmacy
     - Untested
@@ -19,7 +22,7 @@ get:
     '200':
       description: OK
       content:
-        application/json:
+        text/html:
           schema:
             description: Standard Product Label as html
             type: string
