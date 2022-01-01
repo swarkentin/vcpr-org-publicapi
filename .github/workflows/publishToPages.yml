@@ -48,6 +48,8 @@ jobs:
         run: npx  @redocly/openapi-cli bundle --output=assets/openapi.json src/openapi.yaml
       - name: dereference to json
         run: npx  @redocly/openapi-cli bundle --dereferenced --output=assets/dereferenced.json src/openapi.yaml
+      - name: Sleep 3 sec, otherwise maybe branch gh-pages not found
+        run: sleep 3s
       - name: commit json
         uses: EndBug/add-and-commit@v7
         with:
