@@ -1,0 +1,41 @@
+description: an address
+type: object
+properties:
+  userId:
+    type: integer
+    description: unique identifier for the User
+    example: 1
+  busName:
+    description: bussiness name, if appropriate
+    type: string
+    example: testVOR Clinic
+  address1:
+    description: first line or street address
+    type: string
+    example: 123 Main St.
+  address2:
+    description: second line of address, if needed
+    type: string
+    example: 123 Main St.
+  town:
+    description: town or city
+    type: string
+    example: Anytown
+  state:
+    description: state or province
+    type: string
+    example: Any State
+  zip:
+    type: string
+    description: zip or postal code
+    example: 12345-abcd
+  country:
+    type: string
+    description: country
+    example: USA
+required:
+  - id
+  - userType
+  - email
+  - firstname
+  - lastname
