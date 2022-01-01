@@ -379,14 +379,10 @@ components:
           example: 12345-abcd
         country:
           type: string
-          description: country
+          description: 'country        '
           example: USA
       required:
-        - id
-        - userType
-        - email
-        - firstname
-        - lastname
+        - userId
     SuccessfulLogin:
       description: User object and generated auth token
       type: object
@@ -1322,7 +1318,6 @@ components:
         - ownerId
         - name
         - status
-        - withhold
         - instructions
       properties:
         id:
