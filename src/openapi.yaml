@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.0.3
 info:
   title: VCPR.ORG Protocol Editor API
   version: 2.0.2
@@ -847,7 +847,7 @@ components:
           description: quantity of units specified by symbol
           type: number
           default: 1
-          exclusiveMinimum: 0
+          minimum: 0
           example: 50
         symbol:
           $ref: '#/components/schemas/MassUnit'
@@ -885,7 +885,7 @@ components:
           type: number
           description: quantity of units specified by symbol
           example: 3
-          exclusiveMinimum: 0
+          minimum: 0
         symbol:
           $ref: '#/components/schemas/VolumeUnit'
     DimensionlessUnit:
@@ -914,7 +914,6 @@ components:
         description: number of units specified by symbol
           minimum: 0
           example: 3
-          exclusiveMinimum: 0
         symbol:
           $ref: '#/components/schemas/DimensionlessUnit'
     DrugQuantity:
