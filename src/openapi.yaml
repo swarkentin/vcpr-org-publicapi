@@ -337,6 +337,50 @@ components:
           type: string
           description: degree or qualifier following the name
           example: DVM
+        address:
+          $ref: '#/components/schemas/Address'
+      required:
+        - id
+        - userType
+        - email
+        - firstname
+        - lastname
+    Address:
+      description: an address
+      type: object
+      properties:
+        userId:
+          type: integer
+          description: unique identifier for the User
+          example: 1
+        busName:
+          description: bussiness name, if appropriate
+          type: string
+          example: testVOR Clinic
+        address1:
+          description: first line or street address
+          type: string
+          example: 123 Main St.
+        address2:
+          description: second line of address, if needed
+          type: string
+          example: 123 Main St.
+        town:
+          description: town or city
+          type: string
+          example: Anytown
+        state:
+          description: state or province
+          type: string
+          example: Any State
+        zip:
+          type: string
+          description: zip or postal code
+          example: 12345-abcd
+        country:
+          type: string
+          description: country
+          example: USA
       required:
         - id
         - userType
@@ -482,27 +526,6 @@ components:
         - RECALLED
         - UNKNOWN
       example: PRESCRIBED
-    Withhold:
-      type: object
-      description: >-
-        duration after last treatment during which some act is prohibited. Most
-        often this restricts when meat or milk may be sold for food.
-      properties:
-        hoursMeat:
-          type: number
-          example: 22
-          description: number of hours that must pass between exposure and slaughter
-        hoursMilk:
-          type: number
-          example: 5
-          description: >-
-            number of hours that must pass between exposure and extracting milk
-            for consumption
-        note:
-          type: string
-          description: free-form text note
-          format: html
-          example: <p>improvement apparent</p>
     Instructions:
       description: instructions to execute a protocol
       type: object
@@ -1341,12 +1364,25 @@ components:
           description: note visible only to the prescribing vet
           type: string
           example: consider prescribing protocol x instead
-        withhold:
-          $ref: '#/components/schemas/Withhold'
+        wtMeatHrs:
+          type: number
+          example: 22
+          description: number of hours that must pass between exposure and slaughter
+        wtMilkHrs:
+          type: number
+          example: 5
+          description: >-
+            number of hours that must pass between exposure and extracting milk
+            for consumption
         instructions:
           $ref: '#/components/schemas/Instructions'
         shareAll:
           description: share this protocol with all other vets using the system?
+          type: boolean
+          default: false
+          example: true
+        shareClonable:
+          description: when shared to another vet, may the recipient create and alter a clone?
           type: boolean
           default: false
           example: true
@@ -1495,14 +1531,10 @@ components:
           example: gG3pBCR1GCMKm89c
         protocol:
           $ref: '#/components/schemas/Protocol'
-        vorId:
-          type: integer
-          description: id of VOR prescribing
-          example: 1245
-        morId:
-          type: integer
-          description: id of MOR prescribed to
-          example: 69854
+        vor:
+          $ref: '#/components/schemas/User'
+        mor:
+          $ref: '#/components/schemas/User'
         refills:
           type: integer
           description: number of repeats for this script
@@ -1521,9 +1553,11 @@ components:
             first saved
           example: 2021-08-10T10:30:37Z
         metadata:
-          type: string
-          description: additional data
-          example: " "
+          type: array
+          items:
+            type: string
+            description: additional data
+            example: "12345abc"
         status:
           type: string
           description: status code
