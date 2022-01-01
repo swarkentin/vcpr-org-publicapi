@@ -846,8 +846,8 @@ components:
         value:
           description: quantity of units specified by symbol
           type: number
-          minimum: 0
           default: 1
+          exclusiveMinimum: 0
           example: 50
         symbol:
           $ref: '#/components/schemas/MassUnit'
@@ -884,8 +884,8 @@ components:
         value:
           type: number
           description: quantity of units specified by symbol
-          minimum: 0
           example: 3
+          exclusiveMinimum: 0
         symbol:
           $ref: '#/components/schemas/VolumeUnit'
     DimensionlessUnit:
@@ -911,9 +911,10 @@ components:
             - Dimensionless
         value:
           type: number
-          description: number of units specified by symbol
+        description: number of units specified by symbol
           minimum: 0
           example: 3
+          exclusiveMinimum: 0
         symbol:
           $ref: '#/components/schemas/DimensionlessUnit'
     DrugQuantity:
