@@ -35,7 +35,7 @@ post:
             password:
               type: string
               description: >-
-                User password any characters or numbers allowed, with a minumum
+                User password any characters or numbers allowed, with a minimum
                 length of 10.
               minLength: 6
               example: tVpass
