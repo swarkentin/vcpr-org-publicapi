@@ -137,9 +137,11 @@ paths:
                     $ref: '#/components/schemas/Prescription'
             text/html:
               schema:
-                properties:
-                  prescription:
-                    $ref: '#/components/schemas/Prescription'
+                type: string
+            application/pdf:
+              schema:
+                type: string
+                format: binary
   /api/labels/inserts/{lxId}:
     get:
       operationId: getPackageInsert
