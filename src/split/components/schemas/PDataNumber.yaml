@@ -1,0 +1,14 @@
+type: object
+required:
+  - promiseId
+  - dat
+properties:
+  promiseId:
+    description: set null or zero if User wishes to be anonymous
+    type: integer
+    default: null
+    example: 123
+  dat:
+    type: number
+    description: comment from a user
+    example: 123

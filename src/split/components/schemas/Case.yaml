@@ -1,0 +1,24 @@
+type: object
+required:
+  - id
+  - rxId
+  - caseData
+  - promiseData
+properties:
+  id:
+    description: set null or zero if User wishes to be anonymous
+    type: integer
+    format: int64
+    default: null
+    example: 123
+  rxId:
+    type: string
+    description: UUID identifying the prescription
+    example: gG3pBCR1GCMKm89c
+  caseData:
+    $ref: ./Promise.yaml
+  promiseData:
+    description: promises attached to this case
+    type: array
+    items:
+      $ref: ./Promise.yaml

@@ -1,0 +1,11 @@
+type: object
+required:
+  - animalClass
+  - sizeFunction
+properties:
+  animalClass:
+    type: string
+    description: descrip
+    example: Aardvark
+  sizeFunction:
+    $ref: ./SizeFunction.yaml

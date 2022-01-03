@@ -1,0 +1,30 @@
+type: object
+required:
+  - animalId
+  - initiationTime
+  - preferredDose
+  - weight
+properties:
+  animalId:
+    description: set null or zero if User wishes to be anonymous
+    type: integer
+    default: null
+    example: 123
+  morId:
+    description: if false, comment is private to site managers
+    type: boolean
+    default: false
+    example: true
+  note:
+    type: string
+    description: comment from a user
+    example: this is wonderful
+  initiationTime:
+    description: ISO-8601-formatted datetime, time of the comment
+    type: string
+    format: date-time
+    example: 2020-01-10T10:30:37Z
+  weight:
+    $ref: ./MassQuantity.yaml
+  preferredDose:
+    $ref: ./DrugQuantity.yaml

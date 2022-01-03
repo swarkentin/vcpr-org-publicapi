@@ -23,6 +23,8 @@ get:
                 $ref: ../components/schemas/Prescription.yaml
         text/html:
           schema:
-            properties:
-              prescription:
-                $ref: ../components/schemas/Prescription.yaml
+            type: string
+        application/pdf:
+          schema:
+            type: string
+            format: binary

@@ -1,0 +1,43 @@
+post:
+  operationId: executeCase
+  tags:
+    - Case
+  summary: user login
+  description: Enroll a case
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/AnimalTask.yaml
+  responses:
+    '200':
+      description: Success – recorded Protocol
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              case:
+                $ref: ../components/schemas/Case.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+get:
+  operationId: myCases
+  tags:
+    - Case
+  summary: renew token
+  description: Get all current cases for this user
+  responses:
+    '200':
+      description: Success – token refreshed
+      content:
+        application/json:
+          schema:
+            properties:
+              cases:
+                type: array
+                items:
+                  $ref: ../components/schemas/Case.yaml
+    '401':
+      $ref: ../components/responses/Unauthorized.yaml

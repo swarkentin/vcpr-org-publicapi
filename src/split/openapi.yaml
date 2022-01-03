@@ -33,6 +33,12 @@ paths:
     $ref: paths/api@spl@{ndc}.yaml
   /api/spl/{ndc}/{image}:
     $ref: paths/api@spl@{ndc}@{image}.yaml
+  /api/prescriptions/cases:
+    $ref: paths/api@prescriptions@cases.yaml
+  /api/prescriptions/:rxId/cases:
+    $ref: paths/api@prescriptions@:rxId@cases.yaml
+  /api/users/tasks:
+    $ref: paths/api@users@tasks.yaml
 components:
   securitySchemes:
     authToken:
