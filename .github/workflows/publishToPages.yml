@@ -34,12 +34,6 @@ jobs:
           message: split src/openapi.yaml to src/split/*.yaml
           add: src/split/*.yaml
 
-#      - name: create docs from OAS
-#        uses: seeebiii/redoc-cli-github-action@v10
-#        with:
-#          args: bundle src/openapi.yaml -o docs/index.html
-
-
       - name: build web page including JSON versions of schema
         run: |
           npx  redoc-cli bundle src/openapi.yaml -o docs/index.html
