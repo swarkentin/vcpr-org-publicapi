@@ -296,7 +296,7 @@ paths:
                      $ref: '#/components/schemas/Case'
         '401':
           $ref: '#/components/responses/Unauthorized'
-  /api/prescriptions/:rxId/cases:
+  /api/prescriptions/{rxId}/cases:
     get:
       operationId: myCases
       tags:
@@ -1955,26 +1955,28 @@ components:
         - $ref: '#/components/schemas/PrefDoseRateData'
         - $ref: '#/components/schemas/AnimalClassData'
 
+
     IdData:
       type: object
+      description: animal identification
       required:
         - animalId
         - initiationTime
       properties:
         animalId:
-          description: set null or zero if User wishes to be anonymous
+          description: animal identification used by the owner
           type: integer
           default: null
-          example: 123
+          example: 123abc
         morId:
-          description: if false, comment is private to site managers
-          type: boolean
-          default: false
-          example: true
+          description: ID number of MOR responsible for the case
+          type: integer
+          default: null
+          example: 123abc
         note:
           type: string
           description: comment from a user
-          example: this is wonderful
+          example: enter treatment in log book
         initiationTime:
           description: >-
             ISO-8601-formatted datetime, time of the comment
@@ -1989,19 +1991,19 @@ components:
         - weight
       properties:
         animalId:
-          description: set null or zero if User wishes to be anonymous
+          description: animal identification used by the owner
           type: integer
           default: null
-          example: 123
+          example: 123abc
         morId:
-          description: if false, comment is private to site managers
-          type: boolean
-          default: false
-          example: true
+          description: ID number of MOR responsible for the case
+          type: integer
+          default: null
+          example: 123abc
         note:
           type: string
           description: comment from a user
-          example: this is wonderful
+          example: enter treatment in log book
         initiationTime:
           description: >-
             ISO-8601-formatted datetime, time of the comment
@@ -2018,19 +2020,19 @@ components:
         - preferredDose
       properties:
         animalId:
-          description: set null or zero if User wishes to be anonymous
+          description: animal identification used by the owner
           type: integer
           default: null
-          example: 123
+          example: 123abc
         morId:
-          description: if false, comment is private to site managers
-          type: boolean
-          default: false
-          example: true
+          description: ID number of MOR responsible for the case
+          type: integer
+          default: null
+          example: 123abc
         note:
           type: string
           description: comment from a user
-          example: this is wonderful
+          example: enter treatment in log book
         initiationTime:
           description: >-
             ISO-8601-formatted datetime, time of the comment
@@ -2049,19 +2051,19 @@ components:
         - weight
       properties:
         animalId:
-          description: set null or zero if User wishes to be anonymous
+          description: animal identification used by the owner
           type: integer
           default: null
-          example: 123
+          example: 123abc
         morId:
-          description: if false, comment is private to site managers
-          type: boolean
-          default: false
-          example: true
+          description: ID number of MOR responsible for the case
+          type: integer
+          default: null
+          example: 123abc
         note:
           type: string
           description: comment from a user
-          example: this is wonderful
+          example: enter treatment in log book
         initiationTime:
           description: >-
             ISO-8601-formatted datetime, time of the comment
@@ -2079,19 +2081,19 @@ components:
         - initiationTime
       properties:
         animalId:
-          description: set null or zero if User wishes to be anonymous
+          description: animal identification used by the owner
           type: integer
           default: null
-          example: 123
+          example: 123abc
         morId:
-          description: if false, comment is private to site managers
-          type: boolean
-          default: false
-          example: true
+          description: ID number of MOR responsible for the case
+          type: integer
+          default: null
+          example: 123abc
         note:
           type: string
           description: comment from a user
-          example: this is wonderful
+          example: enter treatment in log book
         initiationTime:
           description: >-
             ISO-8601-formatted datetime, time of the comment
@@ -2101,6 +2103,7 @@ components:
         preferredDose:
           $ref: '#/components/schemas/AnimalClass'
     AnimalClass:
+      description: A class of animals defined by a user
       type: object
       required:
         - animalClass
@@ -2118,6 +2121,7 @@ components:
         - $ref: '#/components/schemas/PTask'
         - $ref: '#/components/schemas/WeightData'
     PTask:
+      description: a task originating from a **_Promise_**
       type: object
       required:
         - id
@@ -2172,6 +2176,7 @@ components:
         data:
           $ref: '#/components/schemas/PData'
     DoseTask:
+      description: a task to administer a dose of some product
       type: object
       required:
         - id
@@ -2212,21 +2217,25 @@ components:
           example: fix it
         animalId:
           type: string
-          description: comment from a user
+          description: identification of the animal receiving the dose
           example: this
         product:
+          description: the product to be administered
           type: string
+          example: Calcium gluconate 23% solution
         dose:
           $ref: '#/components/schemas/DrugQuantity'
         route:
+          description: route of administration
           type: string
+          example: intramuscular injection
         doAt:
           description: ISO-8601-formatted datetime, time the task should be executed
           type: string
           format: date-time
           example: 2020-01-10T10:30:37Z
         executor:
-          description: set nu
+          description: id of person who should execute the task
           type: integer
           format: int64
           example: 123
