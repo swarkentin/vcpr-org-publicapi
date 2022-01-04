@@ -1,3 +1,4 @@
+description: a class of animals and a SizeFunction for dosing that class
 type: object
 required:
   - animalClass
@@ -6,6 +7,6 @@ properties:
   animalClass:
     type: string
     description: descrip
-    example: Aardvark
+    example: Jabberwocks
   sizeFunction:
     $ref: ./SizeFunction.yaml

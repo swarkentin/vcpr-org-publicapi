@@ -1929,7 +1929,12 @@ components:
         - caseData
         - promiseData
       properties:
-        id:
+        _type:
+          type: string
+          description: class of SequenceFunction
+          enum:
+            - models.api.v1.SeqSingleDose
+          example: models.api.v1.SeqSingleDose        id:
           description: set null or zero if User wishes to be anonymous
           type: integer
           format: int64

@@ -1,19 +1,24 @@
-description: wip
+description: animal identity and preferred dose
+type: object
+required:
+  - animalId
+  - initiationTime
+  - preferredDose
 properties:
   _type:
     type: string
     enum:
       - models.api.v1.PreferredDoseData
+    example: models.PrefDoseRateData
   animalId:
     type: string
     description: wip free-form text note identifying this entry
-    example: Bossie PreferredDoaseData
+    example: Bossie
   preferredDose:
     $ref: ./DrugQuantity.yaml
   initiationTime:
     type: string
     format: date-time
     description: >-
-      wip ISO-8601-formatted datetime added by the server when the preferredDose
-      was administered ??
+       ISO-8601-formatted datetime when the task should be executed
     example: 2020-04-10T10:30:37Z

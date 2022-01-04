@@ -1,3 +1,4 @@
+description: weight of animal and preferred dose
 type: object
 required:
   - animalId
@@ -5,6 +6,12 @@ required:
   - preferredDose
   - weight
 properties:
+  _type:
+    type: string
+    description: identifies subtype of CaseData
+    enum:
+      - models.PrefDoseRateData
+    example: models.PrefDoseRateData
   animalId:
     description: set null or zero if User wishes to be anonymous
     type: integer

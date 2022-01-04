@@ -9,6 +9,12 @@ required:
   - doAt
   - status
 properties:
+  _type:
+    type: string
+    description: identifies subtype of CaseData
+    enum:
+      - models.PreferredDoseData
+    example: models.PreferredDoseData
   id:
     description: set null or zero if User wishes to be anonymous
     type: integer

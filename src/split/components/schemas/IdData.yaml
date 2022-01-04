@@ -1,9 +1,15 @@
-description: wip tbd
+description: identifies animal
 properties:
+  _type:
+    type: string
+    description: identifies subtype of CaseData
+    enum:
+      - models.IdData
+    example: models.IdData
   animalId:
     type: string
     description: free-form text description of the animal
-    example: Bossie IdData
+    example: Bossie
   initiationTime:
     type: string
     format: date-time

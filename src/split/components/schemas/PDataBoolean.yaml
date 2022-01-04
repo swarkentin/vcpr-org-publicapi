@@ -3,12 +3,18 @@ required:
   - promiseId
   - dat
 properties:
+  _type:
+    type: string
+    description: identifies subtype of PData
+    enum:
+      - models.PDataBoolean
+    example: models.PDataBoolean
   promiseId:
-    description: set null or zero if User wishes to be anonymous
+    description: ID of promise
     type: integer
     default: null
     example: 123
   dat:
     type: string
-    description: comment from a user
+    description: data
     example: this is
