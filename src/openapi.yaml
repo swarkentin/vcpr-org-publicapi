@@ -426,7 +426,7 @@ components:
       properties:
         id:
           type: integer
-          description: unique identifier for the User
+          description: User ID number
           example: 1
         uname:
           description: username
@@ -683,7 +683,7 @@ components:
         - id
       properties:
         id:
-          description: wip
+          description: Eligibility ID number
           type: integer
           example: 1
         name:
@@ -1196,7 +1196,7 @@ components:
       properties:
         id:
           type: integer
-          description: unique identifier for Diagnosis
+          description: Diagnosis ID number
           example: 8
         code:
           type: string
@@ -1230,7 +1230,7 @@ components:
             - models.MassPromise
             - models.CategoryPromise
         id:
-          description: UUID assigned to the promise itself by the server
+          description: Promise ID number
           type: string
           format: uuid
         name:
@@ -1370,7 +1370,7 @@ components:
           $ref: '#/components/schemas/Protocol'
         vorId:
           type: integer
-          description: wip
+          description: ID of VOR user who prescribed this task
           example: aZ3pBCR1GCMKm89c
         morId:
           type: integer
@@ -1404,6 +1404,7 @@ components:
             wip - NB this may have a status of DEPRECTATED, but the property
             itself is not!
     Case:
+      description: A **_Case_** records use of a **_Prescription_** on an individual animal or group
       type: object
       required:
         - id
@@ -1412,7 +1413,7 @@ components:
         - promiseData
       properties:
         id:
-          description: set null or zero if User wishes to be anonymous
+          description: Case ID number
           type: integer
           format: int64
           default: null
@@ -1422,7 +1423,7 @@ components:
           description: UUID identifying the prescription
           example: gG3pBCR1GCMKm89c
         caseData:
-          $ref: '#/components/schemas/Promise'
+          $ref: '#/components/schemas/CaseData'
         promiseData:
           description: promises attached to this case
           type: array
@@ -1456,14 +1457,10 @@ components:
             - models.PdataNone
           example: models.PdataNone
         promiseId:
-          description: set null or zero if User wishes to be anonymous
+          description: ID of promise to which this data is attached
           type: integer
           default: null
           example: 123
-        dat:
-          type: string
-          description: comment from a user
-          example: this is
     PDataString:
       type: object
       required:
@@ -1477,14 +1474,14 @@ components:
             - models.PdataString
           example: models.PdataString
         promiseId:
-          description: set n
+          description: ID of promise to which this data is attached
           type: integer
           default: null
           example: 123
         dat:
           type: string
-          description: commen
-          example: this is
+          description: data to fulfill the Promise
+          example: full recovery
     PDataNumber:
       type: object
       required:
@@ -1498,14 +1495,14 @@ components:
             - models.PdataNumber
           example: models.PdataNumber
         promiseId:
-          description: s
+          description: ID of promise to which this data is attached
           type: integer
           default: null
           example: 123
         dat:
           type: number
-          description: co
-          example: 123
+          description:  data to fulfill the Promise
+          example: 42
     PDataBoolean:
       type: object
       required:
@@ -1519,14 +1516,14 @@ components:
             - models.PDataBoolean
           example: models.PDataBoolean
         promiseId:
-          description: ID of promise
+          description: ID of promise to which this data is attached
           type: integer
           default: null
           example: 123
         dat:
-          type: string
-          description: data
-          example: this is
+          type: boolean
+          description:  data to fulfill the Promise
+          example: true
     PDataMass:
       type: object
       required:
@@ -1555,6 +1552,7 @@ components:
         - $ref: '#/components/schemas/PDataBoolean'
         - $ref: '#/components/schemas/PDataMass'
     PTask:
+      description: A Task required to fulfill a Promise
       type: object
       required:
         - id
@@ -1573,17 +1571,17 @@ components:
             - models.PreferredDoseData
           example: models.PreferredDoseData
         id:
-          description: set null or zero if User wishes to be anonymous
+          description: PTask ID number
           type: integer
           format: int64
           example: 123
         caseId:
-          description: set null or zero if User wishes to be anonymous
+          description: ID number of Case that includes this task
           type: integer
           format: int64
           example: 123
         morId:
-          description: set null or zero if User wishes to be anonymous
+          description: ID of MOR user responsible for execution of this task
           type: integer
           format: int64
           example: 123
@@ -1593,20 +1591,20 @@ components:
           format: int64
           example: 123
         act:
-          description: if false, comment is private to site managers
+          description: explanation of the task
           type: string
           example: fix it
         animalId:
           type: string
-          description: comment from a user
+          description: ID of animal to which the task applies
           example: this
         doAt:
-          description: ISO-8601-formatted datetime, time the task should be executed
+          description: ISO-8601-formatted datetime when the task should be executed
           type: string
           format: date-time
           example: 2020-01-10T10:30:37Z
         executor:
-          description: set nu
+          description: ID of Person who should execute the task
           type: integer
           format: int64
           example: 123
@@ -1633,27 +1631,27 @@ components:
             - models.PreferredDoseData
           example: models.PreferredDoseData
         id:
-          description: set null or zero if User wishes to be anonymous
+          description: DoseTask ID number
           type: integer
           format: int64
           example: 123
         caseId:
-          description: set null or zero if User wishes to be anonymous
+          description:  ID number of Case that includes this task
           type: integer
           format: int64
           example: 123
         morId:
-          description: set null or zero if User wishes to be anonymous
+          description:  ID of MOR user responsible for execution of this task
           type: integer
           format: int64
           example: 123
         vorId:
-          description: set null or zero if User wishes to be anonymous
+          description: ID of VOR user who prescribed this task
           type: integer
           format: int64
           example: 123
         act:
-          description: if false, comment is private to site managers
+          description: explanation of the task
           type: string
           example: fix it
         product:
@@ -1668,7 +1666,7 @@ components:
           $ref: '#/components/schemas/DrugQuantity'        
         animalId:
           type: string
-          description: comment from a user
+          description: ID of animal to receive the dose
           example: this
         doAt:
           description: ISO-8601-formatted datetime, time the task should be executed
@@ -1682,8 +1680,134 @@ components:
           example: 123
         status:
           $ref: '#/components/schemas/TaskStatus'
-        data:
-          $ref: '#/components/schemas/PData'
+    CaseData:
+      description: wip tbd
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 0
+          description: ID number for the **_Case_**
+        rxId:
+          type: string
+          description:  UUID identifying the prescription
+          example: gG3pBCR1GCMKm89c
+        caseData:
+          oneOf:
+            - $ref: '#/components/schemas/IdData'
+            - $ref: '#/components/schemas/WeightData'
+            - $ref: '#/components/schemas/PreferredDoseData'
+            - $ref: '#/components/schemas/PrefDoseRateData'
+            - $ref: '#/components/schemas/AnimalClassData'
+    IdData:
+      description: identifies animal or group treated in the **_Case_**
+      properties:
+        _type:
+          type: string
+          description: identifies subtype of CaseData
+          enum:
+            - models.IdData
+          example: models.IdData
+        animalId:
+          type: string
+          description: text description identifying the animal or group
+          example: Bossie
+        initiationTime:
+          type: string
+          format: date-time
+          example: 2020-01-10T10:30:37Z
+          description:  when the **_Case_** is initiated
+    PreferredDoseData:
+      description: animal identity and preferred dose
+      type: object
+      required:
+        - animalId
+        - initiationTime
+        - preferredDose
+      properties:
+        _type:
+          type: string
+          enum:
+            - models.api.v1.PreferredDoseData
+          example: models.PrefDoseRateData
+        animalId:
+          type: string
+          description:  text description identifying the animal or group
+          example: Bossie
+        preferredDose:
+          $ref: '#/components/schemas/DrugQuantity'
+        initiationTime:
+          type: string
+          format: date-time
+          description:  when the **_Case_** is initiated
+          example: 2020-04-10T10:30:37Z
+    PrefDoseRateData:
+      description: weight of animal and preferred dose
+      type: object
+      required:
+        - animalId
+        - initiationTime
+        - preferredDose
+        - weight
+      properties:
+        _type:
+          type: string
+          description: identifies subtype of CaseData
+          enum:
+            - models.PrefDoseRateData
+          example: models.PrefDoseRateData
+        animalId:
+          description:  text description identifying the animal or group
+          type: integer
+          default: null
+          example: 123
+        initiationTime:
+          description:  when the **_Case_** is initiated
+          type: string
+          format: date-time
+          example: 2020-01-10T10:30:37Z
+        weight:
+          $ref: '#/components/schemas/MassQuantity'
+        preferredDose:
+          $ref: '#/components/schemas/DrugQuantity'
+    AnimalClassData:
+      description: data for a class of animals
+      type: object
+      required:
+        - animalId
+        - initiationTime
+        - animalClass
+      properties:
+        _type:
+          type: string
+          enum:
+            - models.api.v1.AnimalClassData
+          example: models.AnimalClassData
+        animalId:
+          description:  text description identifying the animal or group
+          type: integer
+          default: null
+          example: 123
+        initiationTime:
+          description:  when the **_Case_** is initiated
+          type: string
+          format: date-time
+          example: 2020-01-10T10:30:37Z
+        animalClass:
+          $ref: '#/components/schemas/AnimalClass'
+    AnimalClass:
+      description: a class of animals and a SizeFunction for dosing that class
+      type: object
+      required:
+        - animalClass
+        - sizeFunction
+      properties:
+        animalClass:
+          type: string
+          description: descrip
+          example: Jabberwocks
+        sizeFunction:
+          $ref: '#/components/schemas/SizeFunction'
     WeightData:
       description: specifies animal's weight
       properties:
@@ -1695,16 +1819,14 @@ components:
           example: models.WeightData
         animalId:
           type: string
-          description: free-form text description of the animal
+          description:  text description identifying the animal or group
           example: Bossie
         weight:
           $ref: '#/components/schemas/MassQuantity'
         initiationTime:
           type: string
           format: date-time
-          description: >-
-            wip ISO-8601-formatted datetime added by the server when the
-            instance of the animal's weight is first saved.
+          description: when the **_Case_** is initiated
           example: 2020-01-10T10:30:37Z
     AnimalTask:
       description: a task
