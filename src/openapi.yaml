@@ -710,8 +710,8 @@ components:
           type: string
           description: wip
           enum:
-            - models.api.v1.SeqSingleDose
-          example: models.api.v1.SeqSingleDose
+            - models.SeqSingleDose
+          example: models.SeqSingleDose
     SeqPerDay:
       required:
         - _type
@@ -725,7 +725,7 @@ components:
         _type:
           type: string
           enum:
-            - models.api.v1.SeqPerDay
+            - models.SeqPerDay
         frequency:
           type: integer
           default: 1
@@ -734,7 +734,7 @@ components:
           default: 1
       example:
         totalDoses: 3
-        _type: models.api.v1.SeqPerDay
+        _type: models.SeqPerDay
         frequency: 2
     SeqPerDayRange:
       required:
@@ -750,8 +750,8 @@ components:
         _type:
           type: string
           enum:
-            - models.api.v1.SeqPerDayRange
-          example: models.api.v1.SeqPerDayRange
+            - models.SeqPerDayRange
+          example: models.SeqPerDayRange
         frequency:
           type: integer
           default: 1
@@ -775,8 +775,8 @@ components:
         _type:
           type: string
           enum:
-            - models.api.v1.SeqInterval
-          example: models.api.v1.SeqInterval
+            - models.SeqInterval
+          example: models.SeqInterval
         totalDoses:
           type: integer
           default: 1
@@ -799,8 +799,8 @@ components:
         _type:
           type: string
           enum:
-            - models.api.v1.SeqSeries
-          example: models.api.v1.SeqSeries
+            - models.SeqSeries
+          example: models.SeqSeries
         intervals:
           type: array
           items:
@@ -936,7 +936,7 @@ components:
         _type:
           type: string
           enum:
-            - models.api.v1.FixedDoseFunction
+            - models.FixedDoseFunction
         dose:
           $ref: '#/components/schemas/DrugQuantity'
       example:
@@ -945,7 +945,7 @@ components:
             dimension: Volume
             value: 3
             symbol: ml
-        _type: models.api.v1.FixedDoseFunction
+        _type: models.FixedDoseFunction
     DoseByWeightFunction:
       description: dose is specified as a quantity per unit of animal weight
       required:
@@ -956,7 +956,7 @@ components:
         _type:
           type: string
           enum:
-            - models.api.v1.DoseByWeightFunction
+            - models.DoseByWeightFunction
         dose:
           $ref: '#/components/schemas/DrugQuantity'
         perUnit:
@@ -971,7 +971,7 @@ components:
           dimension: mass
           value: 1
           symbol: kg
-        _type: models.api.v1.DoseByWeightFunction
+        _type: models.DoseByWeightFunction
     LoadingDoseByWeightFunction:
       description: >-
         dose is specified as first (loading) dose and following doses per unit
@@ -985,7 +985,7 @@ components:
         _type:
           type: string
           enum:
-            - models.api.v1.DoseByWeightFunction
+            - models.DoseByWeightFunction
         firstDose:
           $ref: '#/components/schemas/DrugQuantity'
         followDose:
@@ -1002,7 +1002,7 @@ components:
             dimension: volume
             value: 3
             symbol: ml
-        _type: models.api.v1.LoadingDoseByWeightFunction
+        _type: models.LoadingDoseByWeightFunction
         firstDose:
           quantity:
             dimension: volume
@@ -1039,8 +1039,8 @@ components:
         _type:
           type: string
           enum:
-            - models.api.v1.DoseRangeFunction
-          example: models.api.v1.DoseRangeFunction
+            - models.DoseRangeFunction
+          example: models.DoseRangeFunction
         range:
           $ref: '#/components/schemas/DrugQuantityRange'
     DoseRangeByWeightFunction:
@@ -1055,7 +1055,7 @@ components:
         _type:
           type: string
           enum:
-            - models.api.v1.DoseRangeByWeightFunction
+            - models.DoseRangeByWeightFunction
         range:
           $ref: '#/components/schemas/DrugQuantityRange'
         perUnit:
@@ -1065,7 +1065,7 @@ components:
           dimension: Mass
           value: 1
           symbol: kg
-        _type: models.api.v1.DoseRangeByWeightFunction
+        _type: models.DoseRangeByWeightFunction
         range:
           min:
             quantity:
@@ -1223,12 +1223,12 @@ components:
           description: server data type to which this Promise will be mapped
           type: string
           enum:
-            - models.api.v1.IdPromise
-            - models.api.v1.AffirmationPromise
-            - models.api.v1.BooleanPromise
-            - models.api.v1.StringPromise
-            - models.api.v1.MassPromise
-            - models.api.v1.CategoryPromise
+            - models.IdPromise
+            - models.AffirmationPromise
+            - models.BooleanPromise
+            - models.StringPromise
+            - models.MassPromise
+            - models.CategoryPromise
         id:
           description: UUID assigned to the promise itself by the server
           type: string
@@ -1540,7 +1540,7 @@ components:
             - models.PdataMass
           example: models.PdataMass
         promiseId:
-          description: null
+          description: id number of Promise
           type: integer
           default: null
           example: 123
