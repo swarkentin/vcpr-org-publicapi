@@ -1,7 +1,0 @@
-description: dimensionless unit (each)
-type: string
-enum:
-  - ea
-  - '%'
-  - dz
-example: ea

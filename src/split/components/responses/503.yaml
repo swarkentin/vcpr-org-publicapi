@@ -1,5 +1,0 @@
-description: service unavailable
-content:
-  application/problem+json:
-    schema:
-      $ref: https://opensource.zalando.com/problem/schema.yaml#/Problem

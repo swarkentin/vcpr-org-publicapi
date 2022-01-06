@@ -1,5 +1,0 @@
-properties:
-  doseId:
-    type: integer
-    description: key to a label dosage
-    example: wip

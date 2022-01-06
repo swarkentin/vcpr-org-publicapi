@@ -1,4 +1,0 @@
-description: a task
-oneOf:
-  - $ref: ./PTask.yaml
-  - $ref: ./WeightData.yaml

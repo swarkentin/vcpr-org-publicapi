@@ -1,7 +1,0 @@
-description: a task
-oneOf:
-  - $ref: ./PDataNone.yaml
-  - $ref: ./PDataString.yaml
-  - $ref: ./PDataNumber.yaml
-  - $ref: ./PDataBoolean.yaml
-  - $ref: ./PDataMass.yaml
