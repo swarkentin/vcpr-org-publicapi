@@ -25,14 +25,14 @@ jobs:
 #        env:
 #          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
-      - name: split OAS
-        run: npx @redocly/openapi-cli split src/openapi.yaml --outDir='src/split'
-      - name: commit changes
-        uses: EndBug/add-and-commit@v7
-        with:
-          default_author: github_actions
-          message: split src/openapi.yaml to src/split/*.yaml
-          add: src/split/*.yaml
+#      - name: split OAS
+#        run: npx @redocly/openapi-cli split src/openapi.yaml --outDir='src/split'
+#      - name: commit changes
+#        uses: EndBug/add-and-commit@v7
+#        with:
+#          default_author: github_actions
+#          message: split src/openapi.yaml to src/split/*.yaml
+#          add: src/split/*.yaml
 
       - name: build web page including JSON versions of schema
         run: |
