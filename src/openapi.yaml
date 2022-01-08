@@ -305,7 +305,7 @@ paths:
                       $ref: '#/components/schemas/Case'
         '401':
           $ref: '#/components/responses/Unauthorized'
-  /api/prescriptions/:rxId/cases:
+  /api/prescriptions/{rxId}/cases:
     get:
       operationId: myCases
       tags:
@@ -348,7 +348,7 @@ paths:
               $ref: '#/components/schemas/AnimalTask'
       responses:
         '200':
-          description: Success – recorded Protocol
+          description: Success, Protocol recorded
           content:
             application/json:
               schema:
@@ -990,7 +990,7 @@ components:
           type: number
           description: number of units
           default: 1
-          exclusiveMinimum: 0
+          exclusiveMinimum: 0 
           example: 50
         symbol:
           $ref: '#/components/schemas/MassUnit'
@@ -1794,6 +1794,7 @@ components:
       description: A Task required to fulfill a Promise
       type: object
       required:
+        - type
         - id
         - caseId
         - morId
@@ -1874,6 +1875,7 @@ components:
     DoseTask:
       type: object
       required:
+        - type
         - id
         - caseId
         - morId
