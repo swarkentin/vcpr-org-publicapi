@@ -1801,6 +1801,7 @@ components:
         - morId
         - vorId
         - promId
+        - animalId
         - doAt
         - status
       properties:
@@ -1882,6 +1883,10 @@ components:
         - caseId
         - morId
         - vorId
+        - product
+        - dose
+        - route
+        - animalId
         - doAt
         - status
       properties:
