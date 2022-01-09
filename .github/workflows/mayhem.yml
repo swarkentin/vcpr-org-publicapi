@@ -1,0 +1,21 @@
+name: Manual Lint
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  lint:
+    runs-on: ubuntu-latest
+    name: Redoc Linter
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: openapi-lint 
+        uses: mhiew/redoc-lint-github-action@v2
+        with:
+          args: 'src/openapi.yaml'
+#Giordano:~ jimehrlich$
+#curl -X POST https://test.vcpr.org/api/users/logins -k -H 'Content-Type: application/json;charset=utf-8' --data-raw $'{"identifier": "testVOR", "password": "tVpass", "apikey": "t0CGzpQ4cgu1OBy44sBt"}'
+#
+#{"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxLUZUbGlqWWl0XC9XS25rdm4xbXFKNllBUFVENm9STkdQTDIzV2FnYVNnVkdlU1BDN294Q2NvdHJLM1NNaXVMbGhHb2RhZWJNRGpFdVRiQ0dXcU9oMkI4Y2s1c3pJPSIsImlzcyI6IlZDUFItc2VydmVyIiwiZXhwIjoxNjM5NzcxNTMzLCJpYXQiOjE2Mzk2ODUxMzMsImp0aSI6IjBjMDRhNGRjNTM1MGM5OTViYjdmYmQyYzc5NzM1ZTU4ZTQzNGZhZDM4NjcwZTgyOGVkMjJjYWVjMTNhZDBjNTAzYTMxOTRiNmY2MDg3NDY5ZTIyYWQzMjUxODZkZTgzYmJjMTZhMzAxOWYxMTZlNDc0ZmE3ODhjNzU3YTUwNjRkMTg0M2I1OWEzOWVjYWZlNGQ3ZDZkZmIxMWU5MTdiOWNiYjI1Nzk0ZjRjMjY0NmYzOGExNzc5MjNkZmVjZTk3YzNjZDRhYTJlZmFjOTk0YmQ0Y2I0YjMwNmE1MWY1NTJiOGFhM2RjNDlkNWI0NmZmZmVjMDM2ZDI4ZWM4MTBjNjQifQ.x1w65UaeuDruqDXpZl08pfv1JvsZm8sBS0nDXmc4EYA","user":{"id":1,"uname":"testVOR","userType":"VOR","email":"testVOR@dairysight.com","firstname":"Test","lastname":"Vet","suffix":"DVM"},"filePolicy":"eyJleHBpcnkiOjE2Mzk2ODYzMzMsIm1heFNpemUiOjEwMDAwMDAwfQ==","fileSignature":"75b4fb5d70b88ae3c25f52e9676dd7c2d4610a531a132e3249233b54c426fccd"}
