@@ -1808,8 +1808,8 @@ components:
           type: string
           description: identifies subtype of AnimalTask
           enum:
-            - models.PreferredDoseData
-          example: models.PreferredDoseData
+            - models.Ptask
+          example: models.Ptask
         id:
           description: PTask ID number
           type: integer
@@ -1889,8 +1889,8 @@ components:
           type: string
           description: identifies subtype of AnimalTask
           enum:
-            - models.PreferredDoseData
-          example: models.PreferredDoseData
+            - models.DoseTask
+          example: models.DoseTask
         id:
           description: DoseTask ID number
           type: integer
