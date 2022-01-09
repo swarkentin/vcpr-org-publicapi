@@ -1795,6 +1795,7 @@ components:
       description: A Task required to fulfill a Promise
       type: object
       required:
+        - _type
         - id
         - caseId
         - morId
@@ -1804,6 +1805,13 @@ components:
         - doAt
         - status
       properties:
+        _type: 
+          type: string
+          description: class of AnimalTask
+          enum:
+            - models.PTask
+          example:  
+            models.PTask
         id:
           description: PTask ID number
           type: integer
@@ -1858,18 +1866,19 @@ components:
           type: string
           description: class of Dose Function
           enum:
-            - models.api.v1.DoseByClass
+            - models.DoseByClass
           example:  
-            models.api.v1.DoseByClass
+            models.DoseByClass
         animalClasses:
           type: array
           items:
             $ref: '#/components/schemas/FixedDoseFunction'
       example: >-
-        {"_type":"models.api.v1.DoseByClass","animalClasses":[{"animalClass":"Jabberwocks","sizeFunction":{"unit":"mg","size":3.2,"_type":"models.api.v1.DrugQuantity"}},{"animalClass":"Borogoves","sizeFunction":{"_type":"models.api.v1.DoseRangeFunction","maxDose":{"size":20,"unit":"ml"},"minDose":{"size":10,"unit":"ml"}}}]}
+        {"_type":"models.DoseByClass","animalClasses":[{"animalClass":"Jabberwocks","sizeFunction":{"unit":"mg","size":3.2,"_type":"models.DrugQuantity"}},{"animalClass":"Borogoves","sizeFunction":{"_type":"models.DoseRangeFunction","maxDose":{"size":20,"unit":"ml"},"minDose":{"size":10,"unit":"ml"}}}]}
     DoseTask:
       type: object
       required:
+        - _type
         - id
         - caseId
         - morId
@@ -1881,6 +1890,13 @@ components:
         - doAt
         - status
       properties:
+        _type: 
+          type: string
+          description: class of AnimalTask
+          enum:
+            - models.DoseTask
+          example:  
+            models.DoseTask
         id:
           description: DoseTask ID number
           type: integer
@@ -1977,7 +1993,7 @@ components:
           description: Class of CaseData
           type: string
           enum:
-            - models.api.v1.PreferredDoseData
+            - models.PreferredDoseData
           example: models.PrefDoseRateData
         animalId:
           type: string
@@ -2031,7 +2047,7 @@ components:
           description: Class of CaseData
           type: string
           enum:
-            - models.api.v1.AnimalClassData
+            - models.AnimalClassData
           example: models.AnimalClassData
         animalId:
           description:  text description identifying the animal or group
