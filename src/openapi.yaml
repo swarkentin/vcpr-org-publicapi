@@ -976,7 +976,6 @@ components:
     MassQuantity:
       type: object
       required:
-        - dimension
         - value
         - symbol
       properties:
@@ -1014,7 +1013,6 @@ components:
     VolumeQuantity:
       type: object
       required:
-        - dimension
         - value
         - symbol
       properties:
@@ -1042,7 +1040,6 @@ components:
     DimensionlessQuantity:
       type: object
       required:
-        - dimension
         - value
         - symbol
       properties:
