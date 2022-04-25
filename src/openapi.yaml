@@ -4,7 +4,7 @@ info:
   version: 2.0.2
   contact:
     name: Jim Ehrlich, DVM
-    url: https://github.com/jehrlich/VCPR_API
+    url: https://github.com/VCPR-ORG/publicAPI
     email: jehrlich@vcpr.org
   description: >-
     API serving the Veterinary Protocol Manager&trade; application. &copy;
@@ -989,7 +989,6 @@ components:
           type: number
           description: number of units
           default: 1
-          exclusiveMinimum: 0 
           example: 50
         symbol:
           $ref: '#/components/schemas/MassUnit'
@@ -1026,7 +1025,6 @@ components:
           type: number
           description: number of units
           example: 3
-          exclusiveMinimum: 0
         symbol:
           $ref: '#/components/schemas/VolumeUnit'
     DimensionlessUnit:
@@ -1053,7 +1051,6 @@ components:
           type: number
           description: number of units
           example: 3
-          exclusiveMinimum: 0
         symbol:
           $ref: '#/components/schemas/DimensionlessUnit'
     DrugQuantity:
