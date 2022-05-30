@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: VCPR.ORG Protocol Editor API
-  version: 2.0.2
+  version: 2.1.0
   contact:
     name: Jim Ehrlich, DVM
     url: https://github.com/VCPR-ORG/publicAPI
@@ -16,9 +16,25 @@ servers:
     url: https://stage.VCPR.ORG
   - description: Test server, uses regenerated test database.
     url: https://test.VCPR.ORG
-  - description: Local docker container, uses regenerated test database.
+  - description: Local server.
     url: http://localhost
 tags:
+  - name: ALL_USERS
+    description: available to all users.
+  - name: SAOR
+    description: available to system administrators.
+  - name: VOR
+    description: available to veterinarians.
+  - name: MOR
+    description: available to farm managers.
+  - name: TOR
+    description: available to farm employees.
+  - name: LOR
+    description: available to pharmacy curators.
+  - name: FARM
+    description: available to farm accounts.
+  - name: CLINIC
+    description: available to vet clinic accounts.
   - name: User
     description: Endpoints and models related to user management.
   - name: Protocol
@@ -34,11 +50,10 @@ security:
 paths:
   /api/users:
     get:
-      operationId: getVORUserIds
-      tags:
-        - User
-      summary: get ID and names of other VOR Users
-      description: This endpoint returns the ID and names of all active VOR Users.
+      operationId: getVOR_Names
+      tags: [SAOR, VOR]
+      summary: list of VOR Users
+      description: Returns the ID and names of all active VOR Users.
       responses:
         '200':
           description: OK
@@ -64,14 +79,11 @@ paths:
           $ref: '#/components/responses/Forbidden'
     put:
       operationId: updateUser
-      tags:
-        - User
-      summary: update-user
+      tags: [ALL_USERS]
+      summary: update user data
       description: >-
-        This endpoint updates User data. Any User may update their own data,
-        i.e., idempotently update User data. A VOR may update User data of a
-        User in a `CLIENT` relationship with that VOR. A SAOR may update data of
-        any User.
+        (idempotent) Any User may update their own data, A VOR may update User data of a
+        User in a `CLIENT` relationship with that VOR. A SAOR may update data of any User.
       requestBody:
         required: true
         content:
@@ -96,17 +108,14 @@ paths:
   /api/users/logins:
     post:
       operationId: userLogin
-      tags:
-        - User
+      tags: [ALL_USERS]     
       security: []
       summary: user login
       description: >-
-        This endpoint authenticates a User from an `identifier` (normally an
-        email address) and `password`. It also identifies the application making
-        requests from the `apikey`. The response returns the User object for the
+        Authenticate a User from an `identifier` (normally email address) and `password`.
+        The response returns the User object for the
         logged-in User and a token for use in future secured requests, as well
-        as a `fileSignature` and `filePolicy` which may be used for access to
-        images stored on FileStack.
+        as a `fileSignature` and `filePolicy` needed for access to images.
       requestBody:
         required: true
         content:
@@ -138,7 +147,7 @@ paths:
                   example: tVpass
       responses:
         '200':
-          description: Success – logged in
+          description: Successful login
           content:
             application/json:
               schema:
@@ -147,14 +156,12 @@ paths:
           $ref: '#/components/responses/BadRequest'
     get:
       operationId: userRenewToken
-      tags:
-        - User
+      tags: [ALL_USERS]
       summary: renew token
       description: >-
-        This endpoint renews the User's access token. Response returns the User
+        Renews the User's access token. Response returns the User
         object for the logged-in User and a 24-hr token for use in future
-        secured requests. It includes a `fileSignature` and `filePolicy` which
-        may be used for access to images stored on FileStack.
+        secured requests.
       responses:
         '200':
           description: Success – token refreshed
@@ -167,11 +174,10 @@ paths:
   /api/users/{id}:
     get:
       operationId: getUser
-      tags:
-        - User
-      summary: get user
+      tags: [ALL_USERS]
+      summary: get user data
       description: >-
-        This endpoint returns User data as specified by User `id`. Any User may
+        Returns User data as specified by User `id`. Any User may
         get their own data. A VOR may get User data of Users in a `CLIENT`
         relationship with that VOR. A SAOR may get data of any User.
       parameters:
@@ -199,8 +205,7 @@ paths:
     delete:
       operationId: deleteUser
       x-no-test: true
-      tags:
-        - User
+      tags: [SAOR, VOR]
       summary: delete user
       description: >-
         This endpoint supports the (reversible) "delete" of a User by setting
@@ -229,8 +234,7 @@ paths:
     post:
       operationId: recordComment
       x-no-test: generates email, tested OK
-      tags:
-        - User
+      tags: [ALL_USERS]
       summary: record a User comment
       description: >-
         This endpoint records a User comment to the database and emails admin.
@@ -256,8 +260,7 @@ paths:
   /api/users/my-right-relations:
     get:
       operationId: myRightRelations
-      tags:
-        - User
+      tags: [VOR]
       summary: get my right-related users
       description:  get my right-related users
       parameters:
@@ -288,8 +291,7 @@ paths:
                         - $ref: '#/components/schemas/Profile'
     post:
       operationId: createRightRelation
-      tags:
-        - User
+      tags: [VOR]
       summary: add a User with relationship
       description: >-
         This endpoint adds a User and a relationship of the type specified by
@@ -326,8 +328,7 @@ paths:
   /api/protocols/prescriptions/by:
     get:
       operationId: getRxBy
-      tags:
-        - Prescription
+      tags: [VOR]
       summary: get my prescriptions
       description: get prescriptions prescribed by the current User.
       responses:
@@ -345,8 +346,7 @@ paths:
   /api/protocols/prescriptions/to:
     get:
       operationId: getRxTo
-      tags:
-        - Prescription
+      tags: [VOR]
       summary: get my prescriptions
       description: get prescriptions prescribed to the current User.
       responses:
@@ -364,8 +364,7 @@ paths:
   /api/protocols/shares:
     get:
       operationId: getMyProtocolShares
-      tags:
-        - Protocol
+      tags: [VOR]
       summary: get my protocol shares
       description: >-
         This endpoint retrieves a User's Protocol shares, optionally filtered by
@@ -397,8 +396,7 @@ paths:
                       $ref: '#/components/schemas/ProtocolShare'
     post:
       operationId: createProtocolShare
-      tags:
-        - Protocol
+      tags: [VOR]
       summary: create protocol share
       description: This endpoint shares a protocol with another VOR User.
       requestBody:
@@ -423,8 +421,7 @@ paths:
           $ref: '#/components/responses/BadRequest'
     delete:
       operationId: deleteProtocolShare
-      tags:
-        - Protocol
+      tags: [VOR]
       summary: delete protocol share
       description: This endpoint retracts a Protocol share with another VOR User.
       parameters:
@@ -456,7 +453,8 @@ paths:
   /api/protocols/sharesToAll/:
     get:
       operationId: getSharesToAll
-      summary: get list of User's shared protocols
+      tags: [VOR]
+      summary: list of User's shared protocols
       description: This endpoint retrieves a list of User's protocols shared to all VORs.
       responses:
         '200':
@@ -493,6 +491,7 @@ paths:
   /api/protocols/sharesToAll/{pxId}:
     post:
       operationId: shareToAll
+      tags: [VOR]
       summary: share Protocol with all VOR Users
       description: This endpoint shares a User's protocol with all VOR Users.
       parameters:
@@ -516,7 +515,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
     delete:
       operationId: unShareToAll
-      summary: wip
+      tags: [VOR]
+      summary: cancel sharing
       description: wip -- This endpoint probably unshares protocols to all.
       parameters:
         - name: pxId
@@ -533,11 +533,10 @@ paths:
   /api/protocols:
     get:
       operationId: getMyProtocols
-      tags:
-        - Protocol
-      summary: get my protocols
+      tags: [VOR]
+      summary: protocols owned by user
       description: >-
-        This endpoint retrieves all Protocols owned by, or shared with, the
+        Retrieve all Protocols owned by, or shared with, the
         current User. The default excludes deleted (status DEPRECATED)
         protocols.
       parameters:
@@ -569,9 +568,8 @@ paths:
                       $ref: '#/components/schemas/Protocol'
     post:
       operationId: createProtocol
-      tags:
-        - Protocol
-      summary: create protocol
+      tags: [VOR]
+      summary: record protocol
       description: This endpoint supports the creation of a Protocol.
       requestBody:
         required: true
@@ -593,8 +591,7 @@ paths:
           $ref: '#/components/responses/BadRequest'
     put:
       operationId: updateProtocol
-      tags:
-        - Protocol
+      tags: [VOR]
       summary: update protocol
       description: This endpoint updates a Protocol.
       requestBody:
@@ -617,9 +614,8 @@ paths:
   /api/protocols/eligibilities:
     get:
       operationId: getEligibilities
-      tags:
-        - Protocol
-      summary: get eligibilities
+      tags: [VOR]
+      summary: list of all eligibilities
       description: >-
         This endpoint returns an array of Eligibilities from which a User may
         choose. The ID field is authoritative, i.e., is all that is needed to
@@ -640,9 +636,8 @@ paths:
   /api/protocols/diagnoses:
     get:
       operationId: getDiagnoses
-      tags:
-        - Protocol
-      summary: get diagnoses
+      tags: [VOR]
+      summary: list of all diagnoses
       description: >-
         This endpoint returns an array of Diagnoses from which a User may
         choose. The ID field is authoritative, i.e., is all that is needed to
@@ -663,9 +658,8 @@ paths:
   /api/protocols/libs:
     get:
       operationId: getLibraryProtocols
-      tags:
-        - Protocol
-      summary: get library protocols
+      tags: [VOR]
+      summary: list of library protocols
       description: >-
         This endpoint retrieves all protocols owned by, or shared with, the
         current User.
@@ -685,10 +679,9 @@ paths:
   /api/protocols/dosages:
     post:
       operationId: validateDosage
-      tags:
-        - Protocol
-      summary: validate a Dosage and return `_dose`
-      description: This endpoint returns the dose data.
+      tags: [VOR]
+      summary: validate a structured Dosage
+      description: validate a Dosage with SizeFunction and SequewnceFunction returning an test '_dose" description.
       requestBody:
         required: true
         content:
@@ -708,9 +701,8 @@ paths:
   /api/protocols/libstubs:
     get:
       operationId: getLibraryPxes
-      tags:
-        - Protocol
-      summary: get library pxes
+      tags: [VOR]
+      summary: list of library pxes
       description: >-
         This endpoint returns all the Protocols owned by, or shared with, the
         current User.
@@ -730,9 +722,8 @@ paths:
   /api/protocols/{id}:
     get:
       operationId: getProtocol
-      tags:
-        - Protocol
-      summary: get protocol by ID
+      tags: [VOR]
+      summary: retrieve protocol by ID
       description: This endpoint retrieves a Protocol by `protocol.id`.
       parameters:
         - name: id
@@ -758,11 +749,10 @@ paths:
                     $ref: '#/components/schemas/Protocol'
     delete:
       operationId: deleteProtocol
-      tags:
-        - Protocol
+      tags: [VOR]
       summary: delete protocol
       description: >-
-        this endpoint changes `protocol.status` to DELETED (this does not
+        Change `protocol.status` to DELETED (this does not
         actually remove it from the database).
       parameters:
         - name: id
@@ -785,10 +775,9 @@ paths:
   /api/protocols/prescriptions/{id}:
     get:
       operationId: getPrescription
-      tags:
-        - Prescription
-      summary: get prescription by ID
-      description: This endpoint retrieves a Prescription by `prescription.id`.
+      tags: [VOR]
+      summary: retrieve prescription by ID
+      description: Retrieve a Prescription by `prescription.id`.
       parameters:
         - name: id
           in: path
@@ -816,9 +805,8 @@ paths:
   /api/labels:
     get:
       operationId: getLabels
-      tags:
-        - Prescription
-      summary: get labels
+      tags: [VOR]
+      summary: list of all labelclaims
       description: This endpoint returns the full array of drug labels.
       responses:
         '200':
@@ -834,10 +822,9 @@ paths:
   /api/labels/inserts/{lxId}:
     get:
       operationId: getPackageInsert
-      tags:
-        - Prescription
-      summary: get package insert
-      description: This endpoint returns the label package insert.
+      tags: [VOR]
+      summary: package insert
+      description: Retrieve the product package insert.
       parameters:
         - name: lxId
           in: path
@@ -861,12 +848,7 @@ paths:
   /api/spl/{ndc}:
     get:
       operationId: getGbdLinkByNDC
-      x-no-test: >-
-        probably should return a JSON response, but need to update Editor first;
-        html page returned OK
-      tags:
-        - Pharmacy
-        - Untested
+      tags: [VOR]
       summary: get detail of a Greenbook Drug as a link
       description: This
       parameters:
@@ -899,10 +881,7 @@ paths:
   /api/spl/{ndc}/{image}:
     get:
       operationId: getGbdL
-      x-not-test: test
-      tags:
-        - Pharmacy
-        - Untested
+      tags: [VOR]
       summary: get detail of a Greenbook Drug as a link
       description: This
       parameters:
@@ -942,10 +921,9 @@ paths:
   /api/prescriptions/cases:
     post:
       operationId: enrollCase
-      tags:
-        - User
-      summary: user login
-      description: Enroll a case
+      tags: [VOR, MOR]
+      summary: enroll case
+      description: Creates a Case linked to a prescription.
       requestBody:
         required: true
         content:
@@ -966,9 +944,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
     get:
       operationId: myCases
-      tags:
-        - Case
-      summary: renew token
+      tags: [VOR]
+      summary: list of cases
       description: Get all current cases for this user
       responses:
         '200':
@@ -986,9 +963,8 @@ paths:
   /api/prescriptions/{rxId}/cases:
     get:
       operationId: myCases
-      tags:
-        - Case
-      summary: renew token
+      tags: [VOR]
+      summary: list  of cases for a rx
       description: Get all current cases for this prescription and this user
       parameters:
         - name: rxId
@@ -1014,10 +990,9 @@ paths:
   /api/users/tasks:
     post:
       operationId: executeTask
-      tags:
-        - Case
-      summary: user login
-      description: Ee
+      tags: [VOR, MOR]
+      summary: execute task
+      description: Mark task status as completed
       requestBody:
         required: true
         content:
@@ -1037,11 +1012,10 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
     get:
-      operationId: myCases
-      tags:
-        - Case
-      summary: renew token
-      description: Get all current cases for this user
+      operationId: myRxCases
+      tags: [VOR]
+      summary: list of cases by Rx
+      description: Get all current cases for this Rx
       responses:
         '200':
           description: Success – token refreshed
@@ -1058,8 +1032,7 @@ paths:
   /api/admin/product:
     get:
       operationId: getGbdHeaderArrayByNDC
-      tags:
-        - Prescription
+      tags: [VOR]
       summary: get Greenbook Drug summary by NDC pattern
       description: >-
         This endpoint returns the summary listing of a Greenbook Drug by NDC
@@ -1095,8 +1068,7 @@ paths:
   /api/admin/product/{ndc}:
     get:
       operationId: getGbdHeaderByNDC
-      tags:
-        - Prescription
+      tags: [VOR]
       summary: get summary listing of a Greenbook Drug
       description: >-
         This endpoint returns the summary listing of a Greenbook Drug by ndc
