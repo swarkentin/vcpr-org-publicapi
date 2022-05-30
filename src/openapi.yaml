@@ -48,11 +48,29 @@ tags:
 security:
   - authToken: []
 paths:
+  /api/editor:
+    get:
+      operationId: loadEditor
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+  /api/farm:
+    get:
+      operationId: loadFarmApp
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+  /api/admin:
+    get:
+      operationId: loadAdminAppr
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
   /api/users:
     get:
-      operationId: getVOR_Names
-      tags: [SAOR, VOR]
-      summary: list of VOR Users
+      operationId: getUser_Id
+      tags: [VOR]
+      summary: list of Users IDs
       description: Returns the ID and names of all active VOR Users.
       responses:
         '200':
@@ -67,12 +85,9 @@ paths:
                     items:
                       type: object
                       properties:
-                        id:
+                        users:
                           type: integer
                           description: User's ID
-                        name:
-                          type: string
-                          description: User's Name
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -105,6 +120,30 @@ paths:
                     description: number of db records altered
         '400':
           $ref: '#/components/responses/BadRequest'
+  /api/users/vors:
+    get:
+      operationId: getVORs
+      tags: [VOR]
+      summary: list of VORs
+      description: list of VOR users.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  vors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          description: User's ID
+                        name:
+                          type: string
+                          description: User's Name
   /api/users/logins:
     post:
       operationId: userLogin
@@ -230,10 +269,107 @@ paths:
                   deleted:
                     type: integer
                     description: number of Users deleted
+  /api/visits/{id}:
+    get:
+      operationId: getVisits
+      tags: []
+      summary: list of all 
+      description: list of .
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          description: User ID key
+          example: 2
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  visits:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Login'
+  /api/users/sandboxClient:
+    post:
+      operationId: addSandboxClient
+      tags: [VOR]
+      summary: get user data
+      description: >-
+        Returns User da.
+      # requestBody:
+      #   required: true
+      #   content:
+      #     type: string
+      responses:
+#ok
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+#unchecked
+      operationId: deleteSandboxClient
+      tags: [SAOR, VOR]
+      summary: delete sandboxClient
+      description: >-
+        This endpoint supports the (reversible) "delete" of a User by setting
+        user.status to `REMOVED`. Removed Users are not visible in normal
+        queries.
+      responses:
+        '200':
+          description: User deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deleted:
+                    type: integer
+                    description: number of Users deleted
+  /api/users/addresses:
+    put:
+      operationId: updateAddress
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized'     
+  /api/users/addresses/{id}:
+    get:
+      operationId: getAddress
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+  /api/users/profiles:
+    put:
+      operationId: updateProfile
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized'   
+  /api/users/profiles/{id}:
+    get:
+      operationId: getProfile
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+  /api/users/token/{token}:
+    get:
+      operationId: getProfile
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+  /api/users/withholds:
+    get:
+      operationId: getWithholds
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
   /api/users/comments:
     post:
       operationId: recordComment
-      x-no-test: generates email, tested OK
       tags: [ALL_USERS]
       summary: record a User comment
       description: >-
@@ -257,6 +393,30 @@ paths:
                     type: integer
         '400':
           $ref: '#/components/responses/BadRequest'
+  /api/users/relations:
+    post:
+      operationId: getRelations
+      tags: [VOR]
+      summary: add a relationship
+      description: >-
+        adds a relationship of the type specified by
+        `name` to the current User, who must be a VOR. Defaults to CLIENT
+        relationship.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Relationship'
+      responses:
+        '200':
+          description: related User
+          content:
+            application/json:
+              schema:
+                type: string
+
+
   /api/users/my-right-relations:
     get:
       operationId: myRightRelations
@@ -529,7 +689,35 @@ paths:
       responses:
         '204':
           description: no content
-
+  /api/protocols/amducatags:
+    put: #SHOULD be GET??
+      operationId: getAMDUCATags
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+  /api/protocols/tags:
+    get:
+      operationId: getProtocolTags
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+  /api/protocols/promises:
+    get:
+      operationId: getPromisess
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+    post:
+      operationId: AddPromise
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+  /api/protocols/promises/{id}:
+    get:
+      operationId: getProtocolPromisess
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
   /api/protocols:
     get:
       operationId: getMyProtocols
@@ -633,6 +821,25 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Eligibility'
+    post:
+      operationId: addEligibility
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+  /api/protocols/eligibilities/{id}}:
+    delete:
+      operationId: deleteEligibility
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+
+  /api/protocols/eligibilities/fdaspecies:
+    get:
+      operationId: getExFDASpecies
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+
   /api/protocols/diagnoses:
     get:
       operationId: getDiagnoses
@@ -655,6 +862,18 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Diagnosis'
+    post:
+      operationId: addDiagnosis
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+  /api/protocols/diagnoses/{id}:
+    delete:
+      operationId: deleteDiagnosis
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+
   /api/protocols/libs:
     get:
       operationId: getLibraryProtocols
@@ -676,6 +895,13 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Protocol'
+  /api/protocols/exclusivestubs:
+    get:
+      operationId: getExclusivestubs
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+
   /api/protocols/dosages:
     post:
       operationId: validateDosage
@@ -772,6 +998,18 @@ paths:
                   deprecated:
                     type: integer
                     description: number of Protocols deprecated
+  /api/protocols/prescriptions:
+    get:
+      operationId: getPrescriptions
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+  /api/protocols/{id}/prescriptions:
+    get:
+      operationId: getPrescriptionsOfProtocol
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
   /api/protocols/prescriptions/{id}:
     get:
       operationId: getPrescription
@@ -802,6 +1040,28 @@ paths:
               schema:
                 type: string
                 format: binary
+  /api/helpkeys:
+    get:
+      operationId: getHelpkeys
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+  /api/help:
+    get:
+      operationId: getHelp
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+    post:
+      operationId: addHelp
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized'  
+    delete:
+      operationId: deleteHelp
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
   /api/labels:
     get:
       operationId: getLabels
@@ -819,6 +1079,40 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/LabelClaim'
+    post:
+      operationId: addLabelClaim
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+    put:
+      operationId: updateLabelCalim
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+  /api/labels/{id}:
+    get:
+      operationId: getLabel
+      tags: [VOR]
+      summary: list of all labelclaims
+      description: This endpoint returns the full array of drug labels.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  labels:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LabelClaim'
+    put:
+      operationId: updateLabelClaim
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+
+
   /api/labels/inserts/{lxId}:
     get:
       operationId: getPackageInsert
@@ -918,6 +1212,12 @@ paths:
                 description: XML SPL data file served from FDA server
                 type: string
                 format: xml
+  /api/prescriptions/{id}/:
+    delete:
+      operationId: deletePrescription
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
   /api/prescriptions/cases:
     post:
       operationId: enrollCase
@@ -1093,7 +1393,29 @@ paths:
             text/html:
               schema:
                 type: string
-
+  /api/admin/gbd:
+    get:
+      operationId: getGreenbookDrugs
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+    put:
+      operationId: updateGreenbookDrugs
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+  /api/admin/gbd/{ndc}:
+    get:
+      operationId: getGreenbookDrug
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+  /api/admin/ConfirmVOR:
+    put:
+      operationId: confirmVOR
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
 
 components:
   securitySchemes:
