@@ -6,4 +6,7 @@ You can view documentation generated from this spec at [http://api.vcpr.org](htt
 
 Funded by an SBIR grant from USDA-NIFA <img src="https://github.com/VCPR-ORG/publicAPI/blob/develop/assets/nifa_transparent.png" width="150">
 
+## Usage Notes
+- Endpoint `tags` indicate  which general class(es) of users are authorized for that endppoint, though there are often additional restrictions and SAOR admins have access to all endpoints. Restrictions include, for example, limiting data that is accessible through an endpoint to a subset marked as accessible to a specific user.
+
 
