@@ -19,7 +19,7 @@ servers:
   - description: Local server.
     url: http://localhost
 tags:
-  - name: ALL_USERS
+  - name: USERS
     description: available to all users.
   - name: SAOR
     description: available to system administrators.
@@ -52,20 +52,20 @@ paths:
     get:
       operationId: loadEditor
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
+        "401":
+          $ref: "#/components/responses/Unauthorized"
   /api/farm:
     get:
       operationId: loadFarmApp
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
+        "401":
+          $ref: "#/components/responses/Unauthorized"
   /api/admin:
     get:
       operationId: loadAdminAppr
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
+        "401":
+          $ref: "#/components/responses/Unauthorized"
   /api/users:
     get:
       operationId: getUser_Id
@@ -73,7 +73,7 @@ paths:
       summary: list of Users IDs
       description: Returns the ID and names of all active VOR Users.
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -88,13 +88,13 @@ paths:
                         users:
                           type: integer
                           description: User's ID
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
     put:
       operationId: updateUser
-      tags: [ALL_USERS]
+      tags: [USERS]
       summary: update user data
       description: >-
         (idempotent) Any User may update their own data, A VOR may update User data of a
@@ -107,9 +107,9 @@ paths:
               type: object
               properties:
                 user:
-                  $ref: '#/components/schemas/User'
+                  $ref: "#/components/schemas/User"
       responses:
-        '200':
+        "200":
           description: User updated
           content:
             application/json:
@@ -118,8 +118,8 @@ paths:
                   updated-records:
                     type: integer
                     description: number of db records altered
-        '400':
-          $ref: '#/components/responses/BadRequest'
+        "400":
+          $ref: "#/components/responses/BadRequest"
   /api/users/vors:
     get:
       operationId: getVORs
@@ -127,7 +127,7 @@ paths:
       summary: list of VORs
       description: list of VOR users.
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -147,7 +147,7 @@ paths:
   /api/users/logins:
     post:
       operationId: userLogin
-      tags: [ALL_USERS]     
+      tags: [USERS]
       security: []
       summary: user login
       x-reviewed: JLE 2022/5/30
@@ -174,45 +174,44 @@ paths:
                   example: t0CGzpQ4cgu1OBy44sBt
                 identifier:
                   type: string
-                  description: '`User.Username`, normally the same as `User.email`'
-                  example: testVOR
+                  description: "`User.uname`, normally the same as `User.email`"
+                  example: someUser
                 password:
                   type: string
                   description: >-
-                    User password any characters or numbers allowed, with a
-                    minimum length of 10.
+                    User password
                   minLength: 6
-                  example: tVpass
+                  example: somePassword
       responses:
-        '200':
+        "200":
           description: Successful login
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SuccessfulLogin'
-        '400':
-          $ref: '#/components/responses/BadRequest'
+                $ref: "#/components/schemas/SuccessfulLogin"
+        "400":
+          $ref: "#/components/responses/BadRequest"
     get:
       operationId: renewUserToken
-      tags: [ALL_USERS]
+      tags: [USERS]
       summary: renew token
       x-reviewed: JLE 2022/5/30
       description: >-
         Renews the User's access token for use in future
         secured requests.
       responses:
-        '200':
+        "200":
           description: Success – token refreshed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SuccessfulLogin'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
+                $ref: "#/components/schemas/SuccessfulLogin"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
   /api/users/{id}:
     get:
       operationId: getUser
-      tags: [ALL_USERS]
+      tags: [USERS]
       summary: get user data
       description: >-
         Returns User data as specified by User `id`. Any User may
@@ -227,7 +226,7 @@ paths:
           description: User ID key
           example: 2
       responses:
-        '200':
+        "200":
           description: User
           content:
             application/json:
@@ -235,11 +234,11 @@ paths:
                 type: object
                 properties:
                   user:
-                    $ref: '#/components/schemas/User'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '403':
-          $ref: '#/components/responses/Unauthorized'
+                    $ref: "#/components/schemas/User"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
     delete:
       operationId: deleteUser
       x-no-test: true
@@ -258,7 +257,7 @@ paths:
           description: User ID key
           example: 5
       responses:
-        '200':
+        "200":
           description: User deleted
           content:
             application/json:
@@ -272,7 +271,7 @@ paths:
     get:
       operationId: getVisits
       tags: []
-      summary: list of all 
+      summary: list of all
       description: list of .
       parameters:
         - name: id
@@ -283,7 +282,7 @@ paths:
           description: User ID key
           example: 2
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -292,7 +291,7 @@ paths:
                   visits:
                     type: array
                     items:
-                      $ref: '#/components/schemas/Login'
+                      $ref: "#/components/schemas/Login"
   /api/users/sandboxClient:
     post:
       operationId: createSandboxClient
@@ -305,13 +304,13 @@ paths:
       #   content:
       #     type: string
       responses:
-#ok
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '403':
-          $ref: '#/components/responses/Unauthorized'
+        #ok
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
     delete:
-#unchecked
+      #unchecked
       operationId: deleteSandboxClient
       tags: [SAOR, VOR]
       summary: delete sandboxClient
@@ -320,7 +319,7 @@ paths:
         user.status to `REMOVED`. Removed Users are not visible in normal
         queries.
       responses:
-        '200':
+        "200":
           description: User deleted
           content:
             application/json:
@@ -333,43 +332,149 @@ paths:
   /api/users/addresses:
     put:
       operationId: updateAddress
+      x-reviewed: JLE 2022/5/31
+      tags: [USERS]
+      summary: update address
+      description: >-
+        A User may update their own address.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  $ref: "#/components/schemas/User"
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized'     
+        "200":
+          description: User updated
+          content:
+            application/json:
+              schema:
+                properties:
+                  updated-records:
+                    type: integer
+                    description: number of db records altered
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
   /api/users/addresses/{id}:
     get:
       operationId: getAddress
+      x-reviewed: JLE 2022/5/31
+      tags: [USERS]
+      summary: address of user
+      description: >-
+        Address of user specified by `id`.
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          description: User ID key
+          example: 2
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
+        "200":
+          description: User
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    $ref: "#/components/schemas/Address"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
   /api/users/profiles:
     put:
       operationId: updateProfile
+      x-reviewed: JLE 2022/5/31
+      tags: [USERS]
+      summary: update profile
+      description: >-
+        A User may update their own profile.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  $ref: "#/components/schemas/Profile"
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized'   
+        "200":
+          description: User updated
+          content:
+            application/json:
+              schema:
+                properties:
+                  updated-records:
+                    type: integer
+                    description: number of db records altered
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
   /api/users/profiles/{id}:
     get:
       operationId: getProfile
+      x-reviewed: JLE 2022/5/31
+      tags: [USERS]
+      summary: Profile of user
+      description: >-
+        Profile of user specified by `id`.
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          description: User ID key
+          example: 2
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
+        "200":
+          description: User
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    $ref: "#/components/schemas/Address"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
   /api/users/token/{token}:
     get:
       operationId: getProfile
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
+        "401":
+          $ref: "#/components/responses/Unauthorized"
   /api/users/withholds:
     get:
       operationId: getWithholds
+      x-reviewed: JLE 2022/5/31
+      tags: [MOR]
+      summary: withholds
+      description: get withholds that include present or future time.
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  labels:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Withhold"
   /api/users/comments:
     post:
       operationId: recordComment
-      tags: [ALL_USERS]
+      tags: [USERS]
       summary: record a User comment
       description: >-
         This endpoint records a User comment to the database and emails admin.
@@ -379,9 +484,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Comment'
+              $ref: "#/components/schemas/Comment"
       responses:
-        '200':
+        "200":
           description: Success – comment recorded
           content:
             application/json:
@@ -390,8 +495,8 @@ paths:
                 properties:
                   recorded:
                     type: integer
-        '400':
-          $ref: '#/components/responses/BadRequest'
+        "400":
+          $ref: "#/components/responses/BadRequest"
   /api/users/relations:
     post:
       operationId: getRelations
@@ -406,36 +511,35 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Relationship'
+              $ref: "#/components/schemas/Relationship"
       responses:
-        '200':
+        "200":
           description: related User
           content:
             application/json:
               schema:
                 type: string
 
-
   /api/users/my-right-relations:
     get:
       operationId: myRightRelations
       tags: [VOR]
       summary: get my right-related users
-      description:  get my right-related users
+      description: get my right-related users
       parameters:
         - in: query
           name: relationship
           schema:
-            $ref: '#/components/schemas/Relationship'
+            $ref: "#/components/schemas/Relationship"
         - in: query
           name: withAddress
           schema:
             type: boolean
-            default: false  
+            default: false
           example: false
           description: whether to return user's addresses too
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -446,8 +550,8 @@ paths:
                     type: array
                     items:
                       oneOf:
-                        - $ref: '#/components/schemas/User'
-                        - $ref: '#/components/schemas/Profile'
+                        - $ref: "#/components/schemas/User"
+                        - $ref: "#/components/schemas/Profile"
     post:
       operationId: createRightRelation
       tags: [VOR]
@@ -461,20 +565,20 @@ paths:
           in: query
           required: true
           schema:
-            $ref: '#/components/schemas/Relationship'
+            $ref: "#/components/schemas/Relationship"
         - name: usertype
           in: query
           required: true
           schema:
-            $ref: '#/components/schemas/UserType'
+            $ref: "#/components/schemas/UserType"
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: "#/components/schemas/User"
       responses:
-        '200':
+        "200":
           description: related User
           content:
             application/json:
@@ -482,7 +586,7 @@ paths:
                 type: object
                 properties:
                   user:
-                    $ref: '#/components/schemas/User'
+                    $ref: "#/components/schemas/User"
 
   /api/protocols/prescriptions/by:
     get:
@@ -491,7 +595,7 @@ paths:
       summary: get my prescriptions
       description: get prescriptions prescribed by the current User.
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -501,7 +605,7 @@ paths:
                   prescriptions:
                     type: array
                     items:
-                      $ref: '#/components/schemas/Prescription'
+                      $ref: "#/components/schemas/Prescription"
   /api/protocols/prescriptions/to:
     get:
       operationId: getRxTo
@@ -509,7 +613,7 @@ paths:
       summary: get my prescriptions
       description: get prescriptions prescribed to the current User.
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -519,7 +623,7 @@ paths:
                   prescriptions:
                     type: array
                     items:
-                      $ref: '#/components/schemas/Prescription'
+                      $ref: "#/components/schemas/Prescription"
   /api/protocols/shares:
     get:
       operationId: getMyProtocolShares
@@ -542,7 +646,7 @@ paths:
           required: false
           description: select only shares to this VOR User
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -552,7 +656,7 @@ paths:
                   shares:
                     type: array
                     items:
-                      $ref: '#/components/schemas/ProtocolShare'
+                      $ref: "#/components/schemas/ProtocolShare"
     post:
       operationId: createProtocolShare
       tags: [VOR]
@@ -563,9 +667,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ProtocolShare'
+              $ref: "#/components/schemas/ProtocolShare"
       responses:
-        '200':
+        "200":
           description: protocol shared
           content:
             application/json:
@@ -576,8 +680,8 @@ paths:
                     type: integer
                     description: number of shares created
                     example: 1
-        '400':
-          $ref: '#/components/responses/BadRequest'
+        "400":
+          $ref: "#/components/responses/BadRequest"
     delete:
       operationId: deleteProtocolShare
       tags: [VOR]
@@ -597,7 +701,7 @@ paths:
           required: true
           description: ID of VOR to whom Protocol was shared
       responses:
-        '200':
+        "200":
           description: Success – Protocol share deleted
           content:
             application/json:
@@ -607,8 +711,8 @@ paths:
                   un-shared:
                     type: integer
                     description: number of shares deleted
-        '400':
-          $ref: '#/components/responses/BadRequest'
+        "400":
+          $ref: "#/components/responses/BadRequest"
   /api/protocols/sharesToAll/:
     get:
       operationId: getSharesToAll
@@ -616,7 +720,7 @@ paths:
       summary: list of User's shared protocols
       description: This endpoint retrieves a list of User's protocols shared to all VORs.
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -645,8 +749,8 @@ paths:
                   - pxId: 1
                     name: example protocol
                     clonable: false
-        '400':
-          $ref: '#/components/responses/BadRequest'
+        "400":
+          $ref: "#/components/responses/BadRequest"
   /api/protocols/sharesToAll/{pxId}:
     post:
       operationId: shareToAll
@@ -668,10 +772,10 @@ paths:
           required: false
           explode: true
       responses:
-        '204':
-          $ref: '#/components/responses/NoContent'
-        '400':
-          $ref: '#/components/responses/BadRequest'
+        "204":
+          $ref: "#/components/responses/NoContent"
+        "400":
+          $ref: "#/components/responses/BadRequest"
     delete:
       operationId: unShareToAll
       tags: [VOR]
@@ -686,37 +790,98 @@ paths:
           required: true
           description: ID of Protocol
       responses:
-        '204':
+        "204":
           description: no content
   /api/protocols/amducatags:
     put: #SHOULD be GET??
       operationId: getAMDUCATags
+      x-reviewed: JLE 2022/5/31
+      tags: [VOR]
+      summary: AMDUCA-tag protocol
+      description: add tags to protocol per AMDUCA rules
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Protocol"
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
+        "200":
+          description: Success – updated Protocol
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  protocol:
+                    $ref: "#/components/schemas/Protocol"
+        "400":
+          $ref: "#/components/responses/BadRequest"
   /api/protocols/tags:
     get:
       operationId: getProtocolTags
+      tags: [VOR]
+      summary: list of all Tags
+      x-reviewed: JLE 2022/5/31
+      description: Returns the full array of tags for protocols and treatments.
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  labels:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Tag"
   /api/protocols/promises:
     get:
       operationId: getPromisess
+      x-reviewed: JLE 2022/5/31
+      tags: [VOR]
+      summary: list of all Promises
+      description: This endpoint returns the full array of available Promises.
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  labels:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Promise"
+
     post:
       operationId: createPromise
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
+        "401":
+          $ref: "#/components/responses/Unauthorized"
   /api/protocols/promises/{id}:
     get:
       operationId: getProtocolPromisess
+      tags: [VOR]
+      summary: Promises in a Protocol
+      description: Return Promises contained within a Protocol.
+      x-reviewed: JLE 2022/5/31
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          description: protocol  ID
+          example: 32
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/LabelClaim"
+
   /api/protocols:
     get:
       operationId: getMyProtocols
@@ -739,9 +904,9 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/components/schemas/ProtocolStatus'
+              $ref: "#/components/schemas/ProtocolStatus"
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -752,7 +917,7 @@ paths:
                   protocols:
                     type: array
                     items:
-                      $ref: '#/components/schemas/Protocol'
+                      $ref: "#/components/schemas/Protocol"
     post:
       operationId: createProtocol
       tags: [VOR]
@@ -763,9 +928,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Protocol'
+              $ref: "#/components/schemas/Protocol"
       responses:
-        '200':
+        "200":
           description: Success – recorded Protocol
           content:
             application/json:
@@ -773,9 +938,9 @@ paths:
                 type: object
                 properties:
                   protocol:
-                    $ref: '#/components/schemas/Protocol'
-        '400':
-          $ref: '#/components/responses/BadRequest'
+                    $ref: "#/components/schemas/Protocol"
+        "400":
+          $ref: "#/components/responses/BadRequest"
     put:
       operationId: updateProtocol
       tags: [VOR]
@@ -785,9 +950,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Protocol'
+              $ref: "#/components/schemas/Protocol"
       responses:
-        '200':
+        "200":
           description: Success – updated Protocol
           content:
             application/json:
@@ -795,9 +960,9 @@ paths:
                 type: object
                 properties:
                   protocol:
-                    $ref: '#/components/schemas/Protocol'
-        '400':
-          $ref: '#/components/responses/BadRequest'
+                    $ref: "#/components/schemas/Protocol"
+        "400":
+          $ref: "#/components/responses/BadRequest"
   /api/protocols/eligibilities:
     get:
       operationId: getEligibilities
@@ -808,7 +973,7 @@ paths:
         choose. The ID field is authoritative, i.e., is all that is needed to
         identify a particular Eligibility.
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -819,26 +984,77 @@ paths:
                   eligibilities:
                     type: array
                     items:
-                      $ref: '#/components/schemas/Eligibility'
+                      $ref: "#/components/schemas/Eligibility"
     post:
       operationId: createEligibility
+      tags: [SAOR]
+      summary: create Eligibility
+      description: Creation  a Eligibility.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Eligibility"
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
+        "200":
+          description: Success –  Eligibility recorded
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  protocol:
+                    $ref: "#/components/schemas/Eligibility"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
   /api/protocols/eligibilities/{id}}:
     delete:
       operationId: deleteEligibility
+      tags: [SAOR]
+      summary: Eligibility
+      description: Delete Eligibility.
+      x-reviewed: JLE 2022/5/31
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
-
+        "200":
+          description: deleted
+          content:
+            application/json:
+              schema:
+                properties:
+                  deleted:
+                    type: integer
+                    description: number of db records deleted
+        "401":
+          $ref: "#/components/responses/Unauthorized"
   /api/protocols/eligibilities/fdaspecies:
     get:
       operationId: getExFDASpecies
+      tags: [VOR]
+      summary: list of fda species
+      description: >-
+        "Species" is the term FDA uses to describe a class of animals in a label claim.
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
-
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: array of FDASpecies
+                type: object
+                properties:
+                  eligibilities:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/FDASpecies"
   /api/protocols/diagnoses:
     get:
       operationId: getDiagnoses
@@ -849,7 +1065,7 @@ paths:
         choose. The ID field is authoritative, i.e., is all that is needed to
         identify a particular Diagnosis.
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -860,19 +1076,57 @@ paths:
                   diagnoses:
                     type: array
                     items:
-                      $ref: '#/components/schemas/Diagnosis'
+                      $ref: "#/components/schemas/Diagnosis"
     post:
       operationId: createDiagnosis
+      tags: [SAOR]
+      summary: create Eligibility
+      description: Create  a Diagnosis.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Diagnosis"
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
+        "200":
+          description: Success –  Diagnosis recorded
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  protocol:
+                    $ref: "#/components/schemas/Diagnosis"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
   /api/protocols/diagnoses/{id}:
     delete:
       operationId: deleteDiagnosis
+      tags: [SAOR]
+      summary: Diagnosis
+      description: Delete Diagnosis.
+      x-reviewed: JLE 2022/5/31
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
-
+        "200":
+          description: deleted
+          content:
+            application/json:
+              schema:
+                properties:
+                  deleted:
+                    type: integer
+                    description: number of db records deleted
+        "401":
+          $ref: "#/components/responses/Unauthorized"
   /api/protocols/libs:
     get:
       operationId: getLibraryProtocols
@@ -882,7 +1136,7 @@ paths:
         This endpoint retrieves all protocols owned by, or shared with, the
         current User.
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -893,14 +1147,27 @@ paths:
                   protocols:
                     type: array
                     items:
-                      $ref: '#/components/schemas/Protocol'
+                      $ref: "#/components/schemas/Protocol"
   /api/protocols/exclusivestubs:
     get:
       operationId: getExclusivestubs
+      tags: [VOR]
+      summary: list of all diagnoses
+      description: >-
+        returns an array of Pxes .
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
-
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: array of pxes owned by the VOR
+                type: object
+                properties:
+                  diagnoses:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Px"
   /api/protocols/dosages:
     post:
       operationId: validateDosage
@@ -912,9 +1179,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DoseFunctions'
+              $ref: "#/components/schemas/DoseFunctions"
       responses:
-        '200':
+        "200":
           description: _dose
           content:
             application/json:
@@ -932,7 +1199,7 @@ paths:
         This endpoint returns all the Protocols owned by, or shared with, the
         current User.
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -943,7 +1210,7 @@ paths:
                   pxes:
                     type: array
                     items:
-                      $ref: '#/components/schemas/Px'
+                      $ref: "#/components/schemas/Px"
   /api/protocols/{id}:
     get:
       operationId: getProtocol
@@ -959,19 +1226,19 @@ paths:
           required: true
           description: Protocol ID key
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
                 properties:
                   protocol:
-                    $ref: '#/components/schemas/Protocol'
+                    $ref: "#/components/schemas/Protocol"
             text/html:
               schema:
                 properties:
                   protocol:
-                    $ref: '#/components/schemas/Protocol'
+                    $ref: "#/components/schemas/Protocol"
     delete:
       operationId: deleteProtocol
       tags: [VOR]
@@ -987,7 +1254,7 @@ paths:
           required: true
           description: Protocol ID key
       responses:
-        '200':
+        "200":
           description: Protocol deprecated
           content:
             application/json:
@@ -1000,15 +1267,52 @@ paths:
   /api/protocols/prescriptions:
     get:
       operationId: getPrescriptions
+      tags: [VOR]
+      summary: list of all diagnoses
+      description: >-
+        This
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: array of prescriptions
+                type: object
+                properties:
+                  diagnoses:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Prescription"
   /api/protocols/{id}/prescriptions:
     get:
       operationId: getPrescriptionsOfProtocol
+      tags: [VOR]
+      summary: list of all diagnoses
+      description: >-
+        This endpoint returns an array of Diagnoses from which a User may
+        choose. The ID field is authoritative, i.e., is all that is needed to
+        identify a particular Diagnosis.
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          description: Protocol ID key
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: array of prescriptions
+                type: object
+                properties:
+                  diagnoses:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Prescription"
   /api/protocols/prescriptions/{id}:
     get:
       operationId: getPrescription
@@ -1024,14 +1328,14 @@ paths:
           required: true
           description: Prescription ID key
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
                 properties:
                   prescription:
-                    $ref: '#/components/schemas/Prescription'
+                    $ref: "#/components/schemas/Prescription"
             text/html:
               schema:
                 type: string
@@ -1042,25 +1346,106 @@ paths:
   /api/helpkeys:
     get:
       operationId: getHelpkeys
+      tags: [USERS]
+      summary: list of all diagnoses
+      description: >-
+        This endpoint returns an array of Diagnoses from which a User may
+        choose. The ID field is authoritative, i.e., is all that is needed to
+        identify a particular Diagnosis.
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
-  /api/help:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: array of help keys
+                type: object
+                properties:
+                  keys:
+                    type: array
+                    items:
+                      type: string
+  /api/help/{key}:
     get:
       operationId: getHelp
+      tags: [USERS]
+      summary: help message
+      description: return a help message.
+      x-reviewed: JLE 2022/5/31
+      parameters:
+        - name: key
+          in: path
+          schema:
+            type: string
+          required: true
+          description: help screen key
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  help:
+                    type: string
     post:
       operationId: createHelp
+      tags: [SAOR]
+      summary: create help screen
+      description: Creation  a help screen.
+      x-reviewed: JLE 2022/5/31
+      parameters:
+        - name: key
+          in: path
+          schema:
+            type: string
+          required: true
+          description: help screen key
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HelpScreen"
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized'  
+        "200":
+          description: Success –  help screen recorded
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  protocol:
+                    $ref: "#/components/schemas/HelpScreen"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
     delete:
       operationId: deleteHelp
+      tags: [SAOR]
+      summary: delete help screen
+      description: Delete help screen.
+      x-reviewed: JLE 2022/5/31
+      parameters:
+        - name: key
+          in: path
+          schema:
+            type: string
+          required: true
+          description: help screen key
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
+        "200":
+          description: deleted
+          content:
+            application/json:
+              schema:
+                properties:
+                  deleted:
+                    type: integer
+                    description: number of db records deleted
+        "401":
+          $ref: "#/components/responses/Unauthorized"
   /api/labels:
     get:
       operationId: getLabels
@@ -1068,7 +1453,7 @@ paths:
       summary: list of all labelclaims
       description: This endpoint returns the full array of drug labels.
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -1077,41 +1462,110 @@ paths:
                   labels:
                     type: array
                     items:
-                      $ref: '#/components/schemas/LabelClaim'
+                      $ref: "#/components/schemas/LabelClaim"
     post:
       operationId: createLabelClaim
+      tags: [SAOR]
+      summary: create labelclaim
+      description: Creation  a labelclaim.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LabelClaim"
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
+        "200":
+          description: Success –  labelclaim recorded
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  protocol:
+                    $ref: "#/components/schemas/LabelClaim"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
     put:
-      operationId: updateLabelCalim
+      operationId: updateLabelClaim
+      tags: [SAOR]
+      summary: update labelclaim
+      description: update a labelclaim.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LabelClaim"
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
+        "200":
+          description: Success – © Protocol
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  protocol:
+                    $ref: "#/components/schemas/LabelClaim"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
   /api/labels/{id}:
     get:
       operationId: getLabel
       tags: [VOR]
-      summary: list of all labelclaims
-      description: This endpoint returns the full array of drug labels.
+      summary: labelclaim
+      description: Return specified labelclaim.
+      x-reviewed: JLE 2022/5/31
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          description: labelclaim  ID
+          example: 32
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                properties:
-                  labels:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/LabelClaim'
+                type: object
+                $ref: "#/components/schemas/LabelClaim"
     put:
       operationId: updateLabelClaim
+      tags: [SAOR]
+      summary: create help screen
+      description: update a labelclaim.
+      x-reviewed: JLE 2022/5/31
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          description: labelclaim id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LabelClaim"
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
-
-
+        "200":
+          description: Success –  labelclaim updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  protocol:
+                    $ref: "#/components/schemas/LabelClaim"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
   /api/labels/inserts/{lxId}:
     get:
       operationId: getPackageInsert
@@ -1127,17 +1581,17 @@ paths:
           description: label ID
           example: 32
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
                 type: string
                 format: html
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '404':
-          $ref: '#/components/responses/NotFound'
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /api/spl/{ndc}:
     get:
       operationId: getGbdLinkByNDC
@@ -1155,7 +1609,7 @@ paths:
             labelerCode-productCode-packageCode. packageCode may not be needed.
           example: 0010-3832
       responses:
-        '200':
+        "200":
           description: OK
           content:
             text/html:
@@ -1163,7 +1617,7 @@ paths:
                 description: Standard Product Label as html
                 type: string
                 format: html
-        '303':
+        "303":
           description: Redirect to SPL file served from FDA server
           content:
             text/xml:
@@ -1195,7 +1649,7 @@ paths:
           description: name of image file
           example: 601588-image-fake.jpg
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -1203,7 +1657,7 @@ paths:
                 description: URL link to XML SPL data file
                 type: string
                 format: url
-        '303':
+        "303":
           description: Redirect to SPL file served from FDA server
           content:
             text/xml:
@@ -1214,9 +1668,28 @@ paths:
   /api/prescriptions/{id}/:
     delete:
       operationId: deletePrescription
+      tags: [VOR]
+      summary: invalidate prescription
+      description: invalidate prescription
+      x-reviewed: JLE 2022/5/31
+      parameters:
+        - name: key
+          in: path
+          schema:
+            type: string
+          required: true
+          description: Prescription identifier
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
+        "200":
+          description: invalidated
+          content:
+            application/json:
+              schema:
+                properties:
+                  updated:
+                    type: integer
+        "401":
+          $ref: "#/components/responses/Unauthorized"
   /api/prescriptions/cases:
     post:
       operationId: enrollCase
@@ -1228,9 +1701,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Case'
+              $ref: "#/components/schemas/Case"
       responses:
-        '200':
+        "200":
           description: Success – recorded Protocol
           content:
             application/json:
@@ -1238,16 +1711,16 @@ paths:
                 type: object
                 properties:
                   case:
-                    $ref: '#/components/schemas/Case'
-        '400':
-          $ref: '#/components/responses/BadRequest'
+                    $ref: "#/components/schemas/Case"
+        "400":
+          $ref: "#/components/responses/BadRequest"
     get:
       operationId: myCases
       tags: [VOR]
       summary: list of cases
       description: Get all current cases for this user
       responses:
-        '200':
+        "200":
           description: Success – token refreshed
           content:
             application/json:
@@ -1256,9 +1729,9 @@ paths:
                   cases:
                     type: array
                     items:
-                      $ref: '#/components/schemas/Case'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
+                      $ref: "#/components/schemas/Case"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
   /api/prescriptions/{rxId}/cases:
     get:
       operationId: myCases
@@ -1274,7 +1747,7 @@ paths:
           description: prescription uuid
           example: Vi1y9kbpEj7Upqy7
       responses:
-        '200':
+        "200":
           description: Success – token refreshed
           content:
             application/json:
@@ -1283,9 +1756,9 @@ paths:
                   cases:
                     type: array
                     items:
-                      $ref: '#/components/schemas/Case'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
+                      $ref: "#/components/schemas/Case"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
   /api/users/tasks:
     post:
       operationId: executeTask
@@ -1297,9 +1770,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AnimalTask'
+              $ref: "#/components/schemas/AnimalTask"
       responses:
-        '200':
+        "200":
           description: Success, Protocol recorded
           content:
             application/json:
@@ -1307,16 +1780,16 @@ paths:
                 type: object
                 properties:
                   case:
-                    $ref: '#/components/schemas/Case'
-        '400':
-          $ref: '#/components/responses/BadRequest'
+                    $ref: "#/components/schemas/Case"
+        "400":
+          $ref: "#/components/responses/BadRequest"
     get:
       operationId: myRxCases
       tags: [VOR]
       summary: list of cases by Rx
       description: Get all current cases for this Rx
       responses:
-        '200':
+        "200":
           description: Success – token refreshed
           content:
             application/json:
@@ -1325,9 +1798,9 @@ paths:
                   cases:
                     type: array
                     items:
-                      $ref: '#/components/schemas/Case'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
+                      $ref: "#/components/schemas/Case"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
   /api/admin/product:
     get:
       operationId: getGbdHeaderArrayByNDC
@@ -1356,14 +1829,14 @@ paths:
           required: false
           description: end section package code of a NDC
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/GreenbookHeader'
+                  $ref: "#/components/schemas/Product"
   /api/admin/product/{ndc}:
     get:
       operationId: getGbdHeaderByNDC
@@ -1383,38 +1856,125 @@ paths:
             labelerCode-productCode-packageCode
           example: 0061-4321-03
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GreenbookHeader'
+                $ref: "#/components/schemas/Product"
             text/html:
               schema:
                 type: string
   /api/admin/gbd:
     get:
       operationId: getGreenbookDrugs
+      tags: [SAOR]
+      summary: greenbook drugs
+      description: Return GBDs.
+      x-reviewed: JLE 2022/5/31
+      parameters:
+        - name: ndcProd
+          in: query
+          schema:
+            type: integer
+          required: false
+          description: first section labeler code of a NDC
+        - name: ndcLabeler
+          in: query
+          schema:
+            type: integer
+          required: false
+          description: mid section product code of a NDC
+        - name: ndcBrand
+          in: query
+          schema:
+            type: integer
+          required: false
+          description: starting row number in GBD table
+        - name: offset
+          in: query
+          schema:
+            type: integer
+          required: false
+          description: maximum number of rows to return
+        - name: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJleUp3Y205MmFXUmxja2xFSWpvaVkzSmxaR1Z1ZEdsaGJITWlMQ0p3Y205MmFXUmxja3RsZVNJNkluUmxjM1JXVDFJaWZRPT0iLCJpc3MiOiJwbGF5LXNpbGhvdWV0dGUiLCJle***...
+          in: query
+          schema:
+            type: integer
+          required: false
+          description: end section package code of a NDC
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/GreenbookDrug"
     put:
       operationId: updateGreenbookDrugs
+      tags: [SAOR]
+      summary: update GBD
+      description: M
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GreenbookDrug"
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
+        "200":
+          description: Success, GreenbookDrug updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  case:
+                    $ref: "#/components/schemas/GreenbookDrug"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+
   /api/admin/gbd/{ndc}:
     get:
       operationId: getGreenbookDrug
+      parameters:
+        - name: ndc
+          in: path
+          schema:
+            type: string
+          required: true
+          description: >-
+            unique 10-digit, 3-segment number.
+            labelerCode-productCode-packageCode
+          example: 0061-4321-03
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
+        "401":
+          $ref: "#/components/responses/Unauthorized"
   /api/admin/ConfirmVOR:
     put:
       operationId: confirmVOR
+      x-reviewed: JLE 2022/5/31
+      parameters:
+        - name: sendEmail
+          in: query
+          schema:
+            type: boolean
+            default: true
+          required: false     
       responses:
-        '401':
-          $ref: '#/components/responses/Unauthorized' 
+        "200":
+          description: User
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  vor:
+                    $ref: "#/components/schemas/User"      
+        "401":
+          $ref: "#/components/responses/Unauthorized"
 
 components:
   securitySchemes:
@@ -1425,20 +1985,20 @@ components:
       description: JWT token stored in request header.
       x-reviewed: JLE 2022/5/30
   responses:
-    Unauthorized:
+    Unauthorized: #401
       description: 401 – Users must log in
     BadRequest:
       description: The server could not understand the request due to invalid syntax.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Error'
+            $ref: "#/components/schemas/Error"
     NotFound:
       description: The server can not find the requested resource.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Error'
+            $ref: "#/components/schemas/Error"
     NoContent:
       description: There is no content to send for this request,.
     Forbidden:
@@ -1446,7 +2006,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Error'
+            $ref: "#/components/schemas/Error"
 
   schemas:
     UserType:
@@ -1509,7 +2069,7 @@ components:
           type: string
           example: testVOR
         userType:
-          $ref: '#/components/schemas/UserType'
+          $ref: "#/components/schemas/UserType"
         email:
           type: string
           format: email
@@ -1547,7 +2107,7 @@ components:
           type: string
           example: testVOR
         userType:
-          $ref: '#/components/schemas/UserType'
+          $ref: "#/components/schemas/UserType"
         email:
           type: string
           format: email
@@ -1566,9 +2126,9 @@ components:
           description: degree or qualifier following the name
           example: DVM
         address:
-          $ref: '#/components/schemas/Address'
-        prefs:  
-          $ref: '#/components/schemas/UserPrefs'
+          $ref: "#/components/schemas/Address"
+        prefs:
+          $ref: "#/components/schemas/UserPrefs"
       required:
         - id
         - userType
@@ -1581,16 +2141,16 @@ components:
       type: object
       properties:
         userId:
-         $ref: '#/components/schemas/UserId'
-        sandboxName: 
+          $ref: "#/components/schemas/UserId"
+        sandboxName:
           type: string
-        emailTips: 
+        emailTips:
           type: boolean
-        emailNews: 
+        emailNews:
           type: boolean
-        rxHeader:  
+        rxHeader:
           type: string
-    UserId: 
+    UserId:
       type: integer
       description: unique identifier for the User
       example: 1
@@ -1599,7 +2159,7 @@ components:
       type: object
       properties:
         userId:
-         $ref: '#/components/schemas/UserId'
+          $ref: "#/components/schemas/UserId"
         busName:
           description: bussiness name, if appropriate
           type: string
@@ -1626,7 +2186,7 @@ components:
           example: 12345-abcd
         country:
           type: string
-          description: country  
+          description: country
           example: USA
     Relationship:
       type: string
@@ -1650,7 +2210,7 @@ components:
       type: object
       properties:
         user:
-          $ref: '#/components/schemas/User'
+          $ref: "#/components/schemas/User"
         token:
           type: string
           description: >-
@@ -1811,7 +2371,7 @@ components:
           description: considerations that prohibit or suggest against use of this Protocol
           type: string
           format: html
-          default: ''
+          default: ""
           example: <p>prohibited in animals older than than 24 months</p>
         medical:
           description: medical considerations in selecting and implementing this Protocol
@@ -1822,7 +2382,7 @@ components:
           description: economic considerations in selecting and implementing this Protocol
           type: string
           format: html
-          default: ''
+          default: ""
           example: >-
             culling should be considered as an alternative, as milk production
             is unlikely to return to normal after treatment
@@ -1830,7 +2390,7 @@ components:
           description: optional note
           type: string
           format: html
-          default: ''
+          default: ""
           example: <p>overcrowding may be contributing to issues</p>
     Comment:
       type: object
@@ -1848,7 +2408,7 @@ components:
           example: false
           default: false
         comment:
-          description: user's comment 
+          description: user's comment
           type: string
           example: some comment
     Degree:
@@ -1935,7 +2495,7 @@ components:
           type: string
           example: Beef Cattle
         fdaSpecies:
-          $ref: '#/components/schemas/FDASpecies'
+          $ref: "#/components/schemas/FDASpecies"
     Dose:
       description: a single dose to be given at a specified time
       type: object
@@ -1953,7 +2513,7 @@ components:
           type: string
           example: wip
         doseSize:
-          $ref: '#/components/schemas/DrugQuantity'
+          $ref: "#/components/schemas/DrugQuantity"
         route:
           description: route of administration
           type: string
@@ -1998,7 +2558,7 @@ components:
           description: identifies class of SequenceFunction
           enum:
             - models.SeqPerDay
-          example: models.SeqPerDay  
+          example: models.SeqPerDay
         frequency:
           type: integer
           description: how many doses per day
@@ -2059,7 +2619,7 @@ components:
           example: models.SeqInterval
         totalDoses:
           type: integer
-          description: total number of doses 
+          description: total number of doses
           default: 1
           example: 3
         interval:
@@ -2096,11 +2656,11 @@ components:
     SequenceFunction:
       description: function to calculate times for a series of doses
       oneOf:
-        - $ref: '#/components/schemas/SeqSingleDose'
-        - $ref: '#/components/schemas/SeqPerDay'
-        - $ref: '#/components/schemas/SeqPerDayRange'
-        - $ref: '#/components/schemas/SeqInterval'
-        - $ref: '#/components/schemas/SeqSeries'
+        - $ref: "#/components/schemas/SeqSingleDose"
+        - $ref: "#/components/schemas/SeqPerDay"
+        - $ref: "#/components/schemas/SeqPerDayRange"
+        - $ref: "#/components/schemas/SeqInterval"
+        - $ref: "#/components/schemas/SeqSeries"
     MassUnit:
       description: unit of mass or weight
       type: string
@@ -2126,14 +2686,14 @@ components:
           enum:
             - Mass
           description: must be Mass
-          example: Mass  
+          example: Mass
         value:
           type: number
           description: number of units
           default: 1
           example: 50
         symbol:
-          $ref: '#/components/schemas/MassUnit'
+          $ref: "#/components/schemas/MassUnit"
     VolumeUnit:
       description: unit of Volume
       type: string
@@ -2168,13 +2728,13 @@ components:
           description: number of units
           example: 3
         symbol:
-          $ref: '#/components/schemas/VolumeUnit'
+          $ref: "#/components/schemas/VolumeUnit"
     DimensionlessUnit:
       description: dimensionless unit (each)
       type: string
       enum:
         - ea
-        - '%'
+        - "%"
         - dz
       example: ea
     DimensionlessQuantity:
@@ -2194,7 +2754,7 @@ components:
           description: number of units
           example: 3
         symbol:
-          $ref: '#/components/schemas/DimensionlessUnit'
+          $ref: "#/components/schemas/DimensionlessUnit"
     DrugQuantity:
       type: object
       required:
@@ -2202,9 +2762,9 @@ components:
       properties:
         quantity:
           oneOf:
-            - $ref: '#/components/schemas/MassQuantity'
-            - $ref: '#/components/schemas/VolumeQuantity'
-            - $ref: '#/components/schemas/DimensionlessQuantity'
+            - $ref: "#/components/schemas/MassQuantity"
+            - $ref: "#/components/schemas/VolumeQuantity"
+            - $ref: "#/components/schemas/DimensionlessQuantity"
       example:
         quantity:
           dimension: Mass
@@ -2222,9 +2782,9 @@ components:
           description: class of Dose Function
           enum:
             - models.FixedDoseFunction
-          example: models.FixedDoseFunction  
+          example: models.FixedDoseFunction
         dose:
-          $ref: '#/components/schemas/DrugQuantity'
+          $ref: "#/components/schemas/DrugQuantity"
       example:
         dose:
           quantity:
@@ -2247,9 +2807,9 @@ components:
           enum:
             - models.DoseByWeightFunction
         dose:
-          $ref: '#/components/schemas/DrugQuantity'
+          $ref: "#/components/schemas/DrugQuantity"
         perUnit:
-          $ref: '#/components/schemas/MassQuantity'
+          $ref: "#/components/schemas/MassQuantity"
       example:
         dose:
           quantity:
@@ -2279,11 +2839,11 @@ components:
           enum:
             - models.DoseByWeightFunction
         firstDose:
-          $ref: '#/components/schemas/DrugQuantity'
+          $ref: "#/components/schemas/DrugQuantity"
         followDose:
-          $ref: '#/components/schemas/DrugQuantity'
+          $ref: "#/components/schemas/DrugQuantity"
         perUnit:
-          $ref: '#/components/schemas/MassQuantity'
+          $ref: "#/components/schemas/MassQuantity"
       example:
         perUnit:
           dimension: mass
@@ -2307,9 +2867,9 @@ components:
         - max
       properties:
         min:
-          $ref: '#/components/schemas/DrugQuantity'
+          $ref: "#/components/schemas/DrugQuantity"
         max:
-          $ref: '#/components/schemas/DrugQuantity'
+          $ref: "#/components/schemas/DrugQuantity"
       example:
         min:
           quantity:
@@ -2334,10 +2894,10 @@ components:
           type: string
           enum:
             - models.DoseRangeFunction
-          description: class of Dose Function  
+          description: class of Dose Function
           example: models.DoseRangeFunction
         range:
-          $ref: '#/components/schemas/DrugQuantityRange'
+          $ref: "#/components/schemas/DrugQuantityRange"
     DoseRangeByWeightFunction:
       type: object
       description: >-
@@ -2352,12 +2912,12 @@ components:
           type: string
           enum:
             - models.DoseRangeByWeightFunction
-          description: class of Dose Function 
-          example: models.DoseRangeByWeightFunction 
+          description: class of Dose Function
+          example: models.DoseRangeByWeightFunction
         range:
-          $ref: '#/components/schemas/DrugQuantityRange'
+          $ref: "#/components/schemas/DrugQuantityRange"
         perUnit:
-          $ref: '#/components/schemas/MassQuantity'
+          $ref: "#/components/schemas/MassQuantity"
       example:
         perUnit:
           dimension: Mass
@@ -2378,18 +2938,18 @@ components:
     SizeFunction:
       description: function to calculate dose size
       oneOf:
-        - $ref: '#/components/schemas/FixedDoseFunction'
-        - $ref: '#/components/schemas/DoseByWeightFunction'
-        - $ref: '#/components/schemas/LoadingDoseByWeightFunction'
-        - $ref: '#/components/schemas/DoseRangeFunction'
-        - $ref: '#/components/schemas/DoseRangeByWeightFunction'
+        - $ref: "#/components/schemas/FixedDoseFunction"
+        - $ref: "#/components/schemas/DoseByWeightFunction"
+        - $ref: "#/components/schemas/LoadingDoseByWeightFunction"
+        - $ref: "#/components/schemas/DoseRangeFunction"
+        - $ref: "#/components/schemas/DoseRangeByWeightFunction"
     DoseFunctions:
       type: object
       properties:
         sequenceFunction:
-          $ref: '#/components/schemas/SequenceFunction'
+          $ref: "#/components/schemas/SequenceFunction"
         sizeFunction:
-          $ref: '#/components/schemas/SizeFunction'
+          $ref: "#/components/schemas/SizeFunction"
     Tag:
       description: keyword or tag for classification
       type: object
@@ -2441,7 +3001,7 @@ components:
           description: eligibility criteria for potential cases
           type: array
           items:
-            $ref: '#/components/schemas/Eligibility'
+            $ref: "#/components/schemas/Eligibility"
         product:
           description: product name
           type: string
@@ -2452,16 +3012,16 @@ components:
           example: 3.0 ml per kg repeat in 6 hours and again in 24 hours
         dosage:
           oneOf:
-            - $ref: '#/components/schemas/DoseId'
-            - $ref: '#/components/schemas/DoseFunctions'
+            - $ref: "#/components/schemas/DoseId"
+            - $ref: "#/components/schemas/DoseFunctions"
         route:
           description: route of administration
           type: string
           example: wip
-        sequenceFunction:  
-          $ref: '#/components/schemas/SequenceFunction'
-        sizeFunction:  
-          $ref: '#/components/schemas/SizeFunction'
+        sequenceFunction:
+          $ref: "#/components/schemas/SequenceFunction"
+        sizeFunction:
+          $ref: "#/components/schemas/SizeFunction"
         wtMeatHrs:
           type: integer
           description: number of hours that must pass between exposure and slaughter
@@ -2480,21 +3040,21 @@ components:
           description: keywords for classification
           type: array
           items:
-            $ref: '#/components/schemas/Tag'
+            $ref: "#/components/schemas/Tag"
         note:
           type: string
           format: html
           description: further information about the treatment
           example: <p>a free-form note</p>
         amduca:
-          $ref: '#/components/schemas/AmducaClass'
+          $ref: "#/components/schemas/AmducaClass"
     DoseId:
       type: object
       properties:
         doseId:
           type: integer
           description: key to a label dosage
-          example: wip      
+          example: wip
     Diagnosis:
       description: >
         a medical diagnosis for which a Protocol may be used. Normally the
@@ -2569,57 +3129,57 @@ components:
     StringPromise:
       description: identification of animal is required to enroll a case
       allOf:
-        - $ref: '#/components/schemas/Promise'
+        - $ref: "#/components/schemas/Promise"
         - type: object
           properties:
             response:
-              $ref: '#/components/schemas/PDataString'
-              
+              $ref: "#/components/schemas/PDataString"
+
     CategoryPromise:
       description: identification of animal is required to enroll a case
       type: object
       allOf:
-        - $ref: '#/components/schemas/Promise'
+        - $ref: "#/components/schemas/Promise"
         - type: object
           properties:
             response:
-              $ref: '#/components/schemas/PDataString'
+              $ref: "#/components/schemas/PDataString"
     BooleanPromise:
       description: identification of animal is required to enroll a case
       type: object
       allOf:
-        - $ref: '#/components/schemas/Promise'
+        - $ref: "#/components/schemas/Promise"
         - type: object
           properties:
             response:
-              $ref: '#/components/schemas/PDataBoolean'
+              $ref: "#/components/schemas/PDataBoolean"
     NumberPromise:
       description: identification of animal is required to enroll a case
       type: object
       allOf:
-        - $ref: '#/components/schemas/Promise'
+        - $ref: "#/components/schemas/Promise"
         - type: object
           properties:
             response:
-              $ref: '#/components/schemas/PDataNumber'
+              $ref: "#/components/schemas/PDataNumber"
     AffirmationPromise:
       description: identification of animal is required to enroll a case
       type: object
       allOf:
-        - $ref: '#/components/schemas/Promise'
+        - $ref: "#/components/schemas/Promise"
         - type: object
           properties:
             response:
-              $ref: '#/components/schemas/PDataNone'
+              $ref: "#/components/schemas/PDataNone"
     MassPromise:
       description: identification of animal is required to enroll a case
       type: object
       allOf:
-        - $ref: '#/components/schemas/Promise'
+        - $ref: "#/components/schemas/Promise"
         - type: object
           properties:
             response:
-              $ref: '#/components/schemas/PDataMass'
+              $ref: "#/components/schemas/PDataMass"
 
     Metadata:
       type: object
@@ -2673,7 +3233,7 @@ components:
           description: ISO-8601 timestamp for Protocol update
           example: 2020-02-10T22:20:39Z
         status:
-          $ref: '#/components/schemas/ProtocolStatus'
+          $ref: "#/components/schemas/ProtocolStatus"
         vetNote:
           type: string
           description: note visible only to the prescribing vet
@@ -2781,7 +3341,7 @@ components:
           format: date-time
           example: 2020-02-10T10:30:37Z
         status:
-          $ref: '#/components/schemas/ProtocolStatus'
+          $ref: "#/components/schemas/ProtocolStatus"
         vetNote:
           description: note visible only to the prescribing vet
           type: string
@@ -2797,7 +3357,7 @@ components:
             number of hours that must pass between exposure and extracting milk
             for consumption
         instructions:
-          $ref: '#/components/schemas/Instructions'
+          $ref: "#/components/schemas/Instructions"
         shareAll:
           description: share this protocol with all other vets using the system?
           type: boolean
@@ -2809,36 +3369,36 @@ components:
           default: false
           example: true
         caseDefinition:
-          $ref: '#/components/schemas/CaseDefinition'
+          $ref: "#/components/schemas/CaseDefinition"
         treatments:
           description: treatments used in this protocol
           type: array
           items:
-            $ref: '#/components/schemas/Treatment'
+            $ref: "#/components/schemas/Treatment"
         tags:
           description: keywords for classification
           type: array
           items:
-            $ref: '#/components/schemas/Tag'
+            $ref: "#/components/schemas/Tag"
         diagnoses:
           description: diagnostic classifiers
           type: array
           items:
-            $ref: '#/components/schemas/Diagnosis'
+            $ref: "#/components/schemas/Diagnosis"
         eligibilities:
           description: eligibility criteria for potential cases
           type: array
           items:
-            $ref: '#/components/schemas/Eligibility'
+            $ref: "#/components/schemas/Eligibility"
         promises:
           description: wip
           type: array
           items:
-            $ref: '#/components/schemas/Promise'
+            $ref: "#/components/schemas/Promise"
         metadata:
           type: array
           items:
-            $ref: '#/components/schemas/Metadata'
+            $ref: "#/components/schemas/Metadata"
     Prescription:
       type: object
       required:
@@ -2852,14 +3412,14 @@ components:
           description: prescription identifier
           example: gG3pBCR1GCMKm89c
         protocol:
-          $ref: '#/components/schemas/Protocol'
+          $ref: "#/components/schemas/Protocol"
         vorId:
           type: integer
           description: ID of VOR user who prescribed this
           example: 1
         morId:
           type: integer
-          description:  ID of MOR this is prescribed for
+          description: ID of MOR this is prescribed for
           example: 2
         refills:
           type: integer
@@ -2880,10 +3440,26 @@ components:
           example: 2021-08-10T10:30:37Z
         metadata:
           type: array
-          items: 
-            $ref: '#/components/schemas/Metadata'
+          items:
+            $ref: "#/components/schemas/Metadata"
         status:
-          $ref: '#/components/schemas/ProtocolStatus'
+          $ref: "#/components/schemas/ProtocolStatus"
+    Product:
+      type: object
+      required: [id, nada, name, companyId]
+      properties:
+        id:
+          type: integer
+        companyId:
+          type: integer
+        nada:
+          type: string
+        name:
+          type: string
+        imageURL:
+          type: string
+        insertURL:
+          type: string
     Case:
       description: A **_Case_** records use of a **_Prescription_** on an individual animal or group
       type: object
@@ -2904,12 +3480,12 @@ components:
           description: UUID identifying the prescription
           example: gG3pBCR1GCMKm89c
         caseData:
-          $ref: '#/components/schemas/CaseData'
+          $ref: "#/components/schemas/CaseData"
         promiseData:
           description: promises attached to this case
           type: array
           items:
-            $ref: '#/components/schemas/Promise'
+            $ref: "#/components/schemas/Promise"
     TaskStatus:
       type: string
       description: task status
@@ -2981,7 +3557,7 @@ components:
           example: 123
         dat:
           type: number
-          description:  data to fulfill the Promise
+          description: data to fulfill the Promise
           example: 42
     PDataBoolean:
       type: object
@@ -3002,7 +3578,7 @@ components:
           example: 123
         dat:
           type: boolean
-          description:  data to fulfill the Promise
+          description: data to fulfill the Promise
           example: true
     PDataMass:
       type: object
@@ -3022,16 +3598,16 @@ components:
           default: null
           example: 123
         dat:
-          $ref: '#/components/schemas/MassQuantity'
+          $ref: "#/components/schemas/MassQuantity"
     PData:
       description: a task
       oneOf:
-        - $ref: '#/components/schemas/PDataNone'
-        - $ref: '#/components/schemas/PDataString'
-        - $ref: '#/components/schemas/PDataNumber'
-        - $ref: '#/components/schemas/PDataBoolean'
-        - $ref: '#/components/schemas/PDataMass'
-#{"id":0,"caseId":23,"vorId":1,"morId":2,"promId":1,"animalId":"Bossie","doAt":"2020-05-16T16:19:12Z","executor":2,"status":"REQUIRED","data":{"_type":"models.PDataString","promiseId":5,"dat":"promise response string"}}
+        - $ref: "#/components/schemas/PDataNone"
+        - $ref: "#/components/schemas/PDataString"
+        - $ref: "#/components/schemas/PDataNumber"
+        - $ref: "#/components/schemas/PDataBoolean"
+        - $ref: "#/components/schemas/PDataMass"
+    #{"id":0,"caseId":23,"vorId":1,"morId":2,"promId":1,"animalId":"Bossie","doAt":"2020-05-16T16:19:12Z","executor":2,"status":"REQUIRED","data":{"_type":"models.PDataString","promiseId":5,"dat":"promise response string"}}
     PTask:
       description: A Task required to fulfill a Promise
       type: object
@@ -3046,13 +3622,12 @@ components:
         - doAt
         - status
       properties:
-        _type: 
+        _type:
           type: string
           description: class of AnimalTask
           enum:
             - models.PTask
-          example:  
-            models.PTask
+          example: models.PTask
         id:
           description: PTask ID number
           type: integer
@@ -3093,9 +3668,9 @@ components:
           format: int64
           example: 123
         status:
-          $ref: '#/components/schemas/TaskStatus'
+          $ref: "#/components/schemas/TaskStatus"
         data:
-          $ref: '#/components/schemas/PData'
+          $ref: "#/components/schemas/PData"
     DoseByClass:
       description: dose calculated by class
       required:
@@ -3108,12 +3683,11 @@ components:
           description: class of Dose Function
           enum:
             - models.DoseByClass
-          example:  
-            models.DoseByClass
+          example: models.DoseByClass
         animalClasses:
           type: array
           items:
-            $ref: '#/components/schemas/FixedDoseFunction'
+            $ref: "#/components/schemas/FixedDoseFunction"
       example: >-
         {"_type":"models.DoseByClass","animalClasses":[{"animalClass":"Jabberwocks","sizeFunction":{"unit":"mg","size":3.2,"_type":"models.DrugQuantity"}},{"animalClass":"Borogoves","sizeFunction":{"_type":"models.DoseRangeFunction","maxDose":{"size":20,"unit":"ml"},"minDose":{"size":10,"unit":"ml"}}}]}
     DoseTask:
@@ -3131,25 +3705,24 @@ components:
         - doAt
         - status
       properties:
-        _type: 
+        _type:
           type: string
           description: class of AnimalTask
           enum:
             - models.DoseTask
-          example:  
-            models.DoseTask
+          example: models.DoseTask
         id:
           description: DoseTask ID number
           type: integer
           format: int64
           example: 123
         caseId:
-          description:  ID number of Case that includes this task
+          description: ID number of Case that includes this task
           type: integer
           format: int64
           example: 123
         morId:
-          description:  ID of MOR user responsible for execution of this task
+          description: ID of MOR user responsible for execution of this task
           type: integer
           format: int64
           example: 123
@@ -3165,9 +3738,9 @@ components:
         route:
           description: route of administration
           type: string
-          example: IV    
+          example: IV
         dose:
-          $ref: '#/components/schemas/DrugQuantity'        
+          $ref: "#/components/schemas/DrugQuantity"
         animalId:
           type: string
           description: ID of animal to receive the dose
@@ -3183,7 +3756,7 @@ components:
           format: int64
           example: 123
         status:
-          $ref: '#/components/schemas/TaskStatus'
+          $ref: "#/components/schemas/TaskStatus"
     CaseData:
       description: data for an individual Case
       type: object
@@ -3194,15 +3767,15 @@ components:
           description: ID number for the **_Case_**
         rxId:
           type: string
-          description:  UUID identifying the prescription
+          description: UUID identifying the prescription
           example: gG3pBCR1GCMKm89c
         caseData:
           oneOf:
-            - $ref: '#/components/schemas/IdData'
-            - $ref: '#/components/schemas/WeightData'
-            - $ref: '#/components/schemas/PreferredDoseData'
-            - $ref: '#/components/schemas/PrefDoseRateData'
-            - $ref: '#/components/schemas/AnimalClassData'
+            - $ref: "#/components/schemas/IdData"
+            - $ref: "#/components/schemas/WeightData"
+            - $ref: "#/components/schemas/PreferredDoseData"
+            - $ref: "#/components/schemas/PrefDoseRateData"
+            - $ref: "#/components/schemas/AnimalClassData"
     IdData:
       type: object
       description: identifies animal or group treated in the **_Case_**
@@ -3221,7 +3794,7 @@ components:
           type: string
           format: date-time
           example: 2020-01-10T10:30:37Z
-          description:  when the **_Case_** is initiated
+          description: when the **_Case_** is initiated
     PreferredDoseData:
       description: animal identity and preferred dose
       type: object
@@ -3238,14 +3811,14 @@ components:
           example: models.PrefDoseRateData
         animalId:
           type: string
-          description:  text description identifying the animal or group
+          description: text description identifying the animal or group
           example: Bossie
         preferredDose:
-          $ref: '#/components/schemas/DrugQuantity'
+          $ref: "#/components/schemas/DrugQuantity"
         initiationTime:
           type: string
           format: date-time
-          description:  when the **_Case_** is initiated
+          description: when the **_Case_** is initiated
           example: 2020-04-10T10:30:37Z
     PrefDoseRateData:
       description: weight of animal and preferred dose
@@ -3263,19 +3836,19 @@ components:
             - models.PrefDoseRateData
           example: models.PrefDoseRateData
         animalId:
-          description:  text description identifying the animal or group
+          description: text description identifying the animal or group
           type: integer
           default: null
           example: 123
         initiationTime:
-          description:  when the **_Case_** is initiated
+          description: when the **_Case_** is initiated
           type: string
           format: date-time
           example: 2020-01-10T10:30:37Z
         weight:
-          $ref: '#/components/schemas/MassQuantity'
+          $ref: "#/components/schemas/MassQuantity"
         preferredDose:
-          $ref: '#/components/schemas/DrugQuantity'
+          $ref: "#/components/schemas/DrugQuantity"
     AnimalClassData:
       description: data for a class of animals
       type: object
@@ -3291,17 +3864,17 @@ components:
             - models.AnimalClassData
           example: models.AnimalClassData
         animalId:
-          description:  text description identifying the animal or group
+          description: text description identifying the animal or group
           type: integer
           default: null
           example: 123
         initiationTime:
-          description:  when the **_Case_** is initiated
+          description: when the **_Case_** is initiated
           type: string
           format: date-time
           example: 2020-01-10T10:30:37Z
         animalClass:
-          $ref: '#/components/schemas/AnimalClass'
+          $ref: "#/components/schemas/AnimalClass"
     AnimalClass:
       description: a class of animals and a SizeFunction for dosing that class
       type: object
@@ -3314,7 +3887,7 @@ components:
           description: descrip
           example: Jabberwocks
         sizeFunction:
-          $ref: '#/components/schemas/SizeFunction'
+          $ref: "#/components/schemas/SizeFunction"
     WeightData:
       type: object
       description: specifies animal's weight
@@ -3327,20 +3900,51 @@ components:
           example: models.WeightData
         animalId:
           type: string
-          description:  text description identifying the animal or group
+          description: text description identifying the animal or group
           example: Bossie
         weight:
-          $ref: '#/components/schemas/MassQuantity'
+          $ref: "#/components/schemas/MassQuantity"
         initiationTime:
           type: string
           format: date-time
           description: when the **_Case_** is initiated
           example: 2020-01-10T10:30:37Z
+    Withhold:
+      description: a time before which meat or milk may not be sold.
+      type: object
+      required: [id, caseId, animalId, initiated, wtMeatUntil, wtMilkUntil]
+      properties:
+        id:
+          type: integer
+          description: key for withhold
+        caseId:
+          type: integer
+          description: key identifying Case
+        animalId:
+          type: string
+          description: key identifying animal or group
+          example: Bossie
+        initiated:
+          type: string
+          format: date-time
+          description: when the Withhold was initiated
+        wtMeatUntil:
+          type: string
+          format: date-time
+          description: when the Withhold ends for meat products
+        wtMilkUntil:
+          type: string
+          format: date-time
+          description: when the Withhold ends for milk
+        note:
+          type: string
+          description: note
+
     AnimalTask:
       description: a task
       oneOf:
-        - $ref: '#/components/schemas/PTask'
-        - $ref: '#/components/schemas/DoseTask'
+        - $ref: "#/components/schemas/PTask"
+        - $ref: "#/components/schemas/DoseTask"
     LabelClaim:
       type: object
       required:
@@ -3359,7 +3963,7 @@ components:
           description: unique identifier for label
           example: 1
         fdaSpecies:
-          $ref: '#/components/schemas/FDAspecies'
+          $ref: "#/components/schemas/FDAspecies"
         diagnosis:
           type: string
           description: label diagnosis
@@ -3371,7 +3975,7 @@ components:
         dxCode:
           type: string
           description: code of label diagnosis
-          example: '2002'
+          example: "2002"
         product:
           type: string
           description: product trade name
@@ -3389,9 +3993,9 @@ components:
           description: route of administration
           example: intr-corporeal
         sequenceFunction:
-          $ref: '#/components/schemas/SequenceFunction'
+          $ref: "#/components/schemas/SequenceFunction"
         sizeFunction:
-          $ref: '#/components/schemas/SizeFunction'
+          $ref: "#/components/schemas/SizeFunction"
         doseNote:
           type: string
           format: html
@@ -3476,9 +4080,8 @@ components:
           - Bison
           - Other
           - Unidentified
-        example:
-          ChickensBroilers
-    GreenbookHeader:
+        example: ChickensBroilers
+    GreenbookDrug:
       required:
         - ndc
         - proprietery
@@ -3539,6 +4142,22 @@ components:
           description: date of last label change
           example: 2020-05-16T16:19:12Z
 
+    HelpScreen:
+      required:
+        - key
+        - msg
+      type: object
+      properties:
+        key:
+          type: string
+        msg:
+          description: the html message to display
+          type: string
+          format: html
+        lang:
+          type: string
+          description: language code
+
   examples:
     prescription:
       value: '{"protocol":{"ownerId":1,"name":"example protocol","shortname":"EXamp","created":"2020-01-10T22:20:39Z","edited":"2020-01-10T22:20:39Z","status":"SAVED","wtMeatHrs":44,"wtMilkHrs":12,"withholdNote":"be sure to wt","instructions":{"considerations":"think first","restrictions":"always","dothis":"execute protocol","recordthis":"case data","success":"good","failure":"bad","references":"ref"},"shareAll":false,"shareClonable":false,"caseDefinition":{"pxId":0,"medical":"really sick","economic":"lotsa cash"},"treatments":[{"id":0,"ownerId":0,"description":"sample w 30d meat","note":"this is an off-label Treatment","eligibilities":[{"id":1,"name":"Beef Cattle","fdaSpecies":"BeefCattle"}],"tags":[{"id":-1,"color":"#516cc6","name":"EXAMPLE"}],"labelId":null,"product":"MiracleMed","_dose":"3.0 ml per kg starting at initiation, repeat in 6 hours and again in 1 day","route":"intr-corporeal","sequenceFunction":{"_type":"models.SeqSeries","intervals":["PT6H","PT24H"]},"sizeFunction":{"_type":"models.DoseByWeightFunction","dose":{"quantity":{"dimension":"Volume","value":3,"symbol":"ml"}},"perUnit":{"dimension":"Mass","value":1,"symbol":"kg"}},"wtMeatHrs":null,"wtMilkHrs":null,"wtNote":null}],"tags":[{"id":-1,"color":"#516cc6","name":"EXAMPLE"}],"diagnoses":[{"id":8,"name":"Pain/inflammation (musculoskeletal), treatment"}],"eligibility":{"id":1,"name":"Beef Cattle","fdaSpecies":"BeefCattle"},"promises":[]},"vorId":1,"morId":2,"refills":3,"status":"PRESCRIBED","metadata":[],"rxId":"gG3pBCR1GCMKm89c","created":"2020-01-10T10:30:37Z"}'
@@ -3548,27 +4167,25 @@ components:
       summary: Protocol.example 1/7/22
     comment:
       value: '{"userId":0,"public":false,"created":"2020-01-10T22:20:39Z","comment":"this is an anonymous private comment"}'
-      summary:  Comment.example 1/7/22
+      summary: Comment.example 1/7/22
     address:
       value: '{"userId":3,"busName":"Some Business","address1":"123 Main St.","town":"Anytown","state":"Any State","zip":"12345","country":"USA"}'
-      summary:  Address.example 1/7/22   
+      summary: Address.example 1/7/22
     user:
       value: '{"id":3,"uname":"testTOR","userType":"TOR","email":"testTOR@dairysight.com","firstname":"Test","lastname":"Tech"}'
-      summary:  User.example 1/7/22
+      summary: User.example 1/7/22
     dose:
       value: '{"product":"MiracleMed","dose":{"quantity":{"dimension":"Volume","value":3,"symbol":"ml"}},"route":"intramuscular injection","animalId":"Bossie","doAt":"2020-05-16T16:19:12Z","executor":2,"status":"REQUIRED"}'
-      summary:  Dose.example 1/7/22
+      summary: Dose.example 1/7/22
     treatment:
       value: '{"id":0,"ownerId":0,"description":"sample w 30d meat","note":"this is an off-label Treatment","eligibilities":[{"id":1,"name":"Beef Cattle","fdaSpecies":"BeefCattle"}],"tags":[{"id":-1,"color":"#516cc6","name":"EXAMPLE"}],"labelId":null,"product":"MiracleMed","_dose":"3.0 ml per kg starting at initiation, repeat in 6 hours and again in 1 day","route":"intr-corporeal","sequenceFunction":{"_type":"models.SeqSeries","intervals":["PT6H","PT24H"]},"sizeFunction":{"_type":"models.DoseByWeightFunction","dose":{"quantity":{"dimension":"Volume","value":3,"symbol":"ml"}},"perUnit":{"dimension":"Mass","value":1,"symbol":"kg"}},"wtMeatHrs":null,"wtMilkHrs":null,"wtNote":null}'
-      summary:  Treatment.example 1/7/22
+      summary: Treatment.example 1/7/22
     volumeQ:
       value: '{"quantity":{"dimension":"Volume","value":3,"symbol":"ml"}}'
-      summary:  VolumeQ.example 1/7/22
+      summary: VolumeQ.example 1/7/22
     massQ:
       value: '{"quantity":{"dimension":"Mass","value":3,"symbol":"oz"}}'
-      summary:  MassQ.example 1/7/22
+      summary: MassQ.example 1/7/22
     dimensionlessQ:
-      value: ''
-      summary:  DimensionlessQ.example 1/7/22
-
-      
+      value: ""
+      summary: DimensionlessQ.example 1/7/22
