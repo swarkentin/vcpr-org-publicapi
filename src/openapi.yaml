@@ -150,11 +150,10 @@ paths:
       tags: [ALL_USERS]     
       security: []
       summary: user login
+      x-reviewed: JLE 2022/5/30
       description: >-
-        Authenticate a User from an `identifier` (normally email address) and `password`.
-        The response returns the User object for the
-        logged-in User and a token for use in future secured requests, as well
-        as a `fileSignature` and `filePolicy` needed for access to images.
+        Authenticate a User and the app requesting a token,
+        returning a token for use in future secured requests.
       requestBody:
         required: true
         content:
@@ -170,7 +169,7 @@ paths:
                   type: string
                   description: >-
                     An API key assigned to an application for access to this
-                    API. To request an API key please contact the system
+                    API. To request a free API key please contact the system
                     administrator.
                   example: t0CGzpQ4cgu1OBy44sBt
                 identifier:
@@ -194,12 +193,12 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
     get:
-      operationId: userRenewToken
+      operationId: renewUserToken
       tags: [ALL_USERS]
       summary: renew token
+      x-reviewed: JLE 2022/5/30
       description: >-
-        Renews the User's access token. Response returns the User
-        object for the logged-in User and a 24-hr token for use in future
+        Renews the User's access token for use in future
         secured requests.
       responses:
         '200':
@@ -296,7 +295,7 @@ paths:
                       $ref: '#/components/schemas/Login'
   /api/users/sandboxClient:
     post:
-      operationId: addSandboxClient
+      operationId: createSandboxClient
       tags: [VOR]
       summary: get user data
       description: >-
@@ -708,7 +707,7 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized' 
     post:
-      operationId: AddPromise
+      operationId: createPromise
       responses:
         '401':
           $ref: '#/components/responses/Unauthorized' 
@@ -822,7 +821,7 @@ paths:
                     items:
                       $ref: '#/components/schemas/Eligibility'
     post:
-      operationId: addEligibility
+      operationId: createEligibility
       responses:
         '401':
           $ref: '#/components/responses/Unauthorized' 
@@ -863,7 +862,7 @@ paths:
                     items:
                       $ref: '#/components/schemas/Diagnosis'
     post:
-      operationId: addDiagnosis
+      operationId: createDiagnosis
       responses:
         '401':
           $ref: '#/components/responses/Unauthorized' 
@@ -1053,7 +1052,7 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized' 
     post:
-      operationId: addHelp
+      operationId: createHelp
       responses:
         '401':
           $ref: '#/components/responses/Unauthorized'  
@@ -1080,7 +1079,7 @@ paths:
                     items:
                       $ref: '#/components/schemas/LabelClaim'
     post:
-      operationId: addLabelClaim
+      operationId: createLabelClaim
       responses:
         '401':
           $ref: '#/components/responses/Unauthorized' 
@@ -1423,7 +1422,8 @@ components:
       type: apiKey
       in: header
       name: X-Auth-Token
-      description: Uses JWT token stored in request header.
+      description: JWT token stored in request header.
+      x-reviewed: JLE 2022/5/30
   responses:
     Unauthorized:
       description: 401 – Users must log in
@@ -3417,6 +3417,24 @@ components:
           type: string
           description: generic name for product
           example: OXYTETRACYCLINE
+    Login:
+      type: object
+      required: [userid, message]
+      x-reviewed: JLE 2022/5/30
+      properties:
+        userId:
+          type: integer
+          example: 1
+          default: null
+        when:
+          type: string
+          format: date-time
+          description: timestamp of login, entered
+          example: 2020-01-10T10:30:37Z
+        message:
+          type: string
+          example: some message
+
     FDAspecies:
       type: array
       description: >-
