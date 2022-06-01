@@ -19,7 +19,7 @@ servers:
   - description: Local server.
     url: http://localhost
 tags:
-  - name: USERS
+  - name: ALL_USERS
     description: available to all users.
   - name: SAOR
     description: available to system administrators.
@@ -48,30 +48,58 @@ tags:
 security:
   - authToken: []
 paths:
-  /api/editor:
+  /editor:
     get:
       operationId: loadEditor
+      description: load Editor app
       responses:
+        "200":
+          description: load SPA
+          content:
+            text/html:
+              schema: {}
         "401":
           $ref: "#/components/responses/Unauthorized"
-  /api/farm:
+  /farm:
     get:
       operationId: loadFarmApp
+      description: load Farm app
       responses:
+        "200":
+          description: load SPA
+          content:
+            text/html:
+              schema: {}
         "401":
           $ref: "#/components/responses/Unauthorized"
-  /api/admin:
+  /admin:
     get:
-      operationId: loadAdminAppr
+      operationId: loadAdminApp
+      description: load Admin app
       responses:
+        "200":
+          description: load SPA
+          content:
+            text/html:
+              schema: {}
         "401":
           $ref: "#/components/responses/Unauthorized"
   /api/users:
     get:
-      operationId: getUser_Id
+      operationId: getUsers
       tags: [VOR]
       summary: list of Users IDs
       description: Returns the ID and names of all active VOR Users.
+      parameters:
+        - name: usertypes
+          in: path
+          required: true
+          schema:
+            type: array
+            items: 
+              type: string
+            default: [VOR]
+          description: User types to include 
       responses:
         "200":
           description: OK
@@ -94,7 +122,7 @@ paths:
           $ref: "#/components/responses/Forbidden"
     put:
       operationId: updateUser
-      tags: [USERS]
+      tags: [ALL_USERS]
       summary: update user data
       description: >-
         (idempotent) Any User may update their own data, A VOR may update User data of a
@@ -147,7 +175,7 @@ paths:
   /api/users/logins:
     post:
       operationId: userLogin
-      tags: [USERS]
+      tags: [ALL_USERS]
       security: []
       summary: user login
       x-reviewed: JLE 2022/5/30
@@ -193,7 +221,7 @@ paths:
           $ref: "#/components/responses/BadRequest"
     get:
       operationId: renewUserToken
-      tags: [USERS]
+      tags: [ALL_USERS]
       summary: renew token
       x-reviewed: JLE 2022/5/30
       description: >-
@@ -211,7 +239,7 @@ paths:
   /api/users/{id}:
     get:
       operationId: getUser
-      tags: [USERS]
+      tags: [ALL_USERS]
       summary: get user data
       description: >-
         Returns User data as specified by User `id`. Any User may
@@ -333,7 +361,7 @@ paths:
     put:
       operationId: updateAddress
       x-reviewed: JLE 2022/5/31
-      tags: [USERS]
+      tags: [ALL_USERS]
       summary: update address
       description: >-
         A User may update their own address.
@@ -363,7 +391,7 @@ paths:
     get:
       operationId: getAddress
       x-reviewed: JLE 2022/5/31
-      tags: [USERS]
+      tags: [ALL_USERS]
       summary: address of user
       description: >-
         Address of user specified by `id`.
@@ -392,7 +420,7 @@ paths:
     put:
       operationId: updateProfile
       x-reviewed: JLE 2022/5/31
-      tags: [USERS]
+      tags: [ALL_USERS]
       summary: update profile
       description: >-
         A User may update their own profile.
@@ -422,7 +450,7 @@ paths:
     get:
       operationId: getProfile
       x-reviewed: JLE 2022/5/31
-      tags: [USERS]
+      tags: [ALL_USERS]
       summary: Profile of user
       description: >-
         Profile of user specified by `id`.
@@ -474,7 +502,7 @@ paths:
   /api/users/comments:
     post:
       operationId: recordComment
-      tags: [USERS]
+      tags: [ALL_USERS]
       summary: record a User comment
       description: >-
         This endpoint records a User comment to the database and emails admin.
@@ -1346,7 +1374,7 @@ paths:
   /api/helpkeys:
     get:
       operationId: getHelpkeys
-      tags: [USERS]
+      tags: [ALL_USERS]
       summary: list of all diagnoses
       description: >-
         This endpoint returns an array of Diagnoses from which a User may
@@ -1368,7 +1396,7 @@ paths:
   /api/help/{key}:
     get:
       operationId: getHelp
-      tags: [USERS]
+      tags: [ALL_USERS]
       summary: help message
       description: return a help message.
       x-reviewed: JLE 2022/5/31
