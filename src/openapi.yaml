@@ -3155,16 +3155,11 @@ components:
           type: integer
           description: Diagnosis ID number
           example: 8
-        code:
-          type: string
-          maxLength: 25
-          description: wip should this be an enum?
-          example: PAIN
         name:
           type: string
+          maxLength: 255
           description: free-form text description of the Diagnosis
           example: Pain/inflammation (musculoskeletal), treatment
-
     Promise:
       description: >-
         An act which must be executed on or after enrollment of a Case to a
