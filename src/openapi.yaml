@@ -886,7 +886,7 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
-  /api/protocols/tags/{id}}:
+  /api/protocols/tags/{id}:
     delete:
       operationId: deleteTag
       tags: [SAOR]
