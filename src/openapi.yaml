@@ -4033,7 +4033,6 @@ components:
         - fdaSpecies
         - diagnosis
         - dxId
-        - dxCode
         - product
         - route
         - wtMeatHrs
@@ -4053,10 +4052,6 @@ components:
           type: integer
           description: id of label diagnosis
           example: 2002
-        dxCode:
-          type: string
-          description: code of label diagnosis
-          example: "2002"
         product:
           type: string
           description: product trade name
