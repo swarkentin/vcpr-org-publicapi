@@ -857,7 +857,7 @@ paths:
             application/json:
               schema:
                 properties:
-                  labels:
+                  tags:
                     type: array
                     items:
                       $ref: "#/components/schemas/Tag"
@@ -880,7 +880,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  protocol:
+                  tag:
                     $ref: "#/components/schemas/Tag"
         "400":
           $ref: "#/components/responses/BadRequest"
