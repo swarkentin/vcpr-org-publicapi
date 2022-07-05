@@ -19,14 +19,14 @@ servers:
   - description: Local server.
     url: http://localhost
 tags:
-  - name: ALL_USERS
-    description: available to all users.
-  - name: SAOR
-    description: available to system administrators.
   - name: VOR
     description: available to veterinarians.
   - name: MOR
     description: available to farm managers.
+  - name: ALL_USERS
+    description: available to all users.
+  - name: SAOR
+    description: available to system administrators.
   - name: TOR
     description: available to farm employees.
   - name: LOR
@@ -125,7 +125,7 @@ paths:
       tags: [ALL_USERS]
       summary: update user data
       description: >-
-        (idempotent) Any User may update their own data, A VOR may update User data of a
+        Users may update their own data. A VOR may also update User data of a
         User in a `CLIENT` relationship with that VOR. A SAOR may update data of any User.
       requestBody:
         required: true
@@ -178,7 +178,6 @@ paths:
       tags: [ALL_USERS]
       security: []
       summary: user login
-      x-reviewed: JLE 2022/5/30
       description: >-
         Authenticate a User and the app requesting a token,
         returning a token for use in future secured requests.
@@ -208,7 +207,7 @@ paths:
                   type: string
                   description: >-
                     User password
-                  minLength: 6
+                  minLength: 8
                   example: somePassword
       responses:
         "200":
@@ -505,7 +504,7 @@ paths:
       tags: [ALL_USERS]
       summary: record a User comment
       description: >-
-        This endpoint records a User comment to the database and emails admin.
+        Records a User comment to the database and emails admin.
         It supports privacy controls.
       requestBody:
         required: true
@@ -1137,16 +1136,13 @@ paths:
       tags: [VOR]
       summary: list of all diagnoses
       description: >-
-        This endpoint returns an array of Diagnoses from which a User may
-        choose. The ID field is authoritative, i.e., is all that is needed to
-        identify a particular Diagnosis.
+        Returns an array of all coded Diagnoses known to the system.
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                description: array of diagnoses
                 type: object
                 properties:
                   diagnoses:
@@ -1366,9 +1362,7 @@ paths:
       tags: [VOR]
       summary: list of all diagnoses
       description: >-
-        This endpoint returns an array of Diagnoses from which a User may
-        choose. The ID field is authoritative, i.e., is all that is needed to
-        identify a particular Diagnosis.
+        returns an array of Prescriptions
       parameters:
         - name: id
           in: path
@@ -1425,9 +1419,7 @@ paths:
       tags: [ALL_USERS]
       summary: list of all diagnoses
       description: >-
-        This endpoint returns an array of Diagnoses from which a User may
-        choose. The ID field is authoritative, i.e., is all that is needed to
-        identify a particular Diagnosis.
+        Returns an array of keys used to identify help messages.
       responses:
         "200":
           description: OK
@@ -1446,8 +1438,7 @@ paths:
       operationId: getHelp
       tags: [ALL_USERS]
       summary: help message
-      description: return a help message.
-      x-reviewed: JLE 2022/5/31
+      description: return a help message, normally to be displayed in a popup help screen.
       parameters:
         - name: key
           in: path
@@ -1786,7 +1777,7 @@ paths:
           description: Prescription identifier
       responses:
         "200":
-          description: invalidated
+          description: prescription updated
           content:
             application/json:
               schema:
@@ -2088,37 +2079,26 @@ components:
       in: header
       name: X-Auth-Token
       description: JWT token stored in request header.
-      x-reviewed: JLE 2022/5/30
   responses:
+    NoContent: #204
+      description: There is no content to send for this request.
+    BadRequest: #400
+      description: The server can not understand the request due to invalid syntax.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
     Unauthorized: #401
-      description: 401 – Users must log in
-    BadRequest:
-      description: The server could not understand the request due to invalid syntax.
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/Error"
-    NotFound:
+      description: Authorization required
+    Forbidden: #403
+      description: The user does not have access rights to the content.
+    NotFound: #404
       description: The server can not find the requested resource.
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/Error"
-    NoContent:
-      description: There is no content to send for this request,.
-    Forbidden:
-      description: The client does not have access rights to the content.
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/Error"
-
   schemas:
     UserType:
       type: string
       description: >
         an ordered list of User types associated with privilege levels:
-
         <br>
 
         * SAOR: a system administrator with top level privileges
@@ -2162,7 +2142,7 @@ components:
         - REMOVED
       example: VOR
     User:
-      description: a User of a specific `usertype` class
+      description: a User of a `UserType` class
       type: object
       properties:
         id:
@@ -2172,22 +2152,22 @@ components:
         uname:
           description: username
           type: string
-          example: testVOR
+          example: exampleUser
         userType:
           $ref: "#/components/schemas/UserType"
         email:
           type: string
           format: email
           description: email address
-          example: testVOR@dairysight.com
+          example: exampleUser@email.com
         firstname:
           type: string
           description: first name
-          example: Test
+          example: Example
         lastname:
           type: string
           description: last name
-          example: Vet
+          example: User
         suffix:
           type: string
           description: degree or qualifier following the name
