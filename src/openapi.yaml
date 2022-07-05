@@ -89,7 +89,7 @@ paths:
       operationId: getUsers
       tags: [VOR]
       summary: list of Users IDs
-      description: Returns the ID and names of all active VOR Users.
+      description: Returns the ID and names of all active Users of the type(s) specified.
       parameters:
         - name: usertypes
           in: path
@@ -172,6 +172,10 @@ paths:
                         name:
                           type: string
                           description: User's Name
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /api/users/logins:
     post:
       operationId: userLogin
@@ -294,6 +298,10 @@ paths:
                   deleted:
                     type: integer
                     description: number of Users deleted
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
   /api/visits/{id}:
     get:
       operationId: getVisits
@@ -323,31 +331,43 @@ paths:
     post:
       operationId: createSandboxClient
       tags: [VOR]
-      summary: get user data
+      summary: create a sandbox user 
       description: >-
-        Returns User da.
-      # requestBody:
-      #   required: true
-      #   content:
-      #     type: string
+        Create a sandbox user of MOR `UserType` who is a `CLIENT` of logged-in VOR.
+        This allows the VOR to prescribe to the sandbox client, then view prescriptions
+        from the client's point of view using the Farm App.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+              description: The username for the sandbox client. This must not match an existing `User.username`
       responses:
-        #ok
+        "200":
+          description: Sandbox user created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sandboxClient:
+                    type: string
+                    description: username of sandbox client
         "400":
           $ref: "#/components/responses/BadRequest"
         "403":
           $ref: "#/components/responses/Unauthorized"
     delete:
-      #unchecked
       operationId: deleteSandboxClient
       tags: [SAOR, VOR]
       summary: delete sandboxClient
       description: >-
-        This endpoint supports the (reversible) "delete" of a User by setting
-        user.status to `REMOVED`. Removed Users are not visible in normal
-        queries.
+        Delete the User and CLIENT Relation records from the database, 
+        irreversibly removing the sandbocx client, but not any existing Prescriptions.
       responses:
         "200":
-          description: User deleted
+          description: Sandbox user deleted
           content:
             application/json:
               schema:
@@ -356,10 +376,13 @@ paths:
                   deleted:
                     type: integer
                     description: number of Users deleted
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
   /api/users/addresses:
     put:
       operationId: updateAddress
-      x-reviewed: JLE 2022/5/31
       tags: [ALL_USERS]
       summary: update address
       description: >-
@@ -546,7 +569,10 @@ paths:
             application/json:
               schema:
                 type: string
-
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
   /api/users/my-right-relations:
     get:
       operationId: myRightRelations
@@ -579,6 +605,10 @@ paths:
                       oneOf:
                         - $ref: "#/components/schemas/User"
                         - $ref: "#/components/schemas/Profile"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
     post:
       operationId: createRightRelation
       tags: [VOR]
@@ -614,6 +644,10 @@ paths:
                 properties:
                   user:
                     $ref: "#/components/schemas/User"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
 
   /api/protocols/prescriptions/by:
     get:
@@ -633,6 +667,10 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/Prescription"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
   /api/protocols/prescriptions/to:
     get:
       operationId: getRxTo
@@ -684,6 +722,10 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/ProtocolShare"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
     post:
       operationId: createProtocolShare
       tags: [VOR]
@@ -709,6 +751,8 @@ paths:
                     example: 1
         "400":
           $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
     delete:
       operationId: deleteProtocolShare
       tags: [VOR]
@@ -740,6 +784,8 @@ paths:
                     description: number of shares deleted
         "400":
           $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
   /api/protocols/sharesToAll/:
     get:
       operationId: getSharesToAll
@@ -778,6 +824,8 @@ paths:
                     clonable: false
         "400":
           $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
   /api/protocols/sharesToAll/{pxId}:
     post:
       operationId: shareToAll
@@ -820,9 +868,8 @@ paths:
         "204":
           description: no content
   /api/protocols/amducatags:
-    put: #SHOULD be GET??
+    put: 
       operationId: getAMDUCATags
-      x-reviewed: JLE 2022/5/31
       tags: [VOR]
       summary: AMDUCA-tag protocol
       description: add tags to protocol per AMDUCA rules
@@ -843,6 +890,9 @@ paths:
                     $ref: "#/components/schemas/Protocol"
         "400":
           $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
+
   /api/protocols/tags:
     get:
       operationId: getProtocolTags
@@ -907,7 +957,9 @@ paths:
                   deleted:
                     type: integer
                     description: number of db records deleted
-        "401":
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
           $ref: "#/components/responses/Unauthorized"
   /api/protocols/promises:
     get:
@@ -931,7 +983,9 @@ paths:
     post:
       operationId: createPromise
       responses:
-        "401":
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
           $ref: "#/components/responses/Unauthorized"
   /api/protocols/promises/{id}:
     get:
@@ -993,6 +1047,10 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/Protocol"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
     post:
       operationId: createProtocol
       tags: [VOR]
@@ -1016,6 +1074,8 @@ paths:
                     $ref: "#/components/schemas/Protocol"
         "400":
           $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
     put:
       operationId: updateProtocol
       tags: [VOR]
@@ -1038,6 +1098,8 @@ paths:
                     $ref: "#/components/schemas/Protocol"
         "400":
           $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
   /api/protocols/eligibilities:
     get:
       operationId: getEligibilities
@@ -1083,7 +1145,7 @@ paths:
                     $ref: "#/components/schemas/Eligibility"
         "400":
           $ref: "#/components/responses/BadRequest"
-        "401":
+        "403":
           $ref: "#/components/responses/Unauthorized"
   /api/protocols/eligibilities/{id}}:
     delete:
@@ -1108,7 +1170,9 @@ paths:
                   deleted:
                     type: integer
                     description: number of db records deleted
-        "401":
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
           $ref: "#/components/responses/Unauthorized"
   /api/protocols/eligibilities/fdaspecies:
     get:
@@ -1149,6 +1213,10 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/Diagnosis"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
     post:
       operationId: createDiagnosis
       tags: [SAOR]
@@ -1172,7 +1240,7 @@ paths:
                     $ref: "#/components/schemas/Diagnosis"
         "400":
           $ref: "#/components/responses/BadRequest"
-        "401":
+        "403":
           $ref: "#/components/responses/Unauthorized"
   /api/protocols/diagnoses/{id}:
     delete:
@@ -1197,7 +1265,9 @@ paths:
                   deleted:
                     type: integer
                     description: number of db records deleted
-        "401":
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
           $ref: "#/components/responses/Unauthorized"
   /api/protocols/libs:
     get:
@@ -1240,6 +1310,10 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/Px"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
   /api/protocols/dosages:
     post:
       operationId: validateDosage
@@ -1262,6 +1336,10 @@ paths:
                   _dose:
                     type: string
                     description: string representation of submitted Dosage
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
   /api/protocols/libstubs:
     get:
       operationId: getLibraryPxes
@@ -1283,6 +1361,10 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/Px"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
   /api/protocols/{id}:
     get:
       operationId: getProtocol
@@ -1311,6 +1393,10 @@ paths:
                 properties:
                   protocol:
                     $ref: "#/components/schemas/Protocol"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
     delete:
       operationId: deleteProtocol
       tags: [VOR]
@@ -1336,6 +1422,10 @@ paths:
                   deprecated:
                     type: integer
                     description: number of Protocols deprecated
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
   /api/protocols/prescriptions:
     get:
       operationId: getPrescriptions
@@ -1356,6 +1446,10 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/Prescription"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
   /api/protocols/{id}/prescriptions:
     get:
       operationId: getPrescriptionsOfProtocol
@@ -1383,6 +1477,10 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/Prescription"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
   /api/protocols/prescriptions/{id}:
     get:
       operationId: XgetPrescription
@@ -1413,6 +1511,10 @@ paths:
               schema:
                 type: string
                 format: binary
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
   /api/helpkeys:
     get:
       operationId: getHelpkeys
@@ -1433,6 +1535,10 @@ paths:
                     type: array
                     items:
                       type: string
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
   /api/help/{key}:
     get:
       operationId: getHelp
@@ -1455,6 +1561,10 @@ paths:
                 properties:
                   help:
                     type: string
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
     post:
       operationId: createHelp
       tags: [SAOR]
@@ -1511,7 +1621,9 @@ paths:
                   deleted:
                     type: integer
                     description: number of db records deleted
-        "401":
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
           $ref: "#/components/responses/Unauthorized"
   /api/labels:
     get:
@@ -1530,6 +1642,10 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/LabelClaim"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
     post:
       operationId: createLabelClaim
       tags: [SAOR]
@@ -1553,7 +1669,7 @@ paths:
                     $ref: "#/components/schemas/LabelClaim"
         "400":
           $ref: "#/components/responses/BadRequest"
-        "401":
+        "403":
           $ref: "#/components/responses/Unauthorized"
     put:
       operationId: updateLabelClaim
@@ -1575,7 +1691,9 @@ paths:
                 properties:
                   protocol:
                     $ref: "#/components/schemas/LabelClaim"
-        "401":
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
           $ref: "#/components/responses/Unauthorized"
   /api/labels/{id}:
     get:
@@ -1600,6 +1718,10 @@ paths:
               schema:
                 type: object
                 $ref: "#/components/schemas/LabelClaim"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
     put:
       operationId: updateLabelClaim
       tags: [SAOR]
@@ -1631,7 +1753,7 @@ paths:
                     $ref: "#/components/schemas/LabelClaim"
         "400":
           $ref: "#/components/responses/BadRequest"
-        "401":
+        "403":
           $ref: "#/components/responses/Unauthorized"
   /api/labels/inserts/{lxId}:
     get:
@@ -1655,7 +1777,9 @@ paths:
               schema:
                 type: string
                 format: html
-        "401":
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
           $ref: "#/components/responses/Unauthorized"
         "404":
           $ref: "#/components/responses/NotFound"
