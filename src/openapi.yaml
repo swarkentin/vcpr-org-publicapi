@@ -308,7 +308,7 @@ paths:
   /api/visits/{id}:
     get:
       operationId: getVisits
-      tags: []
+      tags: [ALL_USERS]
       summary: list of all
       description: list of .
       parameters:
@@ -2460,12 +2460,12 @@ components:
     Remedy:
       description: a strategy for fixing a problem
       oneOf:
-        - $ref: "#/components/schemas/WarningRemedy"
+        - $ref: "#/components/schemas/RestrictionRemedy"
         - $ref: "#/components/schemas/LinkRemedy"
         - $ref: "#/components/schemas/SubstituteLabelClaimRemedy"
         - $ref: "#/components/schemas/PromiseRemedy"
         - $ref: "#/components/schemas/JsonRemedy"
-    WarningRemedy:
+    RestrictionRemedy:
       type: object
       properties: 
         code:   
