@@ -2469,12 +2469,16 @@ components:
           type: string
         message:   
           type: string
+        detail:   
+          type: string
     LinkRemedy:
       type: object
       properties: 
         code:   
           type: string
         message:   
+          type: string
+        link:   
           type: string
     SubstituteLabelClaimRemedy:
       type: object
@@ -2483,6 +2487,10 @@ components:
           type: string
         message:   
           type: string
+        substitutes:
+          type: array
+          items:
+            type: integer  
     PromiseRemedy:
       type: object
       properties: 
@@ -2490,13 +2498,17 @@ components:
           type: string
         message:   
           type: string
+        promise:
+          $ref: "#/components/schemas/Promise"
     JsonRemedy:
       type: object
       properties: 
         code:   
           type: string
         message:   
-          type: string        
+          type: string
+        action:
+          type: object       
     SuccessfulLogin:
       description: User object and generated auth token
       type: object
