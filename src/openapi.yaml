@@ -2422,6 +2422,49 @@ components:
         - EMPLOYEE
         - MEMBER
       example: CLIENT
+    Remedy:
+      description: a strategy for fixing a problem
+      oneOf:
+        - $ref: "#/components/schemas/WarningRemedy"
+        - $ref: "#/components/schemas/LinkRemedy"
+        - $ref: "#/components/schemas/SubstituteLabelClaimRemedy"
+        - $ref: "#/components/schemas/PromiseRemedy"
+        - $ref: "#/components/schemas/JsonRemedy"
+    WarningRemedy:
+      type: object
+      properties: 
+        code:   
+          type: string
+        message:   
+          type: string
+    LinkRemedy:
+      type: object
+      properties: 
+        code:   
+          type: string
+        message:   
+          type: string
+    SubstituteLabelClaimRemedy:
+      type: object
+      properties: 
+        code:   
+          type: string
+        message:   
+          type: string
+    PromiseRemedy:
+      type: object
+      properties: 
+        code:   
+          type: string
+        message:   
+          type: string
+    JsonRemedy:
+      type: object
+      properties: 
+        code:   
+          type: string
+        message:   
+          type: string        
     SuccessfulLogin:
       description: User object and generated auth token
       type: object
@@ -3170,22 +3213,24 @@ components:
     Tag:
       description: keyword or tag for classification
       type: object
+      required: [id, color, name]
       properties:
         id:
           type: integer
           description: Tag ID number
           example: 8
-        code:
-          type: string
-          maxLength: 15
-          description: keyword code identifying tag
-        name:
-          type: string
-          description: free-form text description of the Tag
         color:
           type: string
           description: color code
           example: "#516cc6"
+        name:
+          type: string
+          maxLength: 15
+          description: keyword code identifying tag
+        fixes:
+          type: array
+          items:
+            $ref: "#/components/schemas/Remedy"
     AmducaClass:
       type: string
       enum:
