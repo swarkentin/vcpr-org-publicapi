@@ -969,6 +969,30 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "403":
           $ref: "#/components/responses/Unauthorized"
+  /api/protocols/tags/remedies:
+    put:
+      operationId: executeRemedy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                protocol:
+                  $ref: "#/components/schemas/Protocol"
+                remedy:  
+                  $ref: "#/components/schemas/Remedy"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Protocol"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"  
   /api/protocols/promises:
     get:
       operationId: getPromisess
