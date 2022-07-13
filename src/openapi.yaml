@@ -51,10 +51,10 @@ paths:
   /editor:
     get:
       operationId: loadEditor
-      description: load Editor app
+      description: load Protocol Editor
       responses:
         "200":
-          description: load SPA
+          description: load Protocol Editor
           content:
             text/html:
               schema: {}
@@ -63,10 +63,10 @@ paths:
   /farm:
     get:
       operationId: loadFarmApp
-      description: load Farm app
+      description: load Farm App
       responses:
         "200":
-          description: load SPA
+          description: load Farm App
           content:
             text/html:
               schema: {}
@@ -471,7 +471,6 @@ paths:
   /api/users/profiles/{id}:
     get:
       operationId: getProfile
-      x-reviewed: JLE 2022/5/31
       tags: [ALL_USERS]
       summary: Profile of user
       description: >-
@@ -499,9 +498,18 @@ paths:
 
   /api/users/token/{token}:
     get:
-      operationId: getProfile
+      operationId: confirmToken
+      description: used for clickable link to confirm a token sent in email.
       responses:
-        "401":
+        "200":
+          description: OK
+          content:
+            text/html:
+              schema:
+                description: web page confirmation.
+                type: string
+                format: html
+          "401":
           $ref: "#/components/responses/Unauthorized"
   /api/users/withholds:
     get:
