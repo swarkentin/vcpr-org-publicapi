@@ -52,6 +52,7 @@ paths:
     get:
       operationId: loadEditor
       description: load Protocol Editor
+      tags: [SAOR, VOR]
       responses:
         "200":
           description: load Protocol Editor
@@ -64,6 +65,7 @@ paths:
     get:
       operationId: loadFarmApp
       description: load Farm App
+      tags: [SAOR, VOR, MOR]
       responses:
         "200":
           description: load Farm App
@@ -76,6 +78,7 @@ paths:
     get:
       operationId: loadAdminApp
       description: load Admin app
+      tags: [SAOR]
       responses:
         "200":
           description: load SPA
@@ -500,6 +503,7 @@ paths:
     get:
       operationId: confirmToken
       description: used for clickable link to confirm a token sent in email.
+      tags: [ALL_USERS]
       responses:
         "200":
           description: OK
@@ -972,6 +976,8 @@ paths:
   /api/protocols/tags/remedies:
     put:
       operationId: executeRemedy
+      tags: [VOR]
+      description: Apply a Remedy to a Protocol, returning the fixed Protocol.
       requestBody:
         content:
           application/json:
@@ -1014,6 +1020,7 @@ paths:
 
     post:
       operationId: createPromise
+      tags: [SAOR]
       responses:
         "400":
           $ref: "#/components/responses/BadRequest"
@@ -2191,6 +2198,7 @@ paths:
   /api/admin/gbd/{ndc}:
     get:
       operationId: getGreenbookDrug
+      tags: [SAOR]
       parameters:
         - name: ndc
           in: path
@@ -2207,7 +2215,7 @@ paths:
   /api/admin/ConfirmVOR:
     put:
       operationId: confirmVOR
-      x-reviewed: JLE 2022/5/31
+      tags: [ALL_USERS]
       parameters:
         - name: sendEmail
           in: query
