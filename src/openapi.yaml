@@ -2991,6 +2991,14 @@ components:
         - $ref: "#/components/schemas/SeqPerDayRange"
         - $ref: "#/components/schemas/SeqInterval"
         - $ref: "#/components/schemas/SeqSeries"
+      discriminator:
+        propertyName: _type
+        mapping:
+          models.SeqSingleDose: "#/components/schemas/SeqSingleDose"
+          models.SeqPerDay: "#/components/schemas/SeqPerDay"
+          models.SeqPerDayRange: "#/components/schemas/SeqPerDayRange"
+          models.SeqInterval: "#/components/schemas/SeqInterval"
+          models.SeqSeries: "#/components/schemas/SeqSeries"
     MassUnit:
       description: unit of mass or weight
       type: string
@@ -3273,6 +3281,14 @@ components:
         - $ref: "#/components/schemas/LoadingDoseByWeightFunction"
         - $ref: "#/components/schemas/DoseRangeFunction"
         - $ref: "#/components/schemas/DoseRangeByWeightFunction"
+      discriminator:
+        propertyName: _type
+        mapping:
+          models.FixedDoseFunction: "#/components/schemas/FixedDoseFunction"
+          models.DoseByWeightFunction: "#/components/schemas/DoseByWeightFunction"
+          models.LoadingDoseByWeightFunction: "#/components/schemas/LoadingDoseByWeightFunction"
+          models.DoseRangeFunction: "#/components/schemas/DoseRangeFunction"
+          models.DoseRangeByWeightFunction: "#/components/schemas/SeqSeries"
     DoseFunctions:
       type: object
       properties:
@@ -3944,6 +3960,14 @@ components:
         - $ref: "#/components/schemas/PDataNumber"
         - $ref: "#/components/schemas/PDataBoolean"
         - $ref: "#/components/schemas/PDataMass"
+      discriminator:
+        propertyName: _type
+        mapping:
+          models.PDataNone: "#/components/schemas/PDataNone"
+          models.PDataString: "#/components/schemas/PDataString"
+          models.PDataNumber: "#/components/schemas/PDataNumber"
+          models.PDataBoolean: "#/components/schemas/PDataBoolean"
+          models.PDataMass: "#/components/schemas/PDataMass"
     #{"id":0,"caseId":23,"vorId":1,"morId":2,"promId":1,"animalId":"Bossie","doAt":"2020-05-16T16:19:12Z","executor":2,"status":"REQUIRED","data":{"_type":"models.PDataString","promiseId":5,"dat":"promise response string"}}
     PTask:
       description: A Task required to fulfill a Promise
@@ -4113,6 +4137,14 @@ components:
             - $ref: "#/components/schemas/PreferredDoseData"
             - $ref: "#/components/schemas/PrefDoseRateData"
             - $ref: "#/components/schemas/AnimalClassData"
+      discriminator:
+        propertyName: _type
+        mapping:
+          models.IdData: "#/components/schemas/IdData"
+          models.WeightData: "#/components/schemas/WeightData"
+          models.PreferredDoseData: "#/components/schemas/PreferredDoseData"
+          models.PrefDoseRateData: "#/components/schemas/PrefDoseRateData"
+          models.AnimalClassData: "#/components/schemas/AnimalClassData"
     IdData:
       type: object
       description: identifies animal or group treated in the **_Case_**
@@ -4282,6 +4314,11 @@ components:
       oneOf:
         - $ref: "#/components/schemas/PTask"
         - $ref: "#/components/schemas/DoseTask"
+      discriminator:
+        propertyName: _type
+        mapping:
+          models.PTask: "#/components/schemas/PTask"
+          models.DoseTask: "#/components/schemas/DoseTask"
     LabelClaim:
       type: object
       required:
