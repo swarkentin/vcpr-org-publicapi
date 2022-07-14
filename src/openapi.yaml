@@ -2470,17 +2470,18 @@ components:
           models.SubstituteLabelClaimRemedy: "#/components/schemas/SubstituteLabelClaimRemedy"
           models.PromiseRemedy: "#/components/schemas/PromiseRemedy"
           models.JsonRemedy: "#/components/schemas/JsonRemedy"
+      example: {"_type":"models.RestrictionRemedy","code":"exCode","message":"exMessage","detail":"exDetail"}
     RemedyBase:
       description: the base data common to all the polymorphic Remedy subtypes
       type: object
-      required: [_type, code, message]
+      required: [_type, title, message]
       properties:
         _type:
           type: string
           description: >-
             identifies the Remedy subtype as shown in the Remedy discriminator mapping,
             like `models.RestrictionRemedy`
-        code:
+        title:
           type: string
           description: a short descriptive name of the Remedy
         message:
@@ -2495,43 +2496,44 @@ components:
           properties:
             detail:
               type: string
+      example: {"_type":"models.RestrictionRemedy","code":"exCode","message":"exMessage","detail":"exDetail"}
     LinkRemedy:
-      type: object
+      description: Adds `detail` to the protocol instructions in the `Restrictions` section.
+      allOf:
+        - $ref: "#/components/schemas/RemedyBase"
+        - type: object
+          required: [detail]
       properties:
-        code:
-          type: string
-        message:
-          type: string
-        link:
+        detail:
           type: string
     SubstituteLabelClaimRemedy:
-      type: object
+      description: ?.
+      allOf:
+        - $ref: "#/components/schemas/RemedyBase"
+        - type: object
+          required: [substitutes]
       properties:
-        code:
-          type: string
-        message:
-          type: string
         substitutes:
           type: array
           items:
             type: integer
     PromiseRemedy:
-      type: object
+      description: Adds Promise to the protocol.
+      allOf:
+        - $ref: "#/components/schemas/RemedyBase"
+        - type: object
+          required: [promise]
       properties:
-        code:
-          type: string
-        message:
-          type: string
         promise:
           $ref: "#/components/schemas/Promise"
     JsonRemedy:
-      type: object
+      description:  ?.
+      allOf:
+        - $ref: "#/components/schemas/RemedyBase"
+        - type: object
+          required: [detail]
       properties:
-        code:
-          type: string
-        message:
-          type: string
-        action:
+        detail:
           type: object
     SuccessfulLogin:
       description: User object and generated auth token
