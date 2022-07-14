@@ -2470,7 +2470,13 @@ components:
           models.SubstituteLabelClaimRemedy: "#/components/schemas/SubstituteLabelClaimRemedy"
           models.PromiseRemedy: "#/components/schemas/PromiseRemedy"
           models.JsonRemedy: "#/components/schemas/JsonRemedy"
-      example: {"_type":"models.RestrictionRemedy","title":"exCode","message":"exMessage","detail":"exDetail"}
+      example:
+        {
+          "_type": "models.RestrictionRemedy",
+          "title": "exCode",
+          "message": "exMessage",
+          "detail": "exDetail",
+        }
     RemedyBase:
       description: the base data common to all the polymorphic Remedy subtypes
       type: object
@@ -2496,7 +2502,13 @@ components:
           properties:
             detail:
               type: string
-      example: {"_type":"models.RestrictionRemedy","title":"exCode","message":"exMessage","detail":"exDetail"}
+      example:
+        {
+          "_type": "models.RestrictionRemedy",
+          "title": "exCode",
+          "message": "exMessage",
+          "detail": "exDetail",
+        }
     LinkRemedy:
       description: Adds `detail` to the protocol instructions in the `Restrictions` section.
       allOf:
@@ -2527,7 +2539,7 @@ components:
         promise:
           $ref: "#/components/schemas/Promise"
     JsonRemedy:
-      description:  ?.
+      description: ?.
       allOf:
         - $ref: "#/components/schemas/RemedyBase"
         - type: object
@@ -3856,8 +3868,7 @@ components:
       example: REQUIRED
     PDataNone:
       type: object
-      required:
-        - promiseId
+      required: [_type, promiseId]
       properties:
         _type:
           type: string
@@ -3969,69 +3980,6 @@ components:
           models.PDataBoolean: "#/components/schemas/PDataBoolean"
           models.PDataMass: "#/components/schemas/PDataMass"
     #{"id":0,"caseId":23,"vorId":1,"morId":2,"promId":1,"animalId":"Bossie","doAt":"2020-05-16T16:19:12Z","executor":2,"status":"REQUIRED","data":{"_type":"models.PDataString","promiseId":5,"dat":"promise response string"}}
-    PTask:
-      description: A Task required to fulfill a Promise
-      type: object
-      required:
-        - _type
-        - id
-        - caseId
-        - morId
-        - vorId
-        - promId
-        - animalId
-        - doAt
-        - status
-      properties:
-        _type:
-          type: string
-          description: class of AnimalTask
-          enum:
-            - models.PTask
-          example: models.PTask
-        id:
-          description: PTask ID number
-          type: integer
-          format: int64
-          example: 123
-        caseId:
-          description: ID number of Case that includes this task
-          type: integer
-          format: int64
-          example: 123
-        morId:
-          description: ID of MOR user responsible for execution of this task
-          type: integer
-          format: int64
-          example: 123
-        vorId:
-          description: ID of VOR prescribing the task
-          type: integer
-          format: int64
-          example: 123
-        promId:
-          description: ID of Promise
-          type: integer
-          format: int64
-          example: 123
-        animalId:
-          type: string
-          description: ID of animal to which the task applies
-          example: this
-        doAt:
-          description: ISO-8601-formatted datetime when the task should be executed
-          type: string
-          format: date-time
-          example: 2020-01-10T10:30:37Z
-        executor:
-          description: ID of Person who should execute the task
-          type: integer
-          format: int64
-          example: 123
-        status:
-          $ref: "#/components/schemas/TaskStatus"
-        data:
-          $ref: "#/components/schemas/PData"
     DoseByClass:
       description: dose calculated by class
       required:
@@ -4051,73 +3999,6 @@ components:
             $ref: "#/components/schemas/FixedDoseFunction"
       example: >-
         {"_type":"models.DoseByClass","animalClasses":[{"animalClass":"Jabberwocks","sizeFunction":{"unit":"mg","size":3.2,"_type":"models.DrugQuantity"}},{"animalClass":"Borogoves","sizeFunction":{"_type":"models.DoseRangeFunction","maxDose":{"size":20,"unit":"ml"},"minDose":{"size":10,"unit":"ml"}}}]}
-    DoseTask:
-      type: object
-      required:
-        - _type
-        - id
-        - caseId
-        - morId
-        - vorId
-        - product
-        - dose
-        - route
-        - animalId
-        - doAt
-        - status
-      properties:
-        _type:
-          type: string
-          description: class of AnimalTask
-          enum:
-            - models.DoseTask
-          example: models.DoseTask
-        id:
-          description: DoseTask ID number
-          type: integer
-          format: int64
-          example: 123
-        caseId:
-          description: ID number of Case that includes this task
-          type: integer
-          format: int64
-          example: 123
-        morId:
-          description: ID of MOR user responsible for execution of this task
-          type: integer
-          format: int64
-          example: 123
-        vorId:
-          description: ID of VOR user who prescribed this task
-          type: integer
-          format: int64
-          example: 123
-        product:
-          description: product to be administered
-          type: string
-          example: Calcium gluconate 23%
-        route:
-          description: route of administration
-          type: string
-          example: IV
-        dose:
-          $ref: "#/components/schemas/DrugQuantity"
-        animalId:
-          type: string
-          description: ID of animal to receive the dose
-          example: this
-        doAt:
-          description: ISO-8601-formatted datetime, time the task should be executed
-          type: string
-          format: date-time
-          example: 2020-01-10T10:30:37Z
-        executor:
-          description: set nu
-          type: integer
-          format: int64
-          example: 123
-        status:
-          $ref: "#/components/schemas/TaskStatus"
     CaseData:
       description: data for an individual Case
       type: object
@@ -4310,7 +4191,7 @@ components:
           description: note
 
     AnimalTask:
-      description: a task
+      description: a task related to an animal or group of animals
       oneOf:
         - $ref: "#/components/schemas/PTask"
         - $ref: "#/components/schemas/DoseTask"
@@ -4319,6 +4200,102 @@ components:
         mapping:
           models.PTask: "#/components/schemas/PTask"
           models.DoseTask: "#/components/schemas/DoseTask"
+    TaskBase:
+      description: the base data common to all the polymorphic AnimalTask subtypes
+      type: object
+      required:
+        - _type
+        - id
+        - caseId
+        - morId
+        - vorId
+        - promId
+        - animalId
+        - doAt
+        - status
+      properties:
+        _type:
+          type: string
+          description: >-
+            identifies the task subtype as shown in the AnimalTask discriminator mapping,
+            like ` models.DoseTask`
+        id:
+          description: PTask ID number
+          type: integer
+          format: int64
+          example: 123
+        caseId:
+          description: ID number of Case that includes this task
+          type: integer
+          format: int64
+          example: 123
+        morId:
+          description: ID of MOR user responsible for execution of this task
+          type: integer
+          format: int64
+          example: 123
+        vorId:
+          description: ID of VOR prescribing the task
+          type: integer
+          format: int64
+          example: 123
+        animalId:
+          type: string
+          description: ID of animal to which the task applies
+          example: this
+        doAt:
+          description: ISO-8601-formatted datetime when the task should be executed
+          type: string
+          format: date-time
+          example: 2020-01-10T10:30:37Z
+        executor:
+          description: ID of Person who should execute the task
+          type: integer
+          format: int64
+          example: 123
+        status:
+          $ref: "#/components/schemas/TaskStatus"
+    PTask:
+      description: A Task required to fulfill a Promise
+      allOf:
+        - $ref: "#/components/schemas/TaskBase"
+        - type: object
+          required: [detail]
+          properties:
+            detail:
+              type: string
+      type: object
+      required: [promId, data]
+      properties:
+        promId:
+          description: ID of Promise
+          type: integer
+          format: int64
+          example: 123
+        data:
+          $ref: "#/components/schemas/PData"
+    DoseTask:
+      allOf:
+        - $ref: "#/components/schemas/TaskBase"
+        - type: object
+          required: [detail]
+          properties:
+            detail:
+              type: string
+      type: object
+      required: [product, route, dose]
+      properties:
+        product:
+          description: product to be administered
+          type: string
+          example: Calcium gluconate 23%
+        route:
+          description: route of administration
+          type: string
+          example: IV
+        dose:
+          $ref: "#/components/schemas/DrugQuantity"
+
     LabelClaim:
       type: object
       required:
