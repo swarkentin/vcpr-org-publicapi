@@ -99,10 +99,10 @@ paths:
           required: true
           schema:
             type: array
-            items: 
+            items:
               type: string
             default: [VOR]
-          description: User types to include 
+          description: User types to include
       responses:
         "200":
           description: OK
@@ -334,7 +334,7 @@ paths:
     post:
       operationId: createSandboxClient
       tags: [VOR]
-      summary: create a sandbox user 
+      summary: create a sandbox user
       description: >-
         Create a sandbox user of MOR `UserType` who is a `CLIENT` of logged-in VOR.
         This allows the VOR to prescribe to the sandbox client, then view prescriptions
@@ -880,7 +880,7 @@ paths:
         "204":
           description: no content
   /api/protocols/amducatags:
-    put: 
+    put:
       operationId: getAMDUCATags
       tags: [VOR]
       summary: AMDUCA-tag protocol
@@ -986,7 +986,7 @@ paths:
               properties:
                 protocol:
                   $ref: "#/components/schemas/Protocol"
-                remedy:  
+                remedy:
                   $ref: "#/components/schemas/Remedy"
       responses:
         "200":
@@ -998,7 +998,7 @@ paths:
         "400":
           $ref: "#/components/responses/BadRequest"
         "403":
-          $ref: "#/components/responses/Unauthorized"  
+          $ref: "#/components/responses/Unauthorized"
   /api/protocols/promises:
     get:
       operationId: getPromisess
@@ -2222,7 +2222,7 @@ paths:
           schema:
             type: boolean
             default: true
-          required: false     
+          required: false
       responses:
         "200":
           description: User
@@ -2232,7 +2232,7 @@ paths:
                 type: object
                 properties:
                   vor:
-                    $ref: "#/components/schemas/User"      
+                    $ref: "#/components/schemas/User"
         "401":
           $ref: "#/components/responses/Unauthorized"
 
@@ -2455,60 +2455,84 @@ components:
         - MEMBER
       example: CLIENT
     Remedy:
-      description: a strategy for fixing a problem
+      description: directions for a proposed solution to a problem
       oneOf:
         - $ref: "#/components/schemas/RestrictionRemedy"
         - $ref: "#/components/schemas/LinkRemedy"
         - $ref: "#/components/schemas/SubstituteLabelClaimRemedy"
         - $ref: "#/components/schemas/PromiseRemedy"
         - $ref: "#/components/schemas/JsonRemedy"
-    RestrictionRemedy:
+      discriminator:
+        propertyName: _type
+        mapping:
+          models.RestrictionRemedy: "#/components/schemas/RestrictionRemedy"
+          models.LinkRemedy: "#/components/schemas/LinkRemedy"
+          models.SubstituteLabelClaimRemedy: "#/components/schemas/SubstituteLabelClaimRemedy"
+          models.PromiseRemedy: "#/components/schemas/PromiseRemedy"
+          models.JsonRemedy: "#/components/schemas/JsonRemedy"
+    RemedyBase:
+      description: the base data common to all the polymorphic Remedy subtypes
       type: object
-      properties: 
-        code:   
+      required: [_type, code, message]
+      properties:
+        _type:
           type: string
-        message:   
+          description: >-
+            identifies the Remedy subtype as shown in the Remedy discriminator mapping,
+            like `models.RestrictionRemedy`
+        code:
           type: string
-        detail:   
+          description: a short descriptive name of the Remedy
+        message:
           type: string
+          description: a longer description of the Remedy
+    RestrictionRemedy:
+      description: Adds `detail` to the protocol instructions in the `Restrictions` section.
+      allOf:
+        - $ref: "#/components/schemas/RemedyBase"
+        - type: object
+          required: [detail]
+          properties:
+            detail:
+              type: string
     LinkRemedy:
       type: object
-      properties: 
-        code:   
+      properties:
+        code:
           type: string
-        message:   
+        message:
           type: string
-        link:   
+        link:
           type: string
     SubstituteLabelClaimRemedy:
       type: object
-      properties: 
-        code:   
+      properties:
+        code:
           type: string
-        message:   
+        message:
           type: string
         substitutes:
           type: array
           items:
-            type: integer  
+            type: integer
     PromiseRemedy:
       type: object
-      properties: 
-        code:   
+      properties:
+        code:
           type: string
-        message:   
+        message:
           type: string
         promise:
           $ref: "#/components/schemas/Promise"
     JsonRemedy:
       type: object
-      properties: 
-        code:   
+      properties:
+        code:
           type: string
-        message:   
+        message:
           type: string
         action:
-          type: object       
+          type: object
     SuccessfulLogin:
       description: User object and generated auth token
       type: object
