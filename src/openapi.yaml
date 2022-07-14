@@ -2496,7 +2496,7 @@ components:
           properties:
             detail:
               type: string
-      example: {"_type":"models.RestrictionRemedy","code":"exCode","message":"exMessage","detail":"exDetail"}
+      example: {"_type":"models.RestrictionRemedy","title":"exCode","message":"exMessage","detail":"exDetail"}
     LinkRemedy:
       description: Adds `detail` to the protocol instructions in the `Restrictions` section.
       allOf:
