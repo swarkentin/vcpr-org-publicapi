@@ -2470,7 +2470,7 @@ components:
           models.SubstituteLabelClaimRemedy: "#/components/schemas/SubstituteLabelClaimRemedy"
           models.PromiseRemedy: "#/components/schemas/PromiseRemedy"
           models.JsonRemedy: "#/components/schemas/JsonRemedy"
-      example: {"_type":"models.RestrictionRemedy","code":"exCode","message":"exMessage","detail":"exDetail"}
+      example: {"_type":"models.RestrictionRemedy","title":"exCode","message":"exMessage","detail":"exDetail"}
     RemedyBase:
       description: the base data common to all the polymorphic Remedy subtypes
       type: object
