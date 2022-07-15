@@ -1093,8 +1093,8 @@ paths:
     post:
       operationId: createProtocol
       tags: [VOR]
-      summary: record protocol
-      description: This endpoint supports the creation of a Protocol.
+      summary: record and validate aprotocol
+      description: This endpoint saves and validates a Protocol.
       requestBody:
         required: true
         content:
@@ -1119,7 +1119,35 @@ paths:
       operationId: updateProtocol
       tags: [VOR]
       summary: update protocol
-      description: This endpoint updates a Protocol.
+      description: This endpoint updates and validates a Protocol.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Protocol"
+      responses:
+        "200":
+          description: Success – updated Protocol
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  protocol:
+                    $ref: "#/components/schemas/Protocol"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
+  /api/protocols/validate:
+    put:
+      operationId: validateProtocol
+      tags: [VOR]
+      summary: This endpoint validates a protocol without saving it.
+      description: >-
+        This endpoint validates a protocol for prescribing without saving it.
+        It should only be called if the user wants to prescribe a protocol without saving changes.
+        The endpoints to save or update protocols automatically include validation.4
       requestBody:
         content:
           application/json:
