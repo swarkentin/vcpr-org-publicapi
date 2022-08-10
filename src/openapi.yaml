@@ -1977,7 +1977,7 @@ paths:
                     type: integer
         "401":
           $ref: "#/components/responses/Unauthorized"
-  /api/prescriptions/cases:
+  /api/cases:
     post:
       operationId: enrollCase
       tags: [VOR, MOR]
