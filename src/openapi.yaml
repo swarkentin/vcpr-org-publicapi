@@ -2421,7 +2421,7 @@ components:
       type: object
       properties:
         userId:
-          $ref: "#/components/schemas/UserId"
+          type: integer
         sandboxName:
           type: string
         emailTips:
@@ -2430,16 +2430,12 @@ components:
           type: boolean
         rxHeader:
           type: string
-    UserId:
-      type: integer
-      description: unique identifier for the User
-      example: 1
     Address:
       description: an address
       type: object
       properties:
         userId:
-          $ref: "#/components/schemas/UserId"
+          type: integer
         busName:
           description: bussiness name, if appropriate
           type: string
