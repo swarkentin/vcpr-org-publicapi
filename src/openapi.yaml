@@ -2369,11 +2369,10 @@ components:
           example: DVM
       required:
         - id
+        - uname
         - userType
-        - email
         - firstname
         - lastname
-        - suffix
     Profile:
       description: a User along with Profile data
       type: object
@@ -2411,6 +2410,7 @@ components:
           $ref: "#/components/schemas/UserPrefs"
       required:
         - id
+        - uname
         - userType
         - email
         - firstname
