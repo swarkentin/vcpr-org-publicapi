@@ -5,19 +5,33 @@ on:
 
 jobs:
 
-  security:
+  mayhem_tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
-#      - name: Start your API
-#        run: ./run_your_api.sh & # <- update this
-
+      - name: get_auth_token
+        run: |
+          TOK=`curl -i 'https://test.vcpr.org/authenticate' -X POST  --data-raw 'username=testVOR&password=tVpass'` | grep  'x-auth-token:'
+          echo "::set-output name=token::$TOK"  
+      - name: check token
+        run: echo ${{steps.get_auth_token.outputs.token}}        
       - name: Run Mayhem for API to check for vulnerabilities
         uses: ForAllSecure/mapi-action@v1
         with:
           mapi-token: ${{ secrets.MAPI_SECRET }}
           api-url: http://test.vcpr.org
           api-spec: src/openapi.yaml
-#no credentials so 401s
-#ov 17 22:04:57.960 INFO Found invalid-response-spec (unspecified status code: 401)!, uuid: 054238db-9797-4d2b-bf40-5f62281b4035, path: /api/protocols/libs, method: GET, target_name: vcpr-org-publicapi
+          html-report: mapi.html
+          run-args: |
+            #todo get token
+            --header-auth ${{steps.get_auth_token.outputs.token}} 
+            # Do not fuzz the '/logout' endpoint
+            --ignore-endpoint "/api/logout"
+            # Treat all warnings as errors
+            --warnaserror
+
+      - name: Archive Mayhem for API report
+        uses: actions/upload-artifact@v2
+        with:
+          name: mapi-report
+          path: mapi.html
