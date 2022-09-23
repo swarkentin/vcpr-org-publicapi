@@ -1,0 +1,14 @@
+{
+    "local": "./src/openapi.yaml",
+    "baseUrl": "https://test.vcpr.org",
+    "output": "./portman/postman.json",
+    "portmanConfigFile": "./portman/portman-config.json",
+    "postmanConfigFile": "./portman/postman-config.json",
+    "envFile": "./portman/.env-portman",
+    "includeTests": true,
+    "syncPostman": true,
+    "runNewman": false,
+    "postmanWorkspaceName":"VCPR.ORG",
+    "collectionName": "PublicAPI",
+    "postmanFastSync": true
+  }

@@ -1,0 +1,51 @@
+{
+    "version": 1.0,
+    "tests": {
+      "contractTests": [
+        {
+          "openApiOperation": "*::/api/*",
+          "statusSuccess": {
+            "enabled": true
+          }
+        },
+        {
+          "openApiOperation": "*::/Xapi/*",
+          "responseTime": {
+            "enabled": true,
+            "maxMs": 300
+          }
+        },
+        {
+          "openApiOperation": "*::/Xapi/*",
+          "contentType": {
+            "enabled": true
+          }
+        },
+        {
+          "openApiOperation": "*::/Xapi/*",
+          "jsonBody": {
+            "enabled": true
+          }
+        },
+        {
+          "openApiOperation": "*::/Xapi/*",
+          "schemaValidation": {
+            "enabled": true
+          }
+        },
+        {
+          "openApiOperation": "*::/Xapi/*",
+          "headersPresent": {
+            "enabled": true
+          }
+        }
+      ]
+    },
+    "globals": {
+        "stripResponseExamples": true,
+        "collectionPreRequestScripts": [
+            "pm.sendRequest({ url: pm.environment.get('baseUrl')+'/user/v1/login',method: 'POST',header: {'Accept': 'application/json','Content-Type': 'application/x-www-form-urlencoded'},body: {mode: 'raw',raw: 'u='+pm.environment.get('username')+'&p='+pm.environment.get('password')}},(err, res) => {pm.environment.set('ACCESS', res.headers.get('x-auth')); pm.environment.set('org', res.json().org); pm.request.headers.add({key: 'x-token',value: res.headers.get('x-auth')})});"
+        ]
+    }
+  }
+  
