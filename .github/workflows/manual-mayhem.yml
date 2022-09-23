@@ -12,9 +12,9 @@ jobs:
       - name: get_auth_token
         run: |
           TOK=`curl -i 'https://test.vcpr.org/authenticate' -X POST  --data-raw 'username=testVOR&password=tVpass'` | grep  'x-auth-token:'
-          echo "::set-output name=tag::$TOK"  
+          echo "auth_header=$TOK" >> $GITHUB_ENV
       - name: check token
-        run: echo ${{steps.get_auth_token.outputs.tag}}        
+        run: echo "${{ env.auth_header }}"        
       - name: Run Mayhem for API to check for vulnerabilities
         uses: ForAllSecure/mapi-action@v1
         with:
