@@ -23,11 +23,8 @@ jobs:
           api-spec: src/openapi.yaml
           html-report: mapi.html
           run-args: |
-            #todo get token
             --header-auth ${{steps.get_auth_token.outputs.token}} 
-            # Do not fuzz the '/logout' endpoint
             --ignore-endpoint "/api/logout"
-            # Treat all warnings as errors
             --warnaserror
 
       - name: Archive Mayhem for API report
