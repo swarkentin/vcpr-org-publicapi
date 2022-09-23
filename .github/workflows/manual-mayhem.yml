@@ -23,7 +23,7 @@ jobs:
           api-spec: src/openapi.yaml
           html-report: mapi.html
           run-args: |
-            --header-auth "${{steps.get_auth_token.outputs.token}}" 
+            --header-auth "${{ env.auth_header }}"  
             --ignore-endpoint "/api/logout"
             --warnaserror
 
