@@ -11,8 +11,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: get_auth_token
         run: |
-          TOK=`curl -i 'https://test.vcpr.org/authenticate' -X POST  --data-raw 'username=testVOR&password=tVpass'` | grep  'x-auth-token:'
-          echo "auth_header=$TOK" >> $GITHUB_ENV
+          TOK=`curl -v 'https://test.vcpr.org/authenticate' -X POST  --data-raw 'username=testVOR&password=tVpass'` | grep  'x-auth-token:'
+          # echo "auth_header=$TOK" >> $GITHUB_ENV
       - name: check token
         run: echo "${{ env.auth_header }}"        
       - name: Run Mayhem for API to check for vulnerabilities
