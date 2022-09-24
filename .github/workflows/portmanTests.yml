@@ -2,31 +2,23 @@ name: Run Portman tests
 on:
   workflow_dispatch:
 
-
-
 jobs:
-
-  portman:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: htmlExtra 
         run: |
-          npx newman-reporter-htmlextra
+          npx newman-reporter-htmlextra          
+          npx newman run "portman/postman.json"  --environment "tests/postman_environment.json"  -r htmlextra
+          newman run "${COLLECTION}?apikey=${{ secrets.POSTMANKEY }}" \
+            --environment "${ENVIRONMENT}?apikey=${{ secrets.POSTMANKEY}}" \
+            --folder "[CI]" --bail -r cli,htmlextra --reporter-htmlextra-export="/tmp/newman/newman-report-extra.html"      
 
-      - name: generate and run tests using Postman's Newman
-        uses: matt-ball/newman-action@master
-        with:
-          apiKey: ${{ secrets.POSTMANKEY }}
-          collection: portman/postman.json
-          environment: tests/postman_environment.json
-          envVar: '[{ "key": "env-TESTMOR_CREDENTIALS", "value": ${{ secrets.TESTMOR_CREDENTIALS }} }]'
-          reporters: '["cli","htmlextra"]'
       - name: list files
         run: |
-          ls -la
-          ls -./.newman
+          ls 
+          ls ./newman
       #collection and env sourced from https://github.com/allenheltondev/postman-contract-test-generator
       #a Postman meta-collection that uses postman scripts to generate tests on-the-fly from an OAS file
 
