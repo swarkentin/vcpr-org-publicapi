@@ -10,7 +10,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Newman
         run: |
-          npx -p newman-reporter-htmlextra  newman run "portman/postman.json"  --environment "tests/postman_environment.json"  -r htmlextra
+          npx -p newman-reporter-htmlextra -p newman-reporter-html -p newman -c \
+          run "portman/postman.json"  --environment "tests/postman_environment.json"  -r cli,htmlextra
       - name: list files
         run: |
           ls 
