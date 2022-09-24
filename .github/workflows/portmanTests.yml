@@ -22,7 +22,7 @@ jobs:
           collection: portman/postman.json
           environment: tests/postman_environment.json
           envVar: '[{ "key": "env-TESTMOR_CREDENTIALS", "value": ${{ secrets.TESTMOR_CREDENTIALS }} }]'
-          reporters: '[cli,htmlextra]'
+          reporters: '["cli","htmlextra"]'
       - name: list files
         run: |
           ls -la
