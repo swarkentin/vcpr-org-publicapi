@@ -8,6 +8,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Newman
         run: |
           npx newman-reporter-htmlextra          
           npx newman run "portman/postman.json"  --environment "tests/postman_environment.json"  -r htmlextra
