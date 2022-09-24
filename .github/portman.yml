@@ -1,0 +1,21 @@
+name: Manual Portman
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  portman:
+    runs-on: ubuntu-latest
+    name: create-postman-tests
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node v12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: portman-env 
+        run: |
+          PORTMAN_POSTMAN_API_KEY=${{secrets.PORTMAN_POSTMAN}}
+          npx portman --cliOptionsFile ./portman/portman-options.json
