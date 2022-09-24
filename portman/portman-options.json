@@ -6,7 +6,7 @@
     "postmanConfigFile": "./portman/postman-config.json",
     "envFile": "./portman/.env-portman",
     "includeTests": true,
-    "syncPostman": true,
+    "syncPostman": false,
     "runNewman": false,
     "postmanWorkspaceName":"VCPR.ORG",
     "collectionName": "PublicAPI",
