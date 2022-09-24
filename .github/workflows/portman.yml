@@ -13,7 +13,6 @@ jobs:
       - name: portman-env 
         run: |
           PORTMAN_POSTMAN_API_KEY=${{secrets.PORTMAN_POSTMAN}}
-          echo $PORTMAN_POSTMAN_API_KEY
           npx @apideck/portman --cliOptionsFile ./portman/portman-options.json
       - name: commit changes
         uses: EndBug/add-and-commit@v7
