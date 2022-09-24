@@ -22,8 +22,11 @@ jobs:
           newman run "portman/postman.json" --environment "tests/postman_environment.json" --bail -r cli,htmlextra 
       - name: list files
         run: |
-          ls 
           ls ./newman
-      #collection and env sourced from https://github.com/allenheltondev/postman-contract-test-generator
-      #a Postman meta-collection that uses postman scripts to generate tests on-the-fly from an OAS file
-
+      - name: Publish to GH-pages
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          branch: gh-pages
+          folder: newman
+          clean: false
+  
