@@ -8,9 +8,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Newman
+      - name: Install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16'
+      - name: Install newman
         run: |
-          npx -p newman-reporter-htmlextra -p newman-reporter-html -p newman -c run "portman/postman.json"  --environment "tests/postman_environment.json"  -r cli,htmlextra
+          npm install -g newman newman-reporter-htmlextra newman-reporter-html
+      - name: Newman CLI
+        id: newmanCli
+        continue-on-error: true
+        run: |
+          newman run "portman/postman.json" --environment "tests/postman_environment.json" --bail -r cli,htmlextra 
       - name: list files
         run: |
           ls 
