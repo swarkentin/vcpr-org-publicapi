@@ -12,10 +12,6 @@ jobs:
         run: |
           npx newman-reporter-htmlextra          
           npx newman run "portman/postman.json"  --environment "tests/postman_environment.json"  -r htmlextra
-          newman run "${COLLECTION}?apikey=${{ secrets.POSTMANKEY }}" \
-            --environment "${ENVIRONMENT}?apikey=${{ secrets.POSTMANKEY}}" \
-            --folder "[CI]" --bail -r cli,htmlextra --reporter-htmlextra-export="/tmp/newman/newman-report-extra.html"      
-
       - name: list files
         run: |
           ls 
