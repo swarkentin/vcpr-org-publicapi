@@ -15,5 +15,6 @@ jobs:
         run: |
           PORTMAN_POSTMAN_API_KEY=${{secrets.PORTMAN_POSTMAN}}
           pwd
-          ls
+          which npx
+          npm install -g npx
           npx portman --cliOptionsFile ./portman/portman-options.json
