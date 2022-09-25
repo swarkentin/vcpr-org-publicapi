@@ -2,7 +2,7 @@
     "local": "./src/openapi.yaml",
     "baseUrl": "https://test.vcpr.org",
     "output": "./portman/postman.json",
-    "portmanConfigFile": "./portman/portman-config.yaml",
+    "portmanConfigFile": "./portman/portman-config.yml",
     "postmanConfigFile": "./portman/postman-config.json",
     "envFile": "./portman/.env-portman",
     "includeTests": true,

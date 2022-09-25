@@ -2,30 +2,30 @@
 version: 1
 tests:
   contractTests:
-  - openApiOperation: "*::/api/*"
+  - openApiOperationIds: ["getSPL"]
     statusSuccess:
       enabled: true
-  - openApiOperation: "*::/api/users*"
+  - openApiOperationIds: ["getSPL"]
     responseTime:
       enabled: true
       maxMs: 300
-  - openApiOperation: "*::/api/users*"
+  - openApiOperationIds: ["getSPL"]
     contentType:
       enabled: true
-  - openApiOperation: "*::/api/users*"
+  - openApiOperationIds: ["getSPL"]
     jsonBody:
       enabled: true
-  - openApiOperation: "*::/api/users*"
+  - openApiOperationIds: ["getSPL"]
     schemaValidation:
       enabled: true
-  - openApiOperation: "*::/api/users*"
+  - openApiOperationIds: ["getSPL"]
     headersPresent:
       enabled: true
 globals:
   stripResponseExamples: true
-  collectionPreRequestScripts:
-  - 'pm.sendRequest({ url: pm.environment.get(''baseUrl'')+''/api/users/logins'',method:
-    ''POST'',header: {''Accept'': ''application/json'',''Content-Type'': ''application/json''},body:
-    {mode: ''raw'',raw: ''u=''+pm.environment.get(''username'')+''&p=''+pm.environment.get(''password'')}},(err,
-    res) => {pm.environment.set(''ACCESS'', res.headers.get(''x-auth-token'')); pm.environment.set(''org'',
-    res.json().org); pm.request.headers.add({key: ''x-auth-token'',value: res.headers.get(''x-auth-token'')})});'
+  # collectionPreRequestScripts:
+  # - 'pm.sendRequest({ url: pm.environment.get(''baseUrl'')+''/api/users/logins'',method:
+  #   ''POST'',header: {''Accept'': ''application/json'',''Content-Type'': ''application/json''},body:
+  #   {mode: ''raw'',raw: ''u=''+pm.environment.get(''username'')+''&p=''+pm.environment.get(''password'')}},(err,
+  #   res) => {pm.environment.set(''ACCESS'', res.headers.get(''x-auth-token'')); pm.environment.set(''org'',
+  #   res.json().org); pm.request.headers.add({key: ''x-auth-token'',value: res.headers.get(''x-auth-token'')})});'
