@@ -23,7 +23,8 @@ jobs:
           node-version: '16'
       - name: installReporters
         run: |
-          npm install -g newman-reporter-htmlextra newman-reporter-html
+          cd ./portman
+          npm install -g @apideck/portman newman newman-reporter-htmlextra newman-reporter-html
       - name: run-portman 
         id: runPortman
         continue-on-error: true
