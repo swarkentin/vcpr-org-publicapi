@@ -19,7 +19,7 @@ jobs:
         id: newmanCli
         continue-on-error: true
         run: |
-          newman run "portman/postman.json" --environment "tests/postman_environment.json" --bail -r cli,htmlextra 
+          newman run "portman/postman.json" --environment "tests/postman_environment.json" --bail -r cli,htmlextra --reporter-htmlextra-export="/newman/automated-tests.html"      
       - name: list files
         run: |
           ls ./newman
