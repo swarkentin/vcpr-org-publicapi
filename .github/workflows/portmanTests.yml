@@ -19,10 +19,10 @@ jobs:
         id: newmanCli
         continue-on-error: true
         run: |
-          newman run "portman/postman.json" --environment "tests/postman_environment.json" --bail -r cli,htmlextra --reporter-htmlextra-export="/newman/automated-tests.html"      
+          newman run "portman/postman.json" --environment "tests/postman_environment.json" --bail -r cli,htmlextra --reporter-htmlextra-export="./automated-tests.html"      
       - name: list files
         run: |
-          ls ./newman
+          ls 
       - name: Publish to GH-pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
