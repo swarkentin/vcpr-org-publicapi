@@ -21,6 +21,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '16'
+      - name: installReporters
+        run: |
+          npm install -g newman-reporter-htmlextra newman-reporter-html
       - name: run-portman 
         id: runPortman
         continue-on-error: true
