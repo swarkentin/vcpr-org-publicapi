@@ -44,7 +44,7 @@
     "globals": {
         "stripResponseExamples": true,
         "collectionPreRequestScripts": [
-            "pm.sendRequest({ url: pm.environment.get('baseUrl')+'/api/authenticate',method: 'POST',header: {'Accept': 'application/json','Content-Type': 'application/x-www-form-urlencoded'},body: {mode: 'raw',raw: 'u='+pm.environment.get('username')+'&p='+pm.environment.get('password')}},(err, res) => {pm.environment.set('ACCESS', res.headers.get('x-auth')); pm.environment.set('org', res.json().org); pm.request.headers.add({key: 'x-token',value: res.headers.get('x-auth')})});"
+            "pm.sendRequest({ url: pm.environment.get('baseUrl')+'/api/users/logins',method: 'POST',header: {'Accept': 'application/json','Content-Type': 'application/json'},body: {mode: 'raw',raw: 'u='+pm.environment.get('username')+'&p='+pm.environment.get('password')}},(err, res) => {pm.environment.set('ACCESS', res.headers.get('x-auth-token')); pm.environment.set('org', res.json().org); pm.request.headers.add({key: 'x-auth-token',value: res.headers.get('x-auth-token')})});"
         ]
     }
   }

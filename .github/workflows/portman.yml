@@ -23,6 +23,8 @@ jobs:
           node-version: '16'
       - name: run-portman 
         run: |
+          PORTMAN_LOGIN=${{ secrets.TESTVOR_TEST_LOGIN}}
+          PORTMAN_POSTMAN_API_KEY=${{ secrets.PORTMAN_POSTMAN  }}
           npx @apideck/portman --cliOptionsFile ./portman/portman-options.json
       - name: commit changes
         uses: EndBug/add-and-commit@v7
@@ -44,12 +46,18 @@ jobs:
           branch: gh-pages
           folder: docs
           clean: false
+
+      - name: run-portman 
+        run: |
+          echo ${{steps.newmanCli.conclusion }}
+          echo ${{steps.newmanCli.outcome }}
+
       - name: Notify slack success
         if: ${{ success() && steps.newmanCli.conclusion == 'success' }}
         uses: slackapi/slack-github-action@v1.16.0
         with:
           channel-id: 'C02PFCP98A1'
-          slack-message: ':green_check_mark: API tests passed. See https://api.vcpr.org/automated-tests for report'
+          slack-message: ':white_check_mark: API tests passed. See https://api.vcpr.org/automated-tests for report'
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
       - name: Notify slack with failed tests
