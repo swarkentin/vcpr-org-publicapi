@@ -8,6 +8,13 @@ jobs:
   portman:
     runs-on: ubuntu-latest
     steps:
+      - name: Post to a Slack channel
+        uses: slackapi/slack-github-action@v1.16.0
+        with:
+          channel-id: 'C02PFCP98A1'
+          slack-message: "creating automated API tests for ${{github.ref_name}} "
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
       - name: Checkout
         uses: actions/checkout@v2
       - name: Install node
@@ -37,4 +44,30 @@ jobs:
           branch: gh-pages
           folder: docs
           clean: false
+      - name: Notify slack success
+        if: ${{ success() && steps.newmanCli.conclusion == 'success' }}
+        uses: slackapi/slack-github-action@v1.16.0
+        with:
+          channel-id: 'C02PFCP98A1'
+          slack-message: ':green_check_mark: API tests passed. See https://api.vcpr.org/automated-tests for report'
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+      - name: Notify slack with failed tests
+        if: ${{ success() && steps.newmanCli.conclusion == 'failure' }}
+        uses: slackapi/slack-github-action@v1.16.0
+        with:
+          channel-id: 'C02PFCP98A1'
+          slack-message: ':red_check_mark: some API tests FAILED. See https://api.vcpr.org/automated-tests for report'          
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+      - name: Notify slack failure
+        if: failure()
+        uses: slackapi/slack-github-action@v1.16.0
+        with:
+          channel-id: 'C02PFCP98A1'
+          slack-message: ':red_circle: API testing FAILED for ${{github.repository}}'
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+
+
  
