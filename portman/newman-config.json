@@ -1,0 +1,6 @@
+{    
+    "environment": "./portman/postman-test.env.json",
+    "iteration-count": 1,
+    "ignore-redirects": true,
+    "insecure": true
+  }
