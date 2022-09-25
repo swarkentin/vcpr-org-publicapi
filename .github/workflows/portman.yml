@@ -21,16 +21,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '16'
-      - name: installReporters
-        run: |
-          cd ./portman
-          npm install -g @apideck/portman newman newman-reporter-htmlextra newman-reporter-html
       - name: run-portman 
         id: runPortman
-        continue-on-error: true
         run: |
           PORTMAN_LOGIN=${{secrets.TESTVOR_TEST_LOGIN}}
-          PORTMAN_POSTMAN_API_KEY=${{secrets.PORTMAN_POSTMAN}}
+          PORTMAN_POSTMAN_API_KEY=${{secrets.POSTMAN_API}}
           npx @apideck/portman --cliOptionsFile ./portman/portman-options.json
       - name: commit changes
         uses: EndBug/add-and-commit@v7
@@ -38,14 +33,14 @@ jobs:
           default_author: github_actions
           message: 'commit portman-generated postman collection with tests'
           add: 'portman/postman.json'
-      # - name: Install newman
-      #   run: |
-      #     npm install -g newman newman-reporter-htmlextra newman-reporter-html
-      # - name: Newman CLI
-      #   id: newmanCli
-      #   continue-on-error: true
-      #   run: |
-      #     newman run "portman/postman.json" --environment "tests/postman_environment.json" --bail -r cli,htmlextra --reporter-htmlextra-export="./docs/automated-tests.html"      
+      - name: Install newman
+        run: |
+          npm install -g newman newman-reporter-htmlextra newman-reporter-html
+      - name: Newman CLI
+        id: newmanCli
+        continue-on-error: true
+        run: |
+          newman run "portman/postman.json" --environment "tests/postman_environment.json" -r cli,htmlextra --reporter-htmlextra-export="./docs/automated-tests.html"      
       - name: Publish to GH-pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
