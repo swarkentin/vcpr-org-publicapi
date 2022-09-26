@@ -1073,6 +1073,45 @@ paths:
                 type: object
                 $ref: "#/components/schemas/LabelClaim"
 
+  /api/messages:
+   post:
+      operationId: sendMessage
+      tags: [VOR, MOR, SAOR]
+      summary: send a message to another user
+      description: send a message to another user
+      parameters:
+        - name: mode
+          in: query
+          required: false
+          style: pipeDelimited
+          explode: false
+          description: >-
+            Mode or channel to use in messaging
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/MessageMode"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserMessage"
+      responses:
+        "200":
+          description: message sent successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    $ref: "#/components/schemas/UserMessage"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
+
   /api/protocols:
     get:
       operationId: getMyProtocols
@@ -2376,14 +2415,16 @@ components:
         - UNMOR
         - REMOVED
       example: VOR
+    UserNumber:
+      description: Long integer key to a User 
+      type: integer
+      example: 99
     User:
       description: a User of a `UserType` class
       type: object
       properties:
         id:
-          type: integer
-          description: User ID number
-          example: 1
+          $ref: "#/components/schemas/UserNumber"
         uname:
           description: username
           type: string
@@ -2506,6 +2547,65 @@ components:
         - EMPLOYEE
         - MEMBER
       example: CLIENT
+    MessageMode:
+      type: string
+      description: >
+        A mode of messaging another user
+      enum:
+        - EMAIL
+      example: EMAIL
+    UserMessage:
+      description: A message to another user, optionally including a response action
+      oneOf:
+        - $ref: "#/components/schemas/SimpleMessage"
+        - $ref: "#/components/schemas/RenewRequest"
+      discriminator:
+        propertyName: _type
+        mapping:
+          models.SimpleMessage: "#/components/schemas/SimpleMessage"
+          models.RenewRequest: "#/components/schemas/RenewRequest"
+      example:
+        {
+          "_type": "models.SimpleMessage",
+          "subject": "message from your vet",
+          "message": "Hello world",
+          "detail": "do not reply",
+        }
+    SimpleMessage:
+      description: a simple message with no action from one user to another
+      type: object
+      required: [_type, from, to, subject, message]
+      properties:
+        _type:
+          type: string
+          description: >-
+            identifies the Remedy subtype as shown in the Remedy discriminator mapping,
+            like `models.RestrictionRemedy`
+        from:
+          $ref: "#/components/schemas/UserNumber"
+        to:
+          $ref: "#/components/schemas/UserNumber"
+        subject:
+          type: string
+          description: subject line for the message
+        message:
+          type: string
+          format: html
+          description: the message
+          example: Hello <b>world</b>
+        detail:
+          type: string
+          format: html
+    RenewRequest:
+      description: request renewal of a prescription that has expired or run out of refills (or may do so soon).
+      required: [_type, subject, message, prescription]
+      allOf:
+        - $ref: "#/components/schemas/SimpleMessage"
+        - properties:
+            prescription:
+              type: string
+              description: identifier of prescription requested for renewal
+
     Remedy:
       description: directions for a proposed solution to a problem
       oneOf:
