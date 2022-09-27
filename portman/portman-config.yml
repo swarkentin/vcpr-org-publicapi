@@ -2,7 +2,7 @@
 version: 1
 tests:
   contractTests:
-  - openApiOperation: *::/api/admin/spl/*
+  - openApiOperation: "GET::/api/admin/spl/*"
     statusSuccess:
       enabled: true
   - openApiOperation: "*::/api/admin/spl/*"
