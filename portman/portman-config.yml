@@ -2,23 +2,23 @@
 version: 1
 tests:
   contractTests:
-  - openApiOperationIds: ["getSPL"]
+  - openApiOperationId: getSPL
     statusSuccess:
       enabled: true
-  - openApiOperationIds: ["getSPL"]
+  - openApiOperationId: getSPL
     responseTime:
       enabled: true
       maxMs: 300
-  - openApiOperationIds: ["getSPL"]
+  - openApiOperationId: getSPL
     contentType:
       enabled: true
-  - openApiOperationIds: ["getSPL"]
+  - openApiOperationId: getSPL
     jsonBody:
       enabled: true
-  - openApiOperationIds: ["getSPL"]
+  - openApiOperationId: getSPL
     schemaValidation:
       enabled: true
-  - openApiOperationIds: ["getSPL"]
+  - openApiOperationId: getSPL
     headersPresent:
       enabled: true
 globals:

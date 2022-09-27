@@ -36,7 +36,7 @@ jobs:
       - name: Install newman
         run: |
           npm install -g newman newman-reporter-htmlextra newman-reporter-html
-      - name: Newman CLI
+      - name: run Newman on portman-postman tests
         id: newmanCli
         continue-on-error: true
         run: |
