@@ -2,14 +2,14 @@
 version: 1
 tests:
   contractTests:
-  - openApiOperationId: getSPL
+  - openApiOperation: *::/api/admin/spl/*
     statusSuccess:
       enabled: true
-  - openApiOperationId: getSPL
+  - openApiOperation: "*::/api/admin/spl/*"
     responseTime:
       enabled: true
       maxMs: 300
-  - openApiOperationId: getSPL
+  - openApiOperation: "*::'/api/admin/spl/*'"
     contentType:
       enabled: true
   - openApiOperationId: getSPL
