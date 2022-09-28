@@ -1,8 +1,9 @@
 ---
+---
 version: 1
 tests:
   contractTests:
-  - openApiOperation: "GET::/api/admin/spl/*"
+  - openApiOperation: "*::/api/Protocols/*"
     statusSuccess:
       enabled: true
   - openApiOperation: "*::/api/admin/spl/*"
@@ -23,6 +24,7 @@ tests:
       enabled: true
 globals:
   stripResponseExamples: true
+
   # collectionPreRequestScripts:
   # - 'pm.sendRequest({ url: pm.environment.get(''baseUrl'')+''/api/users/logins'',method:
   #   ''POST'',header: {''Accept'': ''application/json'',''Content-Type'': ''application/json''},body:

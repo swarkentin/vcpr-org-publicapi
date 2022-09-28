@@ -26,7 +26,7 @@ jobs:
         run: |
           PORTMAN_LOGIN=${{secrets.TESTVOR_TEST_LOGIN}}
           PORTMAN_POSTMAN_API_KEY=${{secrets.POSTMAN_API}}
-          npx @apideck/portman --cliOptionsFile ./portman/portman-options.json
+          npx @apideck/portman --cliOptionsFile ./portman/portman-options.yml
       - name: commit changes
         uses: EndBug/add-and-commit@v7
         with:

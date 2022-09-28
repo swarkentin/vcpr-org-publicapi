@@ -2152,7 +2152,7 @@ paths:
                 type: string
       tags:
         - VOR
-  '/api/admin/spl{ndc}':
+  '/api/admin/spl/{ndc}':
     get:
       operationId: getSPL
       parameters:
