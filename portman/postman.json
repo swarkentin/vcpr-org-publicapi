@@ -1,10 +1,10 @@
 {
   "_": {
-    "postman_id": "30d6240d-b60a-49d9-b0f5-97c5333b5aba"
+    "postman_id": "12c16772-2a56-451f-8d7e-ee81356cb3a1"
   },
   "item": [
     {
-      "id": "9138258e-21b8-4ea2-89cb-8e18fd31269d",
+      "id": "d168a846-3735-4695-9b2c-0d91184aa2d0",
       "name": "VOR",
       "description": {
         "content": "available to veterinarians.",
@@ -12,7 +12,7 @@
       },
       "item": [
         {
-          "id": "50100169-25a0-4c47-a6fa-7280739e3c19",
+          "id": "a82b0b43-b93f-4916-a11c-a57472a7e43d",
           "name": "load Editor",
           "request": {
             "name": "load Editor",
@@ -39,10 +39,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "82ab36b8-86f1-4265-b095-4e8ab33d14a4",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "22ad1507-0325-4799-a355-292016870276",
+          "id": "e17858c2-49f7-4084-90c8-ce1076312691",
           "name": "load Farm App",
           "request": {
             "name": "load Farm App",
@@ -69,10 +80,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "00adfe1e-2ccc-4ed2-af46-4e6c736613ee",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "e03d5714-f53d-4cf3-9368-25194b404f4c",
+          "id": "5b5f397d-5017-4eaf-bd78-94d3582f37f5",
           "name": "list of Users IDs",
           "request": {
             "name": "list of Users IDs",
@@ -111,10 +133,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "e11c154e-84fb-4bd3-8bb5-4f00441df43a",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "cdb75ff8-78a1-4873-a242-db48c050b9a9",
+          "id": "03b359ed-c6b3-4e4a-a5be-a1ad46bf8787",
           "name": "list of VORs",
           "request": {
             "name": "list of VORs",
@@ -143,10 +176,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "a40b238b-d690-441f-8f8c-3adf5327de53",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "d268b10f-bf9a-448c-817e-c77e00835560",
+          "id": "83fa12a1-11fb-4a3f-813f-d04555340c28",
           "name": "delete user",
           "request": {
             "name": "delete user",
@@ -186,10 +230,21 @@
             "method": "DELETE"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7db833f9-2b50-4d0a-989f-113f62e711d1",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "9d5c0efb-cf80-4029-a699-3231b6d2346c",
+          "id": "dda96dbf-5a41-42cb-aaf8-d2a217efad0d",
           "name": "create a sandbox user",
           "request": {
             "name": "create a sandbox user",
@@ -222,7 +277,7 @@
             "method": "POST",
             "body": {
               "mode": "raw",
-              "raw": "\"sint\"",
+              "raw": "\"sed est proident\"",
               "options": {
                 "raw": {
                   "language": "json"
@@ -231,13 +286,24 @@
             }
           },
           "response": [],
-          "event": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0739444d-a4c3-4ccf-8f0d-772a47382881",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ],
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           }
         },
         {
-          "id": "636601cc-b2e2-4671-8d16-d0d9d4e96f2a",
+          "id": "e50c2978-7d67-43b3-b643-794ef6105789",
           "name": "delete sandboxClient",
           "request": {
             "name": "delete sandboxClient",
@@ -266,10 +332,21 @@
             "method": "DELETE"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "f8931668-0ad0-450a-8039-f9aa0b78c079",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "f588f972-6a72-418b-ad08-72b926362902",
+          "id": "4468e903-3869-4c9d-a78a-7d5bbfc7d5ec",
           "name": "add a relationship",
           "request": {
             "name": "add a relationship",
@@ -311,13 +388,24 @@
             }
           },
           "response": [],
-          "event": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "9029ccf2-ff5d-483b-bf52-2fc6c25338bd",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ],
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           }
         },
         {
-          "id": "204a70bf-8e8c-4a88-a8e3-907de9dffa70",
+          "id": "d894433d-f833-499f-b9cf-c6fe9e362d50",
           "name": "get my right-related users",
           "request": {
             "name": "get my right-related users",
@@ -361,10 +449,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "24711fd1-03d6-4aea-b495-dc26b429ec80",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "1a39b564-7a12-4458-8439-6e2a3b427cad",
+          "id": "95fe30fe-2595-4996-876e-96ac9ee6cfee",
           "name": "add a User with relationship",
           "request": {
             "name": "add a User with relationship",
@@ -425,13 +524,24 @@
             }
           },
           "response": [],
-          "event": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "692b9c50-7434-4725-9749-83c1a02aa94e",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ],
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           }
         },
         {
-          "id": "8ced28fa-fb9b-4418-bb30-48f36fff8466",
+          "id": "b203dee6-e5e9-4e71-9b99-311604d8d6fb",
           "name": "get my prescriptions",
           "request": {
             "name": "get my prescriptions",
@@ -465,9 +575,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "2f8a6423-ee24-42b1-8e8d-5716c9c20e59",
+                "id": "fc6645a7-17cc-4b75-b238-b90b573ff3c1",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[GET]::/api/protocols/prescriptions/by - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -475,7 +586,7 @@
           ]
         },
         {
-          "id": "4b7ae61e-1d3c-47aa-9d57-6868a69db7d9",
+          "id": "91951a88-6f19-47f3-8cca-1a5e00340d66",
           "name": "get my prescriptions",
           "request": {
             "name": "get my prescriptions",
@@ -509,9 +620,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "49b827d1-0048-467d-9fe5-e26e5caf4bbd",
+                "id": "1ffdc41f-76dd-4715-9a10-4bf191f23a36",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[GET]::/api/protocols/prescriptions/to - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -519,7 +631,7 @@
           ]
         },
         {
-          "id": "b45b5ee5-b5b5-49f0-a55e-c3e989059094",
+          "id": "7247a93f-f478-4502-9ade-78937db4521f",
           "name": "get my protocol shares",
           "request": {
             "name": "get my protocol shares",
@@ -544,7 +656,7 @@
                     "type": "text/plain"
                   },
                   "key": "pxFilter",
-                  "value": "-96367244"
+                  "value": "-41001206"
                 },
                 {
                   "disabled": false,
@@ -553,7 +665,7 @@
                     "type": "text/plain"
                   },
                   "key": "toFilter",
-                  "value": "-96367244"
+                  "value": "-41001206"
                 }
               ],
               "variable": []
@@ -571,9 +683,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "a7e8c574-1f09-4d86-969d-7626ffc41600",
+                "id": "2cf7af23-5be5-46d1-8a77-fe89a331da1d",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[GET]::/api/protocols/shares - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -581,7 +694,7 @@
           ]
         },
         {
-          "id": "50d8b4d7-718f-4fc0-97d8-af14f81bd31d",
+          "id": "d446dfcc-169c-49ff-956e-5d741d7f17a2",
           "name": "create protocol share",
           "request": {
             "name": "create protocol share",
@@ -627,9 +740,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "65ad9852-7a14-4f51-924a-2a02e4a042e5",
+                "id": "391405fd-1cc2-4bc2-9613-f1a2fb18d1de",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[POST]::/api/protocols/shares - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -640,7 +754,7 @@
           }
         },
         {
-          "id": "eb9229e5-8ea4-4232-923b-c95a9aee9ccd",
+          "id": "86bd71d0-ba99-47d2-9373-88d513f6f8d3",
           "name": "delete protocol share",
           "request": {
             "name": "delete protocol share",
@@ -665,7 +779,7 @@
                     "type": "text/plain"
                   },
                   "key": "pxId",
-                  "value": "-96367244"
+                  "value": "-41001206"
                 },
                 {
                   "disabled": false,
@@ -674,7 +788,7 @@
                     "type": "text/plain"
                   },
                   "key": "toVor",
-                  "value": "-96367244"
+                  "value": "-41001206"
                 }
               ],
               "variable": []
@@ -692,9 +806,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "1a2c1045-0731-40df-a1e4-92f38a5dea5d",
+                "id": "c2b2650b-36fb-452e-9497-dd7377ff644f",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[DELETE]::/api/protocols/shares - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -702,7 +817,7 @@
           ]
         },
         {
-          "id": "405c34b0-fc83-44b0-897a-7c5225cdd7c6",
+          "id": "b84399cd-bc9f-405f-8b0e-23cc23f68f92",
           "name": "list of User's shared protocols",
           "request": {
             "name": "list of User's shared protocols",
@@ -736,9 +851,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "f9d8b369-b642-4a01-a866-33f1375731c8",
+                "id": "508146e7-924d-4762-bd22-57a578a515bc",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[GET]::/api/protocols/sharesToAll/ - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -746,7 +862,7 @@
           ]
         },
         {
-          "id": "5911d289-1b07-4a04-91da-700c684dd8a3",
+          "id": "75accf7e-425a-49c2-974f-21e4c01d9077",
           "name": "share Protocol with all VOR Users",
           "request": {
             "name": "share Protocol with all VOR Users",
@@ -779,7 +895,7 @@
                     "type": "text/plain"
                   },
                   "type": "any",
-                  "value": "-96367244",
+                  "value": "-41001206",
                   "key": "pxId"
                 }
               ]
@@ -797,9 +913,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "c52ba18e-5691-4f26-ad28-589dbc05c6d9",
+                "id": "0550ebc9-d1f4-4e1a-a793-d12d95afb98d",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[POST]::/api/protocols/sharesToAll/:pxId - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -807,7 +924,7 @@
           ]
         },
         {
-          "id": "70672fa8-b025-4c2d-a342-30a90c982892",
+          "id": "1b201f94-d0a2-4060-ab0a-e1636574f8ca",
           "name": "cancel sharing",
           "request": {
             "name": "cancel sharing",
@@ -846,9 +963,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "d34c2184-c286-4e79-88a8-7ede7788b25d",
+                "id": "a7509edd-a4cc-4318-9f59-3e03379f19ea",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[DELETE]::/api/protocols/sharesToAll/:pxId - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -856,7 +974,7 @@
           ]
         },
         {
-          "id": "8b3f41c3-c5ac-4426-8ef6-c00918fd05d7",
+          "id": "4bf16221-19ba-409d-81ab-70f6da5c0d49",
           "name": "AMDUCA-tag protocol",
           "request": {
             "name": "AMDUCA-tag protocol",
@@ -889,7 +1007,7 @@
             "method": "PUT",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"ownerId\": 1,\n  \"name\": \"wip\",\n  \"status\": \"PRESCRIBED\",\n  \"instructions\": {\n    \"considerations\": \"<p>This is just an example, not a real protocol.</p>\",\n    \"restrictions\": \"<p>Not for use on real animals.</p>\",\n    \"dothis\": \"<h3>Examinations to perform</h3>\",\n    \"recordthis\": \"<p>record every step in your notebook.</p>\",\n    \"success\": \"<p>All problems are gone</p>\",\n    \"failure\": \"<p>One or more problems remain</p>\",\n    \"references\": \"<a href=\\\"https://en.wikipedia.org/wiki/Rickrolling\\\">Wikipedia</a>\"\n  },\n  \"id\": 12345,\n  \"shortname\": \"wip\",\n  \"created\": \"2020-01-10T10:30:37Z\",\n  \"edited\": \"2020-02-10T10:30:37Z\",\n  \"vetNote\": \"consider prescribing protocol x instead\",\n  \"wtMeatHrs\": 22,\n  \"wtMilkHrs\": 5,\n  \"shareAll\": true,\n  \"shareClonable\": true,\n  \"caseDefinition\": {\n    \"requireId\": false,\n    \"requireMor\": false,\n    \"contraindications\": \"\",\n    \"medical\": \"if fever is present, consider Protocol 12345 instead.\",\n    \"economic\": \"\",\n    \"note\": \"\"\n  },\n  \"treatments\": [\n    {\n      \"product\": \"MiracleMed\",\n      \"route\": \"wip\",\n      \"dosage\": {\n        \"doseId\": 17057176\n      },\n      \"sequenceFunction\": {\n        \"_type\": \"models.SeqSingleDose\"\n      },\n      \"sizeFunction\": {\n        \"_type\": \"models.FixedDoseFunction\",\n        \"dose\": {\n          \"quantity\": {\n            \"dimension\": \"Mass\",\n            \"value\": 3,\n            \"symbol\": \"oz\"\n          }\n        }\n      },\n      \"id\": \"B-123\",\n      \"ownerId\": 0,\n      \"description\": \"3.0 ml per kg repeat\",\n      \"eligibilities\": [\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"dogs\",\n            \"unidentified\"\n          ]\n        },\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"dogs\",\n            \"cats\"\n          ]\n        }\n      ],\n      \"_dose\": \"3.0 ml per kg repeat in 6 hours and again in 24 hours\",\n      \"wtMeatHrs\": -37485132,\n      \"wtMilkHrs\": -10351063,\n      \"nada\": \"wip\",\n      \"tags\": [\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"Lorem mollit\",\n          \"fixes\": [\n            {\n              \"_type\": \"irure pariatur ullamco est\",\n              \"detail\": \"commod\",\n              \"message\": \"in\",\n              \"title\": \"nostrud dolor aliquip\"\n            },\n            {\n              \"_type\": \"non et\",\n              \"detail\": \"velit in consectetur\",\n              \"message\": \"magna\",\n              \"title\": \"minim\"\n            }\n          ]\n        },\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"p\",\n          \"fixes\": [\n            {\n              \"_type\": \"sint \",\n              \"detail\": \"elit voluptate sed\",\n              \"message\": \"Ut pariatur\",\n              \"title\": \"veniam Excepteur adipisicing\"\n            },\n            {\n              \"_type\": \"exercitation in in\",\n              \"detail\": \"laborum nisi deserunt ex\",\n              \"message\": \"labore\",\n              \"title\": \"ut aliquip\"\n            }\n          ]\n        }\n      ],\n      \"note\": \"<p>a free-form note</p>\",\n      \"amduca\": \"OFFLABEL\"\n    },\n    {\n      \"product\": \"MiracleMed\",\n      \"route\": \"wip\",\n      \"dosage\": {\n        \"doseId\": -88374065\n      },\n      \"sequenceFunction\": {\n        \"_type\": \"models.SeqSingleDose\"\n      },\n      \"sizeFunction\": {\n        \"_type\": \"models.FixedDoseFunction\",\n        \"dose\": {\n          \"quantity\": {\n            \"dimension\": \"Mass\",\n            \"value\": 3,\n            \"symbol\": \"oz\"\n          }\n        }\n      },\n      \"id\": \"B-123\",\n      \"ownerId\": 0,\n      \"description\": \"3.0 ml per kg repeat\",\n      \"eligibilities\": [\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"fish\",\n            \"llamas\"\n          ]\n        },\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"horses\",\n            \"llamas\"\n          ]\n        }\n      ],\n      \"_dose\": \"3.0 ml per kg repeat in 6 hours and again in 24 hours\",\n      \"wtMeatHrs\": 88893120,\n      \"wtMilkHrs\": 64593421,\n      \"nada\": \"wip\",\n      \"tags\": [\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"aliqua a\",\n          \"fixes\": [\n            {\n              \"_type\": \"fugiat eu\",\n              \"detail\": \"sed elit dolor ipsum in\",\n              \"message\": \"culpa nulla\",\n              \"title\": \"a\"\n            },\n            {\n              \"_type\": \"nisi\",\n              \"detail\": \"exerci\",\n              \"message\": \"Excepteur sunt adipisicing\",\n              \"title\": \"nulla cillum nisi\"\n            }\n          ]\n        },\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"volupt\",\n          \"fixes\": [\n            {\n              \"_type\": \"ullamco\",\n              \"detail\": \"ex dolor\",\n              \"message\": \"Duis in pariatur ipsum\",\n              \"title\": \"do\"\n            },\n            {\n              \"_type\": \"laboris magna eu consequat\",\n              \"detail\": \"mollit cupidatat fugi\",\n              \"message\": \"ut est\",\n              \"title\": \"deserunt veniam adipisicing nisi ea\"\n            }\n          ]\n        }\n      ],\n      \"note\": \"<p>a free-form note</p>\",\n      \"amduca\": \"ONLABEL\"\n    }\n  ],\n  \"tags\": [\n    {\n      \"id\": 8,\n      \"color\": \"#516cc6\",\n      \"name\": \"fugiat \",\n      \"fixes\": [\n        {\n          \"_type\": \"est nisi cupidatat\",\n          \"detail\": \"sit eiusmod enim laboris exercitation\",\n          \"message\": \"in aute in\",\n          \"title\": \"laboris labore\"\n        },\n        {\n          \"_type\": \"enim\",\n          \"detail\": \"incididunt aliqua\",\n          \"message\": \"esse cillum commodo\",\n          \"title\": \"fugiat nostrud nulla \"\n        }\n      ]\n    },\n    {\n      \"id\": 8,\n      \"color\": \"#516cc6\",\n      \"name\": \"veniam culp\",\n      \"fixes\": [\n        {\n          \"_type\": \"exercitation Lorem minim\",\n          \"detail\": \"reprehenderit exercitation adipisicing eu\",\n          \"message\": \"culpa deserunt Lorem minim\",\n          \"title\": \"commodo\"\n        },\n        {\n          \"_type\": \"in laborum do\",\n          \"detail\": \"veniam ipsum amet cupidatat\",\n          \"message\": \"exercitation ut minim enim\",\n          \"title\": \"in officia Ut\"\n        }\n      ]\n    }\n  ],\n  \"diagnoses\": [\n    {\n      \"id\": 8,\n      \"name\": \"Pain/inflammation (musculoskeletal), treatment\"\n    },\n    {\n      \"id\": 8,\n      \"name\": \"Pain/inflammation (musculoskeletal), treatment\"\n    }\n  ],\n  \"eligibilities\": [\n    {\n      \"id\": 1,\n      \"name\": \"Beef Cattle\",\n      \"fdaSpecies\": [\n        \"cats\",\n        \"cats\"\n      ]\n    },\n    {\n      \"id\": 1,\n      \"name\": \"Beef Cattle\",\n      \"fdaSpecies\": [\n        \"other\",\n        \"cats\"\n      ]\n    }\n  ],\n  \"promises\": [\n    {\n      \"_type\": \"models.IdPromise\",\n      \"name\": \"ID promise\",\n      \"descrip\": \"You must give ID for each case enrolled\",\n      \"query\": \"What is the animal's name or number?\",\n      \"when\": \"PT0H\",\n      \"id\": 2345\n    },\n    {\n      \"_type\": \"models.IdPromise\",\n      \"name\": \"ID promise\",\n      \"descrip\": \"You must give ID for each case enrolled\",\n      \"query\": \"What is the animal's name or number?\",\n      \"when\": \"PT0H\",\n      \"id\": 2345\n    }\n  ],\n  \"metadata\": [\n    {\n      \"key\": \"popularity\",\n      \"value\": \"good 1.2\"\n    },\n    {\n      \"key\": \"popularity\",\n      \"value\": \"good 1.2\"\n    }\n  ]\n}",
+              "raw": "{\n  \"ownerId\": 1,\n  \"name\": \"wip\",\n  \"status\": \"PRESCRIBED\",\n  \"instructions\": {\n    \"considerations\": \"<p>This is just an example, not a real protocol.</p>\",\n    \"restrictions\": \"<p>Not for use on real animals.</p>\",\n    \"dothis\": \"<h3>Examinations to perform</h3>\",\n    \"recordthis\": \"<p>record every step in your notebook.</p>\",\n    \"success\": \"<p>All problems are gone</p>\",\n    \"failure\": \"<p>One or more problems remain</p>\",\n    \"references\": \"<a href=\\\"https://en.wikipedia.org/wiki/Rickrolling\\\">Wikipedia</a>\"\n  },\n  \"id\": 12345,\n  \"shortname\": \"wip\",\n  \"created\": \"2020-01-10T10:30:37Z\",\n  \"edited\": \"2020-02-10T10:30:37Z\",\n  \"vetNote\": \"consider prescribing protocol x instead\",\n  \"wtMeatHrs\": 22,\n  \"wtMilkHrs\": 5,\n  \"shareAll\": true,\n  \"shareClonable\": true,\n  \"caseDefinition\": {\n    \"requireId\": false,\n    \"requireMor\": false,\n    \"contraindications\": \"\",\n    \"medical\": \"if fever is present, consider Protocol 12345 instead.\",\n    \"economic\": \"\",\n    \"note\": \"\"\n  },\n  \"treatments\": [\n    {\n      \"product\": \"MiracleMed\",\n      \"route\": \"wip\",\n      \"dosage\": {\n        \"doseId\": 69015374\n      },\n      \"sequenceFunction\": {\n        \"_type\": \"models.SeqSingleDose\"\n      },\n      \"sizeFunction\": {\n        \"_type\": \"models.FixedDoseFunction\",\n        \"dose\": {\n          \"quantity\": {\n            \"dimension\": \"Mass\",\n            \"value\": 3,\n            \"symbol\": \"oz\"\n          }\n        }\n      },\n      \"id\": \"B-123\",\n      \"ownerId\": 0,\n      \"description\": \"3.0 ml per kg repeat\",\n      \"eligibilities\": [\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"chickens\",\n            \"unidentified\"\n          ]\n        },\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"unidentified\",\n            \"veal\"\n          ]\n        }\n      ],\n      \"_dose\": \"3.0 ml per kg repeat in 6 hours and again in 24 hours\",\n      \"wtMeatHrs\": 27424849,\n      \"wtMilkHrs\": -87261637,\n      \"nada\": \"wip\",\n      \"tags\": [\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"occaecat Duis \",\n          \"fixes\": [\n            {\n              \"_type\": \"Excepteur exercitation qui aliquip\",\n              \"detail\": \"aute ut nulla irure\",\n              \"message\": \"eiusmod laborum elit magna aute\",\n              \"title\": \"Duis esse exercitation\"\n            },\n            {\n              \"_type\": \"labore\",\n              \"detail\": \"officia velit magna ut\",\n              \"message\": \"eu sit elit dolore veniam\",\n              \"title\": \"irure minim\"\n            }\n          ]\n        },\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"irure inci\",\n          \"fixes\": [\n            {\n              \"_type\": \"aliqua ut dolor dolor occaecat\",\n              \"detail\": \"occaecat deserunt Lorem mollit labore\",\n              \"message\": \"sit ut voluptate\",\n              \"title\": \"ut occaecat irure\"\n            },\n            {\n              \"_type\": \"labore dolore reprehenderit quis\",\n              \"detail\": \"dolore dolor\",\n              \"message\": \"id dolor\",\n              \"title\": \"\"\n            }\n          ]\n        }\n      ],\n      \"note\": \"<p>a free-form note</p>\",\n      \"amduca\": \"OFFLABEL\"\n    },\n    {\n      \"product\": \"MiracleMed\",\n      \"route\": \"wip\",\n      \"dosage\": {\n        \"doseId\": 35781694\n      },\n      \"sequenceFunction\": {\n        \"_type\": \"models.SeqSingleDose\"\n      },\n      \"sizeFunction\": {\n        \"_type\": \"models.FixedDoseFunction\",\n        \"dose\": {\n          \"quantity\": {\n            \"dimension\": \"Mass\",\n            \"value\": 3,\n            \"symbol\": \"oz\"\n          }\n        }\n      },\n      \"id\": \"B-123\",\n      \"ownerId\": 0,\n      \"description\": \"3.0 ml per kg repeat\",\n      \"eligibilities\": [\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"bison\",\n            \"gamebirds\"\n          ]\n        },\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"salmon\",\n            \"emus\"\n          ]\n        }\n      ],\n      \"_dose\": \"3.0 ml per kg repeat in 6 hours and again in 24 hours\",\n      \"wtMeatHrs\": 37808317,\n      \"wtMilkHrs\": 69116765,\n      \"nada\": \"wip\",\n      \"tags\": [\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"proiden\",\n          \"fixes\": [\n            {\n              \"_type\": \"occaecat commodo tempor non\",\n              \"detail\": \"sunt cupidatat labore\",\n              \"message\": \"aliqua ut adipisicing\",\n              \"title\": \"magna dolore aute anim\"\n            },\n            {\n              \"_type\": \"dolor quis\",\n              \"detail\": \"voluptate cillum ut\",\n              \"message\": \"elit laboris\",\n              \"title\": \"adipisicing sun\"\n            }\n          ]\n        },\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"mol\",\n          \"fixes\": [\n            {\n              \"_type\": \"ad fugiat\",\n              \"detail\": \"fugiat\",\n              \"message\": \"ut quis ullamco\",\n              \"title\": \"Ut commodo aliqua\"\n            },\n            {\n              \"_type\": \"cillum tempor qui exercitation\",\n              \"detail\": \"sunt quis Excepteur\",\n              \"message\": \"aliquip fugiat\",\n              \"title\": \"ut in\"\n            }\n          ]\n        }\n      ],\n      \"note\": \"<p>a free-form note</p>\",\n      \"amduca\": \"UNIDENTIFIED\"\n    }\n  ],\n  \"tags\": [\n    {\n      \"id\": 8,\n      \"color\": \"#516cc6\",\n      \"name\": \"ex e\",\n      \"fixes\": [\n        {\n          \"_type\": \"irure dolor ad culpa\",\n          \"detail\": \"in officia mollit dolor\",\n          \"message\": \"sit\",\n          \"title\": \"laborum irure ut\"\n        },\n        {\n          \"_type\": \"laborum\",\n          \"detail\": \"commodo sunt tempor\",\n          \"message\": \"proident\",\n          \"title\": \"exercitation sit dolore nulla\"\n        }\n      ]\n    },\n    {\n      \"id\": 8,\n      \"color\": \"#516cc6\",\n      \"name\": \"dolor aute e\",\n      \"fixes\": [\n        {\n          \"_type\": \"dolore ut\",\n          \"detail\": \"cupidatat culpa fugiat dolor\",\n          \"message\": \"in\",\n          \"title\": \"velit minim qui\"\n        },\n        {\n          \"_type\": \"dolor\",\n          \"detail\": \"dolor nulla\",\n          \"message\": \"dolor ut aliqua sit\",\n          \"title\": \"culpa pariatur tempor est\"\n        }\n      ]\n    }\n  ],\n  \"diagnoses\": [\n    {\n      \"id\": 8,\n      \"name\": \"Pain/inflammation (musculoskeletal), treatment\"\n    },\n    {\n      \"id\": 8,\n      \"name\": \"Pain/inflammation (musculoskeletal), treatment\"\n    }\n  ],\n  \"eligibilities\": [\n    {\n      \"id\": 1,\n      \"name\": \"Beef Cattle\",\n      \"fdaSpecies\": [\n        \"llamas\",\n        \"llamas\"\n      ]\n    },\n    {\n      \"id\": 1,\n      \"name\": \"Beef Cattle\",\n      \"fdaSpecies\": [\n        \"sheep\",\n        \"horses\"\n      ]\n    }\n  ],\n  \"promises\": [\n    {\n      \"_type\": \"models.IdPromise\",\n      \"name\": \"ID promise\",\n      \"descrip\": \"You must give ID for each case enrolled\",\n      \"query\": \"What is the animal's name or number?\",\n      \"when\": \"PT0H\",\n      \"id\": 2345\n    },\n    {\n      \"_type\": \"models.IdPromise\",\n      \"name\": \"ID promise\",\n      \"descrip\": \"You must give ID for each case enrolled\",\n      \"query\": \"What is the animal's name or number?\",\n      \"when\": \"PT0H\",\n      \"id\": 2345\n    }\n  ],\n  \"metadata\": [\n    {\n      \"key\": \"popularity\",\n      \"value\": \"good 1.2\"\n    },\n    {\n      \"key\": \"popularity\",\n      \"value\": \"good 1.2\"\n    }\n  ]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -902,9 +1020,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "3f66a376-d4de-4405-a31c-c1ef579ddad0",
+                "id": "ca812d45-8bfe-4267-a59b-fb32e960001b",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[PUT]::/api/protocols/amducatags - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -915,7 +1034,7 @@
           }
         },
         {
-          "id": "03bf472f-6b4a-466b-a5a7-48651352f550",
+          "id": "b6cd6b68-c434-40f9-9c41-eec538bf4ebf",
           "name": "list of all Tags",
           "request": {
             "name": "list of all Tags",
@@ -948,9 +1067,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "978c89cb-e483-483c-ab42-107ec84b56cf",
+                "id": "90b687be-9e2d-4367-adb3-e18cc7ee43d1",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[GET]::/api/protocols/tags - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -958,7 +1078,7 @@
           ]
         },
         {
-          "id": "b2dc31fe-2a3a-485a-828c-64c9ff398aba",
+          "id": "bb0e9f3c-a33a-4f91-96a8-4d90de87a549",
           "name": "execute Remedy",
           "request": {
             "name": "execute Remedy",
@@ -992,7 +1112,7 @@
             "method": "PUT",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"protocol\": {\n    \"ownerId\": 1,\n    \"name\": \"wip\",\n    \"status\": \"PRESCRIBED\",\n    \"instructions\": {\n      \"considerations\": \"<p>This is just an example, not a real protocol.</p>\",\n      \"restrictions\": \"<p>Not for use on real animals.</p>\",\n      \"dothis\": \"<h3>Examinations to perform</h3>\",\n      \"recordthis\": \"<p>record every step in your notebook.</p>\",\n      \"success\": \"<p>All problems are gone</p>\",\n      \"failure\": \"<p>One or more problems remain</p>\",\n      \"references\": \"<a href=\\\"https://en.wikipedia.org/wiki/Rickrolling\\\">Wikipedia</a>\"\n    },\n    \"id\": 12345,\n    \"shortname\": \"wip\",\n    \"created\": \"2020-01-10T10:30:37Z\",\n    \"edited\": \"2020-02-10T10:30:37Z\",\n    \"vetNote\": \"consider prescribing protocol x instead\",\n    \"wtMeatHrs\": 22,\n    \"wtMilkHrs\": 5,\n    \"shareAll\": true,\n    \"shareClonable\": true,\n    \"caseDefinition\": {\n      \"requireId\": false,\n      \"requireMor\": false,\n      \"contraindications\": \"\",\n      \"medical\": \"if fever is present, consider Protocol 12345 instead.\",\n      \"economic\": \"\",\n      \"note\": \"\"\n    },\n    \"treatments\": [\n      {\n        \"product\": \"MiracleMed\",\n        \"route\": \"wip\",\n        \"dosage\": {\n          \"doseId\": -91306314\n        },\n        \"sequenceFunction\": {\n          \"_type\": \"models.SeqSingleDose\"\n        },\n        \"sizeFunction\": {\n          \"_type\": \"models.FixedDoseFunction\",\n          \"dose\": {\n            \"quantity\": {\n              \"dimension\": \"Mass\",\n              \"value\": 3,\n              \"symbol\": \"oz\"\n            }\n          }\n        },\n        \"id\": \"B-123\",\n        \"ownerId\": 0,\n        \"description\": \"3.0 ml per kg repeat\",\n        \"eligibilities\": [\n          {\n            \"id\": 1,\n            \"name\": \"Beef Cattle\",\n            \"fdaSpecies\": [\n              \"llamas\",\n              \"sheep\"\n            ]\n          },\n          {\n            \"id\": 1,\n            \"name\": \"Beef Cattle\",\n            \"fdaSpecies\": [\n              \"emus\",\n              \"llamas\"\n            ]\n          }\n        ],\n        \"_dose\": \"3.0 ml per kg repeat in 6 hours and again in 24 hours\",\n        \"wtMeatHrs\": 7125110,\n        \"wtMilkHrs\": -49599207,\n        \"nada\": \"wip\",\n        \"tags\": [\n          {\n            \"id\": 8,\n            \"color\": \"#516cc6\",\n            \"name\": \"e\",\n            \"fixes\": [\n              {\n                \"_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"detail\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"message\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"title\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"detail\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"message\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"title\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          },\n          {\n            \"id\": 8,\n            \"color\": \"#516cc6\",\n            \"name\": \"e\",\n            \"fixes\": [\n              {\n                \"_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"detail\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"message\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"title\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"detail\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"message\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"title\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        ],\n        \"note\": \"<p>a free-form note</p>\",\n        \"amduca\": \"ONLABEL\"\n      },\n      {\n        \"product\": \"MiracleMed\",\n        \"route\": \"wip\",\n        \"dosage\": {\n          \"doseId\": -97131496\n        },\n        \"sequenceFunction\": {\n          \"_type\": \"models.SeqSingleDose\"\n        },\n        \"sizeFunction\": {\n          \"_type\": \"models.FixedDoseFunction\",\n          \"dose\": {\n            \"quantity\": {\n              \"dimension\": \"Mass\",\n              \"value\": 3,\n              \"symbol\": \"oz\"\n            }\n          }\n        },\n        \"id\": \"B-123\",\n        \"ownerId\": 0,\n        \"description\": \"3.0 ml per kg repeat\",\n        \"eligibilities\": [\n          {\n            \"id\": 1,\n            \"name\": \"Beef Cattle\",\n            \"fdaSpecies\": [\n              \"chickens\",\n              \"swine\"\n            ]\n          },\n          {\n            \"id\": 1,\n            \"name\": \"Beef Cattle\",\n            \"fdaSpecies\": [\n              \"veal\",\n              \"cats\"\n            ]\n          }\n        ],\n        \"_dose\": \"3.0 ml per kg repeat in 6 hours and again in 24 hours\",\n        \"wtMeatHrs\": 17047677,\n        \"wtMilkHrs\": 67672529,\n        \"nada\": \"wip\",\n        \"tags\": [\n          {\n            \"id\": 8,\n            \"color\": \"#516cc6\",\n            \"name\": \"in\",\n            \"fixes\": [\n              {\n                \"_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"detail\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"message\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"title\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"detail\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"message\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"title\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          },\n          {\n            \"id\": 8,\n            \"color\": \"#516cc6\",\n            \"name\": \"s\",\n            \"fixes\": [\n              {\n                \"_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"detail\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"message\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"title\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"detail\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"message\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"title\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        ],\n        \"note\": \"<p>a free-form note</p>\",\n        \"amduca\": \"OFFLABEL\"\n      }\n    ],\n    \"tags\": [\n      {\n        \"id\": 8,\n        \"color\": \"#516cc6\",\n        \"name\": \"exercitati\",\n        \"fixes\": [\n          {\n            \"_type\": \"Lorem ad in irure sit\",\n            \"detail\": \"enim Ut d\",\n            \"message\": \"occaecat proident\",\n            \"title\": \"in\"\n          },\n          {\n            \"_type\": \"culpa veniam Excepteur irure\",\n            \"detail\": \"nisi labore\",\n            \"message\": \"sint sunt Ut ea\",\n            \"title\": \"magna qui nisi ipsum nulla\"\n          }\n        ]\n      },\n      {\n        \"id\": 8,\n        \"color\": \"#516cc6\",\n        \"name\": \"exercit\",\n        \"fixes\": [\n          {\n            \"_type\": \"et ea anim velit\",\n            \"detail\": \"minim ea\",\n            \"message\": \"nulla anim\",\n            \"title\": \"proident\"\n          },\n          {\n            \"_type\": \"aute sunt elit\",\n            \"detail\": \"est nisi\",\n            \"message\": \"in commodo est dolor mollit\",\n            \"title\": \"nulla incididunt ad enim\"\n          }\n        ]\n      }\n    ],\n    \"diagnoses\": [\n      {\n        \"id\": 8,\n        \"name\": \"Pain/inflammation (musculoskeletal), treatment\"\n      },\n      {\n        \"id\": 8,\n        \"name\": \"Pain/inflammation (musculoskeletal), treatment\"\n      }\n    ],\n    \"eligibilities\": [\n      {\n        \"id\": 1,\n        \"name\": \"Beef Cattle\",\n        \"fdaSpecies\": [\n          \"dogs\",\n          \"goats\"\n        ]\n      },\n      {\n        \"id\": 1,\n        \"name\": \"Beef Cattle\",\n        \"fdaSpecies\": [\n          \"bison\",\n          \"emus\"\n        ]\n      }\n    ],\n    \"promises\": [\n      {\n        \"_type\": \"models.IdPromise\",\n        \"name\": \"ID promise\",\n        \"descrip\": \"You must give ID for each case enrolled\",\n        \"query\": \"What is the animal's name or number?\",\n        \"when\": \"PT0H\",\n        \"id\": 2345\n      },\n      {\n        \"_type\": \"models.IdPromise\",\n        \"name\": \"ID promise\",\n        \"descrip\": \"You must give ID for each case enrolled\",\n        \"query\": \"What is the animal's name or number?\",\n        \"when\": \"PT0H\",\n        \"id\": 2345\n      }\n    ],\n    \"metadata\": [\n      {\n        \"key\": \"popularity\",\n        \"value\": \"good 1.2\"\n      },\n      {\n        \"key\": \"popularity\",\n        \"value\": \"good 1.2\"\n      }\n    ]\n  },\n  \"remedy\": {\n    \"_type\": \"magna aliqua\",\n    \"detail\": \"occaecat magna esse\",\n    \"message\": \"sit mollit\",\n    \"title\": \"nisi\"\n  }\n}",
+              "raw": "{\n  \"protocol\": {\n    \"ownerId\": 1,\n    \"name\": \"wip\",\n    \"status\": \"PRESCRIBED\",\n    \"instructions\": {\n      \"considerations\": \"<p>This is just an example, not a real protocol.</p>\",\n      \"restrictions\": \"<p>Not for use on real animals.</p>\",\n      \"dothis\": \"<h3>Examinations to perform</h3>\",\n      \"recordthis\": \"<p>record every step in your notebook.</p>\",\n      \"success\": \"<p>All problems are gone</p>\",\n      \"failure\": \"<p>One or more problems remain</p>\",\n      \"references\": \"<a href=\\\"https://en.wikipedia.org/wiki/Rickrolling\\\">Wikipedia</a>\"\n    },\n    \"id\": 12345,\n    \"shortname\": \"wip\",\n    \"created\": \"2020-01-10T10:30:37Z\",\n    \"edited\": \"2020-02-10T10:30:37Z\",\n    \"vetNote\": \"consider prescribing protocol x instead\",\n    \"wtMeatHrs\": 22,\n    \"wtMilkHrs\": 5,\n    \"shareAll\": true,\n    \"shareClonable\": true,\n    \"caseDefinition\": {\n      \"requireId\": false,\n      \"requireMor\": false,\n      \"contraindications\": \"\",\n      \"medical\": \"if fever is present, consider Protocol 12345 instead.\",\n      \"economic\": \"\",\n      \"note\": \"\"\n    },\n    \"treatments\": [\n      {\n        \"product\": \"MiracleMed\",\n        \"route\": \"wip\",\n        \"dosage\": {\n          \"doseId\": 37601077\n        },\n        \"sequenceFunction\": {\n          \"_type\": \"models.SeqSingleDose\"\n        },\n        \"sizeFunction\": {\n          \"_type\": \"models.FixedDoseFunction\",\n          \"dose\": {\n            \"quantity\": {\n              \"dimension\": \"Mass\",\n              \"value\": 3,\n              \"symbol\": \"oz\"\n            }\n          }\n        },\n        \"id\": \"B-123\",\n        \"ownerId\": 0,\n        \"description\": \"3.0 ml per kg repeat\",\n        \"eligibilities\": [\n          {\n            \"id\": 1,\n            \"name\": \"Beef Cattle\",\n            \"fdaSpecies\": [\n              \"beef_cattle\",\n              \"catfish\"\n            ]\n          },\n          {\n            \"id\": 1,\n            \"name\": \"Beef Cattle\",\n            \"fdaSpecies\": [\n              \"cats\",\n              \"chickens\"\n            ]\n          }\n        ],\n        \"_dose\": \"3.0 ml per kg repeat in 6 hours and again in 24 hours\",\n        \"wtMeatHrs\": 63116508,\n        \"wtMilkHrs\": -52127182,\n        \"nada\": \"wip\",\n        \"tags\": [\n          {\n            \"id\": 8,\n            \"color\": \"#516cc6\",\n            \"name\": \"cillum dol\",\n            \"fixes\": [\n              {\n                \"_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"detail\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"message\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"title\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"detail\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"message\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"title\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          },\n          {\n            \"id\": 8,\n            \"color\": \"#516cc6\",\n            \"name\": \"amet et sed\",\n            \"fixes\": [\n              {\n                \"_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"detail\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"message\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"title\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"detail\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"message\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"title\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        ],\n        \"note\": \"<p>a free-form note</p>\",\n        \"amduca\": \"OFFLABEL\"\n      },\n      {\n        \"product\": \"MiracleMed\",\n        \"route\": \"wip\",\n        \"dosage\": {\n          \"doseId\": -95998222\n        },\n        \"sequenceFunction\": {\n          \"_type\": \"models.SeqSingleDose\"\n        },\n        \"sizeFunction\": {\n          \"_type\": \"models.FixedDoseFunction\",\n          \"dose\": {\n            \"quantity\": {\n              \"dimension\": \"Mass\",\n              \"value\": 3,\n              \"symbol\": \"oz\"\n            }\n          }\n        },\n        \"id\": \"B-123\",\n        \"ownerId\": 0,\n        \"description\": \"3.0 ml per kg repeat\",\n        \"eligibilities\": [\n          {\n            \"id\": 1,\n            \"name\": \"Beef Cattle\",\n            \"fdaSpecies\": [\n              \"veal\",\n              \"sheep\"\n            ]\n          },\n          {\n            \"id\": 1,\n            \"name\": \"Beef Cattle\",\n            \"fdaSpecies\": [\n              \"salmon\",\n              \"beef_cattle\"\n            ]\n          }\n        ],\n        \"_dose\": \"3.0 ml per kg repeat in 6 hours and again in 24 hours\",\n        \"wtMeatHrs\": 4823315,\n        \"wtMilkHrs\": 67813094,\n        \"nada\": \"wip\",\n        \"tags\": [\n          {\n            \"id\": 8,\n            \"color\": \"#516cc6\",\n            \"name\": \"fugiat cul\",\n            \"fixes\": [\n              {\n                \"_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"detail\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"message\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"title\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"detail\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"message\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"title\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          },\n          {\n            \"id\": 8,\n            \"color\": \"#516cc6\",\n            \"name\": \"labore dolor \",\n            \"fixes\": [\n              {\n                \"_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"detail\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"message\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"title\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"_type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"detail\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"message\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"title\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        ],\n        \"note\": \"<p>a free-form note</p>\",\n        \"amduca\": \"OFFLABEL\"\n      }\n    ],\n    \"tags\": [\n      {\n        \"id\": 8,\n        \"color\": \"#516cc6\",\n        \"name\": \"sunt Ut\",\n        \"fixes\": [\n          {\n            \"_type\": \"commodo officia l\",\n            \"detail\": \"in Excepteur id nisi\",\n            \"message\": \"ipsum cillum nulla\",\n            \"title\": \"nisi nostrud\"\n          },\n          {\n            \"_type\": \"ut ullamco\",\n            \"detail\": \"dolore sint magna\",\n            \"message\": \"ex non\",\n            \"title\": \"in ullamco cillum sed\"\n          }\n        ]\n      },\n      {\n        \"id\": 8,\n        \"color\": \"#516cc6\",\n        \"name\": \"fug\",\n        \"fixes\": [\n          {\n            \"_type\": \"elit anim\",\n            \"detail\": \"mollit officia fugiat\",\n            \"message\": \"id Duis\",\n            \"title\": \"dolor Duis eiusmod Lorem\"\n          },\n          {\n            \"_type\": \"ut irure\",\n            \"detail\": \"dolor ut\",\n            \"message\": \"eiusmod sed anim elit\",\n            \"title\": \"commodo\"\n          }\n        ]\n      }\n    ],\n    \"diagnoses\": [\n      {\n        \"id\": 8,\n        \"name\": \"Pain/inflammation (musculoskeletal), treatment\"\n      },\n      {\n        \"id\": 8,\n        \"name\": \"Pain/inflammation (musculoskeletal), treatment\"\n      }\n    ],\n    \"eligibilities\": [\n      {\n        \"id\": 1,\n        \"name\": \"Beef Cattle\",\n        \"fdaSpecies\": [\n          \"chickens\",\n          \"horses\"\n        ]\n      },\n      {\n        \"id\": 1,\n        \"name\": \"Beef Cattle\",\n        \"fdaSpecies\": [\n          \"dairy_cattle\",\n          \"dogs\"\n        ]\n      }\n    ],\n    \"promises\": [\n      {\n        \"_type\": \"models.IdPromise\",\n        \"name\": \"ID promise\",\n        \"descrip\": \"You must give ID for each case enrolled\",\n        \"query\": \"What is the animal's name or number?\",\n        \"when\": \"PT0H\",\n        \"id\": 2345\n      },\n      {\n        \"_type\": \"models.IdPromise\",\n        \"name\": \"ID promise\",\n        \"descrip\": \"You must give ID for each case enrolled\",\n        \"query\": \"What is the animal's name or number?\",\n        \"when\": \"PT0H\",\n        \"id\": 2345\n      }\n    ],\n    \"metadata\": [\n      {\n        \"key\": \"popularity\",\n        \"value\": \"good 1.2\"\n      },\n      {\n        \"key\": \"popularity\",\n        \"value\": \"good 1.2\"\n      }\n    ]\n  },\n  \"remedy\": {\n    \"_type\": \"consequat minim\",\n    \"detail\": \"commodo dolore consectetur exercitation\",\n    \"message\": \"officia consequat tem\",\n    \"title\": \"laboris dolore enim reprehenderit\"\n  }\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1005,9 +1125,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "d89d6c2a-37ec-477e-baf3-2d786075d19b",
+                "id": "a5b54b9f-f7e9-4b5c-a312-3e2607d53432",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[PUT]::/api/protocols/tags/remedies - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -1018,7 +1139,7 @@
           }
         },
         {
-          "id": "f8712c68-9ac7-4c3a-a7f5-cc504e7e4b34",
+          "id": "fd9ec613-d04f-4926-b7f7-52825d7e5b30",
           "name": "list of all Promises",
           "request": {
             "name": "list of all Promises",
@@ -1051,9 +1172,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "eb9bccc7-3557-433f-a32b-a45c841c7414",
+                "id": "ec7db33b-8f3c-47fe-8d6d-a9f6cf9790e2",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[GET]::/api/protocols/promises - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -1061,7 +1183,7 @@
           ]
         },
         {
-          "id": "44a87552-3c48-4d2b-92da-34fa4cb2f427",
+          "id": "a62c7e1a-ba16-40e6-b33e-bcd7a033993a",
           "name": "Promises in a Protocol",
           "request": {
             "name": "Promises in a Protocol",
@@ -1106,9 +1228,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "a9d7263b-55a5-4c75-81a9-d90280588f16",
+                "id": "2318877d-1c7a-435b-a789-0c7e0e9a4609",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[GET]::/api/protocols/promises/:id - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -1116,7 +1239,7 @@
           ]
         },
         {
-          "id": "a5a8177d-f9e5-4069-a72d-29ddbb637c70",
+          "id": "c7072f14-97c9-4dcc-81b1-60547efa1708",
           "name": "protocols owned by user",
           "request": {
             "name": "protocols owned by user",
@@ -1154,10 +1277,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "73d3ee5d-1020-4997-bf76-03a61bbdd89d",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "ae602eeb-8765-4d4a-beaf-344c1e035edc",
+          "id": "4202663a-747f-4163-bf44-a107c15af6c2",
           "name": "record and validate aprotocol",
           "request": {
             "name": "record and validate aprotocol",
@@ -1189,7 +1323,7 @@
             "method": "POST",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"ownerId\": 1,\n  \"name\": \"wip\",\n  \"status\": \"PRESCRIBED\",\n  \"instructions\": {\n    \"considerations\": \"<p>This is just an example, not a real protocol.</p>\",\n    \"restrictions\": \"<p>Not for use on real animals.</p>\",\n    \"dothis\": \"<h3>Examinations to perform</h3>\",\n    \"recordthis\": \"<p>record every step in your notebook.</p>\",\n    \"success\": \"<p>All problems are gone</p>\",\n    \"failure\": \"<p>One or more problems remain</p>\",\n    \"references\": \"<a href=\\\"https://en.wikipedia.org/wiki/Rickrolling\\\">Wikipedia</a>\"\n  },\n  \"id\": 12345,\n  \"shortname\": \"wip\",\n  \"created\": \"2020-01-10T10:30:37Z\",\n  \"edited\": \"2020-02-10T10:30:37Z\",\n  \"vetNote\": \"consider prescribing protocol x instead\",\n  \"wtMeatHrs\": 22,\n  \"wtMilkHrs\": 5,\n  \"shareAll\": true,\n  \"shareClonable\": true,\n  \"caseDefinition\": {\n    \"requireId\": false,\n    \"requireMor\": false,\n    \"contraindications\": \"\",\n    \"medical\": \"if fever is present, consider Protocol 12345 instead.\",\n    \"economic\": \"\",\n    \"note\": \"\"\n  },\n  \"treatments\": [\n    {\n      \"product\": \"MiracleMed\",\n      \"route\": \"wip\",\n      \"dosage\": {\n        \"doseId\": 17057176\n      },\n      \"sequenceFunction\": {\n        \"_type\": \"models.SeqSingleDose\"\n      },\n      \"sizeFunction\": {\n        \"_type\": \"models.FixedDoseFunction\",\n        \"dose\": {\n          \"quantity\": {\n            \"dimension\": \"Mass\",\n            \"value\": 3,\n            \"symbol\": \"oz\"\n          }\n        }\n      },\n      \"id\": \"B-123\",\n      \"ownerId\": 0,\n      \"description\": \"3.0 ml per kg repeat\",\n      \"eligibilities\": [\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"dogs\",\n            \"unidentified\"\n          ]\n        },\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"dogs\",\n            \"cats\"\n          ]\n        }\n      ],\n      \"_dose\": \"3.0 ml per kg repeat in 6 hours and again in 24 hours\",\n      \"wtMeatHrs\": -37485132,\n      \"wtMilkHrs\": -10351063,\n      \"nada\": \"wip\",\n      \"tags\": [\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"Lorem mollit\",\n          \"fixes\": [\n            {\n              \"_type\": \"irure pariatur ullamco est\",\n              \"detail\": \"commod\",\n              \"message\": \"in\",\n              \"title\": \"nostrud dolor aliquip\"\n            },\n            {\n              \"_type\": \"non et\",\n              \"detail\": \"velit in consectetur\",\n              \"message\": \"magna\",\n              \"title\": \"minim\"\n            }\n          ]\n        },\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"p\",\n          \"fixes\": [\n            {\n              \"_type\": \"sint \",\n              \"detail\": \"elit voluptate sed\",\n              \"message\": \"Ut pariatur\",\n              \"title\": \"veniam Excepteur adipisicing\"\n            },\n            {\n              \"_type\": \"exercitation in in\",\n              \"detail\": \"laborum nisi deserunt ex\",\n              \"message\": \"labore\",\n              \"title\": \"ut aliquip\"\n            }\n          ]\n        }\n      ],\n      \"note\": \"<p>a free-form note</p>\",\n      \"amduca\": \"OFFLABEL\"\n    },\n    {\n      \"product\": \"MiracleMed\",\n      \"route\": \"wip\",\n      \"dosage\": {\n        \"doseId\": -88374065\n      },\n      \"sequenceFunction\": {\n        \"_type\": \"models.SeqSingleDose\"\n      },\n      \"sizeFunction\": {\n        \"_type\": \"models.FixedDoseFunction\",\n        \"dose\": {\n          \"quantity\": {\n            \"dimension\": \"Mass\",\n            \"value\": 3,\n            \"symbol\": \"oz\"\n          }\n        }\n      },\n      \"id\": \"B-123\",\n      \"ownerId\": 0,\n      \"description\": \"3.0 ml per kg repeat\",\n      \"eligibilities\": [\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"fish\",\n            \"llamas\"\n          ]\n        },\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"horses\",\n            \"llamas\"\n          ]\n        }\n      ],\n      \"_dose\": \"3.0 ml per kg repeat in 6 hours and again in 24 hours\",\n      \"wtMeatHrs\": 88893120,\n      \"wtMilkHrs\": 64593421,\n      \"nada\": \"wip\",\n      \"tags\": [\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"aliqua a\",\n          \"fixes\": [\n            {\n              \"_type\": \"fugiat eu\",\n              \"detail\": \"sed elit dolor ipsum in\",\n              \"message\": \"culpa nulla\",\n              \"title\": \"a\"\n            },\n            {\n              \"_type\": \"nisi\",\n              \"detail\": \"exerci\",\n              \"message\": \"Excepteur sunt adipisicing\",\n              \"title\": \"nulla cillum nisi\"\n            }\n          ]\n        },\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"volupt\",\n          \"fixes\": [\n            {\n              \"_type\": \"ullamco\",\n              \"detail\": \"ex dolor\",\n              \"message\": \"Duis in pariatur ipsum\",\n              \"title\": \"do\"\n            },\n            {\n              \"_type\": \"laboris magna eu consequat\",\n              \"detail\": \"mollit cupidatat fugi\",\n              \"message\": \"ut est\",\n              \"title\": \"deserunt veniam adipisicing nisi ea\"\n            }\n          ]\n        }\n      ],\n      \"note\": \"<p>a free-form note</p>\",\n      \"amduca\": \"ONLABEL\"\n    }\n  ],\n  \"tags\": [\n    {\n      \"id\": 8,\n      \"color\": \"#516cc6\",\n      \"name\": \"fugiat \",\n      \"fixes\": [\n        {\n          \"_type\": \"est nisi cupidatat\",\n          \"detail\": \"sit eiusmod enim laboris exercitation\",\n          \"message\": \"in aute in\",\n          \"title\": \"laboris labore\"\n        },\n        {\n          \"_type\": \"enim\",\n          \"detail\": \"incididunt aliqua\",\n          \"message\": \"esse cillum commodo\",\n          \"title\": \"fugiat nostrud nulla \"\n        }\n      ]\n    },\n    {\n      \"id\": 8,\n      \"color\": \"#516cc6\",\n      \"name\": \"veniam culp\",\n      \"fixes\": [\n        {\n          \"_type\": \"exercitation Lorem minim\",\n          \"detail\": \"reprehenderit exercitation adipisicing eu\",\n          \"message\": \"culpa deserunt Lorem minim\",\n          \"title\": \"commodo\"\n        },\n        {\n          \"_type\": \"in laborum do\",\n          \"detail\": \"veniam ipsum amet cupidatat\",\n          \"message\": \"exercitation ut minim enim\",\n          \"title\": \"in officia Ut\"\n        }\n      ]\n    }\n  ],\n  \"diagnoses\": [\n    {\n      \"id\": 8,\n      \"name\": \"Pain/inflammation (musculoskeletal), treatment\"\n    },\n    {\n      \"id\": 8,\n      \"name\": \"Pain/inflammation (musculoskeletal), treatment\"\n    }\n  ],\n  \"eligibilities\": [\n    {\n      \"id\": 1,\n      \"name\": \"Beef Cattle\",\n      \"fdaSpecies\": [\n        \"cats\",\n        \"cats\"\n      ]\n    },\n    {\n      \"id\": 1,\n      \"name\": \"Beef Cattle\",\n      \"fdaSpecies\": [\n        \"other\",\n        \"cats\"\n      ]\n    }\n  ],\n  \"promises\": [\n    {\n      \"_type\": \"models.IdPromise\",\n      \"name\": \"ID promise\",\n      \"descrip\": \"You must give ID for each case enrolled\",\n      \"query\": \"What is the animal's name or number?\",\n      \"when\": \"PT0H\",\n      \"id\": 2345\n    },\n    {\n      \"_type\": \"models.IdPromise\",\n      \"name\": \"ID promise\",\n      \"descrip\": \"You must give ID for each case enrolled\",\n      \"query\": \"What is the animal's name or number?\",\n      \"when\": \"PT0H\",\n      \"id\": 2345\n    }\n  ],\n  \"metadata\": [\n    {\n      \"key\": \"popularity\",\n      \"value\": \"good 1.2\"\n    },\n    {\n      \"key\": \"popularity\",\n      \"value\": \"good 1.2\"\n    }\n  ]\n}",
+              "raw": "{\n  \"ownerId\": 1,\n  \"name\": \"wip\",\n  \"status\": \"PRESCRIBED\",\n  \"instructions\": {\n    \"considerations\": \"<p>This is just an example, not a real protocol.</p>\",\n    \"restrictions\": \"<p>Not for use on real animals.</p>\",\n    \"dothis\": \"<h3>Examinations to perform</h3>\",\n    \"recordthis\": \"<p>record every step in your notebook.</p>\",\n    \"success\": \"<p>All problems are gone</p>\",\n    \"failure\": \"<p>One or more problems remain</p>\",\n    \"references\": \"<a href=\\\"https://en.wikipedia.org/wiki/Rickrolling\\\">Wikipedia</a>\"\n  },\n  \"id\": 12345,\n  \"shortname\": \"wip\",\n  \"created\": \"2020-01-10T10:30:37Z\",\n  \"edited\": \"2020-02-10T10:30:37Z\",\n  \"vetNote\": \"consider prescribing protocol x instead\",\n  \"wtMeatHrs\": 22,\n  \"wtMilkHrs\": 5,\n  \"shareAll\": true,\n  \"shareClonable\": true,\n  \"caseDefinition\": {\n    \"requireId\": false,\n    \"requireMor\": false,\n    \"contraindications\": \"\",\n    \"medical\": \"if fever is present, consider Protocol 12345 instead.\",\n    \"economic\": \"\",\n    \"note\": \"\"\n  },\n  \"treatments\": [\n    {\n      \"product\": \"MiracleMed\",\n      \"route\": \"wip\",\n      \"dosage\": {\n        \"doseId\": 69015374\n      },\n      \"sequenceFunction\": {\n        \"_type\": \"models.SeqSingleDose\"\n      },\n      \"sizeFunction\": {\n        \"_type\": \"models.FixedDoseFunction\",\n        \"dose\": {\n          \"quantity\": {\n            \"dimension\": \"Mass\",\n            \"value\": 3,\n            \"symbol\": \"oz\"\n          }\n        }\n      },\n      \"id\": \"B-123\",\n      \"ownerId\": 0,\n      \"description\": \"3.0 ml per kg repeat\",\n      \"eligibilities\": [\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"chickens\",\n            \"unidentified\"\n          ]\n        },\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"unidentified\",\n            \"veal\"\n          ]\n        }\n      ],\n      \"_dose\": \"3.0 ml per kg repeat in 6 hours and again in 24 hours\",\n      \"wtMeatHrs\": 27424849,\n      \"wtMilkHrs\": -87261637,\n      \"nada\": \"wip\",\n      \"tags\": [\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"occaecat Duis \",\n          \"fixes\": [\n            {\n              \"_type\": \"Excepteur exercitation qui aliquip\",\n              \"detail\": \"aute ut nulla irure\",\n              \"message\": \"eiusmod laborum elit magna aute\",\n              \"title\": \"Duis esse exercitation\"\n            },\n            {\n              \"_type\": \"labore\",\n              \"detail\": \"officia velit magna ut\",\n              \"message\": \"eu sit elit dolore veniam\",\n              \"title\": \"irure minim\"\n            }\n          ]\n        },\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"irure inci\",\n          \"fixes\": [\n            {\n              \"_type\": \"aliqua ut dolor dolor occaecat\",\n              \"detail\": \"occaecat deserunt Lorem mollit labore\",\n              \"message\": \"sit ut voluptate\",\n              \"title\": \"ut occaecat irure\"\n            },\n            {\n              \"_type\": \"labore dolore reprehenderit quis\",\n              \"detail\": \"dolore dolor\",\n              \"message\": \"id dolor\",\n              \"title\": \"\"\n            }\n          ]\n        }\n      ],\n      \"note\": \"<p>a free-form note</p>\",\n      \"amduca\": \"OFFLABEL\"\n    },\n    {\n      \"product\": \"MiracleMed\",\n      \"route\": \"wip\",\n      \"dosage\": {\n        \"doseId\": 35781694\n      },\n      \"sequenceFunction\": {\n        \"_type\": \"models.SeqSingleDose\"\n      },\n      \"sizeFunction\": {\n        \"_type\": \"models.FixedDoseFunction\",\n        \"dose\": {\n          \"quantity\": {\n            \"dimension\": \"Mass\",\n            \"value\": 3,\n            \"symbol\": \"oz\"\n          }\n        }\n      },\n      \"id\": \"B-123\",\n      \"ownerId\": 0,\n      \"description\": \"3.0 ml per kg repeat\",\n      \"eligibilities\": [\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"bison\",\n            \"gamebirds\"\n          ]\n        },\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"salmon\",\n            \"emus\"\n          ]\n        }\n      ],\n      \"_dose\": \"3.0 ml per kg repeat in 6 hours and again in 24 hours\",\n      \"wtMeatHrs\": 37808317,\n      \"wtMilkHrs\": 69116765,\n      \"nada\": \"wip\",\n      \"tags\": [\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"proiden\",\n          \"fixes\": [\n            {\n              \"_type\": \"occaecat commodo tempor non\",\n              \"detail\": \"sunt cupidatat labore\",\n              \"message\": \"aliqua ut adipisicing\",\n              \"title\": \"magna dolore aute anim\"\n            },\n            {\n              \"_type\": \"dolor quis\",\n              \"detail\": \"voluptate cillum ut\",\n              \"message\": \"elit laboris\",\n              \"title\": \"adipisicing sun\"\n            }\n          ]\n        },\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"mol\",\n          \"fixes\": [\n            {\n              \"_type\": \"ad fugiat\",\n              \"detail\": \"fugiat\",\n              \"message\": \"ut quis ullamco\",\n              \"title\": \"Ut commodo aliqua\"\n            },\n            {\n              \"_type\": \"cillum tempor qui exercitation\",\n              \"detail\": \"sunt quis Excepteur\",\n              \"message\": \"aliquip fugiat\",\n              \"title\": \"ut in\"\n            }\n          ]\n        }\n      ],\n      \"note\": \"<p>a free-form note</p>\",\n      \"amduca\": \"UNIDENTIFIED\"\n    }\n  ],\n  \"tags\": [\n    {\n      \"id\": 8,\n      \"color\": \"#516cc6\",\n      \"name\": \"ex e\",\n      \"fixes\": [\n        {\n          \"_type\": \"irure dolor ad culpa\",\n          \"detail\": \"in officia mollit dolor\",\n          \"message\": \"sit\",\n          \"title\": \"laborum irure ut\"\n        },\n        {\n          \"_type\": \"laborum\",\n          \"detail\": \"commodo sunt tempor\",\n          \"message\": \"proident\",\n          \"title\": \"exercitation sit dolore nulla\"\n        }\n      ]\n    },\n    {\n      \"id\": 8,\n      \"color\": \"#516cc6\",\n      \"name\": \"dolor aute e\",\n      \"fixes\": [\n        {\n          \"_type\": \"dolore ut\",\n          \"detail\": \"cupidatat culpa fugiat dolor\",\n          \"message\": \"in\",\n          \"title\": \"velit minim qui\"\n        },\n        {\n          \"_type\": \"dolor\",\n          \"detail\": \"dolor nulla\",\n          \"message\": \"dolor ut aliqua sit\",\n          \"title\": \"culpa pariatur tempor est\"\n        }\n      ]\n    }\n  ],\n  \"diagnoses\": [\n    {\n      \"id\": 8,\n      \"name\": \"Pain/inflammation (musculoskeletal), treatment\"\n    },\n    {\n      \"id\": 8,\n      \"name\": \"Pain/inflammation (musculoskeletal), treatment\"\n    }\n  ],\n  \"eligibilities\": [\n    {\n      \"id\": 1,\n      \"name\": \"Beef Cattle\",\n      \"fdaSpecies\": [\n        \"llamas\",\n        \"llamas\"\n      ]\n    },\n    {\n      \"id\": 1,\n      \"name\": \"Beef Cattle\",\n      \"fdaSpecies\": [\n        \"sheep\",\n        \"horses\"\n      ]\n    }\n  ],\n  \"promises\": [\n    {\n      \"_type\": \"models.IdPromise\",\n      \"name\": \"ID promise\",\n      \"descrip\": \"You must give ID for each case enrolled\",\n      \"query\": \"What is the animal's name or number?\",\n      \"when\": \"PT0H\",\n      \"id\": 2345\n    },\n    {\n      \"_type\": \"models.IdPromise\",\n      \"name\": \"ID promise\",\n      \"descrip\": \"You must give ID for each case enrolled\",\n      \"query\": \"What is the animal's name or number?\",\n      \"when\": \"PT0H\",\n      \"id\": 2345\n    }\n  ],\n  \"metadata\": [\n    {\n      \"key\": \"popularity\",\n      \"value\": \"good 1.2\"\n    },\n    {\n      \"key\": \"popularity\",\n      \"value\": \"good 1.2\"\n    }\n  ]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1198,13 +1332,24 @@
             }
           },
           "response": [],
-          "event": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "f0782856-fc19-4e10-b9fa-7e669427751c",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ],
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           }
         },
         {
-          "id": "23f84d54-4921-498b-a0fe-1f5fb33cab6f",
+          "id": "be45e9bc-e152-4bb6-aa85-d1fc058c7e7e",
           "name": "update protocol",
           "request": {
             "name": "update protocol",
@@ -1236,7 +1381,7 @@
             "method": "PUT",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"ownerId\": 1,\n  \"name\": \"wip\",\n  \"status\": \"PRESCRIBED\",\n  \"instructions\": {\n    \"considerations\": \"<p>This is just an example, not a real protocol.</p>\",\n    \"restrictions\": \"<p>Not for use on real animals.</p>\",\n    \"dothis\": \"<h3>Examinations to perform</h3>\",\n    \"recordthis\": \"<p>record every step in your notebook.</p>\",\n    \"success\": \"<p>All problems are gone</p>\",\n    \"failure\": \"<p>One or more problems remain</p>\",\n    \"references\": \"<a href=\\\"https://en.wikipedia.org/wiki/Rickrolling\\\">Wikipedia</a>\"\n  },\n  \"id\": 12345,\n  \"shortname\": \"wip\",\n  \"created\": \"2020-01-10T10:30:37Z\",\n  \"edited\": \"2020-02-10T10:30:37Z\",\n  \"vetNote\": \"consider prescribing protocol x instead\",\n  \"wtMeatHrs\": 22,\n  \"wtMilkHrs\": 5,\n  \"shareAll\": true,\n  \"shareClonable\": true,\n  \"caseDefinition\": {\n    \"requireId\": false,\n    \"requireMor\": false,\n    \"contraindications\": \"\",\n    \"medical\": \"if fever is present, consider Protocol 12345 instead.\",\n    \"economic\": \"\",\n    \"note\": \"\"\n  },\n  \"treatments\": [\n    {\n      \"product\": \"MiracleMed\",\n      \"route\": \"wip\",\n      \"dosage\": {\n        \"doseId\": 17057176\n      },\n      \"sequenceFunction\": {\n        \"_type\": \"models.SeqSingleDose\"\n      },\n      \"sizeFunction\": {\n        \"_type\": \"models.FixedDoseFunction\",\n        \"dose\": {\n          \"quantity\": {\n            \"dimension\": \"Mass\",\n            \"value\": 3,\n            \"symbol\": \"oz\"\n          }\n        }\n      },\n      \"id\": \"B-123\",\n      \"ownerId\": 0,\n      \"description\": \"3.0 ml per kg repeat\",\n      \"eligibilities\": [\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"dogs\",\n            \"unidentified\"\n          ]\n        },\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"dogs\",\n            \"cats\"\n          ]\n        }\n      ],\n      \"_dose\": \"3.0 ml per kg repeat in 6 hours and again in 24 hours\",\n      \"wtMeatHrs\": -37485132,\n      \"wtMilkHrs\": -10351063,\n      \"nada\": \"wip\",\n      \"tags\": [\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"Lorem mollit\",\n          \"fixes\": [\n            {\n              \"_type\": \"irure pariatur ullamco est\",\n              \"detail\": \"commod\",\n              \"message\": \"in\",\n              \"title\": \"nostrud dolor aliquip\"\n            },\n            {\n              \"_type\": \"non et\",\n              \"detail\": \"velit in consectetur\",\n              \"message\": \"magna\",\n              \"title\": \"minim\"\n            }\n          ]\n        },\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"p\",\n          \"fixes\": [\n            {\n              \"_type\": \"sint \",\n              \"detail\": \"elit voluptate sed\",\n              \"message\": \"Ut pariatur\",\n              \"title\": \"veniam Excepteur adipisicing\"\n            },\n            {\n              \"_type\": \"exercitation in in\",\n              \"detail\": \"laborum nisi deserunt ex\",\n              \"message\": \"labore\",\n              \"title\": \"ut aliquip\"\n            }\n          ]\n        }\n      ],\n      \"note\": \"<p>a free-form note</p>\",\n      \"amduca\": \"OFFLABEL\"\n    },\n    {\n      \"product\": \"MiracleMed\",\n      \"route\": \"wip\",\n      \"dosage\": {\n        \"doseId\": -88374065\n      },\n      \"sequenceFunction\": {\n        \"_type\": \"models.SeqSingleDose\"\n      },\n      \"sizeFunction\": {\n        \"_type\": \"models.FixedDoseFunction\",\n        \"dose\": {\n          \"quantity\": {\n            \"dimension\": \"Mass\",\n            \"value\": 3,\n            \"symbol\": \"oz\"\n          }\n        }\n      },\n      \"id\": \"B-123\",\n      \"ownerId\": 0,\n      \"description\": \"3.0 ml per kg repeat\",\n      \"eligibilities\": [\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"fish\",\n            \"llamas\"\n          ]\n        },\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"horses\",\n            \"llamas\"\n          ]\n        }\n      ],\n      \"_dose\": \"3.0 ml per kg repeat in 6 hours and again in 24 hours\",\n      \"wtMeatHrs\": 88893120,\n      \"wtMilkHrs\": 64593421,\n      \"nada\": \"wip\",\n      \"tags\": [\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"aliqua a\",\n          \"fixes\": [\n            {\n              \"_type\": \"fugiat eu\",\n              \"detail\": \"sed elit dolor ipsum in\",\n              \"message\": \"culpa nulla\",\n              \"title\": \"a\"\n            },\n            {\n              \"_type\": \"nisi\",\n              \"detail\": \"exerci\",\n              \"message\": \"Excepteur sunt adipisicing\",\n              \"title\": \"nulla cillum nisi\"\n            }\n          ]\n        },\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"volupt\",\n          \"fixes\": [\n            {\n              \"_type\": \"ullamco\",\n              \"detail\": \"ex dolor\",\n              \"message\": \"Duis in pariatur ipsum\",\n              \"title\": \"do\"\n            },\n            {\n              \"_type\": \"laboris magna eu consequat\",\n              \"detail\": \"mollit cupidatat fugi\",\n              \"message\": \"ut est\",\n              \"title\": \"deserunt veniam adipisicing nisi ea\"\n            }\n          ]\n        }\n      ],\n      \"note\": \"<p>a free-form note</p>\",\n      \"amduca\": \"ONLABEL\"\n    }\n  ],\n  \"tags\": [\n    {\n      \"id\": 8,\n      \"color\": \"#516cc6\",\n      \"name\": \"fugiat \",\n      \"fixes\": [\n        {\n          \"_type\": \"est nisi cupidatat\",\n          \"detail\": \"sit eiusmod enim laboris exercitation\",\n          \"message\": \"in aute in\",\n          \"title\": \"laboris labore\"\n        },\n        {\n          \"_type\": \"enim\",\n          \"detail\": \"incididunt aliqua\",\n          \"message\": \"esse cillum commodo\",\n          \"title\": \"fugiat nostrud nulla \"\n        }\n      ]\n    },\n    {\n      \"id\": 8,\n      \"color\": \"#516cc6\",\n      \"name\": \"veniam culp\",\n      \"fixes\": [\n        {\n          \"_type\": \"exercitation Lorem minim\",\n          \"detail\": \"reprehenderit exercitation adipisicing eu\",\n          \"message\": \"culpa deserunt Lorem minim\",\n          \"title\": \"commodo\"\n        },\n        {\n          \"_type\": \"in laborum do\",\n          \"detail\": \"veniam ipsum amet cupidatat\",\n          \"message\": \"exercitation ut minim enim\",\n          \"title\": \"in officia Ut\"\n        }\n      ]\n    }\n  ],\n  \"diagnoses\": [\n    {\n      \"id\": 8,\n      \"name\": \"Pain/inflammation (musculoskeletal), treatment\"\n    },\n    {\n      \"id\": 8,\n      \"name\": \"Pain/inflammation (musculoskeletal), treatment\"\n    }\n  ],\n  \"eligibilities\": [\n    {\n      \"id\": 1,\n      \"name\": \"Beef Cattle\",\n      \"fdaSpecies\": [\n        \"cats\",\n        \"cats\"\n      ]\n    },\n    {\n      \"id\": 1,\n      \"name\": \"Beef Cattle\",\n      \"fdaSpecies\": [\n        \"other\",\n        \"cats\"\n      ]\n    }\n  ],\n  \"promises\": [\n    {\n      \"_type\": \"models.IdPromise\",\n      \"name\": \"ID promise\",\n      \"descrip\": \"You must give ID for each case enrolled\",\n      \"query\": \"What is the animal's name or number?\",\n      \"when\": \"PT0H\",\n      \"id\": 2345\n    },\n    {\n      \"_type\": \"models.IdPromise\",\n      \"name\": \"ID promise\",\n      \"descrip\": \"You must give ID for each case enrolled\",\n      \"query\": \"What is the animal's name or number?\",\n      \"when\": \"PT0H\",\n      \"id\": 2345\n    }\n  ],\n  \"metadata\": [\n    {\n      \"key\": \"popularity\",\n      \"value\": \"good 1.2\"\n    },\n    {\n      \"key\": \"popularity\",\n      \"value\": \"good 1.2\"\n    }\n  ]\n}",
+              "raw": "{\n  \"ownerId\": 1,\n  \"name\": \"wip\",\n  \"status\": \"PRESCRIBED\",\n  \"instructions\": {\n    \"considerations\": \"<p>This is just an example, not a real protocol.</p>\",\n    \"restrictions\": \"<p>Not for use on real animals.</p>\",\n    \"dothis\": \"<h3>Examinations to perform</h3>\",\n    \"recordthis\": \"<p>record every step in your notebook.</p>\",\n    \"success\": \"<p>All problems are gone</p>\",\n    \"failure\": \"<p>One or more problems remain</p>\",\n    \"references\": \"<a href=\\\"https://en.wikipedia.org/wiki/Rickrolling\\\">Wikipedia</a>\"\n  },\n  \"id\": 12345,\n  \"shortname\": \"wip\",\n  \"created\": \"2020-01-10T10:30:37Z\",\n  \"edited\": \"2020-02-10T10:30:37Z\",\n  \"vetNote\": \"consider prescribing protocol x instead\",\n  \"wtMeatHrs\": 22,\n  \"wtMilkHrs\": 5,\n  \"shareAll\": true,\n  \"shareClonable\": true,\n  \"caseDefinition\": {\n    \"requireId\": false,\n    \"requireMor\": false,\n    \"contraindications\": \"\",\n    \"medical\": \"if fever is present, consider Protocol 12345 instead.\",\n    \"economic\": \"\",\n    \"note\": \"\"\n  },\n  \"treatments\": [\n    {\n      \"product\": \"MiracleMed\",\n      \"route\": \"wip\",\n      \"dosage\": {\n        \"doseId\": 69015374\n      },\n      \"sequenceFunction\": {\n        \"_type\": \"models.SeqSingleDose\"\n      },\n      \"sizeFunction\": {\n        \"_type\": \"models.FixedDoseFunction\",\n        \"dose\": {\n          \"quantity\": {\n            \"dimension\": \"Mass\",\n            \"value\": 3,\n            \"symbol\": \"oz\"\n          }\n        }\n      },\n      \"id\": \"B-123\",\n      \"ownerId\": 0,\n      \"description\": \"3.0 ml per kg repeat\",\n      \"eligibilities\": [\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"chickens\",\n            \"unidentified\"\n          ]\n        },\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"unidentified\",\n            \"veal\"\n          ]\n        }\n      ],\n      \"_dose\": \"3.0 ml per kg repeat in 6 hours and again in 24 hours\",\n      \"wtMeatHrs\": 27424849,\n      \"wtMilkHrs\": -87261637,\n      \"nada\": \"wip\",\n      \"tags\": [\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"occaecat Duis \",\n          \"fixes\": [\n            {\n              \"_type\": \"Excepteur exercitation qui aliquip\",\n              \"detail\": \"aute ut nulla irure\",\n              \"message\": \"eiusmod laborum elit magna aute\",\n              \"title\": \"Duis esse exercitation\"\n            },\n            {\n              \"_type\": \"labore\",\n              \"detail\": \"officia velit magna ut\",\n              \"message\": \"eu sit elit dolore veniam\",\n              \"title\": \"irure minim\"\n            }\n          ]\n        },\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"irure inci\",\n          \"fixes\": [\n            {\n              \"_type\": \"aliqua ut dolor dolor occaecat\",\n              \"detail\": \"occaecat deserunt Lorem mollit labore\",\n              \"message\": \"sit ut voluptate\",\n              \"title\": \"ut occaecat irure\"\n            },\n            {\n              \"_type\": \"labore dolore reprehenderit quis\",\n              \"detail\": \"dolore dolor\",\n              \"message\": \"id dolor\",\n              \"title\": \"\"\n            }\n          ]\n        }\n      ],\n      \"note\": \"<p>a free-form note</p>\",\n      \"amduca\": \"OFFLABEL\"\n    },\n    {\n      \"product\": \"MiracleMed\",\n      \"route\": \"wip\",\n      \"dosage\": {\n        \"doseId\": 35781694\n      },\n      \"sequenceFunction\": {\n        \"_type\": \"models.SeqSingleDose\"\n      },\n      \"sizeFunction\": {\n        \"_type\": \"models.FixedDoseFunction\",\n        \"dose\": {\n          \"quantity\": {\n            \"dimension\": \"Mass\",\n            \"value\": 3,\n            \"symbol\": \"oz\"\n          }\n        }\n      },\n      \"id\": \"B-123\",\n      \"ownerId\": 0,\n      \"description\": \"3.0 ml per kg repeat\",\n      \"eligibilities\": [\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"bison\",\n            \"gamebirds\"\n          ]\n        },\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"salmon\",\n            \"emus\"\n          ]\n        }\n      ],\n      \"_dose\": \"3.0 ml per kg repeat in 6 hours and again in 24 hours\",\n      \"wtMeatHrs\": 37808317,\n      \"wtMilkHrs\": 69116765,\n      \"nada\": \"wip\",\n      \"tags\": [\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"proiden\",\n          \"fixes\": [\n            {\n              \"_type\": \"occaecat commodo tempor non\",\n              \"detail\": \"sunt cupidatat labore\",\n              \"message\": \"aliqua ut adipisicing\",\n              \"title\": \"magna dolore aute anim\"\n            },\n            {\n              \"_type\": \"dolor quis\",\n              \"detail\": \"voluptate cillum ut\",\n              \"message\": \"elit laboris\",\n              \"title\": \"adipisicing sun\"\n            }\n          ]\n        },\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"mol\",\n          \"fixes\": [\n            {\n              \"_type\": \"ad fugiat\",\n              \"detail\": \"fugiat\",\n              \"message\": \"ut quis ullamco\",\n              \"title\": \"Ut commodo aliqua\"\n            },\n            {\n              \"_type\": \"cillum tempor qui exercitation\",\n              \"detail\": \"sunt quis Excepteur\",\n              \"message\": \"aliquip fugiat\",\n              \"title\": \"ut in\"\n            }\n          ]\n        }\n      ],\n      \"note\": \"<p>a free-form note</p>\",\n      \"amduca\": \"UNIDENTIFIED\"\n    }\n  ],\n  \"tags\": [\n    {\n      \"id\": 8,\n      \"color\": \"#516cc6\",\n      \"name\": \"ex e\",\n      \"fixes\": [\n        {\n          \"_type\": \"irure dolor ad culpa\",\n          \"detail\": \"in officia mollit dolor\",\n          \"message\": \"sit\",\n          \"title\": \"laborum irure ut\"\n        },\n        {\n          \"_type\": \"laborum\",\n          \"detail\": \"commodo sunt tempor\",\n          \"message\": \"proident\",\n          \"title\": \"exercitation sit dolore nulla\"\n        }\n      ]\n    },\n    {\n      \"id\": 8,\n      \"color\": \"#516cc6\",\n      \"name\": \"dolor aute e\",\n      \"fixes\": [\n        {\n          \"_type\": \"dolore ut\",\n          \"detail\": \"cupidatat culpa fugiat dolor\",\n          \"message\": \"in\",\n          \"title\": \"velit minim qui\"\n        },\n        {\n          \"_type\": \"dolor\",\n          \"detail\": \"dolor nulla\",\n          \"message\": \"dolor ut aliqua sit\",\n          \"title\": \"culpa pariatur tempor est\"\n        }\n      ]\n    }\n  ],\n  \"diagnoses\": [\n    {\n      \"id\": 8,\n      \"name\": \"Pain/inflammation (musculoskeletal), treatment\"\n    },\n    {\n      \"id\": 8,\n      \"name\": \"Pain/inflammation (musculoskeletal), treatment\"\n    }\n  ],\n  \"eligibilities\": [\n    {\n      \"id\": 1,\n      \"name\": \"Beef Cattle\",\n      \"fdaSpecies\": [\n        \"llamas\",\n        \"llamas\"\n      ]\n    },\n    {\n      \"id\": 1,\n      \"name\": \"Beef Cattle\",\n      \"fdaSpecies\": [\n        \"sheep\",\n        \"horses\"\n      ]\n    }\n  ],\n  \"promises\": [\n    {\n      \"_type\": \"models.IdPromise\",\n      \"name\": \"ID promise\",\n      \"descrip\": \"You must give ID for each case enrolled\",\n      \"query\": \"What is the animal's name or number?\",\n      \"when\": \"PT0H\",\n      \"id\": 2345\n    },\n    {\n      \"_type\": \"models.IdPromise\",\n      \"name\": \"ID promise\",\n      \"descrip\": \"You must give ID for each case enrolled\",\n      \"query\": \"What is the animal's name or number?\",\n      \"when\": \"PT0H\",\n      \"id\": 2345\n    }\n  ],\n  \"metadata\": [\n    {\n      \"key\": \"popularity\",\n      \"value\": \"good 1.2\"\n    },\n    {\n      \"key\": \"popularity\",\n      \"value\": \"good 1.2\"\n    }\n  ]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1245,13 +1390,24 @@
             }
           },
           "response": [],
-          "event": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "2cea2fec-e403-4833-af87-b4458c09d90a",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ],
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           }
         },
         {
-          "id": "f37ef9fa-6e55-4753-ab01-b8b2df678468",
+          "id": "556befbc-7e62-46eb-a967-0148c3cb0e0a",
           "name": "This endpoint validates a protocol without saving it.",
           "request": {
             "name": "This endpoint validates a protocol without saving it.",
@@ -1284,7 +1440,7 @@
             "method": "PUT",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"ownerId\": 1,\n  \"name\": \"wip\",\n  \"status\": \"PRESCRIBED\",\n  \"instructions\": {\n    \"considerations\": \"<p>This is just an example, not a real protocol.</p>\",\n    \"restrictions\": \"<p>Not for use on real animals.</p>\",\n    \"dothis\": \"<h3>Examinations to perform</h3>\",\n    \"recordthis\": \"<p>record every step in your notebook.</p>\",\n    \"success\": \"<p>All problems are gone</p>\",\n    \"failure\": \"<p>One or more problems remain</p>\",\n    \"references\": \"<a href=\\\"https://en.wikipedia.org/wiki/Rickrolling\\\">Wikipedia</a>\"\n  },\n  \"id\": 12345,\n  \"shortname\": \"wip\",\n  \"created\": \"2020-01-10T10:30:37Z\",\n  \"edited\": \"2020-02-10T10:30:37Z\",\n  \"vetNote\": \"consider prescribing protocol x instead\",\n  \"wtMeatHrs\": 22,\n  \"wtMilkHrs\": 5,\n  \"shareAll\": true,\n  \"shareClonable\": true,\n  \"caseDefinition\": {\n    \"requireId\": false,\n    \"requireMor\": false,\n    \"contraindications\": \"\",\n    \"medical\": \"if fever is present, consider Protocol 12345 instead.\",\n    \"economic\": \"\",\n    \"note\": \"\"\n  },\n  \"treatments\": [\n    {\n      \"product\": \"MiracleMed\",\n      \"route\": \"wip\",\n      \"dosage\": {\n        \"doseId\": 17057176\n      },\n      \"sequenceFunction\": {\n        \"_type\": \"models.SeqSingleDose\"\n      },\n      \"sizeFunction\": {\n        \"_type\": \"models.FixedDoseFunction\",\n        \"dose\": {\n          \"quantity\": {\n            \"dimension\": \"Mass\",\n            \"value\": 3,\n            \"symbol\": \"oz\"\n          }\n        }\n      },\n      \"id\": \"B-123\",\n      \"ownerId\": 0,\n      \"description\": \"3.0 ml per kg repeat\",\n      \"eligibilities\": [\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"dogs\",\n            \"unidentified\"\n          ]\n        },\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"dogs\",\n            \"cats\"\n          ]\n        }\n      ],\n      \"_dose\": \"3.0 ml per kg repeat in 6 hours and again in 24 hours\",\n      \"wtMeatHrs\": -37485132,\n      \"wtMilkHrs\": -10351063,\n      \"nada\": \"wip\",\n      \"tags\": [\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"Lorem mollit\",\n          \"fixes\": [\n            {\n              \"_type\": \"irure pariatur ullamco est\",\n              \"detail\": \"commod\",\n              \"message\": \"in\",\n              \"title\": \"nostrud dolor aliquip\"\n            },\n            {\n              \"_type\": \"non et\",\n              \"detail\": \"velit in consectetur\",\n              \"message\": \"magna\",\n              \"title\": \"minim\"\n            }\n          ]\n        },\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"p\",\n          \"fixes\": [\n            {\n              \"_type\": \"sint \",\n              \"detail\": \"elit voluptate sed\",\n              \"message\": \"Ut pariatur\",\n              \"title\": \"veniam Excepteur adipisicing\"\n            },\n            {\n              \"_type\": \"exercitation in in\",\n              \"detail\": \"laborum nisi deserunt ex\",\n              \"message\": \"labore\",\n              \"title\": \"ut aliquip\"\n            }\n          ]\n        }\n      ],\n      \"note\": \"<p>a free-form note</p>\",\n      \"amduca\": \"OFFLABEL\"\n    },\n    {\n      \"product\": \"MiracleMed\",\n      \"route\": \"wip\",\n      \"dosage\": {\n        \"doseId\": -88374065\n      },\n      \"sequenceFunction\": {\n        \"_type\": \"models.SeqSingleDose\"\n      },\n      \"sizeFunction\": {\n        \"_type\": \"models.FixedDoseFunction\",\n        \"dose\": {\n          \"quantity\": {\n            \"dimension\": \"Mass\",\n            \"value\": 3,\n            \"symbol\": \"oz\"\n          }\n        }\n      },\n      \"id\": \"B-123\",\n      \"ownerId\": 0,\n      \"description\": \"3.0 ml per kg repeat\",\n      \"eligibilities\": [\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"fish\",\n            \"llamas\"\n          ]\n        },\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"horses\",\n            \"llamas\"\n          ]\n        }\n      ],\n      \"_dose\": \"3.0 ml per kg repeat in 6 hours and again in 24 hours\",\n      \"wtMeatHrs\": 88893120,\n      \"wtMilkHrs\": 64593421,\n      \"nada\": \"wip\",\n      \"tags\": [\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"aliqua a\",\n          \"fixes\": [\n            {\n              \"_type\": \"fugiat eu\",\n              \"detail\": \"sed elit dolor ipsum in\",\n              \"message\": \"culpa nulla\",\n              \"title\": \"a\"\n            },\n            {\n              \"_type\": \"nisi\",\n              \"detail\": \"exerci\",\n              \"message\": \"Excepteur sunt adipisicing\",\n              \"title\": \"nulla cillum nisi\"\n            }\n          ]\n        },\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"volupt\",\n          \"fixes\": [\n            {\n              \"_type\": \"ullamco\",\n              \"detail\": \"ex dolor\",\n              \"message\": \"Duis in pariatur ipsum\",\n              \"title\": \"do\"\n            },\n            {\n              \"_type\": \"laboris magna eu consequat\",\n              \"detail\": \"mollit cupidatat fugi\",\n              \"message\": \"ut est\",\n              \"title\": \"deserunt veniam adipisicing nisi ea\"\n            }\n          ]\n        }\n      ],\n      \"note\": \"<p>a free-form note</p>\",\n      \"amduca\": \"ONLABEL\"\n    }\n  ],\n  \"tags\": [\n    {\n      \"id\": 8,\n      \"color\": \"#516cc6\",\n      \"name\": \"fugiat \",\n      \"fixes\": [\n        {\n          \"_type\": \"est nisi cupidatat\",\n          \"detail\": \"sit eiusmod enim laboris exercitation\",\n          \"message\": \"in aute in\",\n          \"title\": \"laboris labore\"\n        },\n        {\n          \"_type\": \"enim\",\n          \"detail\": \"incididunt aliqua\",\n          \"message\": \"esse cillum commodo\",\n          \"title\": \"fugiat nostrud nulla \"\n        }\n      ]\n    },\n    {\n      \"id\": 8,\n      \"color\": \"#516cc6\",\n      \"name\": \"veniam culp\",\n      \"fixes\": [\n        {\n          \"_type\": \"exercitation Lorem minim\",\n          \"detail\": \"reprehenderit exercitation adipisicing eu\",\n          \"message\": \"culpa deserunt Lorem minim\",\n          \"title\": \"commodo\"\n        },\n        {\n          \"_type\": \"in laborum do\",\n          \"detail\": \"veniam ipsum amet cupidatat\",\n          \"message\": \"exercitation ut minim enim\",\n          \"title\": \"in officia Ut\"\n        }\n      ]\n    }\n  ],\n  \"diagnoses\": [\n    {\n      \"id\": 8,\n      \"name\": \"Pain/inflammation (musculoskeletal), treatment\"\n    },\n    {\n      \"id\": 8,\n      \"name\": \"Pain/inflammation (musculoskeletal), treatment\"\n    }\n  ],\n  \"eligibilities\": [\n    {\n      \"id\": 1,\n      \"name\": \"Beef Cattle\",\n      \"fdaSpecies\": [\n        \"cats\",\n        \"cats\"\n      ]\n    },\n    {\n      \"id\": 1,\n      \"name\": \"Beef Cattle\",\n      \"fdaSpecies\": [\n        \"other\",\n        \"cats\"\n      ]\n    }\n  ],\n  \"promises\": [\n    {\n      \"_type\": \"models.IdPromise\",\n      \"name\": \"ID promise\",\n      \"descrip\": \"You must give ID for each case enrolled\",\n      \"query\": \"What is the animal's name or number?\",\n      \"when\": \"PT0H\",\n      \"id\": 2345\n    },\n    {\n      \"_type\": \"models.IdPromise\",\n      \"name\": \"ID promise\",\n      \"descrip\": \"You must give ID for each case enrolled\",\n      \"query\": \"What is the animal's name or number?\",\n      \"when\": \"PT0H\",\n      \"id\": 2345\n    }\n  ],\n  \"metadata\": [\n    {\n      \"key\": \"popularity\",\n      \"value\": \"good 1.2\"\n    },\n    {\n      \"key\": \"popularity\",\n      \"value\": \"good 1.2\"\n    }\n  ]\n}",
+              "raw": "{\n  \"ownerId\": 1,\n  \"name\": \"wip\",\n  \"status\": \"PRESCRIBED\",\n  \"instructions\": {\n    \"considerations\": \"<p>This is just an example, not a real protocol.</p>\",\n    \"restrictions\": \"<p>Not for use on real animals.</p>\",\n    \"dothis\": \"<h3>Examinations to perform</h3>\",\n    \"recordthis\": \"<p>record every step in your notebook.</p>\",\n    \"success\": \"<p>All problems are gone</p>\",\n    \"failure\": \"<p>One or more problems remain</p>\",\n    \"references\": \"<a href=\\\"https://en.wikipedia.org/wiki/Rickrolling\\\">Wikipedia</a>\"\n  },\n  \"id\": 12345,\n  \"shortname\": \"wip\",\n  \"created\": \"2020-01-10T10:30:37Z\",\n  \"edited\": \"2020-02-10T10:30:37Z\",\n  \"vetNote\": \"consider prescribing protocol x instead\",\n  \"wtMeatHrs\": 22,\n  \"wtMilkHrs\": 5,\n  \"shareAll\": true,\n  \"shareClonable\": true,\n  \"caseDefinition\": {\n    \"requireId\": false,\n    \"requireMor\": false,\n    \"contraindications\": \"\",\n    \"medical\": \"if fever is present, consider Protocol 12345 instead.\",\n    \"economic\": \"\",\n    \"note\": \"\"\n  },\n  \"treatments\": [\n    {\n      \"product\": \"MiracleMed\",\n      \"route\": \"wip\",\n      \"dosage\": {\n        \"doseId\": 69015374\n      },\n      \"sequenceFunction\": {\n        \"_type\": \"models.SeqSingleDose\"\n      },\n      \"sizeFunction\": {\n        \"_type\": \"models.FixedDoseFunction\",\n        \"dose\": {\n          \"quantity\": {\n            \"dimension\": \"Mass\",\n            \"value\": 3,\n            \"symbol\": \"oz\"\n          }\n        }\n      },\n      \"id\": \"B-123\",\n      \"ownerId\": 0,\n      \"description\": \"3.0 ml per kg repeat\",\n      \"eligibilities\": [\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"chickens\",\n            \"unidentified\"\n          ]\n        },\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"unidentified\",\n            \"veal\"\n          ]\n        }\n      ],\n      \"_dose\": \"3.0 ml per kg repeat in 6 hours and again in 24 hours\",\n      \"wtMeatHrs\": 27424849,\n      \"wtMilkHrs\": -87261637,\n      \"nada\": \"wip\",\n      \"tags\": [\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"occaecat Duis \",\n          \"fixes\": [\n            {\n              \"_type\": \"Excepteur exercitation qui aliquip\",\n              \"detail\": \"aute ut nulla irure\",\n              \"message\": \"eiusmod laborum elit magna aute\",\n              \"title\": \"Duis esse exercitation\"\n            },\n            {\n              \"_type\": \"labore\",\n              \"detail\": \"officia velit magna ut\",\n              \"message\": \"eu sit elit dolore veniam\",\n              \"title\": \"irure minim\"\n            }\n          ]\n        },\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"irure inci\",\n          \"fixes\": [\n            {\n              \"_type\": \"aliqua ut dolor dolor occaecat\",\n              \"detail\": \"occaecat deserunt Lorem mollit labore\",\n              \"message\": \"sit ut voluptate\",\n              \"title\": \"ut occaecat irure\"\n            },\n            {\n              \"_type\": \"labore dolore reprehenderit quis\",\n              \"detail\": \"dolore dolor\",\n              \"message\": \"id dolor\",\n              \"title\": \"\"\n            }\n          ]\n        }\n      ],\n      \"note\": \"<p>a free-form note</p>\",\n      \"amduca\": \"OFFLABEL\"\n    },\n    {\n      \"product\": \"MiracleMed\",\n      \"route\": \"wip\",\n      \"dosage\": {\n        \"doseId\": 35781694\n      },\n      \"sequenceFunction\": {\n        \"_type\": \"models.SeqSingleDose\"\n      },\n      \"sizeFunction\": {\n        \"_type\": \"models.FixedDoseFunction\",\n        \"dose\": {\n          \"quantity\": {\n            \"dimension\": \"Mass\",\n            \"value\": 3,\n            \"symbol\": \"oz\"\n          }\n        }\n      },\n      \"id\": \"B-123\",\n      \"ownerId\": 0,\n      \"description\": \"3.0 ml per kg repeat\",\n      \"eligibilities\": [\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"bison\",\n            \"gamebirds\"\n          ]\n        },\n        {\n          \"id\": 1,\n          \"name\": \"Beef Cattle\",\n          \"fdaSpecies\": [\n            \"salmon\",\n            \"emus\"\n          ]\n        }\n      ],\n      \"_dose\": \"3.0 ml per kg repeat in 6 hours and again in 24 hours\",\n      \"wtMeatHrs\": 37808317,\n      \"wtMilkHrs\": 69116765,\n      \"nada\": \"wip\",\n      \"tags\": [\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"proiden\",\n          \"fixes\": [\n            {\n              \"_type\": \"occaecat commodo tempor non\",\n              \"detail\": \"sunt cupidatat labore\",\n              \"message\": \"aliqua ut adipisicing\",\n              \"title\": \"magna dolore aute anim\"\n            },\n            {\n              \"_type\": \"dolor quis\",\n              \"detail\": \"voluptate cillum ut\",\n              \"message\": \"elit laboris\",\n              \"title\": \"adipisicing sun\"\n            }\n          ]\n        },\n        {\n          \"id\": 8,\n          \"color\": \"#516cc6\",\n          \"name\": \"mol\",\n          \"fixes\": [\n            {\n              \"_type\": \"ad fugiat\",\n              \"detail\": \"fugiat\",\n              \"message\": \"ut quis ullamco\",\n              \"title\": \"Ut commodo aliqua\"\n            },\n            {\n              \"_type\": \"cillum tempor qui exercitation\",\n              \"detail\": \"sunt quis Excepteur\",\n              \"message\": \"aliquip fugiat\",\n              \"title\": \"ut in\"\n            }\n          ]\n        }\n      ],\n      \"note\": \"<p>a free-form note</p>\",\n      \"amduca\": \"UNIDENTIFIED\"\n    }\n  ],\n  \"tags\": [\n    {\n      \"id\": 8,\n      \"color\": \"#516cc6\",\n      \"name\": \"ex e\",\n      \"fixes\": [\n        {\n          \"_type\": \"irure dolor ad culpa\",\n          \"detail\": \"in officia mollit dolor\",\n          \"message\": \"sit\",\n          \"title\": \"laborum irure ut\"\n        },\n        {\n          \"_type\": \"laborum\",\n          \"detail\": \"commodo sunt tempor\",\n          \"message\": \"proident\",\n          \"title\": \"exercitation sit dolore nulla\"\n        }\n      ]\n    },\n    {\n      \"id\": 8,\n      \"color\": \"#516cc6\",\n      \"name\": \"dolor aute e\",\n      \"fixes\": [\n        {\n          \"_type\": \"dolore ut\",\n          \"detail\": \"cupidatat culpa fugiat dolor\",\n          \"message\": \"in\",\n          \"title\": \"velit minim qui\"\n        },\n        {\n          \"_type\": \"dolor\",\n          \"detail\": \"dolor nulla\",\n          \"message\": \"dolor ut aliqua sit\",\n          \"title\": \"culpa pariatur tempor est\"\n        }\n      ]\n    }\n  ],\n  \"diagnoses\": [\n    {\n      \"id\": 8,\n      \"name\": \"Pain/inflammation (musculoskeletal), treatment\"\n    },\n    {\n      \"id\": 8,\n      \"name\": \"Pain/inflammation (musculoskeletal), treatment\"\n    }\n  ],\n  \"eligibilities\": [\n    {\n      \"id\": 1,\n      \"name\": \"Beef Cattle\",\n      \"fdaSpecies\": [\n        \"llamas\",\n        \"llamas\"\n      ]\n    },\n    {\n      \"id\": 1,\n      \"name\": \"Beef Cattle\",\n      \"fdaSpecies\": [\n        \"sheep\",\n        \"horses\"\n      ]\n    }\n  ],\n  \"promises\": [\n    {\n      \"_type\": \"models.IdPromise\",\n      \"name\": \"ID promise\",\n      \"descrip\": \"You must give ID for each case enrolled\",\n      \"query\": \"What is the animal's name or number?\",\n      \"when\": \"PT0H\",\n      \"id\": 2345\n    },\n    {\n      \"_type\": \"models.IdPromise\",\n      \"name\": \"ID promise\",\n      \"descrip\": \"You must give ID for each case enrolled\",\n      \"query\": \"What is the animal's name or number?\",\n      \"when\": \"PT0H\",\n      \"id\": 2345\n    }\n  ],\n  \"metadata\": [\n    {\n      \"key\": \"popularity\",\n      \"value\": \"good 1.2\"\n    },\n    {\n      \"key\": \"popularity\",\n      \"value\": \"good 1.2\"\n    }\n  ]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1297,9 +1453,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "34a0765f-d5dc-4824-b195-9ae14700b74a",
+                "id": "02d00a77-8e08-4209-b8d1-5ca70343427e",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[PUT]::/api/protocols/validate - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -1310,7 +1467,7 @@
           }
         },
         {
-          "id": "63057a85-3167-4e5f-a506-147987f362e0",
+          "id": "f83f6490-9513-424f-be7a-42b5d3f6e582",
           "name": "list of all eligibilities",
           "request": {
             "name": "list of all eligibilities",
@@ -1343,9 +1500,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "17bdfbac-332f-4dbf-af32-307b887d16e6",
+                "id": "6d72a2ba-9db1-49c9-93f6-87519cfff321",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[GET]::/api/protocols/eligibilities - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -1353,7 +1511,7 @@
           ]
         },
         {
-          "id": "07cc880a-b9a2-45ae-8cfa-7dec65565bcd",
+          "id": "b5e9e358-1133-4811-bc54-c8a61f9ca8b3",
           "name": "list of fda species",
           "request": {
             "name": "list of fda species",
@@ -1387,9 +1545,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "b5203d10-d77f-493c-a17e-71cb0bbbd9d7",
+                "id": "59f761b6-ae6d-47df-9903-beb7c99bd276",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[GET]::/api/protocols/eligibilities/fdaspecies - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -1397,7 +1556,7 @@
           ]
         },
         {
-          "id": "310ffaec-628e-42fa-a8e4-2f9e7f230e87",
+          "id": "242b2596-0c4f-408d-b033-b8a1eccac7e5",
           "name": "list of all diagnoses",
           "request": {
             "name": "list of all diagnoses",
@@ -1430,9 +1589,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "5ae94963-4911-4a6a-82da-89866ae40ce6",
+                "id": "4834b2c7-7e67-421e-9b4e-fa1d12ffbd39",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[GET]::/api/protocols/diagnoses - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -1440,7 +1600,7 @@
           ]
         },
         {
-          "id": "fa37a10f-a796-4a57-9409-86d9d50d60b4",
+          "id": "b2794b7c-170c-49fa-8a5f-eae44f614054",
           "name": "list of library protocols",
           "request": {
             "name": "list of library protocols",
@@ -1473,9 +1633,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "33fbb63b-34e8-4f63-be17-8dbaaab37e20",
+                "id": "72de433e-22c0-400b-8b9a-4d8510b73131",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[GET]::/api/protocols/libs - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -1483,7 +1644,7 @@
           ]
         },
         {
-          "id": "b4657754-f6e1-4296-9fae-113f6e2af61b",
+          "id": "0e136e47-deb5-4435-8cd3-aa6cc2ea12bb",
           "name": "list of all diagnoses",
           "request": {
             "name": "list of all diagnoses",
@@ -1516,9 +1677,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "fbeb3d4f-1205-47e1-af95-4397a908ed72",
+                "id": "79bcb625-f8bd-4451-8154-665b033999e0",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[GET]::/api/protocols/exclusivestubs - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -1526,7 +1688,7 @@
           ]
         },
         {
-          "id": "660e4fd9-8e6c-4988-9e81-daef5bb3f3e3",
+          "id": "cc2da5d6-d071-4454-86d3-4e0e96f45424",
           "name": "validate a structured Dosage",
           "request": {
             "name": "validate a structured Dosage",
@@ -1572,9 +1734,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "86a6d621-051a-4670-be60-6c1b7bf505d3",
+                "id": "f94be186-4d3e-45dc-b30d-33337fe86fd6",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[POST]::/api/protocols/dosages - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -1585,7 +1748,7 @@
           }
         },
         {
-          "id": "1ef1ece0-4cde-4da2-a566-824f024cdbd6",
+          "id": "a57ca98e-37b7-4bf6-a495-94c1ec52aaf8",
           "name": "list of library pxes",
           "request": {
             "name": "list of library pxes",
@@ -1618,9 +1781,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "17159f67-e358-43ca-a9b4-e2cdb3cefff6",
+                "id": "b0c0fea7-a6b0-49ff-8079-e4498a270def",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[GET]::/api/protocols/libstubs - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -1628,7 +1792,7 @@
           ]
         },
         {
-          "id": "da7378d8-b88b-4cc4-9df7-d32109ae8327",
+          "id": "2425bd08-dfea-409f-bc4f-23d6bf86c9ea",
           "name": "retrieve protocol by ID",
           "request": {
             "name": "retrieve protocol by ID",
@@ -1672,9 +1836,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "4e2d49e2-0941-4033-99cf-e0622282d988",
+                "id": "9cfe7db3-833e-40e0-9594-234a309a0048",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[GET]::/api/protocols/:id - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -1682,7 +1847,7 @@
           ]
         },
         {
-          "id": "15a24a3a-cb92-4a79-a8b4-fffc2ce22132",
+          "id": "9fa6dede-8693-445d-a0fa-c05c7382b892",
           "name": "delete protocol",
           "request": {
             "name": "delete protocol",
@@ -1708,7 +1873,7 @@
                     "type": "text/plain"
                   },
                   "type": "any",
-                  "value": "-96367244",
+                  "value": "-41001206",
                   "key": "id"
                 }
               ]
@@ -1726,9 +1891,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "076810fa-406c-44a7-94ce-476ff7f9521f",
+                "id": "a208c050-25f1-4902-b70a-e48d28b2a1ae",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[DELETE]::/api/protocols/:id - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -1736,7 +1902,7 @@
           ]
         },
         {
-          "id": "4217082a-19c9-43a9-bab3-94cb177a9a97",
+          "id": "0d4d36d6-3a6f-41c2-b881-506c1a29dadd",
           "name": "list of all diagnoses",
           "request": {
             "name": "list of all diagnoses",
@@ -1769,9 +1935,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "5ffc35fa-1835-453d-a0bf-f1cad08d8bdc",
+                "id": "44c87c6c-3fc2-4651-bd83-cf02d0cdda1c",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[GET]::/api/protocols/prescriptions - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -1779,7 +1946,7 @@
           ]
         },
         {
-          "id": "1462be00-ce12-4d72-a25e-521d7651b729",
+          "id": "2800b249-505d-4f4f-b361-83c3ea8142f3",
           "name": "list of all diagnoses",
           "request": {
             "name": "list of all diagnoses",
@@ -1806,7 +1973,7 @@
                     "type": "text/plain"
                   },
                   "type": "any",
-                  "value": "-96367244",
+                  "value": "-41001206",
                   "key": "id"
                 }
               ]
@@ -1824,9 +1991,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "12c04355-8ce5-4a91-bc26-f29df1919f01",
+                "id": "3702b9d5-25a5-4663-ab7c-6463de5e8fdc",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[GET]::/api/protocols/:id/prescriptions - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -1834,7 +2002,7 @@
           ]
         },
         {
-          "id": "925d0c29-ea1e-4d0d-a88a-93a594195295",
+          "id": "37b3d47e-c776-457d-8d0b-83c72e5d4d3b",
           "name": "retrieve prescription by ID",
           "request": {
             "name": "retrieve prescription by ID",
@@ -1879,9 +2047,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "21a83c1a-0050-4f88-85a0-0c095aea5c5d",
+                "id": "bc4ec0d6-5de8-472e-b5f4-a0c8efffc34a",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[GET]::/api/protocols/prescriptions/:id - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -1889,7 +2058,7 @@
           ]
         },
         {
-          "id": "3fc2795a-8700-4b01-909c-bf7374d2e870",
+          "id": "8f4a2927-c041-48bd-9d65-e4f15837721a",
           "name": "list of all labelclaims",
           "request": {
             "name": "list of all labelclaims",
@@ -1917,10 +2086,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "30aec30e-52a9-40af-b060-d34676ce8772",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "a46e6843-3116-4b67-962b-574c59effd2b",
+          "id": "24d0eefd-5a5e-476f-86af-fb732c3ba595",
           "name": "labelclaim",
           "request": {
             "name": "labelclaim",
@@ -1960,10 +2140,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "13775fe1-31aa-4346-9c65-c40dba72e78d",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "980566d0-2278-4c65-a4cb-3df0b5b4e253",
+          "id": "9c69fd70-2e12-4c28-b6c5-d86486019b14",
           "name": "package insert",
           "request": {
             "name": "package insert",
@@ -2004,10 +2195,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "19624060-b82c-4162-a497-bd2eadce15f7",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "e68247db-1f31-4828-9938-1acfc5fb613f",
+          "id": "2ad5b6fc-6959-4b25-8590-19a9a1362d35",
           "name": "get detail of a Greenbook Drug as a link",
           "request": {
             "name": "get detail of a Greenbook Drug as a link",
@@ -2047,10 +2249,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "18bb371c-e318-4743-af7f-8a95dadb429f",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "92581da7-ef3e-4dd9-87fd-f4cd124caf44",
+          "id": "e1db328c-aa63-4be6-8f36-8fa244b748be",
           "name": "get detail of a Greenbook Drug as a link",
           "request": {
             "name": "get detail of a Greenbook Drug as a link",
@@ -2101,10 +2314,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "f2c774ad-dee1-4bfb-8c88-bf6fe05d73c3",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "199c0196-3c9f-4fa3-b5d4-63ec66d1ccce",
+          "id": "14d7e017-f574-4aa1-a029-c8ce80c2d81d",
           "name": "retrieve prescription by ID",
           "request": {
             "name": "retrieve prescription by ID",
@@ -2145,10 +2369,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "e09dbb69-f92b-40ca-8986-f0c7e49703cb",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "b0e1edc7-930d-493c-a669-6293be525e2f",
+          "id": "cdb759a2-f61c-465f-a6d1-d30b16d4d509",
           "name": "recall or decline a prescription",
           "request": {
             "name": "recall or decline a prescription",
@@ -2175,7 +2410,7 @@
                     "type": "text/plain"
                   },
                   "type": "any",
-                  "value": "incididunt",
+                  "value": "officia Lorem",
                   "key": "key"
                 }
               ]
@@ -2189,10 +2424,21 @@
             "method": "DELETE"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "f2331959-ce73-4e0a-94ab-8b05d1d4ba98",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "dd6c314f-ea4b-4e16-8a5c-1c4b48810bd5",
+          "id": "1048cd70-9758-45e3-979c-64825b259158",
           "name": "enroll case",
           "request": {
             "name": "enroll case",
@@ -2233,13 +2479,24 @@
             }
           },
           "response": [],
-          "event": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "be8f5e38-03df-47b8-814a-c83ae4ed3486",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ],
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           }
         },
         {
-          "id": "7799b46d-ece3-430d-87f8-eb30b2913245",
+          "id": "c233f27d-8b1f-49e1-a6bd-04faca02a8f0",
           "name": "list of cases",
           "request": {
             "name": "list of cases",
@@ -2267,10 +2524,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "f1021718-484c-43c2-b8c2-5fbe89899284",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "efda3013-d828-442c-b4e4-704c7cf5ee59",
+          "id": "0fa7457d-ec13-4c03-8c5f-c79aa786e9be",
           "name": "list  of cases for a rx",
           "request": {
             "name": "list  of cases for a rx",
@@ -2311,10 +2579,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "17a3357b-e702-4f2b-9313-f0ea4be09a00",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "0abf4f48-40c8-4a13-bc0e-2e8183e4d0e0",
+          "id": "28d039d6-ec7e-4494-8b61-19f546a42de3",
           "name": "execute task",
           "request": {
             "name": "execute task",
@@ -2347,7 +2626,7 @@
             "method": "POST",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"_type\": \"offic\",\n  \"animalId\": \"this\",\n  \"caseId\": 123,\n  \"detail\": \"ullamco \",\n  \"doAt\": \"2020-01-10T10:30:37Z\",\n  \"id\": 123,\n  \"morId\": 123,\n  \"status\": \"REQUIRED\",\n  \"vorId\": 123,\n  \"executor\": 123\n}",
+              "raw": "{\n  \"_type\": \"voluptate cillum officia\",\n  \"animalId\": \"this\",\n  \"caseId\": 123,\n  \"detail\": \"tempor\",\n  \"doAt\": \"2020-01-10T10:30:37Z\",\n  \"id\": 123,\n  \"morId\": 123,\n  \"status\": \"REQUIRED\",\n  \"vorId\": 123,\n  \"executor\": 123\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -2356,13 +2635,24 @@
             }
           },
           "response": [],
-          "event": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "28f9c9a8-4836-4d4f-ad7c-ee5cf738f566",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ],
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           }
         },
         {
-          "id": "ff5696bf-5474-4a9b-8984-ca7011a0804b",
+          "id": "01923b39-54c6-400b-9c22-11ed10cbe7dd",
           "name": "list of cases by Rx",
           "request": {
             "name": "list of cases by Rx",
@@ -2391,10 +2681,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "5fba9d7f-f51c-41bf-a81a-241f8d4f277b",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "15b99c2d-b2fa-4087-b642-e5f68c8626e9",
+          "id": "5a291398-9874-44ac-b812-788c0c3fafbd",
           "name": "get Greenbook Drug summary by NDC pattern",
           "request": {
             "name": "get Greenbook Drug summary by NDC pattern",
@@ -2419,7 +2720,7 @@
                     "type": "text/plain"
                   },
                   "key": "ndcProd",
-                  "value": "-96367244"
+                  "value": "-41001206"
                 },
                 {
                   "disabled": false,
@@ -2428,7 +2729,7 @@
                     "type": "text/plain"
                   },
                   "key": "ndcLabeler",
-                  "value": "-96367244"
+                  "value": "-41001206"
                 },
                 {
                   "disabled": false,
@@ -2437,7 +2738,7 @@
                     "type": "text/plain"
                   },
                   "key": "ndcBrand",
-                  "value": "-96367244"
+                  "value": "-41001206"
                 }
               ],
               "variable": []
@@ -2451,10 +2752,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "c3d1ff74-e889-4f93-ab13-c5cdfc17b91d",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "d4a46d75-0360-4e5b-8c6e-2844f7ccf780",
+          "id": "03eab1a1-1977-4aa5-8766-3f51345e8313",
           "name": "get summary listing of a Greenbook Drug",
           "request": {
             "name": "get summary listing of a Greenbook Drug",
@@ -2495,10 +2807,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "08f11adf-abc9-4cf3-a0c7-82ca8adeb9e5",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "58d1d048-2c74-4e3b-9f58-382ac3e45d2f",
+          "id": "5d8c9102-a909-4aaa-9436-ea85631db6a6",
           "name": "get SPL",
           "request": {
             "name": "get SPL",
@@ -2509,24 +2832,47 @@
               "path": [
                 "api",
                 "admin",
-                "spl{{ndc}}"
+                "spl",
+                ":ndc"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
               "query": [],
-              "variable": []
+              "variable": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) unique 10-digit, 3-segment number. labelerCode-productCode-packageCode",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "0061-4321-03",
+                  "key": "ndc"
+                }
+              ]
             },
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "9b609787-7985-47cf-93c8-e9998219a375",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         }
       ],
       "event": []
     },
     {
-      "id": "64d19eeb-8fa2-42b7-a218-61adda039d0f",
+      "id": "991e5e79-bee9-408f-af56-203124e31e22",
       "name": "MOR",
       "description": {
         "content": "available to farm managers.",
@@ -2534,7 +2880,7 @@
       },
       "item": [
         {
-          "id": "3aee89bc-8026-476a-94d0-358a6250fef7",
+          "id": "b5a6d551-0552-4c82-bf77-30f6a4018c38",
           "name": "load Farm App",
           "request": {
             "name": "load Farm App",
@@ -2561,10 +2907,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0488ae59-b6aa-4a71-97c5-60ac92d02b96",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "64791dcd-ffbb-4fe0-8352-ff2263ea0764",
+          "id": "4d4a4726-b4c1-4e66-aa92-892b9bcd3ebd",
           "name": "withholds",
           "request": {
             "name": "withholds",
@@ -2593,10 +2950,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "bec2f144-d3eb-4e6b-b10f-375e853fba00",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "58aa6114-885f-4ceb-ae07-7b3cf4c7366a",
+          "id": "087bc27c-7097-464c-8350-d884e7ca9aba",
           "name": "recall or decline a prescription",
           "request": {
             "name": "recall or decline a prescription",
@@ -2623,7 +2991,7 @@
                     "type": "text/plain"
                   },
                   "type": "any",
-                  "value": "incididunt",
+                  "value": "officia Lorem",
                   "key": "key"
                 }
               ]
@@ -2637,10 +3005,21 @@
             "method": "DELETE"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "acc21845-d7fb-464b-82e3-5b2046b63e8f",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "05259935-db7c-4e9e-bff2-1f4f72d7770f",
+          "id": "941beaaa-31bd-4712-833d-b20dd9852592",
           "name": "enroll case",
           "request": {
             "name": "enroll case",
@@ -2681,13 +3060,24 @@
             }
           },
           "response": [],
-          "event": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "ed8d4fe9-e14b-49b4-b421-63e2ce690245",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ],
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           }
         },
         {
-          "id": "d0088fdc-06dc-4c0c-8de7-ea06335809d1",
+          "id": "4d31c717-893b-4bbc-914c-637d1da13101",
           "name": "execute task",
           "request": {
             "name": "execute task",
@@ -2720,7 +3110,7 @@
             "method": "POST",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"_type\": \"offic\",\n  \"animalId\": \"this\",\n  \"caseId\": 123,\n  \"detail\": \"ullamco \",\n  \"doAt\": \"2020-01-10T10:30:37Z\",\n  \"id\": 123,\n  \"morId\": 123,\n  \"status\": \"REQUIRED\",\n  \"vorId\": 123,\n  \"executor\": 123\n}",
+              "raw": "{\n  \"_type\": \"voluptate cillum officia\",\n  \"animalId\": \"this\",\n  \"caseId\": 123,\n  \"detail\": \"tempor\",\n  \"doAt\": \"2020-01-10T10:30:37Z\",\n  \"id\": 123,\n  \"morId\": 123,\n  \"status\": \"REQUIRED\",\n  \"vorId\": 123,\n  \"executor\": 123\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -2729,13 +3119,24 @@
             }
           },
           "response": [],
-          "event": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "5af3bbad-2e4c-434e-8278-f2283754bc56",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ],
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           }
         },
         {
-          "id": "7d2e5672-ba6c-4936-9086-fdaffa501c8a",
+          "id": "abe30596-febd-4dce-b566-73404e5514fe",
           "name": "get SPL",
           "request": {
             "name": "get SPL",
@@ -2746,24 +3147,47 @@
               "path": [
                 "api",
                 "admin",
-                "spl{{ndc}}"
+                "spl",
+                ":ndc"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
               "query": [],
-              "variable": []
+              "variable": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) unique 10-digit, 3-segment number. labelerCode-productCode-packageCode",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "0061-4321-03",
+                  "key": "ndc"
+                }
+              ]
             },
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "20195fea-a120-4413-94ac-f3e3dcee5e6d",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         }
       ],
       "event": []
     },
     {
-      "id": "baf997ba-0f4e-4b7d-9d12-e20804206966",
+      "id": "c321f40f-017b-46c5-83fa-065c8fcdf9d1",
       "name": "ALL_USERS",
       "description": {
         "content": "available to all users.",
@@ -2771,7 +3195,7 @@
       },
       "item": [
         {
-          "id": "0cdf7619-d649-4142-9054-5e40a05f98fe",
+          "id": "40c9f846-e1ae-4137-a174-693d783f6f97",
           "name": "update user data",
           "request": {
             "name": "update user data",
@@ -2812,13 +3236,24 @@
             }
           },
           "response": [],
-          "event": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "99ef386c-2477-48de-b6ae-58d948b8916b",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ],
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           }
         },
         {
-          "id": "f7cfeac7-e017-4e70-bab7-2f11dca3e7f4",
+          "id": "1a3f7986-c0db-484f-ae11-110f36c34a8b",
           "name": "user login",
           "request": {
             "name": "user login",
@@ -2860,13 +3295,24 @@
             }
           },
           "response": [],
-          "event": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "6747da07-7e85-4d78-bc31-88e419bf07cd",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ],
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           }
         },
         {
-          "id": "a1bb2ed4-7488-4fc6-b021-757456934403",
+          "id": "67cda688-b1b1-4fbd-b969-01225e2abaa2",
           "name": "renew token",
           "request": {
             "name": "renew token",
@@ -2895,10 +3341,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "dd6a1ddd-f909-47bb-84ca-4dc0915d3e8a",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "5826a3b9-c28e-4c4b-839e-9adab24c907a",
+          "id": "3fa726b3-4b17-45fd-b07a-685229f6d05d",
           "name": "get user data",
           "request": {
             "name": "get user data",
@@ -2938,10 +3395,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "3f4c5b2b-9de7-474f-b6a6-02aa2625a5cd",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "236d2c71-e938-4ccb-8c07-9b327f1c1dd8",
+          "id": "85abee2d-2d83-4e75-bf65-9c6fad808cd2",
           "name": "list of all",
           "request": {
             "name": "list of all",
@@ -2981,10 +3449,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "4dd331b4-f725-41f8-9eff-3fb9d9971574",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "d35c1a00-62f9-4582-a41e-11b599117acd",
+          "id": "aa1b0430-e236-4dbf-b64a-208471f1616d",
           "name": "update address",
           "request": {
             "name": "update address",
@@ -3026,13 +3505,24 @@
             }
           },
           "response": [],
-          "event": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "68f0e6c5-bf5a-468b-89ad-e4a3ccfbc222",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ],
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           }
         },
         {
-          "id": "42810a2d-f2b7-4fff-b0b6-fff98f0e152f",
+          "id": "b0629572-35f6-471f-817b-a2eab79a89b8",
           "name": "address of user",
           "request": {
             "name": "address of user",
@@ -3073,10 +3563,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "cceff554-e1fa-45b1-b9cc-02d3ae77301d",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "0acbae9f-c1ce-4c70-8836-a39df61100a7",
+          "id": "f53b9488-cc29-423e-a437-f29400eee0d0",
           "name": "update profile",
           "request": {
             "name": "update profile",
@@ -3109,7 +3610,7 @@
             "method": "PUT",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"user\": {\n    \"address1\": \"123 Main St.\",\n    \"address2\": \"123 Main St.\",\n    \"emailNews\": true,\n    \"emailTips\": true,\n    \"firstname\": \"Example\",\n    \"id\": 1,\n    \"lastname\": \"User\",\n    \"rxHeader\": \"exercitation non\",\n    \"sandboxName\": \"mollit pariatur irure\",\n    \"state\": \"Any State\",\n    \"town\": \"Anytown\",\n    \"uname\": \"exampleUser\",\n    \"userId\": -85963646,\n    \"userType\": \"VOR\",\n    \"zip\": \"12345-abcd\",\n    \"email\": \"exampleUser@email.com\",\n    \"suffix\": \"DVM\",\n    \"busName\": \"testVOR Clinic\",\n    \"country\": \"USA\"\n  }\n}",
+              "raw": "{\n  \"user\": {\n    \"address1\": \"123 Main St.\",\n    \"address2\": \"123 Main St.\",\n    \"emailNews\": false,\n    \"emailTips\": false,\n    \"firstname\": \"Example\",\n    \"id\": 1,\n    \"lastname\": \"User\",\n    \"rxHeader\": \"anim sit amet\",\n    \"sandboxName\": \"ipsum cillum proident ea repr\",\n    \"state\": \"Any State\",\n    \"town\": \"Anytown\",\n    \"uname\": \"exampleUser\",\n    \"userId\": 48836980,\n    \"userType\": \"VOR\",\n    \"zip\": \"12345-abcd\",\n    \"email\": \"exampleUser@email.com\",\n    \"suffix\": \"DVM\",\n    \"busName\": \"testVOR Clinic\",\n    \"country\": \"USA\"\n  }\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -3118,13 +3619,24 @@
             }
           },
           "response": [],
-          "event": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "dee84366-f224-44e0-8ec0-c80a81338fec",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ],
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           }
         },
         {
-          "id": "d400812d-a446-4dca-a2b0-d927b75c9e34",
+          "id": "02ebdf6a-8fa7-4e65-94bb-6d8aade4c605",
           "name": "Profile of user",
           "request": {
             "name": "Profile of user",
@@ -3165,10 +3677,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "8f555e9d-3479-4646-9cc1-2410cc0fda00",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "6322214c-ceea-4ec8-b1c7-f7e5e00c071d",
+          "id": "7c8004ab-657a-46b0-b39a-18f85dadd8af",
           "name": "confirm Token",
           "request": {
             "name": "confirm Token",
@@ -3198,10 +3721,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "230effc2-a4b6-4835-b465-b9f5f829fd95",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "db5f5939-8389-4e39-804f-939d329ec524",
+          "id": "7c17cfd2-f605-42b7-9029-3c91ac079bad",
           "name": "record a User comment",
           "request": {
             "name": "record a User comment",
@@ -3243,13 +3777,24 @@
             }
           },
           "response": [],
-          "event": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "f1b1e0d6-0c0e-4d50-b292-61f5727d29b9",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ],
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           }
         },
         {
-          "id": "874d0bb1-950a-42a7-918d-b33c39fabaec",
+          "id": "9ba47cdc-6ab1-44e9-b00c-0909aca2a0e4",
           "name": "list of all diagnoses",
           "request": {
             "name": "list of all diagnoses",
@@ -3277,10 +3822,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "5c02b148-e781-41b7-9a87-cb2937dab349",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "0ad4387a-647b-4251-9deb-e0f85eef6852",
+          "id": "1cb135f4-4950-4fea-bb51-5493ea47fa59",
           "name": "help message",
           "request": {
             "name": "help message",
@@ -3306,7 +3862,7 @@
                     "type": "text/plain"
                   },
                   "type": "any",
-                  "value": "incididunt",
+                  "value": "officia Lorem",
                   "key": "key"
                 }
               ]
@@ -3320,10 +3876,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "efec8768-b235-44db-82fc-f3dfe4605e01",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "ddd7484d-ed64-45df-97c6-f7cfcd06a953",
+          "id": "c24faa57-9b57-43bc-8a12-79cc003a378c",
           "name": "confirm VOR",
           "request": {
             "name": "confirm VOR",
@@ -3357,13 +3924,24 @@
             "method": "PUT"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "134dab20-57c4-424c-8066-b550af2ad0f0",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         }
       ],
       "event": []
     },
     {
-      "id": "df79de48-d275-4552-ad0c-948d7ff8f852",
+      "id": "9771b85b-155b-4fa4-bfec-9252e7422bc4",
       "name": "SAOR",
       "description": {
         "content": "available to system administrators.",
@@ -3371,7 +3949,7 @@
       },
       "item": [
         {
-          "id": "4d29e623-5481-4255-b4c2-450d15d7db80",
+          "id": "856459ed-a6c9-4a0d-afcc-10da4bff4d53",
           "name": "load Editor",
           "request": {
             "name": "load Editor",
@@ -3398,10 +3976,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "87a139ff-0058-475f-a331-3b04aa09798e",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "9ee7916c-2450-4c28-a50a-bba8f86c91d1",
+          "id": "40133605-b46a-4061-a22b-a3b532717c87",
           "name": "load Farm App",
           "request": {
             "name": "load Farm App",
@@ -3428,10 +4017,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "6afad2f2-b684-482b-9152-74cd56131416",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "92c5ed00-e6a7-4f6c-ad2c-b3100e5f9553",
+          "id": "ecf42ea6-0acc-4500-b5bb-7b5339e46d00",
           "name": "load Admin App",
           "request": {
             "name": "load Admin App",
@@ -3458,10 +4058,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "d71ec90f-1ad5-430b-bc12-e3ffa0c9d962",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "b80c8f6e-9b46-427a-be10-12682de0f92e",
+          "id": "e717e126-14cb-42d1-a63a-8fa86c23469a",
           "name": "delete user",
           "request": {
             "name": "delete user",
@@ -3501,10 +4112,21 @@
             "method": "DELETE"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0fe3c22d-5e61-40dd-a483-68fed930f8fc",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "769377d3-e123-40b4-a057-e3c5501c60b7",
+          "id": "389dc5e0-13c3-43eb-9fa3-383838a47c32",
           "name": "delete sandboxClient",
           "request": {
             "name": "delete sandboxClient",
@@ -3533,10 +4155,21 @@
             "method": "DELETE"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "efdc4152-55a0-4c43-8b87-0e6e1107e90b",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "bc3eef1d-c9cb-4118-b791-d001ffd16754",
+          "id": "c904d26d-490c-4ddc-9999-a06c5c5498df",
           "name": "create Tag",
           "request": {
             "name": "create Tag",
@@ -3569,7 +4202,7 @@
             "method": "POST",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"id\": 8,\n  \"color\": \"#516cc6\",\n  \"name\": \"sit aliquip ip\",\n  \"fixes\": [\n    {\n      \"_type\": \"eiusmod qui irure ut\",\n      \"detail\": \"aliquip adipisicing deserunt magna dolor\",\n      \"message\": \"amet anim\",\n      \"title\": \"qui ad labore\"\n    },\n    {\n      \"_type\": \"deserunt quis ullamco amet dolor\",\n      \"detail\": \"Lorem laboris eiusmod fugiat reprehenderit\",\n      \"message\": \"ad laborum\",\n      \"title\": \"magna ullamco veniam Ut\"\n    }\n  ]\n}",
+              "raw": "{\n  \"id\": 8,\n  \"color\": \"#516cc6\",\n  \"name\": \"velit ei\",\n  \"fixes\": [\n    {\n      \"_type\": \"adipisicing culpa eiusmod consectetur\",\n      \"detail\": \"nulla mollit commod\",\n      \"message\": \"dolore consequat sit\",\n      \"title\": \"reprehenderit dolore\"\n    },\n    {\n      \"_type\": \"proident anim in\",\n      \"detail\": \"anim commodo cillum\",\n      \"message\": \"velit enim laboris\",\n      \"title\": \"exercitation adipisicing Lorem\"\n    }\n  ]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -3582,9 +4215,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "55e29b28-554f-416c-a614-96625720e8e9",
+                "id": "df9f77eb-fc64-4b5e-b5df-f498a61bf29c",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[POST]::/api/protocols/tags - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -3595,7 +4229,7 @@
           }
         },
         {
-          "id": "db3655d9-435e-4893-b821-1dc22198f23d",
+          "id": "cd845879-cae4-4f18-8abf-e27766769bc8",
           "name": "Tag",
           "request": {
             "name": "Tag",
@@ -3622,7 +4256,7 @@
                     "type": "text/plain"
                   },
                   "type": "any",
-                  "value": "-96367244",
+                  "value": "-41001206",
                   "key": "id"
                 }
               ]
@@ -3640,9 +4274,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "bb5bf409-41f0-4034-a63e-365fd610eb47",
+                "id": "b234ac5c-1dc9-43b1-a414-ca95d1bd9784",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[DELETE]::/api/protocols/tags/:id - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -3650,7 +4285,7 @@
           ]
         },
         {
-          "id": "399bb6bd-04b4-49e1-8303-87a44ef475eb",
+          "id": "114e3695-7f47-4fb9-8442-11e9f03303a1",
           "name": "create Promise",
           "request": {
             "name": "create Promise",
@@ -3678,10 +4313,21 @@
             "method": "POST"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "38cc030e-9c99-46a3-bb06-9a86749c2986",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "b42a61ab-4118-445e-8f15-6c3b8b7a2446",
+          "id": "85025540-8650-4bcc-9a55-67b0c22eab42",
           "name": "create Eligibility",
           "request": {
             "name": "create Eligibility",
@@ -3714,7 +4360,7 @@
             "method": "POST",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"id\": 1,\n  \"name\": \"Beef Cattle\",\n  \"fdaSpecies\": [\n    \"gamebirds\",\n    \"other\"\n  ]\n}",
+              "raw": "{\n  \"id\": 1,\n  \"name\": \"Beef Cattle\",\n  \"fdaSpecies\": [\n    \"horses\",\n    \"beef_cattle\"\n  ]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -3727,9 +4373,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "f769ae40-086b-44e6-bb8f-f5249702f384",
+                "id": "bd5a8759-4ab5-43d5-ba7b-f226563132f1",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[POST]::/api/protocols/eligibilities - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -3740,7 +4387,7 @@
           }
         },
         {
-          "id": "8455ac6f-52c3-45c1-8730-d9db94e36684",
+          "id": "363b3e33-3545-4f56-acc6-0be623ce605e",
           "name": "Eligibility",
           "request": {
             "name": "Eligibility",
@@ -3770,10 +4417,21 @@
             "method": "DELETE"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "e24ca0a1-ef6e-4365-a44e-5e60cf832981",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "80e20775-b8b0-476e-84cf-0e9363504583",
+          "id": "9f221507-0b10-4765-a9fb-24c968d55951",
           "name": "create Eligibility",
           "request": {
             "name": "create Eligibility",
@@ -3819,9 +4477,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "f3fa46eb-6e6f-49ef-9b16-e0060d35cdb1",
+                "id": "12bc5f62-077f-4e9b-820c-38ecbf6add2b",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[POST]::/api/protocols/diagnoses - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -3832,7 +4491,7 @@
           }
         },
         {
-          "id": "e2cbdebc-072e-433b-ae2d-d66aae25f2a5",
+          "id": "9ef0a29f-c68a-48a3-9082-026808c51ee4",
           "name": "Diagnosis",
           "request": {
             "name": "Diagnosis",
@@ -3859,7 +4518,7 @@
                     "type": "text/plain"
                   },
                   "type": "any",
-                  "value": "-96367244",
+                  "value": "-41001206",
                   "key": "id"
                 }
               ]
@@ -3877,9 +4536,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "d35a3ba9-8dab-4500-8b7a-acdd0a29b9a7",
+                "id": "1cac9f7a-4eb0-4125-8913-a25d6e6d324a",
                 "type": "text/javascript",
                 "exec": [
+                  "./portman/pm-login.json",
                   "// Validate status 2xx \npm.test(\"[DELETE]::/api/protocols/diagnoses/:id - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
                 ]
               }
@@ -3887,7 +4547,7 @@
           ]
         },
         {
-          "id": "8b501082-1c01-492a-8f26-17e4cd1b069c",
+          "id": "3a8185bb-e4d9-4b68-a94c-8d1350f20a78",
           "name": "create help screen",
           "request": {
             "name": "create help screen",
@@ -3913,7 +4573,7 @@
                     "type": "text/plain"
                   },
                   "type": "any",
-                  "value": "incididunt",
+                  "value": "officia Lorem",
                   "key": "key"
                 }
               ]
@@ -3931,7 +4591,7 @@
             "method": "POST",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"key\": \"qui deserunt\",\n  \"msg\": \"dolor eu\",\n  \"lang\": \"dolore incididunt\"\n}",
+              "raw": "{\n  \"key\": \"esse sed amet\",\n  \"msg\": \"dolor\",\n  \"lang\": \"dolore et cupidatat\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -3940,13 +4600,24 @@
             }
           },
           "response": [],
-          "event": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "43796909-c041-4184-b0ce-0e7da497d23f",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ],
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           }
         },
         {
-          "id": "ac2ffbf8-0b6c-45ee-a35e-7a31431ed8b7",
+          "id": "42d47134-6c45-4fee-b3ef-2a16455e28aa",
           "name": "delete help screen",
           "request": {
             "name": "delete help screen",
@@ -3972,7 +4643,7 @@
                     "type": "text/plain"
                   },
                   "type": "any",
-                  "value": "incididunt",
+                  "value": "officia Lorem",
                   "key": "key"
                 }
               ]
@@ -3986,10 +4657,21 @@
             "method": "DELETE"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "af0011c8-7cd6-443f-89f2-9a61a3797d43",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "670a7d74-5702-4cf1-8451-9bd0ccec22b7",
+          "id": "4b8ef272-2e6d-4c23-8824-2be1134a6cd8",
           "name": "create labelclaim",
           "request": {
             "name": "create labelclaim",
@@ -4030,13 +4712,24 @@
             }
           },
           "response": [],
-          "event": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "6da0c0cb-d161-4457-9251-efe801827e07",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ],
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           }
         },
         {
-          "id": "157bea23-d68f-4197-84c1-81b4cfdbb9e6",
+          "id": "230c01cd-c912-4215-9249-468a1371475b",
           "name": "update labelclaim",
           "request": {
             "name": "update labelclaim",
@@ -4077,13 +4770,24 @@
             }
           },
           "response": [],
-          "event": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "eff85a46-52cb-47c3-98a6-e9ab99587a49",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ],
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           }
         },
         {
-          "id": "80bc468f-aa24-4b24-bf3f-6b4f18e9d82b",
+          "id": "e6247721-a17c-4d7d-a806-e735b1038c45",
           "name": "create help screen",
           "request": {
             "name": "create help screen",
@@ -4109,7 +4813,7 @@
                     "type": "text/plain"
                   },
                   "type": "any",
-                  "value": "-96367244",
+                  "value": "-41001206",
                   "key": "id"
                 }
               ]
@@ -4136,13 +4840,24 @@
             }
           },
           "response": [],
-          "event": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "84fc8fe8-9487-4262-990d-91d5262c5478",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ],
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           }
         },
         {
-          "id": "0b44b545-bb20-44e2-bb08-c85a23d5d913",
+          "id": "3fd24580-2ec5-4148-a002-23dfeffa7929",
           "name": "get SPL",
           "request": {
             "name": "get SPL",
@@ -4153,21 +4868,44 @@
               "path": [
                 "api",
                 "admin",
-                "spl{{ndc}}"
+                "spl",
+                ":ndc"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
               "query": [],
-              "variable": []
+              "variable": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) unique 10-digit, 3-segment number. labelerCode-productCode-packageCode",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "0061-4321-03",
+                  "key": "ndc"
+                }
+              ]
             },
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "5f2d1638-8871-4ebf-ab6f-175aa3bb427d",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "14f55775-dfb5-48e9-a594-61f0a18485fc",
+          "id": "40682b70-ebbd-4a09-9683-ebaa93fda138",
           "name": "greenbook drugs",
           "request": {
             "name": "greenbook drugs",
@@ -4192,7 +4930,7 @@
                     "type": "text/plain"
                   },
                   "key": "ndcProd",
-                  "value": "-96367244"
+                  "value": "-41001206"
                 },
                 {
                   "disabled": false,
@@ -4201,7 +4939,7 @@
                     "type": "text/plain"
                   },
                   "key": "ndcLabeler",
-                  "value": "-96367244"
+                  "value": "-41001206"
                 },
                 {
                   "disabled": false,
@@ -4210,7 +4948,7 @@
                     "type": "text/plain"
                   },
                   "key": "ndcBrand",
-                  "value": "-96367244"
+                  "value": "-41001206"
                 },
                 {
                   "disabled": false,
@@ -4219,7 +4957,7 @@
                     "type": "text/plain"
                   },
                   "key": "offset",
-                  "value": "-96367244"
+                  "value": "-41001206"
                 },
                 {
                   "disabled": false,
@@ -4228,7 +4966,7 @@
                     "type": "text/plain"
                   },
                   "key": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJleUp3Y205MmFXUmxja2xFSWpvaVkzSmxaR1Z1ZEdsaGJITWlMQ0p3Y205MmFXUmxja3RsZVNJNkluUmxjM1JXVDFJaWZRPT0iLCJpc3MiOiJwbGF5LXNpbGhvdWV0dGUiLCJle***...",
-                  "value": "-96367244"
+                  "value": "-41001206"
                 }
               ],
               "variable": []
@@ -4242,10 +4980,21 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "4af1a6e1-ab21-4628-b1a9-c868f817fcea",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         },
         {
-          "id": "92809e06-b251-45d8-b1a2-eeb04b8cf58e",
+          "id": "0f5fabe9-2a95-4345-b1b1-c40df5699d4c",
           "name": "update GBD",
           "request": {
             "name": "update GBD",
@@ -4287,13 +5036,24 @@
             }
           },
           "response": [],
-          "event": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "e3245a47-5813-494b-a5be-7492cb0015d6",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ],
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           }
         },
         {
-          "id": "b6639e0e-b2dd-4a7f-8783-1c7730b4eaed",
+          "id": "9e1d34c2-56f6-442d-8914-f227b4a1357d",
           "name": "get Greenbook Drug",
           "request": {
             "name": "get Greenbook Drug",
@@ -4327,13 +5087,24 @@
             "method": "GET"
           },
           "response": [],
-          "event": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "04aa28e4-2da0-4083-b330-f472c4e1a48c",
+                "type": "text/javascript",
+                "exec": [
+                  "./portman/pm-login.json"
+                ]
+              }
+            }
+          ]
         }
       ],
       "event": []
     },
     {
-      "id": "c2bebc6a-525c-42d0-a12c-b236134fb220",
+      "id": "69cc62fe-8d7a-41f2-8e5d-29f7aea77fef",
       "name": "TOR",
       "description": {
         "content": "available to farm employees.",
@@ -4343,7 +5114,7 @@
       "event": []
     },
     {
-      "id": "414dcdfe-aa10-4cc1-b590-8572f0fc3f55",
+      "id": "c4771609-0084-4544-b2c2-1ad8d634921c",
       "name": "LOR",
       "description": {
         "content": "available to pharmacy curators.",
@@ -4353,7 +5124,7 @@
       "event": []
     },
     {
-      "id": "9ba97a20-f50a-4268-bfdd-315cc07ac03e",
+      "id": "19bf53d7-56b6-4186-8955-10ab747292ad",
       "name": "FARM",
       "description": {
         "content": "available to farm accounts.",
@@ -4363,7 +5134,7 @@
       "event": []
     },
     {
-      "id": "2c4052ca-6cce-4106-b785-dad2f989f6cf",
+      "id": "bf63ce44-fdcd-411a-a803-1d536bbfb94a",
       "name": "CLINIC",
       "description": {
         "content": "available to vet clinic accounts.",
@@ -4373,7 +5144,7 @@
       "event": []
     },
     {
-      "id": "2f336936-a12e-411f-ab5c-df8d1098833e",
+      "id": "f9e7ea14-b64d-4e5f-a939-4173ee7fad5a",
       "name": "User",
       "description": {
         "content": "Endpoints and models related to user management.",
@@ -4383,7 +5154,7 @@
       "event": []
     },
     {
-      "id": "c675f7d3-6614-43d5-8e68-c5b6c98ae8c4",
+      "id": "9a44f702-111c-416b-9efc-2714320a714b",
       "name": "Protocol",
       "description": {
         "content": "Endpoints and models related to protocol management.",
@@ -4393,7 +5164,7 @@
       "event": []
     },
     {
-      "id": "8f15ea94-da83-45e2-b3eb-95be25335a45",
+      "id": "52129a20-b72f-4997-97ec-7b6cb7c1a5a4",
       "name": "Prescription",
       "description": {
         "content": "Endpoints and models related to prescription management.",
@@ -4403,7 +5174,7 @@
       "event": []
     },
     {
-      "id": "f5316fdd-05d7-47b7-8c07-45551bbb95a5",
+      "id": "f8fffad3-55ff-40ec-b815-788829ba718e",
       "name": "Case",
       "description": {
         "content": "Endpoints and models related to case management.",
@@ -4413,7 +5184,7 @@
       "event": []
     },
     {
-      "id": "2a158876-1e02-43f3-81b7-194025640708",
+      "id": "e5a00114-1c61-4c54-8d9c-f53e04e71a95",
       "name": "Promise",
       "description": {
         "content": "Endpoints and models related to promise management.",
@@ -4423,7 +5194,7 @@
       "event": []
     },
     {
-      "id": "2cfff66e-a7f4-4571-993f-3d3ebac56a57",
+      "id": "6e5a886a-1629-45a4-a2b1-730a5fd9d53e",
       "name": "create profile",
       "request": {
         "name": "create profile",
@@ -4456,7 +5227,7 @@
         "method": "POST",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"user\": {\n    \"address1\": \"123 Main St.\",\n    \"address2\": \"123 Main St.\",\n    \"emailNews\": true,\n    \"emailTips\": true,\n    \"firstname\": \"Example\",\n    \"id\": 1,\n    \"lastname\": \"User\",\n    \"rxHeader\": \"exercitation non\",\n    \"sandboxName\": \"mollit pariatur irure\",\n    \"state\": \"Any State\",\n    \"town\": \"Anytown\",\n    \"uname\": \"exampleUser\",\n    \"userId\": -85963646,\n    \"userType\": \"VOR\",\n    \"zip\": \"12345-abcd\",\n    \"email\": \"exampleUser@email.com\",\n    \"suffix\": \"DVM\",\n    \"busName\": \"testVOR Clinic\",\n    \"country\": \"USA\"\n  }\n}",
+          "raw": "{\n  \"user\": {\n    \"address1\": \"123 Main St.\",\n    \"address2\": \"123 Main St.\",\n    \"emailNews\": false,\n    \"emailTips\": false,\n    \"firstname\": \"Example\",\n    \"id\": 1,\n    \"lastname\": \"User\",\n    \"rxHeader\": \"anim sit amet\",\n    \"sandboxName\": \"ipsum cillum proident ea repr\",\n    \"state\": \"Any State\",\n    \"town\": \"Anytown\",\n    \"uname\": \"exampleUser\",\n    \"userId\": 48836980,\n    \"userType\": \"VOR\",\n    \"zip\": \"12345-abcd\",\n    \"email\": \"exampleUser@email.com\",\n    \"suffix\": \"DVM\",\n    \"busName\": \"testVOR Clinic\",\n    \"country\": \"USA\"\n  }\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -4469,7 +5240,7 @@
           "_": {
             "postman_previewlanguage": "json"
           },
-          "id": "024a12c4-37b3-4ba4-92e6-5260a3a8fcdc",
+          "id": "b9d2e1e8-b828-4389-88cd-2c0fd2c2d670",
           "name": "the created Profile",
           "originalRequest": {
             "url": {
@@ -4497,7 +5268,7 @@
             "method": "POST",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"user\": {\n    \"address1\": \"123 Main St.\",\n    \"address2\": \"123 Main St.\",\n    \"emailNews\": true,\n    \"emailTips\": true,\n    \"firstname\": \"Example\",\n    \"id\": 1,\n    \"lastname\": \"User\",\n    \"rxHeader\": \"exercitation non\",\n    \"sandboxName\": \"mollit pariatur irure\",\n    \"state\": \"Any State\",\n    \"town\": \"Anytown\",\n    \"uname\": \"exampleUser\",\n    \"userId\": -85963646,\n    \"userType\": \"VOR\",\n    \"zip\": \"12345-abcd\",\n    \"email\": \"exampleUser@email.com\",\n    \"suffix\": \"DVM\",\n    \"busName\": \"testVOR Clinic\",\n    \"country\": \"USA\"\n  }\n}",
+              "raw": "{\n  \"user\": {\n    \"address1\": \"123 Main St.\",\n    \"address2\": \"123 Main St.\",\n    \"emailNews\": false,\n    \"emailTips\": false,\n    \"firstname\": \"Example\",\n    \"id\": 1,\n    \"lastname\": \"User\",\n    \"rxHeader\": \"anim sit amet\",\n    \"sandboxName\": \"ipsum cillum proident ea repr\",\n    \"state\": \"Any State\",\n    \"town\": \"Anytown\",\n    \"uname\": \"exampleUser\",\n    \"userId\": 48836980,\n    \"userType\": \"VOR\",\n    \"zip\": \"12345-abcd\",\n    \"email\": \"exampleUser@email.com\",\n    \"suffix\": \"DVM\",\n    \"busName\": \"testVOR Clinic\",\n    \"country\": \"USA\"\n  }\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -4513,14 +5284,14 @@
               "value": "application/json"
             }
           ],
-          "body": "{\n  \"address1\": \"123 Main St.\",\n  \"address2\": \"123 Main St.\",\n  \"emailNews\": false,\n  \"emailTips\": true,\n  \"firstname\": \"Example\",\n  \"id\": 1,\n  \"lastname\": \"User\",\n  \"rxHeader\": \"ea laborum Duis id\",\n  \"sandboxName\": \"nisi incididunt Excepteur\",\n  \"state\": \"Any State\",\n  \"town\": \"Anytown\",\n  \"uname\": \"exampleUser\",\n  \"userId\": 68565806,\n  \"userType\": \"VOR\",\n  \"zip\": \"12345-abcd\",\n  \"email\": \"exampleUser@email.com\",\n  \"suffix\": \"DVM\",\n  \"busName\": \"testVOR Clinic\",\n  \"country\": \"USA\"\n}",
+          "body": "{\n  \"address1\": \"123 Main St.\",\n  \"address2\": \"123 Main St.\",\n  \"emailNews\": false,\n  \"emailTips\": false,\n  \"firstname\": \"Example\",\n  \"id\": 1,\n  \"lastname\": \"User\",\n  \"rxHeader\": \"dolor dolor\",\n  \"sandboxName\": \"in mollit ex\",\n  \"state\": \"Any State\",\n  \"town\": \"Anytown\",\n  \"uname\": \"exampleUser\",\n  \"userId\": -57419456,\n  \"userType\": \"VOR\",\n  \"zip\": \"12345-abcd\",\n  \"email\": \"exampleUser@email.com\",\n  \"suffix\": \"DVM\",\n  \"busName\": \"testVOR Clinic\",\n  \"country\": \"USA\"\n}",
           "cookie": []
         },
         {
           "_": {
             "postman_previewlanguage": "text"
           },
-          "id": "13f29eaf-788f-4f3a-9826-3ae3466876fd",
+          "id": "56b455f9-e7f1-406f-9219-e045d7ed89f8",
           "name": "Authorization required",
           "originalRequest": {
             "url": {
@@ -4548,7 +5319,7 @@
             "method": "POST",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"user\": {\n    \"address1\": \"123 Main St.\",\n    \"address2\": \"123 Main St.\",\n    \"emailNews\": true,\n    \"emailTips\": true,\n    \"firstname\": \"Example\",\n    \"id\": 1,\n    \"lastname\": \"User\",\n    \"rxHeader\": \"exercitation non\",\n    \"sandboxName\": \"mollit pariatur irure\",\n    \"state\": \"Any State\",\n    \"town\": \"Anytown\",\n    \"uname\": \"exampleUser\",\n    \"userId\": -85963646,\n    \"userType\": \"VOR\",\n    \"zip\": \"12345-abcd\",\n    \"email\": \"exampleUser@email.com\",\n    \"suffix\": \"DVM\",\n    \"busName\": \"testVOR Clinic\",\n    \"country\": \"USA\"\n  }\n}",
+              "raw": "{\n  \"user\": {\n    \"address1\": \"123 Main St.\",\n    \"address2\": \"123 Main St.\",\n    \"emailNews\": false,\n    \"emailTips\": false,\n    \"firstname\": \"Example\",\n    \"id\": 1,\n    \"lastname\": \"User\",\n    \"rxHeader\": \"anim sit amet\",\n    \"sandboxName\": \"ipsum cillum proident ea repr\",\n    \"state\": \"Any State\",\n    \"town\": \"Anytown\",\n    \"uname\": \"exampleUser\",\n    \"userId\": 48836980,\n    \"userType\": \"VOR\",\n    \"zip\": \"12345-abcd\",\n    \"email\": \"exampleUser@email.com\",\n    \"suffix\": \"DVM\",\n    \"busName\": \"testVOR Clinic\",\n    \"country\": \"USA\"\n  }\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -4568,7 +5339,18 @@
           "cookie": []
         }
       ],
-      "event": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "63ab2e3e-6f13-4d6d-b8ba-d168822e7dcb",
+            "type": "text/javascript",
+            "exec": [
+              "./portman/pm-login.json"
+            ]
+          }
+        }
+      ],
       "protocolProfileBehavior": {
         "disableBodyPruning": true
       }
@@ -4608,22 +5390,12 @@
         "type": "text/plain"
       },
       "type": "any",
-      "value": "-96367244",
+      "value": "-41001206",
       "key": "id"
-    },
-    {
-      "disabled": false,
-      "description": {
-        "content": "(Required) unique 10-digit, 3-segment number. labelerCode-productCode-packageCode",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "incididunt",
-      "key": "ndc"
     }
   ],
   "info": {
-    "_postman_id": "30d6240d-b60a-49d9-b0f5-97c5333b5aba",
+    "_postman_id": "12c16772-2a56-451f-8d7e-ee81356cb3a1",
     "name": "PublicAPI",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {

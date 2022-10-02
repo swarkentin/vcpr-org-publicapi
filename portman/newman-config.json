@@ -1,8 +1,0 @@
-{    
-    "environment": "./portman/postman-test.env.json",
-    "iteration-count": 1,
-    "ignore-redirects": true,
-    "insecure": true,
-    "reporters" : "htmlextra",
-    "reporter-htmlextra-export": "./docs/automated-tests.html" 
-  }
