@@ -44,7 +44,7 @@ jobs:
         uses: slackapi/slack-github-action@v1.16.0
         with:
           channel-id: 'C02PFCP98A1'
-          slack-message: ':white_check_mark: successfully completed building and deploying API docs on ${{github.repository}}'
+          slack-message: ':white_check_mark: successfully completed building and deploying API docs at https://api.vcpr.org '
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
