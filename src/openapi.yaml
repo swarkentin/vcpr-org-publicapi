@@ -1072,7 +1072,6 @@ paths:
               schema:
                 type: object
                 $ref: "#/components/schemas/LabelClaim"
-
   /api/messages:
    post:
       operationId: sendMessage
@@ -1080,13 +1079,13 @@ paths:
       summary: send a message to another user
       description: send a message to another user
       parameters:
-        - name: mode
+        - name: modes
           in: query
           required: false
           style: pipeDelimited
           explode: false
           description: >-
-            Mode or channel to use in messaging
+            Mode(s) or channel(s) to use in messaging, defaulting to EMAIL
           schema:
             type: array
             items:
@@ -1111,7 +1110,46 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "403":
           $ref: "#/components/responses/Unauthorized"
-
+  /messages/ok/{token}/:
+    get:  
+      operationId: okMessage
+      tags: [ANY]
+      summary: respond to a message identified by token
+      description: >-
+        Respond to a message according to the content in the message, secured by a token
+        that links the response to a UserMessage. Typically token expires in 48 hr.
+      parameters:
+        - name: token
+          in: path
+          required: true
+          description: a token supplied in a message asking for a response. Token typically expires in 48 hr.
+          schema:
+            type: string
+        - name: response
+          in: query
+          required: false
+          description: >-
+            A message may include a question requiring a yes-or-no response. For example, an email message could include
+            links for "confirm" or decline" with only the first setting the response parameter to true.
+          schema:
+            type: boolean
+            default: false
+            description: recipient's answer to a binary question.
+      responses:
+        "200":
+          description: OK
+          content:
+            text/html:
+              schema:
+                description: web page confirming action requested in a message response
+                type: string
+                format: html
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
+        "404":  
+          $ref: "#/components/responses/NotFound"
   /api/protocols:
     get:
       operationId: getMyProtocols
@@ -2362,12 +2400,44 @@ components:
         application/json:
           schema:
             $ref: "#/components/schemas/Error"
+        text/html:
+          schema:
+            description: web page warning
+            type: string
+            format: html
     Unauthorized: #401
       description: Authorization required
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+        text/html:
+          schema:
+            description: web page warning
+            type: string
+            format: html
     Forbidden: #403
       description: The user does not have access rights to the content.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+        text/html:
+          schema:
+            description: web page warning
+            type: string
+            format: html
     NotFound: #404
       description: The server can not find the requested resource.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+        text/html:
+          schema:
+            description: web page warning
+            type: string
+            format: html
   schemas:
     UserType:
       type: string
@@ -2554,6 +2624,7 @@ components:
       enum:
         - EMAIL
       example: EMAIL
+      default: EMAIL
     UserMessage:
       description: A message to another user, optionally including a response action
       oneOf:
