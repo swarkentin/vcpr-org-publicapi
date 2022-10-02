@@ -1,28 +1,30 @@
 ---
+---
 version: 1
 tests:
   contractTests:
-  - openApiOperationIds: ["getSPL"]
+  - openApiOperation: "*::/api/Protocols/*"
     statusSuccess:
       enabled: true
-  - openApiOperationIds: ["getSPL"]
+  - openApiOperation: "*::/api/admin/spl/*"
     responseTime:
       enabled: true
       maxMs: 300
-  - openApiOperationIds: ["getSPL"]
+  - openApiOperation: "*::'/api/admin/spl/*'"
     contentType:
       enabled: true
-  - openApiOperationIds: ["getSPL"]
+  - openApiOperationId: getSPL
     jsonBody:
       enabled: true
-  - openApiOperationIds: ["getSPL"]
+  - openApiOperationId: getSPL
     schemaValidation:
       enabled: true
-  - openApiOperationIds: ["getSPL"]
+  - openApiOperationId: getSPL
     headersPresent:
       enabled: true
 globals:
   stripResponseExamples: true
+
   # collectionPreRequestScripts:
   # - 'pm.sendRequest({ url: pm.environment.get(''baseUrl'')+''/api/users/logins'',method:
   #   ''POST'',header: {''Accept'': ''application/json'',''Content-Type'': ''application/json''},body:

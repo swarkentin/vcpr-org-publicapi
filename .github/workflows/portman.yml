@@ -26,7 +26,7 @@ jobs:
         run: |
           PORTMAN_LOGIN=${{secrets.TESTVOR_TEST_LOGIN}}
           PORTMAN_POSTMAN_API_KEY=${{secrets.POSTMAN_API}}
-          npx @apideck/portman --cliOptionsFile ./portman/portman-options.json
+          npx @apideck/portman --cliOptionsFile ./portman/portman-options.yml
       - name: commit changes
         uses: EndBug/add-and-commit@v7
         with:
@@ -36,7 +36,7 @@ jobs:
       - name: Install newman
         run: |
           npm install -g newman newman-reporter-htmlextra newman-reporter-html
-      - name: Newman CLI
+      - name: run Newman on portman-postman tests
         id: newmanCli
         continue-on-error: true
         run: |
