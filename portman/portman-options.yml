@@ -10,4 +10,4 @@ runNewman: false
 postmanWorkspaceName: VCPR.ORG
 collectionName: PublicAPI
 postmanFastSync: true
-filterFile: "./portman/filter-VOR.yml"
+#filterFile: "./portman/filter-VOR.yml"
