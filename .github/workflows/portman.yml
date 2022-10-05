@@ -24,8 +24,6 @@ jobs:
       - name: run-portman 
         id: runPortman
         run: |
-          PORTMAN_LOGIN=${{secrets.TESTVOR_TEST_LOGIN}}
-          PORTMAN_POSTMAN_API_KEY=${{secrets.POSTMAN_API}}
           npx @apideck/portman --cliOptionsFile ./portman/portman-options.yml
       - name: commit changes
         uses: EndBug/add-and-commit@v7
@@ -40,7 +38,7 @@ jobs:
         id: newmanCli
         continue-on-error: true
         run: |
-          newman run "portman/postman.json" --environment "tests/postman_environment.json" -r cli,htmlextra --reporter-htmlextra-export="./docs/automated-tests.html"      
+          newman run "portman/postman.json" --environment "./portman/postman-testVOR.env.json" -n 1 --folder VOR -r cli,htmlextra --reporter-htmlextra-export="./docs/automated-tests-vor.html"      
       - name: Publish to GH-pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:

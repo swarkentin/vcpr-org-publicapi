@@ -15,6 +15,7 @@ jobs:
           echo "auth_header=$TOK" >> $GITHUB_ENV
       - name: check token
         run: echo "${{ env.auth_header }}"        
+
       - name: Run Mayhem for API to check for vulnerabilities
         uses: ForAllSecure/mapi-action@v1
         with:
@@ -23,11 +24,11 @@ jobs:
           api-spec: src/openapi.yaml
           html-report: mapi.html
           run-args: |
-            --header-auth 
-            "${{ env.auth_header }}"  
-            --ignore-endpoint "/api/logout"
+            --header-auth
+            ${{ env.auth_header }}
+            --ignore-endpoint 
+            /api/logout
             --warnaserror
-
       - name: Archive Mayhem for API report
         uses: actions/upload-artifact@v2
         with:
