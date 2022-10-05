@@ -1,0 +1,47 @@
+name: Manual Mayhem-API
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  mayhem_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: get_auth_token
+        run: |
+          TOK=`curl -i 'https://test.vcpr.org/authenticate' --data-raw 'username=testVOR&password=tVpass' | grep  'x-auth-token:'`
+          echo "auth_header=$TOK" >> $GITHUB_ENV
+      - name: check token
+        run: echo "${{ env.auth_header }}"        
+      - name: Run Mayhem for API to check for vulnerabilities
+        uses: ForAllSecure/mapi-action@v1
+        continue-on-error: true
+        with:
+          mapi-token: ${{ secrets.MAPI_TOKEN }}
+          api-url: http://test.vcpr.org
+          api-spec: src/openapi.yaml
+          # target: mayhemheroes/keycloak-quarkus
+          duration: 1min
+          sarif-report: mapi.sarif
+          html-report: mapi.html
+          run-args: |
+            --concurrency
+            4
+            --header-auth
+            Authorization:Bearer ${{ env.AUTH_TOKEN }}
+            --ignore-rule
+            InvalidResponseSpec
+            --ignore-endpoint
+            .*logout.*
+          # run-args: |
+          #   --header-auth 
+          #   "${{ env.auth_header }}"  
+
+
+      - name: Archive Mayhem for API report
+        uses: actions/upload-artifact@v2
+        with:
+          name: mapi-report
+          path: mapi.html
