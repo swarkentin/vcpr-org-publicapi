@@ -1033,10 +1033,9 @@ paths:
   /api/protocols/promises:
     get:
       operationId: getPromisess
-      x-reviewed: JLE 2022/5/31
       tags: [VOR]
-      summary: list of all Promises
-      description: This endpoint returns the full array of available Promises.
+      summary: list of Promises
+      description: VOR users have access to a set of public promises plus any Promises they have created for their own use.
       responses:
         "200":
           description: OK
@@ -1044,15 +1043,58 @@ paths:
             application/json:
               schema:
                 properties:
-                  labels:
+                  promises:
                     type: array
                     items:
                       $ref: "#/components/schemas/Promise"
-
-    post:
-      operationId: createPromise
+  /api/protocols/publicPromises:
+     post:
+      operationId: createPublicPromise
       tags: [SAOR]
+      summary: create a public Promise
+      description: >-
+       REcord a Promise type that will be public (available to all VORs)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Promise"    
       responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  promise:
+                    $ref: "#/components/schemas/Promise"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Unauthorized"
+  /api/protocols/privatePromises:
+     post:
+      operationId: createPrivatePromise
+      tags: [VOR]
+      summary: create a private Promise
+      description: >-
+       Create a Promise type that will be private (available only to the VOR recording it)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Promise"    
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  promise:
+                    $ref: "#/components/schemas/Promise"
         "400":
           $ref: "#/components/responses/BadRequest"
         "403":
