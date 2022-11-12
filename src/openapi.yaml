@@ -4118,8 +4118,9 @@ components:
       required:
         - id
         - rxId
+        - animalId
+        - initiationTime
         - caseData
-        - promiseData
       properties:
         id:
           description: Case ID number
@@ -4131,13 +4132,38 @@ components:
           type: string
           description: UUID identifying the prescription
           example: gG3pBCR1GCMKm89c
+        animalId:
+          type: string
+          example: Bossie34
+        initiationTime:
+          type: string
+          format: date-time
+        note:
+          type: string
+        morId:
+          type: integer
         caseData:
           $ref: "#/components/schemas/CaseData"
-        promiseData:
-          description: promises attached to this case
+    CaseHx:
+      description: A Case History consisting of a Case plust the associated tasks
+      allOf:
+        - $ref: "#/components/schemas/Case"
+      type: object
+      required:
+        - promiseTasks
+        - doseTasks
+        - animalId
+      properties:
+        doseTasks:
           type: array
           items:
-            $ref: "#/components/schemas/Promise"
+            $ref: "#/components/schemas/DoseTask"
+        promiseTasks:
+          type: array
+          items:
+            $ref: "#/components/schemas/PTask"
+        Withhold:
+          $ref: "#/components/schemas/Withhold"    
     TaskStatus:
       type: string
       description: task status
