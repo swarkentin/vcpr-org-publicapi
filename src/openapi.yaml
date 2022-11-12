@@ -3693,6 +3693,43 @@ components:
           maxLength: 255
           description: free-form text description of the Diagnosis
           example: Pain/inflammation (musculoskeletal), treatment
+    PromiseData:
+      description: >-
+        Data completing a Promise, typed according to the Promise _type field.
+      type: object
+      oneOf:
+        - $ref: "#/components/schemas/SeqSingleDose"
+        - $ref: "#/components/schemas/SeqPerDay"
+        - $ref: "#/components/schemas/SeqPerDayRange"
+        - $ref: "#/components/schemas/SeqInterval"
+        - $ref: "#/components/schemas/SeqSeries"
+      discriminator:
+        propertyName: _type
+        mapping:
+          models.SeqSingleDose: "#/components/schemas/SeqSingleDose"
+          models.SeqPerDay: "#/components/schemas/SeqPerDay"
+          models.SeqPerDayRange: "#/components/schemas/SeqPerDayRange"
+          models.SeqInterval: "#/components/schemas/SeqInterval"
+          models.SeqSeries: "#/components/schemas/SeqSeries"
+
+      required:
+        - _type
+        - promiseId
+      properties:
+        _type:
+          description: Class of Promise
+          type: string
+          example: models.AffirmationPData
+          enum:
+            - models.AffirmationPData
+            - models.BooleanPData
+            - models.StringPData
+            - models.MassPData
+            - models.CategoryPData
+        promiseId:
+          description: id of Promise to which data refers
+          type: integer
+          example: 2345
     Promise:
       description: >-
         An act which must be executed on or after enrollment of a Case to a Prescription
@@ -3707,9 +3744,8 @@ components:
         _type:
           description: Class of Promise
           type: string
-          example: models.IdPromise
+          example: models.AffirmationPromise
           enum:
-            - models.IdPromise
             - models.AffirmationPromise
             - models.BooleanPromise
             - models.StringPromise
