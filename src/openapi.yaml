@@ -2136,7 +2136,7 @@ paths:
       description: Get all current cases for this user
       responses:
         "200":
-          description: Success – token refreshed
+          description: Success 
           content:
             application/json:
               schema:
@@ -2151,8 +2151,8 @@ paths:
     post:
       operationId: enrollCase
       tags: [VOR, MOR]
-      summary: enroll case
-      description: Creates a Case linked to a prescription.
+      summary: enroll Case returning tasks
+      description: Enrolls a Case from its Prescription and generates DoseTasks, Promise tasks, and Withhold as specified in the Protocol.
       requestBody:
         required: true
         content:
@@ -2161,7 +2161,7 @@ paths:
               $ref: "#/components/schemas/Case"
       responses:
         "200":
-          description: Success – recorded Case
+          description: Success – tasks generated
           content:
             application/json:
               schema:
@@ -2172,29 +2172,34 @@ paths:
                     properties:
                       id:
                         type: integer
+                        description: Case ID  
                       promises:
                         type: array
+                        description: Promise tasks to be completed
                         items:
                           $ref: "#/components/schemas/PTask"
                       doses:
                         type: array
+                        description: Dose tasks to be completed
                         items:
                           $ref: "#/components/schemas/DoseTask"
                       withhold:
+                        description: Meat or milk withholding, if required
                         $ref: "#/components/schemas/Withhold"                 
         "400":
           $ref: "#/components/responses/BadRequest"
   /api/rx-cases:
     get:
-      operationId: myRx-Cases
-      tags: [VOR]
+      operationId: rxWithCases
+      tags: [VOR, MOR]
       summary: prescriptions with cases
+      description: A filtered list of Prescriptions with Cases enrolled to each.
       parameters:
         - name: vorId
           in: query
           schema:
             type: integer
-          description: ID number of VOR prescribing 
+          description: ID number of prescribing VOR
           required: false
         - name: morId
           in: query
@@ -2206,33 +2211,35 @@ paths:
           in: query
           schema:
             type: integer
-          description: ID number of protocol 
+          description: ID number of protocol prescribed
           required: false
         - name: enrolledBefore
           in: query
           schema: 
             type: string
             format: date-time
-            description: filter cases before this date
             example: 2020-01-10T22:20:39Z
+          description: last date limit for Case enrollment
         - name: enrolledAfter
           in: query
           schema: 
             type: string
             format: date-time
-            description: filter cases after this date
-            example: 2020-01-10T22:20:39Z    
+            example: 2019-01-10T22:20:39Z    
+          description: earliest date limit for Case enrollment
         - name: offset
           in: query
           schema:
             type: integer
             default: 0
+          description: page start
           required: false
         - name: limit
           in: query
           schema:
             type: integer
             default: 20
+          description: maximum page length
           required: false
       responses:
         "200":
@@ -4438,57 +4445,22 @@ components:
         {"_type":"models.DoseByClass","animalClasses":[{"animalClass":"Jabberwocks","sizeFunction":{"unit":"mg","size":3.2,"_type":"models.DrugQuantity"}},{"animalClass":"Borogoves","sizeFunction":{"_type":"models.DoseRangeFunction","maxDose":{"size":20,"unit":"ml"},"minDose":{"size":10,"unit":"ml"}}}]}
     CaseData:
       description: data for an individual Case
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 0
-          description: ID number for the **_Case_**
-        rxId:
-          type: string
-          description: UUID identifying the prescription
-          example: gG3pBCR1GCMKm89c
-        caseData:
-          oneOf:
-            - $ref: "#/components/schemas/IdData"
-            - $ref: "#/components/schemas/WeightData"
-            - $ref: "#/components/schemas/PreferredDoseData"
-            - $ref: "#/components/schemas/PrefDoseRateData"
-            - $ref: "#/components/schemas/AnimalClassData"
+      oneOf:
+        - $ref: "#/components/schemas/WeightData"
+        - $ref: "#/components/schemas/PreferredDoseData"
+        - $ref: "#/components/schemas/PrefDoseRateData"
+        - $ref: "#/components/schemas/AnimalClassData"
       discriminator:
         propertyName: _type
         mapping:
-          models.IdData: "#/components/schemas/IdData"
           models.WeightData: "#/components/schemas/WeightData"
           models.PreferredDoseData: "#/components/schemas/PreferredDoseData"
           models.PrefDoseRateData: "#/components/schemas/PrefDoseRateData"
           models.AnimalClassData: "#/components/schemas/AnimalClassData"
-    IdData:
-      type: object
-      description: identifies animal or group treated in the **_Case_**
-      properties:
-        _type:
-          type: string
-          description: Class of CaseData
-          enum:
-            - models.IdData
-          example: models.IdData
-        animalId:
-          type: string
-          description: text description identifying the animal or group
-          example: Bossie
-        initiationTime:
-          type: string
-          format: date-time
-          example: 2020-01-10T10:30:37Z
-          description: when the **_Case_** is initiated
     PreferredDoseData:
       description: animal identity and preferred dose
       type: object
-      required:
-        - animalId
-        - initiationTime
-        - preferredDose
+      required: [preferredDose]
       properties:
         _type:
           description: Class of CaseData
@@ -4496,25 +4468,12 @@ components:
           enum:
             - models.PreferredDoseData
           example: models.PrefDoseRateData
-        animalId:
-          type: string
-          description: text description identifying the animal or group
-          example: Bossie
         preferredDose:
           $ref: "#/components/schemas/DrugQuantity"
-        initiationTime:
-          type: string
-          format: date-time
-          description: when the **_Case_** is initiated
-          example: 2020-04-10T10:30:37Z
     PrefDoseRateData:
       description: weight of animal and preferred dose
       type: object
-      required:
-        - animalId
-        - initiationTime
-        - preferredDose
-        - weight
+      required: [preferredDose, weight]
       properties:
         _type:
           type: string
@@ -4522,16 +4481,6 @@ components:
           enum:
             - models.PrefDoseRateData
           example: models.PrefDoseRateData
-        animalId:
-          description: text description identifying the animal or group
-          type: integer
-          default: null
-          example: 123
-        initiationTime:
-          description: when the **_Case_** is initiated
-          type: string
-          format: date-time
-          example: 2020-01-10T10:30:37Z
         weight:
           $ref: "#/components/schemas/MassQuantity"
         preferredDose:
@@ -4539,10 +4488,7 @@ components:
     AnimalClassData:
       description: data for a class of animals
       type: object
-      required:
-        - animalId
-        - initiationTime
-        - animalClass
+      required: [animalClass]
       properties:
         _type:
           description: Class of CaseData
@@ -4550,16 +4496,6 @@ components:
           enum:
             - models.AnimalClassData
           example: models.AnimalClassData
-        animalId:
-          description: text description identifying the animal or group
-          type: integer
-          default: null
-          example: 123
-        initiationTime:
-          description: when the **_Case_** is initiated
-          type: string
-          format: date-time
-          example: 2020-01-10T10:30:37Z
         animalClass:
           $ref: "#/components/schemas/AnimalClass"
     AnimalClass:
@@ -4585,17 +4521,8 @@ components:
           enum:
             - models.WeightData
           example: models.WeightData
-        animalId:
-          type: string
-          description: text description identifying the animal or group
-          example: Bossie
         weight:
           $ref: "#/components/schemas/MassQuantity"
-        initiationTime:
-          type: string
-          format: date-time
-          description: when the **_Case_** is initiated
-          example: 2020-01-10T10:30:37Z
     Withhold:
       description: a time before which meat or milk may not be sold.
       type: object
