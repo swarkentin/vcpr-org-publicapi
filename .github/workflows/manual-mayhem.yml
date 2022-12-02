@@ -26,7 +26,7 @@ jobs:
           run-args: |
             --header-auth
             ${{ env.auth_header }}
-            --ignore-endpoint 
+            --ignore-endpoint
             /api/logout
             --warnaserror
       - name: Archive Mayhem for API report
