@@ -2,6 +2,7 @@ name: Manual Mayhem-API
 
 on:
   workflow_dispatch:
+  push:
 
 jobs:
 
@@ -22,26 +23,25 @@ jobs:
           mapi-token: ${{ secrets.MAPI_TOKEN }}
           api-url: http://test.vcpr.org
           api-spec: src/openapi.yaml
-          # target: mayhemheroes/keycloak-quarkus
-          duration: 1min
+          target: swarkentin/vcpr-org-publicapi
+          duration: 2min
           sarif-report: mapi.sarif
           html-report: mapi.html
-          run-args: |
-            --concurrency
-            4
+          run-args: |            
             --header-auth
             Authorization:Bearer ${{ env.AUTH_TOKEN }}
             --ignore-rule
             InvalidResponseSpec
             --ignore-endpoint
             .*logout.*
-          # run-args: |
-          #   --header-auth 
-          #   "${{ env.auth_header }}"  
-
 
       - name: Archive Mayhem for API report
         uses: actions/upload-artifact@v2
         with:
           name: mapi-report
           path: mapi.html
+                
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: mapi.sarif          
