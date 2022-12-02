@@ -21,6 +21,7 @@ jobs:
         uses: ForAllSecure/mapi-action@v1
         with:
           mapi-token: ${{ secrets.MAPI_SECRET }}
+          target: "swarkentin/vcpr-org-publicapi"
           api-url: http://test.vcpr.org
           api-spec: src/openapi.yaml
           html-report: mapi.html
